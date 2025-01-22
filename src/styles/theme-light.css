@@ -5,4 +5,8 @@
 
   --heading-font: "zilla-slab";
   --heading-font-weight: 700;
+
+  --heading-text-colour: #343537;
+  --paragraph-text-colour: #343537;
+  --card-border: none;
 }

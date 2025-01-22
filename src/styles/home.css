@@ -1,25 +1,67 @@
 #page-home {
     #usp-grid {
-        display               : grid;
-        grid-template-columns : repeat(3, 1fr);
-        grid-template-rows    : repeat(2, 1fr);
-        grid-gap              : 16px;
-        height                : 480px;
-        grid-template-areas   :
-                "card-1 card-2 card-3"
-                "card-1 card-4 card-5";
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-gap: 16px;
+        height: 480px;
+        grid-template-areas:
+            "card-1 card-2 card-3"
+            "card-1 card-4 card-5";
     }
 
-    #card-1 { grid-area : card-1; }
-    #card-2 { grid-area : card-2; }
-    #card-3 { grid-area : card-3; }
-    #card-4 { grid-area : card-4; }
-    #card-5 { grid-area : card-5; }
+    #card-1 {
+        grid-area: card-1;
+    }
+
+    #card-2 {
+        grid-area: card-2;
+    }
+
+    #card-3 {
+        grid-area: card-3;
+    }
+
+    #card-4 {
+        grid-area: card-4;
+    }
+
+    #card-5 {
+        grid-area: card-5;
+    }
 
     .usp-card {
-        display         : flex;
-        height          : 100%;
-        flex-direction  : column;
-        justify-content : space-between;
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        justify-content: space-between;
     }
+
+    .hero-heading {
+        color: #242424;
+        font-family: "zilla-slab", serif;
+    }
+
+    .category-thumbnail {
+        position: relative;
+        width: 25vh;
+        height: 25vh;
+        overflow: hidden;
+        text-align: end;
+        border-radius: 20px;
+        background-color: #FAF8F5;
+    }
+
+    .category-thumbnail:hover {
+        background-color: #faf4ea;
+    }
+
+    .category-thumbnail-text {
+        position: absolute;
+        font-family: "zilla-slab", serif;
+        color: #BE9B74;
+        bottom: 24px;
+        right: 32px;
+    }
+
 }
