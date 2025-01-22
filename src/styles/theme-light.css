@@ -1,5 +1,8 @@
 .theme-light {
-  --font-sans-serif: "barlow-regular", sans-serif;
+  --font-sans-serif: "barlow", sans-serif;
   --font-serif: "IBM Plex Serif", serif;
   --font-mono: "IBM Plex Mono", monospace;
+
+  --heading-font: "zilla-slab";
+  --heading-font-weight: 700;
 }
