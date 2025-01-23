@@ -9,6 +9,19 @@
 @import "./theme-dark.css";
 
 /* GLOBAL RULES ///////////////////////////////////////////////////////////// */
-.theme-dark #fictoan-logo {
-    filter: invert(1);
+div[data-theme-provider] {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+article {
+    flex: 1 0 auto;
+}
+
+.links-container {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    gap: 40px;
 }

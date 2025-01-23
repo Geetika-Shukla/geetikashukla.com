@@ -5,7 +5,8 @@ import React from "react";
 import { ThemeProvider } from "fictoan-react";
 
 // COMPONENTS ==================================================================
-import { Header } from "@/components/Header/Header";
+import { SiteHeader } from "@/components/SiteHeader/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter/SiteFooter";
 
 // STYLES ======================================================================
 import "@/styles/globals.css";
@@ -16,26 +17,27 @@ import "@/styles/globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Boilerplate for React — Fictoan Framework",
-  description: "NextJS boilerplate for React using Fictoan Framework",
+    title: "Geetika Shukla",
+    description: "Work",
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-  const listOfThemes = ["theme-light", "theme-dark"];
+    const listOfThemes = ["theme-light", "theme-dark"];
 
-  return (
-    <html lang="en">
-      <body>
-        <ThemeProvider themeList={listOfThemes} currentTheme="theme-dark">
-          <Header />
+    return (
+        <html lang="en">
+            <body>
+                <ThemeProvider themeList={listOfThemes} currentTheme="theme-dark">
+                    <SiteHeader />
 
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+                    {children}
+                    <SiteFooter />
+                </ThemeProvider>
+            </body>
+        </html>
+    );
 }

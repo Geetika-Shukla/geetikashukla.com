@@ -1,5 +1,4 @@
 #page-home {
-
     .hero-heading {
         color: #242424;
         font-family: "zilla-slab", serif;
@@ -37,13 +36,6 @@
         color: #BE9B74;
         bottom: 24px;
         right: 32px;
-    }
-
-    #footer-links {
-        position: sticky;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
     }
 
 

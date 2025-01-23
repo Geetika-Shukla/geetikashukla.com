@@ -24,25 +24,16 @@ import {
 import "@/styles/home.css";
 
 // ASSETS ======================================================================
-import PersonalLogo from "@/assets/images/logo.svg";
 import YellowStar from "@/assets/images/yellow-star.svg";
 import GreenStar from "@/assets/images/green-star.svg";
 import PurpleStar from "@/assets/images/purple-star.svg";
 import VDCover from "@/assets/images/vd-cover.svg";
 import TypeCover from "@/assets/images/type-cover.svg";
 import Heart from "@/assets/images/heart.svg";
-import GitHub from "@/assets/images/github.svg";
-import LinkedIn from "@/assets/images/linkedin.svg";
-import Instagram from "@/assets/images/instagram.svg";
 
 
 export default function Home() {
-    const code = `let a = 1;
-let b = "This is a codeblock";
-const c = () => {
-  console.log("Fictoan!");
-};
-`;
+
     return (
         <article id="page-home">
 
@@ -85,22 +76,9 @@ const c = () => {
                 </Card>
 
                 <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
-                    <Heart className="category-thumbnail-text" />
+                    <Heart className="category-thumbnail-text" width="30px" />
                 </Card>
             </Row>
-
-            <Footer id="footer-links" marginTop="medium" horizontalMargin="large">
-                <Text marginRight="medium">👩🏻‍💻 &nbsp; Thanks for stopping by! I'm learning to code, and this website has been built by me.</Text>
-                <Link href="https://github.com/Geetika-Shukla/geetika-website">
-                    <GitHub alt="github" height="30px" />
-                </Link>
-                <Link href="https://www.linkedin.com/in/geetikashukla/">
-                    <LinkedIn alt="Linkedin" height="30px" />
-                </Link>
-                <Link href="https://www.instagram.com/all.things.type/">
-                    <Instagram alt="Instagram" height="30px" />
-                </Link>
-            </Footer>
 
         </article >
     );

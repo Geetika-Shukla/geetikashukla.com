@@ -1,0 +1,6 @@
+#site-header {
+    height: 54px;
+    border-bottom: 1px solid var(--slate-dark-30);
+    padding-top: 20px;
+
+}

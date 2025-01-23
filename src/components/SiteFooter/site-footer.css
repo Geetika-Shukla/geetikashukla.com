@@ -1,0 +1,11 @@
+#site-footer {
+    flex-shrink: 0;
+
+    #footer-links {
+        position: sticky;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+    }
+}
