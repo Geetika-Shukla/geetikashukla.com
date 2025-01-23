@@ -37,9 +37,9 @@ export default function Home() {
     return (
         <article id="page-home">
 
-            <Row layoutAsGrid horizontalPadding="huge" marginTop="small">
+            <Row layoutAsGrid horizontalPadding="huge" marginTop="medium" marginBottom="none">
                 <Portion desktopSpan="2" marginTop="large" className="overflow-left">
-                    <GreenStar alt="star" height="64px" />
+                    <GreenStar alt="star" height="56px" />
                 </Portion>
                 <Portion desktopSpan="8">
                     <Heading1 className="hero-heading">
@@ -60,7 +60,7 @@ export default function Home() {
                     </Div>
                 </Portion>
                 <Portion desktopSpan="2" marginTop="small" className="overflow-right">
-                    <PurpleStar alt="star" height="64px" />
+                    <PurpleStar alt="star" height="56px" />
                 </Portion>
             </Row >
 
