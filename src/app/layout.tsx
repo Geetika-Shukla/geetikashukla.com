@@ -31,7 +31,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                <ThemeProvider themeList={listOfThemes} currentTheme="theme-dark">
+                <ThemeProvider themeList={listOfThemes} currentTheme="theme-light">
                     <SiteHeader />
 
                     {children}

@@ -70,14 +70,16 @@ export default function Home() {
                     <Heading6 className="category-thumbnail-text" >Visual</Heading6>
                 </Card>
 
-                <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
+                <Card href="@/" className="category-thumbnail" shape="rounded" horizontalMargin="micro">
                     <TypeCover />
                     <Heading6 className="category-thumbnail-text" >Type</Heading6>
                 </Card>
 
-                <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
-                    <Heart className="category-thumbnail-text" width="30px" />
-                </Card>
+                <Link href="/hobbies">
+                    <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
+                        <Heart className="category-thumbnail-text" width="30px" />
+                    </Card>
+                </Link>
             </Row>
 
         </article >

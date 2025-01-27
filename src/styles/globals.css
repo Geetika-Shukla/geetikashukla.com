@@ -25,3 +25,20 @@ article {
     padding: 10px;
     gap: 40px;
 }
+
+.hero-heading {
+    color: #242424;
+    font-family: "zilla-slab", serif;
+}
+
+.overflow-left {
+    display: flex;
+    position: relative;
+    left: -17vw;
+}
+
+.overflow-right {
+    display: flex;
+    position: relative;
+    right: -18vw;
+}

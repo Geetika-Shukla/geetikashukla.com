@@ -37,7 +37,7 @@ export const SiteHeader = () => {
                         <Div className="links-container">
                             <Text>Visual</Text>
                             <Text>Type</Text>
-                            <Heart width="24px" height="24px" />
+                            <Link href="/hobbies"><Heart width="24px" height="24px" /></Link>
                         </Div>
                     </Div>
                 </Portion>
