@@ -8,4 +8,9 @@
         align-items: center;
         gap: 20px;
     }
+
+    .footer-text {
+        font-size: 1rem;
+        color: hsl(210, 9%, 38%);
+    }
 }

@@ -35,13 +35,16 @@ export const SiteHeader = () => {
                         </Link>
 
                         <Div className="links-container">
-                            <Text>Visual</Text>
-                            <Text>Type</Text>
+
+                            <Link href="/visual"><Text className="nav-links">Visual</Text></Link>
+
+                            <Link href="/type"><Text className="nav-links">Type</Text></Link>
+
                             <Link href="/hobbies"><Heart width="24px" height="24px" /></Link>
                         </Div>
                     </Div>
                 </Portion>
             </Row>
-        </Header>
+        </Header >
     );
 };

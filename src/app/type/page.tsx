@@ -1,6 +1,7 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
 import Link from "next/link";
+import Image from 'next/image';
 
 // INTERNAL DEPS ===============================================================
 import {
@@ -21,21 +22,19 @@ import {
 // COMPONENTS ==================================================================
 
 // STYLES ======================================================================
-import "@/styles/home.css";
+import "./page-type.css";
 
 // ASSETS ======================================================================
 import YellowStar from "@/assets/images/yellow-star.svg";
 import GreenStar from "@/assets/images/green-star.svg";
 import PurpleStar from "@/assets/images/purple-star.svg";
-import VDCover from "@/assets/images/vd-cover.svg";
-import TypeCover from "@/assets/images/type-cover.svg";
-import Heart from "@/assets/images/heart.svg";
+import InktoberThumbnail from "@/assets/images/thumbnail-for-inktober.svg";
+import DevanagariThumbnail from "@/assets/images/thumbnail-for-47-days-of-devanagari-type.svg";
 
 
-export default function Home() {
-
+const TypePage = () => {
     return (
-        <article id="page-home">
+        <article id="page-type">
 
             <Row layoutAsGrid horizontalPadding="huge" marginTop="medium" marginBottom="none">
                 <Portion desktopSpan="2" marginTop="large" className="overflow-left">
@@ -43,7 +42,7 @@ export default function Home() {
                 </Portion>
                 <Portion desktopSpan="8">
                     <Heading1 className="hero-heading">
-                        Hello there!
+                        All things type
                     </Heading1>
                 </Portion>
                 <Portion desktopSpan="2" marginTop="small">
@@ -51,12 +50,11 @@ export default function Home() {
                 </Portion>
                 <Portion desktopSpan="10">
                     <Div marginTop="small">
-                        <Text>I’m Geetika, a multidisciplinary designer. I’m an eager learner and a pre-crastinator.</Text>
-                        <br />
+                        <Text marginBottom="tiny">I love experimenting with typography, especially with pen and ink. Calligraphy holds a special place in my heart.</Text>
 
-                        <Text>Previously, I’ve worked as an architect. I’ve also dabbled in exhibition design, brand design, user
-                            interface and
-                            experience design, web design, and a little bit of illustrations and coding too.</Text>
+                        <Text>P.S. My superpower is being able to spend hours selecting the perfect font for any project.
+
+                        </Text>
                     </Div>
                 </Portion>
                 <Portion desktopSpan="2" marginTop="small" className="overflow-right">
@@ -64,29 +62,24 @@ export default function Home() {
                 </Portion>
             </Row >
 
-            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="none" horizontallyCenterThis>
+            <Row layoutAsGrid horizontalPadding="huge" marginTop="none" marginBottom="small">
+                <Portion className="center-flexbox" layoutAsFlexbox verticallyCenterItems>
 
-                <Link href="/visual">
-                    <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
-                        <VDCover />
-                        <Heading6 className="category-thumbnail-text" >Visual</Heading6>
+                    <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
+                        <DevanagariThumbnail alt="47 days of Devanagari Type" />
+                        <Heading6 className="project-thumbnail-text" >47 days of Devanagari Type</Heading6>
                     </Card>
-                </Link>
 
-                <Link href="/type">
-                    <Card href="@/" className="category-thumbnail" shape="rounded" horizontalMargin="micro">
-                        <TypeCover />
-                        <Heading6 className="category-thumbnail-text" >Type</Heading6>
+                    <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
+                        <InktoberThumbnail alt="inktober" />
+                        <Heading6 className="project-thumbnail-text" >Inktober 2017</Heading6>
                     </Card>
-                </Link>
-
-                <Link href="/hobbies">
-                    <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
-                        <Heart className="category-thumbnail-text" width="30px" />
-                    </Card>
-                </Link>
+                </Portion>
             </Row>
 
         </article >
     );
-}
+};
+
+export default TypePage;
+

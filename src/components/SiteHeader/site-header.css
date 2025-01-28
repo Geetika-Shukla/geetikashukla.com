@@ -2,4 +2,16 @@
     height: 54px;
     border-bottom: 1px solid var(--slate-dark-30);
     padding-top: 24px;
+
+    .nav-links {
+        color: hsl(210, 6%, 40%);
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding-right: 40px;
+    }
+
+    .nav-links:hover {
+        color: hsl(207, 10%, 17%);
+    }
+
 }

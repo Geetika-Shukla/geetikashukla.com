@@ -1,25 +1,29 @@
-#page-home {
+#page-type {
 
-    .category-thumbnail {
+    .project-thumbnail {
         position: relative;
-        width: 25vh;
-        height: 25vh;
+        width: 400px;
+        height: 200px;
         overflow: hidden;
         text-align: end;
         border-radius: 20px;
         background-color: #FAF8F5;
     }
 
-    .category-thumbnail:hover {
+    .project-thumbnail:hover {
         background-color: #faf4ea;
     }
 
-    .category-thumbnail-text {
+    .project-thumbnail-text {
         position: absolute;
         font-family: "zilla-slab", serif;
         color: #BE9B74;
         bottom: 24px;
         right: 32px;
+    }
+
+    .center-flexbox {
+        justify-content: center;
     }
 
 }

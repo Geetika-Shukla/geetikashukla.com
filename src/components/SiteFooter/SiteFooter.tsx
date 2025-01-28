@@ -31,7 +31,7 @@ export const SiteFooter = () => {
             <Row horizontalPadding="large">
                 <Portion>
                     <Div verticallyCenterItems pushItemsToEnds>
-                        <Text>👩🏻‍💻 &nbsp; Thanks for stopping by! I'm learning to code, and this website has been built by me.</Text>
+                        <Text className="footer-text">👩🏻‍💻 &nbsp; Thanks for stopping by! I'm learning to code, and this website has been built by me.</Text>
                         <Div className="links-container">
                             <Link href="https://github.com/Geetika-Shukla/geetika-website">
                                 <GitHub alt="github" height="30px" />
