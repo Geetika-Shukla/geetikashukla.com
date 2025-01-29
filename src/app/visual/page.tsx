@@ -90,7 +90,6 @@ const VisualPage = () => {
             </Row>
 
 
-
         </article >
     );
 };
