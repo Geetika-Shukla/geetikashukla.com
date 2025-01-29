@@ -10,12 +10,6 @@ import {
     Card,
     Element,
     Heading1,
-    Heading2,
-    Heading3,
-    Heading4,
-    Heading5,
-    Heading6,
-    Heading7,
     Portion,
     Row,
     Div,
@@ -70,7 +64,7 @@ const TypeDaysPage = () => {
         <article className="project-page">
 
             <Row layoutAsGrid horizontalPadding="huge" marginTop="medium" marginBottom="small">
-                <Portion desktopSpan="10">
+                <Portion desktopSpan="10" horizontalMargin="small">
                     <Heading1 className="hero-heading">
                         26 Days of Type
                     </Heading1>
@@ -80,7 +74,7 @@ const TypeDaysPage = () => {
                     <YellowStar alt="star" height="32px" />
                 </Portion>
 
-                <Portion desktopSpan="12" mobileSpan="whole">
+                <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">
                         <Text marginBottom="tiny">
                             36 Days of Type is a project that invites designers, illustrators, and graphic artists to express their particular interpretation of the letters and numbers of our alphabet.
@@ -104,13 +98,13 @@ const TypeDaysPage = () => {
 
                 <Portion desktopSpan="16">
                     <Div>
-                        <h6>01&nbsp;&nbsp;&nbsp;&nbsp;About the architect</h6>
+                        <h7>01&nbsp;&nbsp;&nbsp;&nbsp;About the architect</h7>
                         <Text marginBottom="tiny" marginTop="nano">Chinese-American architect Ieoh Ming Pei’s designs represent an extension of and elaboration on
                             the rectangular forms and irregular silhouettes of the prevailing international style.
                         </Text>
                     </Div>
                     <Div>
-                        <h6>02&nbsp;&nbsp;&nbsp;&nbsp;Architectural style and features</h6>
+                        <h7>02&nbsp;&nbsp;&nbsp;&nbsp;Architectural style and features</h7>
                         <Div padding="tiny" horizontallyCenterThis style={{ display: "flex", gap: "48px" }}>
                             <Steel alt="steel" height="80px" />
                             <Glass alt="glass" height="80px" />
@@ -122,7 +116,7 @@ const TypeDaysPage = () => {
 
                     </Div>
                     <Div layoutAsFlexbox>
-                        <h6>03&nbsp;&nbsp;&nbsp;&nbsp;Buildings by the architect</h6>
+                        <h7>03&nbsp;&nbsp;&nbsp;&nbsp;Buildings by the architect</h7>
                         <Div padding="tiny" style={{ display: "flex", gap: "48px" }}>
                             <Div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
                                 <Louvre alt="Louvre" height="80px" />

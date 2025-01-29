@@ -21,7 +21,13 @@ article {
 
 h6 {
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+}
+
+h7 {
+    font-weight: 600;
+    font-size: 1.3rem;
+    font-family: "zilla-slab", serif;
 }
 
 p {

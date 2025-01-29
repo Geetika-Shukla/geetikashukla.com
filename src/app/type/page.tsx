@@ -65,15 +65,20 @@ const TypePage = () => {
             <Row layoutAsGrid horizontalPadding="huge" marginTop="none" marginBottom="small">
                 <Portion className="center-flexbox" layoutAsFlexbox verticallyCenterItems>
 
-                    <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                        <DevanagariThumbnail alt="47 days of Devanagari Type" />
-                        <Heading6 className="project-thumbnail-text" >47 days of Devanagari Type</Heading6>
-                    </Card>
+                    <Link href="/type/47-days-of-devanagari-type">
+                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
+                            <DevanagariThumbnail alt="47 days of Devanagari Type" />
+                            <Heading6 className="project-thumbnail-text" >47 days of Devanagari Type</Heading6>
+                        </Card>
+                    </Link>
 
-                    <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                        <InktoberThumbnail alt="inktober" />
-                        <Heading6 className="project-thumbnail-text" >Inktober 2017</Heading6>
-                    </Card>
+                    <Link href="/type/inktober-2017">
+                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
+                            <InktoberThumbnail alt="inktober" />
+                            <Heading6 className="project-thumbnail-text" >Inktober 2017</Heading6>
+                        </Card>
+                    </Link>
+
                 </Portion>
             </Row>
 
