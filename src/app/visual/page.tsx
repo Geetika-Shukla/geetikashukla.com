@@ -62,18 +62,25 @@ const VisualPage = () => {
                 </Portion>
             </Row >
 
+
+
             <Row layoutAsGrid horizontalPadding="huge" marginTop="none" marginBottom="small">
                 <Portion className="center-flexbox" layoutAsFlexbox verticallyCenterItems>
 
-                    <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                        <PeopleExperienceThumbnail alt="people-experience" />
-                        <Heading6 className="project-thumbnail-text" >People experience at Setu</Heading6>
-                    </Card>
+                    <Link href="/visual/people-experience-at-setu">
+                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
+                            <PeopleExperienceThumbnail alt="people-experience" />
+                            <Heading6 className="project-thumbnail-text" >People experience at Setu</Heading6>
+                        </Card>
+                    </Link>
 
-                    <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                        <IconSystemThumbnail alt="icon-system" />
-                        <Heading6 className="project-thumbnail-text" >Icon system for Setu</Heading6>
-                    </Card>
+
+                    <Link href="/visual/icon-system-for-setu">
+                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
+                            <IconSystemThumbnail alt="icon-system" />
+                            <Heading6 className="project-thumbnail-text" >Icon system for Setu</Heading6>
+                        </Card>
+                    </Link>
 
                     <Link href="/visual/26-days-of-type">
                         <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
@@ -88,9 +95,11 @@ const VisualPage = () => {
                             <Heading6 className="project-thumbnail-text" >Kannauj Perfumery</Heading6>
                         </Card>
                     </Link>
-
                 </Portion>
             </Row>
+
+
+
 
 
         </article >

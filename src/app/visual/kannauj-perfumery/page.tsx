@@ -81,6 +81,7 @@ const KannaujPage = () => {
                     <Pic2 height="170px" />
                     <Pic3 height="170px" />
                     <Pic4 height="110px" />
+
                 </Portion>
                 <h5>Logo Specifications
                 </h5>

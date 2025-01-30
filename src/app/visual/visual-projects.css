@@ -28,4 +28,13 @@
         row-gap: 20px;
     }
 
+    .pointer-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 176px;
+        height: 290px;
+        border-radius: 16px;
+        background-color: #F8FAFC;
+    }
 }
