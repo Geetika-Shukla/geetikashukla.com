@@ -57,4 +57,10 @@
         grid-column: span 2;
     }
 
+    @media (max-width: 600px) {
+        .bento-grid {
+            grid-template-columns: 1fr;
+            /* Stacks items into one column */
+        }
+    }
 }

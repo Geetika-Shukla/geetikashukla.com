@@ -35,7 +35,7 @@ const HobbiesPage = () => {
         <article id="page-hobbies">
 
             <Row layoutAsGrid horizontalPadding="huge" marginTop="medium" marginBottom="none">
-                <Portion desktopSpan="2" marginTop="large" className="overflow-left">
+                <Portion desktopSpan="2" marginTop="large" className="overflow-left" hideOnMobile>
                     <GreenStar alt="star" height="56px" />
                 </Portion>
                 <Portion desktopSpan="20" >
@@ -45,10 +45,10 @@ const HobbiesPage = () => {
                     <Div marginTop="small">
                         <Text align="center" marginBottom="tiny" >My interests and hobbies are as varied as they are fleeting, ranging from typography, stitching and home organising to an unexpected fascination with soaps.
                         </Text>
-                        <Text align="center">I cherish the beauty of everyday moments—the quiet, unassuming ones—which explains my love for slice-of-life anime and Japanese fiction.</Text>
+                        <Text align="center" marginBottom="tiny">I cherish the beauty of everyday moments—the quiet, unassuming ones—which explains my love for slice-of-life anime and Japanese fiction.</Text>
                     </Div>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" className="overflow-right">
+                <Portion desktopSpan="2" marginTop="small" className="overflow-right" hideOnMobile>
                     <PurpleStar alt="star" height="56px" />
                 </Portion>
             </Row >
