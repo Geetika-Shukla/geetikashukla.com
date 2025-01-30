@@ -81,10 +81,13 @@ const VisualPage = () => {
                             <Heading6 className="project-thumbnail-text" >26 days of Type</Heading6>
                         </Card>
                     </Link>
-                    <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                        <KannaujThumbnail alt="Kannauj-perfumery" />
-                        <Heading6 className="project-thumbnail-text" >Kannauj Perfumery</Heading6>
-                    </Card>
+
+                    <Link href="/visual/kannauj-perfumery">
+                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
+                            <KannaujThumbnail alt="Kannauj-perfumery" />
+                            <Heading6 className="project-thumbnail-text" >Kannauj Perfumery</Heading6>
+                        </Card>
+                    </Link>
 
                 </Portion>
             </Row>

@@ -20,4 +20,12 @@
         height: 100%;
     }
 
+    .images-in-a-row {
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+        row-gap: 20px;
+    }
+
 }
