@@ -89,10 +89,6 @@ const PeopleOpsPage = () => {
                 </Portion>
             </Row>
 
-            <Row horizontalPadding="huge" marginTop="none" marginBottom="small" horizontallyCenterThis>
-                <Image src="/team-page.gif" height={200} width={1200} />
-            </Row>
-
             <Row horizontalPadding="huge">
                 <Portion desktopSpan="whole">
                     <Text>
