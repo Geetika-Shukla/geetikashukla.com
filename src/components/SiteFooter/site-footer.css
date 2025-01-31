@@ -14,3 +14,18 @@
         color: hsl(210, 9%, 38%);
     }
 }
+
+
+@media (max-width: 600px) {
+    .links-container {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .links-container a {
+        display: block;
+    }
+}

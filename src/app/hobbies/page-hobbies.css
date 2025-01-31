@@ -62,5 +62,22 @@
             grid-template-columns: 1fr;
             /* Stacks items into one column */
         }
+
+        .item-1 {
+            grid-column: span 6;
+        }
+
+        .item-6 {
+            grid-column: span 6;
+        }
+
+        .item-7 {
+            grid-column: span 6;
+        }
+
+        .item-8 {
+            grid-column: span 6;
+        }
     }
+
 }

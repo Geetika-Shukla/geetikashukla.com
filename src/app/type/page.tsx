@@ -37,7 +37,7 @@ const TypePage = () => {
         <article id="page-type">
 
             <Row layoutAsGrid horizontalPadding="huge" marginTop="medium" marginBottom="none">
-                <Portion desktopSpan="2" marginTop="large" className="overflow-left">
+                <Portion desktopSpan="2" marginTop="large" className="overflow-left" hideOnMobile>
                     <GreenStar alt="star" height="56px" />
                 </Portion>
                 <Portion desktopSpan="8">
@@ -45,10 +45,10 @@ const TypePage = () => {
                         All things type
                     </Heading1>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small">
+                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
                     <YellowStar alt="star" height="32px" />
                 </Portion>
-                <Portion desktopSpan="10">
+                <Portion desktopSpan="10" marginBottom="small">
                     <Div marginTop="small">
                         <Text marginBottom="tiny">I love experimenting with typography, especially with pen and ink. Calligraphy holds a special place in my heart.</Text>
 
@@ -57,7 +57,7 @@ const TypePage = () => {
                         </Text>
                     </Div>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" className="overflow-right">
+                <Portion desktopSpan="2" marginTop="small" className="overflow-right" hideOnMobile>
                     <PurpleStar alt="star" height="56px" />
                 </Portion>
             </Row >

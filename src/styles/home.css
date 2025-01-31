@@ -23,3 +23,19 @@
     }
 
 }
+
+@media (max-width: 768px) {
+    .category-thumbnail {
+        margin-top: 20px;
+        display: flex;
+    }
+
+    .category-thumbnail-text {
+        font-size: 1.5rem;
+    }
+
+    .category-row {
+        display: flex;
+        flex-direction: column;
+    }
+}

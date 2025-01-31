@@ -38,7 +38,7 @@ export default function Home() {
         <article id="page-home">
 
             <Row layoutAsGrid horizontalPadding="huge" marginTop="medium" marginBottom="none">
-                <Portion desktopSpan="2" marginTop="large" className="overflow-left">
+                <Portion desktopSpan="2" marginTop="large" className="overflow-left" hideOnMobile>
                     <GreenStar alt="star" height="56px" />
                 </Portion>
                 <Portion desktopSpan="8">
@@ -46,10 +46,10 @@ export default function Home() {
                         Hello there!
                     </Heading1>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small">
+                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
                     <YellowStar alt="star" height="32px" />
                 </Portion>
-                <Portion desktopSpan="10">
+                <Portion desktopSpan="10" marginBottom="small">
                     <Div marginTop="small">
                         <Text>I’m Geetika, a multidisciplinary designer. I’m an eager learner and a pre-crastinator.</Text>
                         <br />
@@ -59,12 +59,12 @@ export default function Home() {
                             experience design, web design, and a little bit of illustrations and coding too.</Text>
                     </Div>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" className="overflow-right">
+                <Portion desktopSpan="2" marginTop="small" className="overflow-right" hideOnMobile>
                     <PurpleStar alt="star" height="56px" />
                 </Portion>
             </Row >
 
-            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="none" horizontallyCenterThis>
+            <Row className="category-row" layoutAsFlexbox horizontalPadding="huge" marginTop="none" horizontallyCenterThis>
 
                 <Link href="/visual">
                     <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">

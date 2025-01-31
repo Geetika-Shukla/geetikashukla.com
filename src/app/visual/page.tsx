@@ -39,7 +39,7 @@ const VisualPage = () => {
         <article id="page-visual">
 
             <Row layoutAsGrid horizontalPadding="huge" marginTop="medium" marginBottom="none">
-                <Portion desktopSpan="2" marginTop="large" className="overflow-left">
+                <Portion desktopSpan="2" marginTop="large" className="overflow-left" hideOnMobile>
                     <GreenStar alt="star" height="56px" />
                 </Portion>
                 <Portion desktopSpan="8">
@@ -47,17 +47,17 @@ const VisualPage = () => {
                         All things visual
                     </Heading1>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small">
+                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
                     <YellowStar alt="star" height="32px" />
                 </Portion>
-                <Portion desktopSpan="10">
+                <Portion desktopSpan="10" marginBottom="small">
                     <Div marginTop="small">
                         <Text marginBottom="tiny">I work towards creating engrossing brand identities, designing engaging digital experiences with a sprinkling of animations.</Text>
 
                         <Text>Trying to echo Mies’ timeless wisdom—"God lies in the details"—one pixel at a time.</Text>
                     </Div>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" className="overflow-right">
+                <Portion desktopSpan="2" marginTop="small" className="overflow-right" hideOnMobile>
                     <PurpleStar alt="star" height="56px" />
                 </Portion>
             </Row >
