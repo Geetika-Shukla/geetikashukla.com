@@ -63,18 +63,18 @@ const PeopleOpsPage = () => {
             </Row >
 
 
-            <Row layoutAsFlexbox style={{ display: "flex", justifyContent: "center" }}>
+            <Row layoutAsFlexbox className="people-hero">
                 <PeopleOpsHero height="564px" style={{ flexGrow: 1, width: "100%", objectFit: "cover" }} />
             </Row>
 
 
             <Row horizontallyCenterThis>
-                <Text><em>A special thanks to Sujan for keeping the bar high, and to Madhuri for being an excellent sounding board.</em></Text>
+                <Text align="center"><em>A special thanks to Sujan for keeping the bar high, and to Madhuri for being an excellent sounding board.</em></Text>
             </Row>
 
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="nano">
-                <Portion desktopSpan="5">
+                <Portion desktopSpan="5" marginBottom="nano">
                     <h5>Discovery</h5>
                 </Portion>
 
@@ -107,7 +107,7 @@ const PeopleOpsPage = () => {
 
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="nano">
-                <Portion desktopSpan="5">
+                <Portion desktopSpan="5" marginBottom="nano">
                     <h5>Onboarding</h5>
                 </Portion>
 
@@ -118,12 +118,12 @@ const PeopleOpsPage = () => {
             </Row>
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="small" horizontallyCenterThis>
-                <Onboarding />
+                <Onboarding className="people-images" />
             </Row>
 
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="nano">
-                <Portion desktopSpan="5">
+                <Portion desktopSpan="5" marginBottom="nano">
                     <h5>Engagement</h5>
                 </Portion>
 
