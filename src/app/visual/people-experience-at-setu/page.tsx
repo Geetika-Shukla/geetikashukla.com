@@ -134,12 +134,9 @@ const PeopleOpsPage = () => {
                 </Portion>
             </Row>
 
-            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny" horizontallyCenterThis>
-                <Engagement1 />
-            </Row>
-
-            <Row horizontalPadding="huge" marginTop="none" marginBottom="medium" horizontallyCenterThis>
-                <Engagement2 />
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="tiny">
+                <Engagement1 width="1000px" />
+                <Engagement2 width="1000px" />
             </Row>
 
 
