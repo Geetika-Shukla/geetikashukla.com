@@ -23,6 +23,7 @@ import {
 // STYLES ======================================================================
 import "../visual-projects.css";
 
+
 // ASSETS ======================================================================
 import YellowStar from "@/assets/images/yellow-star.svg";
 import KannaujHero from "@/assets/images/kannauj-hero.svg";
@@ -60,15 +61,15 @@ const KannaujPage = () => {
                 </Portion>
             </Row >
 
-            <Row>
-                <KannaujHero height="400px" />
+            <Row className="center-align-svg">
+                <KannaujHero height="450px" className="hero-alignment" />
             </Row>
 
             <Row layoutAsFlexbox horizontalPadding="huge" marginTop="small">
                 <Text marginBottom="tiny">
                     Attar making is a centuries old art evolved, developed and confined to a limited geographical area Kannauj, a historic town, located in Uttar Pradesh. The artisans captured the smell of first rain in a bottle which has received global recognition and is popular as ‘Mitti Attar’ or ‘Petrichor’. Mitti Attar is prepared from the baked earth of the Ganga.
                 </Text>
-                <Text>
+                <Text marginBottom="tiny">
                     The perfume production has been protected under the Geographical indication (GI) of the Agreement on Trade-Related Aspects of Intellectual Property Rights (TRIPS) agreement. It is listed at item 157 as ‘Kannauj Perfume’ of the GI Act 1991 of the Government of India.
                 </Text>
             </Row>
@@ -76,7 +77,7 @@ const KannaujPage = () => {
             <Row layoutAsFlexbox horizontalPadding="huge" marginTop="small">
                 <h5>Mood board and colour palette
                 </h5>
-                <Portion layoutAsFlexbox className="images-in-a-row" marginBottom="small" marginTop="nano">
+                <Portion layoutAsFlexbox className="images-in-a-row" marginBottom="small" marginTop="small">
                     <Pic1 height="170px" />
                     <Pic2 height="170px" />
                     <Pic3 height="170px" />
@@ -85,15 +86,16 @@ const KannaujPage = () => {
                 </Portion>
                 <h5>Logo Specifications
                 </h5>
-                <Div marginTop="tiny">
-                    <LogoSpec1 width="1000px" />
+                <Div marginTop="small" horizontallyCenterThis>
+                    <LogoSpec1 className="responsive-image" width="1000px" />
                 </Div>
-                <Div marginTop="tiny">
-                    <LogoSpec2 width="1000px" />
+                <Div marginTop="tiny" horizontallyCenterThis>
+                    <LogoSpec2 className="responsive-image" width="1000px" />
                 </Div>
-                <Div marginTop="tiny" marginBottom="medium">
-                    <Mockup width="1000px" />
+                <Div marginTop="tiny" marginBottom="medium" horizontallyCenterThis>
+                    <Mockup className="responsive-image" width="1000px" />
                 </Div>
+
             </Row>
 
         </article >

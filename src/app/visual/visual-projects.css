@@ -28,6 +28,10 @@
         row-gap: 20px;
     }
 
+    .responsive-row {
+        display: flex;
+    }
+
     .pointer-card {
         position: relative;
         display: flex;
@@ -36,5 +40,45 @@
         height: 290px;
         border-radius: 16px;
         background-color: #F8FAFC;
+    }
+
+    .responsive-image {
+        width: 100%;
+        max-width: 1000px;
+        height: auto;
+    }
+
+    .hero-alignment {
+        height: 450px;
+    }
+
+    .center-align-svg {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media (max-width: 600px) {
+        .responsive-image {
+            width: 90vw;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .hero-alignment {
+            width: auto;
+            transform: scale(0.7);
+
+        }
+
+        .center-align-svg {
+            align-items: center;
+            justify-self: center;
+        }
+
+        .responsive-row {
+            transform: scale(0.9);
+            transform-origin: top;
+        }
     }
 }

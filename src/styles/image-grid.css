@@ -22,10 +22,18 @@
     object-fit: contain;
 }
 
-/* Mobile view - single column */
 @media (max-width: 600px) {
-    .image-grid {
-        grid-template-columns: 1fr;
-        /* Single column */
+    @media (max-width: 600px) {
+        .image-grid {
+            grid-template-columns: 1fr !important;
+        }
+
+        .image-grid .image-item {
+            width: 100% !important;
+            max-width: 320px;
+            height: auto;
+        }
     }
+
+
 }

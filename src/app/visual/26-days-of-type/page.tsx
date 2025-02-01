@@ -87,11 +87,11 @@ const TypeDaysPage = () => {
 
             </Row >
 
-            <Row marginBottom="small">
-                <TypeGrid height="400px" />
+            <Row className="center-align-svg" marginBottom="tiny">
+                <TypeGrid height="450px" className="hero-alignment" />
             </Row>
 
-            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="medium" marginBottom="small" horizontallyCenterThis>
+            <Row layoutAsFlexbox className="responsive-row" horizontalPadding="huge" marginTop="tiny" marginBottom="small" horizontallyCenterThis>
                 <Portion desktopSpan="6" marginBottom="small">
                     <h5>The process</h5>
                 </Portion>

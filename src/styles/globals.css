@@ -24,6 +24,11 @@ h6 {
     font-size: 1.4rem;
 }
 
+h7 {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
 p {
     font-size: 1.1rem;
 }
