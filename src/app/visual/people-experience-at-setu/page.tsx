@@ -55,7 +55,7 @@ const PeopleOpsPage = () => {
                         <Text marginBottom="tiny">
                             Caring with tough love is one of the core values at Setu.
                         </Text>
-                        <Text marginBottom="tiny">
+                        <Text>
                             Along with my favourite People Ops team, I worked on crafting a memorable employee experience  and creating some keepsakes for our dear Setuzens.
                         </Text>
                     </Div>
@@ -64,12 +64,12 @@ const PeopleOpsPage = () => {
 
 
             <Row layoutAsFlexbox className="people-hero">
-                <PeopleOpsHero height="564px" style={{ flexGrow: 1, width: "100%", objectFit: "cover" }} />
+                <PeopleOpsHero height="564px" />
             </Row>
 
 
             <Row horizontallyCenterThis>
-                <Text align="center"><em>A special thanks to Sujan for keeping the bar high, and to Madhuri for being an excellent sounding board.</em></Text>
+                <Text className="credits" align="center"><em>A special thanks to Sujan for keeping the bar high, and to Madhuri for being an excellent sounding board.</em></Text>
             </Row>
 
 
@@ -118,7 +118,7 @@ const PeopleOpsPage = () => {
             </Row>
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="small" horizontallyCenterThis>
-                <Onboarding className="people-images" />
+                <Onboarding width="1000px" className="people-images responsive-image" />
             </Row>
 
 
@@ -134,9 +134,9 @@ const PeopleOpsPage = () => {
                 </Portion>
             </Row>
 
-            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="tiny">
-                <Engagement1 width="1000px" />
-                <Engagement2 width="1000px" />
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="tiny" marginBottom="tiny" horizontallyCenterThis>
+                <Engagement1 width="1000px" className="people-images responsive-image" />
+                <Engagement2 width="1000px" className="people-images responsive-image" />
             </Row>
 
 

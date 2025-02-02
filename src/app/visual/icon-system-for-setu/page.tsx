@@ -90,13 +90,14 @@ const IconSystemPage = () => {
             </Row >
 
 
-            <Row layoutAsFlexbox style={{ display: "flex", justifyContent: "center" }}>
-                <IconsHero height="310px" style={{ flexGrow: 1, width: "100%", objectFit: "cover" }} />
+            <Row className="center-align-svg">
+                <IconsHero height="300px" className="hero-alignment" />
             </Row>
 
 
+
             <Row horizontallyCenterThis>
-                <Text><em>Special thanks to Prajna for defining the style, Poorvi for the brainstorming sessions and Sujan for
+                <Text className="credits" align="center"><em>Special thanks to Prajna for defining the style, Poorvi for the brainstorming sessions and Sujan for
                     his guidance throughout the process.</em></Text>
             </Row>
 
@@ -141,16 +142,16 @@ const IconSystemPage = () => {
                     </Div>
 
                     <Div>
-                        <Text marginBottom="tiny" marginTop="small">
+                        <Text marginBottom="small" marginTop="small">
                             We experimented with a few design style with these factors in mind and decide to go for colour glass—which conveyed more with less number of elements.
                         </Text>
-                        <DesignStyles height="300px" />
+                        <DesignStyles className="responsive-image" height="300px" />
                     </Div>
                 </Portion>
             </Row >
 
 
-            <Row horizontalPadding="huge" marginTop="small" marginBottom="none">
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="none">
                 <Portion desktopSpan="6" marginBottom="tiny">
                     <h5>Establishing guidelines
                     </h5>
@@ -165,17 +166,8 @@ const IconSystemPage = () => {
                 </Portion>
             </Row >
 
-            <Row horizontalMargin="large" >
-                <Div marginBottom="nano" style={{
-                    display: "flex",
-                    overflowX: "auto",
-                    scrollSnapType: "x mandatory",
-                    gap: "20px",
-                    padding: "10px",
-                    width: "68vw",
-                    whiteSpace: "nowrap",
-
-                }}>
+            <Row className="platform-scroll-section" horizontalMargin="large">
+                <Div className="scroll-container">
                     <Guideline1 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
                     <Guideline2 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
                     <Guideline3 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
@@ -185,15 +177,15 @@ const IconSystemPage = () => {
                 </Div>
             </Row>
 
-            <Row horizontalPadding="huge" marginTop="small" marginBottom="none">
-                <Portion desktopSpan="6" marginBottom="small">
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="none">
+                <Portion desktopSpan="6" marginBottom="tiny">
                     <h5>Going the extra mile
                     </h5>
                 </Portion>
 
                 <Portion desktopSpan="18">
                     <Div>
-                        <Text marginBottom="none" marginTop="nano">
+                        <Text marginBottom="tiny" marginTop="nano">
                             We went beyond simply creating the set in Figma, we published it as an npm package. With a lot of help from Shekhar, Pankaj, and Adi we made the icons open source on Crucible, allowing everyone to easily copy them into slides and enabling people outside the organisation to customise them to match their brand colours.
                         </Text>
                     </Div>
@@ -212,12 +204,14 @@ const IconSystemPage = () => {
                 </Portion>
             </Row >
 
-            <Row horizontalPadding="huge" style={{ gap: "40px" }}>
-                <Portion desktopSpan="half">
-                    <Naming style={{ width: "90%", maxWidth: "100%", height: "auto" }} />
+            <Row horizontalPadding="huge">
+                <Portion desktopSpan="10">
+                    <Naming className="please-respond" height="300px" />
                 </Portion>
-                <Portion desktopSpan="half">
-                    <WhiteLabel style={{ width: "90%", maxWidth: "100%", height: "auto" }} />
+                <Portion desktopSpan="2" />
+
+                <Portion desktopSpan="10">
+                    <WhiteLabel className="please-respond" height="300px" />
                 </Portion>
             </Row>
 
@@ -229,12 +223,13 @@ const IconSystemPage = () => {
                 </Portion>
             </Row >
 
-            <Row horizontalPadding="huge" style={{ gap: "40px" }}>
-                <Portion desktopSpan="half">
-                    <ProductIconsIterations style={{ width: "90%", maxWidth: "100%", height: "auto" }} />
+            <Row horizontalPadding="huge">
+                <Portion desktopSpan="10">
+                    <ProductIconsIterations className="please-respond" />
                 </Portion>
-                <Portion desktopSpan="half">
-                    <ProductIcons style={{ width: "90%", maxWidth: "100%", height: "auto" }} />
+                <Portion desktopSpan="2" />
+                <Portion desktopSpan="10">
+                    <ProductIcons className="please-respond" />
                 </Portion>
             </Row>
 
@@ -250,33 +245,24 @@ const IconSystemPage = () => {
                 </Portion>
             </Row >
 
-            <Row horizontalMargin="large" >
-                <Div marginBottom="nano" style={{
-                    display: "flex",
-                    overflowX: "auto",
-                    scrollSnapType: "x mandatory",
-                    gap: "20px",
-                    padding: "10px",
-                    width: "68vw",
-                    whiteSpace: "nowrap",
-
-                }}>
-                    <Platform1 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
-                    <Platform2 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
-                    <Platform3 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
-                    <Platform4 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
-                    <Platform5 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
-                    <Platform6 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
-                    <Platform7 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
-                    <Platform8 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
-                    <Platform9 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
-                    <Platform10 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
-                    <Platform11 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
-                    <Platform12 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
+            <Row className="platform-scroll-section" horizontalMargin="large">
+                <Div className="scroll-container">
+                    <Platform1 className="scroll-item" />
+                    <Platform2 className="scroll-item" />
+                    <Platform3 className="scroll-item" />
+                    <Platform4 className="scroll-item" />
+                    <Platform5 className="scroll-item" />
+                    <Platform6 className="scroll-item" />
+                    <Platform7 className="scroll-item" />
+                    <Platform8 className="scroll-item" />
+                    <Platform9 className="scroll-item" />
+                    <Platform10 className="scroll-item" />
+                    <Platform11 className="scroll-item" />
+                    <Platform12 className="scroll-item" />
                 </Div>
             </Row>
 
-            <Row horizontalMargin="large" marginBottom="medium" marginTop="small">
+            <Row className="summary-section" horizontalMargin="large" marginBottom="medium" marginTop="small">
                 <Portion desktopSpan="10">
                     <Tools />
                     <h5 marginBottom="tiny">
