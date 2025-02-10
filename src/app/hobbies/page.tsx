@@ -78,13 +78,13 @@ const HobbiesPage = () => {
 
                     <div className="bento-grid">
                         <div className="bento-item item-6">
-                            <Image src="/interests/plants.gif" width={500} height={200} />
+                            <Image src="/interests/plants.gif" alt="Image 6" width={500} height={200} />
                         </div>
                         <div className="bento-item item-7">
-                            <Image src="/interests/japan-lego.jpg" width={500} height={200} />
+                            <Image src="/interests/japan-lego.jpg" alt="Image 7" width={500} height={200} />
                         </div>
                         <div className="bento-item item-8">
-                            <Image src="/interests/laptop-sleeve.jpg" width="400" height="300" />
+                            <Image src="/interests/laptop-sleeve.jpg" alt="Image 8" width="400" height="300" />
                         </div>
                     </div>
 
