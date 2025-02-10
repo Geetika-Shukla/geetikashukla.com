@@ -5,17 +5,11 @@ import Image from 'next/image';
 
 // INTERNAL DEPS ===============================================================
 import {
-    Button,
-    Header,
-    Card,
-    Element,
     Heading1,
     Portion,
     Row,
     Div,
-    Text,
-    Footer,
-    CodeBlock
+    Text
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================

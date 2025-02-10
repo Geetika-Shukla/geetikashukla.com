@@ -98,10 +98,6 @@ const VisualPage = () => {
                 </Portion>
             </Row>
 
-
-
-
-
         </article >
     );
 };

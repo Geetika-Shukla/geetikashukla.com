@@ -265,7 +265,7 @@ const IconSystemPage = () => {
             <Row className="summary-section" horizontalMargin="large" marginBottom="medium" marginTop="small">
                 <Portion desktopSpan="10">
                     <Tools />
-                    <h5 marginBottom="tiny">
+                    <h5>
                         These icons have become an integral part of Setu’s identity.
                     </h5>
                 </Portion>
