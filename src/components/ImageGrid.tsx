@@ -1,6 +1,10 @@
 import "@/styles/image-grid.css";
 
-const ImageGrid = ({ images }) => {
+interface ImageGridProps {
+    images: string[];
+}
+
+const ImageGrid = ({ images }: ImageGridProps) => {
     return (
         <div className="image-grid">
             {images.map((src, index) => (
