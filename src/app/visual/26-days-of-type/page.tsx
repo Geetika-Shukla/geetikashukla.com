@@ -98,13 +98,13 @@ const TypeDaysPage = () => {
 
                 <Portion desktopSpan="16">
                     <Div>
-                        <h7>01&nbsp;&nbsp;&nbsp;&nbsp;About the architect</h7>
+                        <h6>01&nbsp;&nbsp;&nbsp;&nbsp;About the architect</h6>
                         <Text marginBottom="tiny" marginTop="nano">Chinese-American architect Ieoh Ming Pei’s designs represent an extension of and elaboration on
                             the rectangular forms and irregular silhouettes of the prevailing international style.
                         </Text>
                     </Div>
                     <Div>
-                        <h7>02&nbsp;&nbsp;&nbsp;&nbsp;Architectural style and features</h7>
+                        <h6>02&nbsp;&nbsp;&nbsp;&nbsp;Architectural style and features</h6>
                         <Div padding="tiny" horizontallyCenterThis style={{ display: "flex", gap: "48px" }}>
                             <Steel alt="steel" height="80px" />
                             <Glass alt="glass" height="80px" />
@@ -116,7 +116,7 @@ const TypeDaysPage = () => {
 
                     </Div>
                     <Div layoutAsFlexbox>
-                        <h7>03&nbsp;&nbsp;&nbsp;&nbsp;Buildings by the architect</h7>
+                        <h6>03&nbsp;&nbsp;&nbsp;&nbsp;Buildings by the architect</h6>
                         <Div padding="tiny" style={{ display: "flex", gap: "48px" }}>
                             <Div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
                                 <Louvre alt="Louvre" height="80px" />
