@@ -148,7 +148,7 @@ const TypeDaysPage = () => {
             </Row >
 
             <Div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <Image src="/i-m-pei.gif" height={300} width={1800} />
+                <Image src="/i-m-pei.gif" alt="concept" height={300} width={1800} />
             </Div>
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" horizontallyCenterThis>
