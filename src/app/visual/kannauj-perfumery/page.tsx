@@ -54,7 +54,7 @@ const KannaujPage = () => {
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">
-                        <Text marginBottom="tiny">
+                        <Text>
                             A classroom project on retail communication. The idea was to understand the creation of a brand’s imagery, and communication through print.
                         </Text>
                     </Div>
