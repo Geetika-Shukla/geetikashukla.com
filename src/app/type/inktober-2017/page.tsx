@@ -21,23 +21,21 @@ import "../type-projects.css";
 // ASSETS ======================================================================
 import YellowStar from "@/assets/images/yellow-star.svg";
 
+import a from "@/assets/images/inktober/deep.svg";
+import b from "@/assets/images/inktober/cloud.svg";
+import c from "@/assets/images/inktober/fall.svg";
+import d from "@/assets/images/inktober/found.svg";
+import e from "@/assets/images/inktober/juicy.svg";
+import f from "@/assets/images/inktober/long.svg";
+import g from "@/assets/images/inktober/mask.svg";
+import h from "@/assets/images/inktober/swift.svg";
+import i from "@/assets/images/inktober/teeming.svg";
+import j from "@/assets/images/inktober/trail.svg";
+import k from "@/assets/images/inktober/underwater.svg";
+import l from "@/assets/images/inktober/united.svg";
 
 const InktoberPage = () => {
-
-    const images = [
-        "/inktober/deep.svg",
-        "/inktober/cloud.svg",
-        "/inktober/fall.svg",
-        "/inktober/found.svg",
-        "/inktober/juicy.svg",
-        "/inktober/long.svg",
-        "/inktober/mask.svg",
-        "/inktober/swift.svg",
-        "/inktober/teeming.svg",
-        "/inktober/trail.svg",
-        "/inktober/underwater.svg",
-        "/inktober/united.svg",
-    ];
+    const images = [a, b, c, d, e, f, g, h, i, j, k, l];
 
     return (
 

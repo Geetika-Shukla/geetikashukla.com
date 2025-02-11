@@ -26,6 +26,7 @@ import "../type-projects.css";
 
 // ASSETS ======================================================================
 import YellowStar from "@/assets/images/yellow-star.svg";
+import process from "@/assets/images/47days.gif";
 
 
 const DevanagariPage = () => {
@@ -106,7 +107,7 @@ const DevanagariPage = () => {
 
             <Row style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <Div style={{ maxWidth: "1050px", width: "100%" }}>
-                    <Image src="/devanagari/47days.gif" alt="cover" height={200} width={1000} />
+                    <Image src={process} alt="cover" height={200} width={1000} />
                 </Div>
             </Row>
 

@@ -9,7 +9,7 @@ const ImageGrid = ({ images }: ImageGridProps) => {
         <div className="image-grid">
             {images.map((src, index) => (
                 <div key={index} className="image-item">
-                    <img src={src} alt={`Photo ${index + 1}`} />
+                    <img src={src} alt={`Image-file ${index + 1}`} />
                 </div>
             ))}
         </div>

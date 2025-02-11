@@ -35,6 +35,9 @@ import Museum from "@/assets/images/everson-museum.svg";
 import Tower from "@/assets/images/bank-of-china-tower.svg";
 import TypeGrid from "@/assets/images/type-grid.svg";
 import process from "@/assets/images/i-m-pei.gif";
+import a from "@/assets/images/26days/a.svg";
+import b from "@/assets/images/26days/b.svg";
+import c from "@/assets/images/26days/c.svg";
 
 
 const TypeDaysPage = () => {
