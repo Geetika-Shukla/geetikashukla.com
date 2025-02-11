@@ -25,9 +25,18 @@ import {
 import "./page-hobbies.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
 import GreenStar from "@/assets/images/green-star.svg";
 import PurpleStar from "@/assets/images/purple-star.svg";
+import calliOne from "@/assets/images/calli-1.png";
+import calliTwo from "@/assets/images/calli-2.png";
+import ghibli from "@/assets/images/ghibli-image.jpg";
+import sleeve from "@/assets/images/laptop-sleeve.jpg";
+import japanFic from "@/assets/images/japan-fiction.jpg";
+import lego from "@/assets/images/japan-lego.jpg";
+import plants from "@/assets/images/plants.gif";
+import spirited from "@/assets/images/spirited-away.jpg";
+
+
 
 
 const HobbiesPage = () => {
@@ -57,34 +66,34 @@ const HobbiesPage = () => {
                 <Portion>
                     <div className="bento-grid">
                         <div className="bento-item item-1">
-                            <Image src="/interests/calli-1.png" alt="Image 1" width={400} height={400} />
+                            <Image src={calliOne} alt="Image 1" width={400} height={400} />
                         </div>
                         <div className="bento-item item-2">
-                            <Image src="/interests/ghibli-image.jpg" alt="Image 2" width={500} height={100} />
+                            <Image src={ghibli} alt="Image 2" width={500} height={100} />
                         </div>
                     </div>
 
                     <div className="bento-grid">
                         <div className="bento-item item-3">
-                            <Image src="/interests/spirited-away.jpg" alt="Image 3" width={400} height={400} />
+                            <Image src={spirited} alt="Image 3" width={400} height={400} />
                         </div>
                         <div className="bento-item item-4">
-                            <Image src="/interests/japan-fiction.jpg" alt="Image 5" width={400} height={400} />
+                            <Image src={japanFic} alt="Image 5" width={400} height={400} />
                         </div>
                         <div className="bento-item item-5">
-                            <Image src="/interests/calli-2.png" alt="Image 4" width={400} height={400} />
+                            <Image src={calliTwo} alt="Image 4" width={400} height={400} />
                         </div>
                     </div>
 
                     <div className="bento-grid">
                         <div className="bento-item item-6">
-                            <Image src="/interests/plants.gif" alt="Image 6" width={500} height={200} />
+                            <Image src={plants} alt="Image 6" width={500} height={200} />
                         </div>
                         <div className="bento-item item-7">
-                            <Image src="/interests/japan-lego.jpg" alt="Image 7" width={500} height={200} />
+                            <Image src={lego} alt="Image 7" width={500} height={200} />
                         </div>
                         <div className="bento-item item-8">
-                            <Image src="/interests/laptop-sleeve.jpg" alt="Image 8" width="400" height="300" />
+                            <Image src={sleeve} alt="Image 8" width="400" height="300" />
                         </div>
                     </div>
 
