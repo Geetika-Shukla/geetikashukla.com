@@ -33,7 +33,7 @@ export const SiteFooter = () => {
                     <Div verticallyCenterItems pushItemsToEnds>
                         <Text className="footer-text" hideOnMobile>👩🏻‍💻 &nbsp; Thanks for stopping by! I'm learning to code, and this website has been built by me.</Text>
                         <Div className="links-container">
-                            <Link href="https://github.com/Geetika-Shukla/geetika-website">
+                            <Link href="https://github.com/Geetika-Shukla/geetikashukla.com">
                                 <GitHub alt="github" height="30px" />
                             </Link>
                             <Link href="https://www.linkedin.com/in/geetikashukla/">

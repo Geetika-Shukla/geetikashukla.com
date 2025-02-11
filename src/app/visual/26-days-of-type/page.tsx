@@ -35,34 +35,29 @@ import Museum from "@/assets/images/everson-museum.svg";
 import Tower from "@/assets/images/bank-of-china-tower.svg";
 import TypeGrid from "@/assets/images/type-grid.svg";
 import process from "@/assets/images/i-m-pei.gif";
-import a from "@/assets/images/26days/a.svg";
-import b from "@/assets/images/26days/b.svg";
-import c from "@/assets/images/26days/c.svg";
+import A from "@/assets/images/26days/a.svg";
+import B from "@/assets/images/26days/b.svg";
+import C from "@/assets/images/26days/c.svg";
+import D from "@/assets/images/26days/d.svg";
+import E from "@/assets/images/26days/e.svg";
+import F from "@/assets/images/26days/f.svg";
+import G from "@/assets/images/26days/g.svg";
+import H from "@/assets/images/26days/h.svg";
+import I from "@/assets/images/26days/i.svg";
+import J from "@/assets/images/26days/j.svg";
+import K from "@/assets/images/26days/k.svg";
+import L from "@/assets/images/26days/l.svg";
+import M from "@/assets/images/26days/m.svg";
+import N from "@/assets/images/26days/n.svg";
+import O from "@/assets/images/26days/o.svg";
+import P from "@/assets/images/26days/p.svg";
+import Q from "@/assets/images/26days/q.svg";
+import R from "@/assets/images/26days/r.svg";
+import S from "@/assets/images/26days/s.svg";
+import T from "@/assets/images/26days/t.svg";
 
 
-const TypeDaysPage = () => {
-    const images = [
-        "/26days/a.svg",
-        "/26days/b.svg",
-        "/26days/c.svg",
-        "/26days/d.svg",
-        "/26days/e.svg",
-        "/26days/f.svg",
-        "/26days/g.svg",
-        "/26days/h.svg",
-        "/26days/i.svg",
-        "/26days/j.svg",
-        "/26days/k.svg",
-        "/26days/l.svg",
-        "/26days/m.svg",
-        "/26days/n.svg",
-        "/26days/o.svg",
-        "/26days/p.svg",
-        "/26days/q.svg",
-        "/26days/r.svg",
-        "/26days/s.svg",
-        "/26days/t.svg",
-    ];
+    export default function TypeDaysPage() {
 
     return (
         <article className="project-page">
@@ -155,13 +150,33 @@ const TypeDaysPage = () => {
                 <Image src={process} alt="concept" height={300} width={1800} />
             </Div>
 
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" horizontallyCenterThis>
-                <ImageGrid images={images} />
+            <Row layoutAsFlexbox horizontalPadding="large" marginTop="medium" marginBottom="medium" horizontallyCenterThis>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '64px', justifyContent: 'center', maxWidth: '960px' }}>
+                        <A width={240} height={240} />
+                        <B width={240} height={240} />
+                        <C width={240} height={240} />
+                        <D width={240} height={240} />
+                        <E width={240} height={240} />
+                        <F width={240} height={240} />
+                        <G width={240} height={240} />
+                        <H width={240} height={240} />
+                        <I width={240} height={240} />
+                        <J width={240} height={240} />
+                        <K width={240} height={240} />
+                        <L width={240} height={240} />
+                        <M width={240} height={240} />
+                        <N width={240} height={240} />
+                        <O width={240} height={240} />
+                        <P width={240} height={240} />
+                        <Q width={240} height={240} />
+                        <R width={240} height={240} />
+                        <S width={240} height={240} />
+                        <T width={240} height={240} />
+                    </div>
+                </div>
             </Row>
 
         </article >
     );
 };
-
-export default TypeDaysPage;
-
