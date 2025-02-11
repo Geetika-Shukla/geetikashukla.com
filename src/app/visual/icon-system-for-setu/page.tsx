@@ -54,7 +54,7 @@ import Platform10 from "@/assets/images/platform-10.svg";
 import Platform11 from "@/assets/images/platform-11.svg";
 import Platform12 from "@/assets/images/platform-12.svg";
 import Tools from "@/assets/images/Tools.svg";
-
+import crucible from "@/assets/images/crucible.gif";
 
 
 
@@ -193,7 +193,7 @@ const IconSystemPage = () => {
             </Row >
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="small" horizontallyCenterThis>
-                <Image src="/crucible.gif" alt="crucible-recording" height={200} width={1200} />
+                <Image src={crucible} alt="crucible-gif" height={200} width={1200} />
             </Row>
 
             <Row horizontalPadding="huge">

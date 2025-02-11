@@ -34,6 +34,7 @@ import Louvre from "@/assets/images/le-grand-louvre.svg";
 import Museum from "@/assets/images/everson-museum.svg";
 import Tower from "@/assets/images/bank-of-china-tower.svg";
 import TypeGrid from "@/assets/images/type-grid.svg";
+import process from "@/assets/images/i-m-pei.gif";
 
 
 const TypeDaysPage = () => {
@@ -148,7 +149,7 @@ const TypeDaysPage = () => {
             </Row >
 
             <Div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <Image src="/i-m-pei.gif" alt="concept" height={300} width={1800} />
+                <Image src={process} alt="concept" height={300} width={1800} />
             </Div>
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" horizontallyCenterThis>
