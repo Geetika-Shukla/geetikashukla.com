@@ -20,22 +20,20 @@ import "../type-projects.css";
 
 // ASSETS ======================================================================
 import YellowStar from "@/assets/images/yellow-star.svg";
+import Deep from "@/assets/images/inktober/deep.svg";
+import Cloud from "@/assets/images/inktober/cloud.svg";
+import Fall from "@/assets/images/inktober/fall.svg";
+import Found from "@/assets/images/inktober/found.svg";
+import Juicy from "@/assets/images/inktober/juicy.svg";
+import Long from "@/assets/images/inktober/long.svg";
+import Mask from "@/assets/images/inktober/mask.svg";
+import Swift from "@/assets/images/inktober/swift.svg";
+import Teeming from "@/assets/images/inktober/teeming.svg";
+import Trail from "@/assets/images/inktober/trail.svg";
+import Underwater from "@/assets/images/inktober/underwater.svg";
+import United from "@/assets/images/inktober/united.svg";
 
-import a from "@/assets/images/inktober/deep.svg";
-import b from "@/assets/images/inktober/cloud.svg";
-import c from "@/assets/images/inktober/fall.svg";
-import d from "@/assets/images/inktober/found.svg";
-import e from "@/assets/images/inktober/juicy.svg";
-import f from "@/assets/images/inktober/long.svg";
-import g from "@/assets/images/inktober/mask.svg";
-import h from "@/assets/images/inktober/swift.svg";
-import i from "@/assets/images/inktober/teeming.svg";
-import j from "@/assets/images/inktober/trail.svg";
-import k from "@/assets/images/inktober/underwater.svg";
-import l from "@/assets/images/inktober/united.svg";
-
-const InktoberPage = () => {
-    const images = [a, b, c, d, e, f, g, h, i, j, k, l];
+export default function InktoberPage() {
 
     return (
 
@@ -61,13 +59,27 @@ const InktoberPage = () => {
                 </Portion>
             </Row>
 
-            <Row horizontalPadding="small" marginTop="tiny" marginBottom="medium" horizontallyCenterThis>
-                <ImageGrid images={images} />
+            <Row layoutAsFlexbox horizontalPadding="large" marginTop="tiny" marginBottom="medium" horizontallyCenterThis>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center', maxWidth: '960px' }}>
+                <Deep width={300} height={300}/>
+                <Cloud width={300} height={300}/>
+                <Fall width={300} height={300}/>
+                <Found width={300} height={300}/>
+                <Juicy width={300} height={300}/>
+                <Long width={300} height={300}/>
+                <Mask width={300} height={300}/>
+                <Swift width={300} height={300}/>
+                <Teeming width={300} height={300}/>
+                <Trail width={300} height={300}/>
+                <Underwater width={300} height={300}/>
+                <United width={300} height={300}/>
+                    </div>
+                </div>
             </Row>
 
         </article >
     );
 };
 
-export default InktoberPage;
 
