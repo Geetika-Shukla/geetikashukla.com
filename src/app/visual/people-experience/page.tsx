@@ -5,11 +5,17 @@ import Image from 'next/image';
 
 // INTERNAL DEPS ===============================================================
 import {
+    Button,
+    Header,
+    Card,
+    Element,
     Heading1,
     Portion,
     Row,
     Div,
-    Text
+    Text,
+    Footer,
+    CodeBlock
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
@@ -20,17 +26,19 @@ import "../visual-projects.css";
 // ASSETS ======================================================================
 import YellowStar from "@/assets/images/yellow-star.svg";
 import PeopleOpsHero from "@/assets/images/people-ops-hero.svg";
-import Onboarding from "@/assets/images/id-cards.svg";
-import Engagement1 from "@/assets/images/engagement-1.svg";
-import Engagement2 from "@/assets/images/engagement-2.svg";
 import Hiring1 from "@/assets/images/hiring-1.svg";
 import Hiring2 from "@/assets/images/hiring-2.svg";
 import Hiring3 from "@/assets/images/hiring-3.svg";
+import Onboarding from "@/assets/images/id-cards.svg";
+import Engagement1 from "@/assets/images/engagement-1.svg";
+import Engagement2 from "@/assets/images/engagement-2.svg";
 
 
-export default function Home() {
+
+const PeopleExpPage = () => {
 
     return (
+
         <article className="project-page">
 
             <Row layoutAsGrid horizontalPadding="huge" marginTop="medium" marginBottom="none">
@@ -131,7 +139,10 @@ export default function Home() {
                 <Engagement2 width="1000px" className="people-images responsive-image" />
             </Row>
 
+        </article>
 
-        </article >
     );
 };
+
+export default PeopleExpPage;
+

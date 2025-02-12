@@ -67,7 +67,7 @@ const VisualPage = () => {
             <Row layoutAsGrid horizontalPadding="huge" marginTop="none" marginBottom="small">
                 <Portion className="center-flexbox" layoutAsFlexbox verticallyCenterItems>
 
-                    <Link href="/visual/people-experience-at-setu">
+                    <Link href="/visual/people-experience">
                         <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
                             <PeopleExperienceThumbnail alt="people-experience" />
                             <Heading6 className="project-thumbnail-text" >People experience at Setu</Heading6>
