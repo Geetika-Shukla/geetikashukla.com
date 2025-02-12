@@ -26,10 +26,9 @@ import Engagement2 from "@/assets/images/engagement-2.svg";
 import Hiring1 from "@/assets/images/hiring-1.svg";
 import Hiring2 from "@/assets/images/hiring-2.svg";
 import Hiring3 from "@/assets/images/hiring-3.svg";
-import IconSystemPage from "@/app/visual/icon-system-for-setu/page";
 
 
-const PeopleExpPage = () => {
+export default function Home() {
 
     return (
         <article className="project-page">
@@ -136,5 +135,3 @@ const PeopleExpPage = () => {
         </article >
     );
 };
-
-export default PeopleExpPage;
