@@ -1,21 +1,14 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
 import Link from "next/link";
-import Image from 'next/image';
 
 // INTERNAL DEPS ===============================================================
 import {
-    Button,
-    Header,
-    Card,
-    Element,
     Heading1,
     Portion,
     Row,
     Div,
     Text,
-    Footer,
-    CodeBlock
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
@@ -49,7 +42,7 @@ const PeopleExpPage = () => {
                 </Portion>
 
                 <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height="32px" />
+                    <YellowStar alt="star" height={32} width={32} />
                 </Portion>
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small" marginTop="nano">
@@ -66,7 +59,7 @@ const PeopleExpPage = () => {
 
 
             <Row layoutAsFlexbox className="people-hero">
-                <PeopleOpsHero height="564px" />
+                <PeopleOpsHero height="564px" alt="People Ops illustration"/>
             </Row>
 
 
@@ -86,7 +79,7 @@ const PeopleExpPage = () => {
                     </Text>
 
                     <Text marginBottom="tiny">
-                        <Link href="https://setu.co/team/" target="_blank" rel="noopener noreferrer">See team page</Link>
+                        <Link href="https://setu.co/team/">See team page</Link>
                     </Text>
                 </Portion>
             </Row>
@@ -100,9 +93,9 @@ const PeopleExpPage = () => {
             </Row>
 
             <Portion layoutAsFlexbox className="images-in-a-row" marginBottom="small" marginTop="nano">
-                <Hiring1 height="180px" />
-                <Hiring2 height="180px" />
-                <Hiring3 height="180px" />
+                <Hiring1 height="180px" alt="hiring-poster"/>
+                <Hiring2 height="180px" alt="hiring-poster"/>
+                <Hiring3 height="180px" alt="hiring-poster"/>
             </Portion>
 
 
@@ -118,7 +111,7 @@ const PeopleExpPage = () => {
             </Row>
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="small" horizontallyCenterThis>
-                <Onboarding width="1000px" className="people-images responsive-image" />
+                <Onboarding width="1000px" className="people-images responsive-image" alt="onboarding-images"/>
             </Row>
 
 
@@ -135,8 +128,8 @@ const PeopleExpPage = () => {
             </Row>
 
             <Row layoutAsFlexbox horizontalPadding="huge" marginTop="tiny" marginBottom="tiny" horizontallyCenterThis>
-                <Engagement1 width="1000px" className="people-images responsive-image" />
-                <Engagement2 width="1000px" className="people-images responsive-image" />
+                <Engagement1 width="1000px" className="people-images responsive-image" alt="engagement-images"/>
+                <Engagement2 width="1000px" className="people-images responsive-image" alt="engagement-images"/>
             </Row>
 
         </article>
