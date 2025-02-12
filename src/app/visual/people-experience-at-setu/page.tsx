@@ -28,7 +28,7 @@ import Hiring2 from "@/assets/images/hiring-2.svg";
 import Hiring3 from "@/assets/images/hiring-3.svg";
 
 
-const PeopleOpsPage = () => {
+export default function Home() {
 
     return (
         <article className="project-page">
@@ -133,10 +133,8 @@ const PeopleOpsPage = () => {
                 <Engagement2 width="1000px" className="people-images responsive-image" />
             </Row>
 
-
         </article >
     );
 };
 
-export default PeopleOpsPage;
 
