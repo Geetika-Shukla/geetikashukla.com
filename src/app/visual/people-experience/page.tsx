@@ -1,7 +1,7 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
 import Link from "next/link";
-
+import Image from "next/image";
 // INTERNAL DEPS ===============================================================
 import {
     Heading1,
@@ -18,13 +18,13 @@ import "../visual-projects.css";
 
 // ASSETS ======================================================================
 import YellowStar from "@/assets/images/yellow-star.svg";
-import PeopleOpsHero from "@/assets/images/people-ops-hero.svg";
+import PeopleOpsHero from "@/assets/images/people-ops-hero.webp";
 import Hiring1 from "@/assets/images/hiring-1.svg";
 import Hiring2 from "@/assets/images/hiring-2.svg";
 import Hiring3 from "@/assets/images/hiring-3.svg";
-import Onboarding from "@/assets/images/id-cards.svg";
-import Engagement1 from "@/assets/images/engagement-1.svg";
-import Engagement2 from "@/assets/images/engagement-2.svg";
+import Onboarding from "@/assets/images/id-cards.webp";
+import Engagement1 from "@/assets/images/engagement-1.webp";
+import Engagement2 from "@/assets/images/engagement-2.webp";
 
 
 
@@ -59,7 +59,7 @@ export default function PeopleExpPage() {
 
 
             <Row layoutAsFlexbox className="people-hero">
-                <PeopleOpsHero height="564px" alt="People Ops illustration"/>
+                <Image src={PeopleOpsHero} height={564} alt="People Ops illustration"/>
             </Row>
 
 
@@ -92,11 +92,13 @@ export default function PeopleExpPage() {
                 </Portion>
             </Row>
 
-            <Portion layoutAsFlexbox className="images-in-a-row" marginBottom="small" marginTop="nano">
-                <Hiring1 height="180px" alt="hiring-poster"/>
-                <Hiring2 height="180px" alt="hiring-poster"/>
-                <Hiring3 height="180px" alt="hiring-poster"/>
+            <Row horizontalPadding="huge">
+            <Portion className="images-in-a-row" marginBottom="small" marginTop="nano">
+                <Hiring1 width={330}  alt="hiring-poster"/>
+                <Hiring2 width={330} alt="hiring-poster"/>
+                <Hiring3 width={330} alt="hiring-poster"/>
             </Portion>
+            </Row>
 
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="nano">
@@ -111,7 +113,7 @@ export default function PeopleExpPage() {
             </Row>
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="small" horizontallyCenterThis>
-                <Onboarding width="1000px" className="people-images responsive-image" alt="onboarding-images"/>
+                <Image src={Onboarding} width={1000} className="people-images responsive-image" alt="onboarding-images"/>
             </Row>
 
 
@@ -128,8 +130,8 @@ export default function PeopleExpPage() {
             </Row>
 
             <Row layoutAsFlexbox horizontalPadding="huge" marginTop="tiny" marginBottom="tiny" horizontallyCenterThis>
-                <Engagement1 width="1000px" className="people-images responsive-image" alt="engagement-images"/>
-                <Engagement2 width="1000px" className="people-images responsive-image" alt="engagement-images"/>
+                <Image src={Engagement1} width={1000} className="people-images responsive-image" alt="engagement-images"/>
+                <Image src={Engagement2} width={1000} className="people-images responsive-image" alt="engagement-images"/>
             </Row>
 
         </article>
