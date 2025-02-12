@@ -28,7 +28,7 @@ import Engagement2 from "@/assets/images/engagement-2.svg";
 
 
 
-const PeopleExpPage = () => {
+export default function PeopleExpPage() {
 
     return (
 
@@ -136,6 +136,4 @@ const PeopleExpPage = () => {
 
     );
 };
-
-export default PeopleExpPage;
 
