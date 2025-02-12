@@ -133,6 +133,7 @@ export default function Home() {
                 <Engagement2 width="1000px" className="people-images responsive-image" />
             </Row>
 
+
         </article >
     );
 };
