@@ -28,8 +28,8 @@ import Hiring2 from "@/assets/images/hiring-2.svg";
 import Hiring3 from "@/assets/images/hiring-3.svg";
 
 
-export default function Home() {
-
+export default function Home()
+{
     return (
         <article className="project-page">
 
@@ -96,8 +96,6 @@ export default function Home() {
                 <Hiring2 height="180px" />
                 <Hiring3 height="180px" />
             </Portion>
-
-
 
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="nano">
