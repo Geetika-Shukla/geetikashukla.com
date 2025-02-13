@@ -93,7 +93,7 @@ export default function PeopleExpPage() {
             </Row>
 
             <Row horizontalPadding="huge">
-            <Portion className="images-in-a-row" marginBottom="small" marginTop="nano">
+            <Portion className="images-in-a-row" marginBottom="tiny" marginTop="nano">
                 <Hiring1 width={330}  alt="hiring-poster"/>
                 <Hiring2 width={330} alt="hiring-poster"/>
                 <Hiring3 width={330} alt="hiring-poster"/>
@@ -129,9 +129,9 @@ export default function PeopleExpPage() {
                 </Portion>
             </Row>
 
-            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="tiny" marginBottom="tiny" horizontallyCenterThis>
-                <Image src={Engagement1} width={1100} className="people-images responsive-image" alt="engagement-images"/>
-                <Image src={Engagement2} width={1100} className="people-images responsive-image" alt="engagement-images"/>
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="none" marginBottom="medium" horizontallyCenterThis >
+                <Image src={Engagement1} width={1200} className="people-images responsive-image" alt="engagement-images"/>
+                <Image src={Engagement2} width={1200} className="people-images responsive-image" alt="engagement-images"/>
             </Row>
 
         </article>
