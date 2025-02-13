@@ -130,8 +130,8 @@ export default function PeopleExpPage() {
             </Row>
 
             <Row layoutAsFlexbox horizontalPadding="huge" marginTop="tiny" marginBottom="tiny" horizontallyCenterThis>
-                <Image src={Engagement1} width={1000} className="people-images responsive-image" alt="engagement-images"/>
-                <Image src={Engagement2} width={1000} className="people-images responsive-image" alt="engagement-images"/>
+                <Image src={Engagement1} width={1100} className="people-images responsive-image" alt="engagement-images"/>
+                <Image src={Engagement2} width={1100} className="people-images responsive-image" alt="engagement-images"/>
             </Row>
 
         </article>
