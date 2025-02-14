@@ -123,7 +123,7 @@ const ExperiencePage = () => {
                             For anyone seeking a designer who combines creativity, clarity, and a keen understanding of purpose, Geetika is an outstanding choice.
                         </Text>
                         <Link href="https://www.linkedin.com/in/asveenkaur/" target="_blank" rel="noopener noreferrer">
-                            <h6 align="right">
+                            <h6>
                                 —Asveen Kaur <br />
                                 Manager, People Ops, Setu
                             </h6>
@@ -141,7 +141,7 @@ const ExperiencePage = () => {
                             A standout example is when we asked her to design ID cards for the team—she created a design that was custom for each team and individual, turning what could have been a simple formality into a cherished keepsake for every team member. Her work truly elevated the People Ops team’s outputs.
                         </Text>
                         <Link href="https://www.linkedin.com/in/asveenkaur/" target="_blank" rel="noopener noreferrer">
-                            <h6 align="right">
+                            <h6>
                                 —Asveen Kaur <br />
                                 Manager, People Ops, Setu
                             </h6>
@@ -159,7 +159,7 @@ const ExperiencePage = () => {
                             A standout example is when we asked her to design ID cards for the team—she created a design that was custom for each team and individual, turning what could have been a simple formality into a cherished keepsake for every team member. Her work truly elevated the People Ops team’s outputs.
                         </Text>
                         <Link href="https://www.linkedin.com/in/asveenkaur/" target="_blank" rel="noopener noreferrer">
-                            <h6 align="right">
+                            <h6>
                                 —Asveen Kaur <br />
                                 Manager, People Ops, Setu
                             </h6>
