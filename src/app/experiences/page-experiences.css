@@ -28,8 +28,8 @@
 
     .testimonial-card {
         position: relative;
-        min-width: 700px;
-        text-align: start;
+        min-width: 400px;
+        height: 500px;
         border-radius: 20px;
         padding: 32px;
         scroll-snap-align: start;
