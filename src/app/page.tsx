@@ -105,7 +105,7 @@ export default function Home() {
                             Beyond work, she's also an amazing person at heart and a joy to be around—kind, thoughtful, and someone you can always count on to keep things real. Always rooting for you, Geetika ❤️</Text>
                         <Link href="https://www.linkedin.com/in/ruby-jane/" target="_blank" rel="noopener noreferrer">
                             <h6>
-                                —Ruby Jane Antony<br />
+                                — Ruby Jane Antony<br />
                                 Director, People Ops, Setu
                             </h6>
                         </Link>
@@ -123,7 +123,7 @@ export default function Home() {
                         </Text>
                         <Link href="https://www.linkedin.com/in/sandeep-atmaram-234100217/" target="_blank" rel="noopener noreferrer">
                             <h6>
-                                —Sandeep Atmaram<br />
+                                — Sandeep Atmaram<br />
                                 Co-founder, Heads Up for Tails
                             </h6>
                         </Link>
@@ -141,7 +141,7 @@ export default function Home() {
                         </Text>
                         <Link href="https://www.linkedin.com/in/asveenkaur/" target="_blank" rel="noopener noreferrer">
                             <h6>
-                                —Asveen Kaur <br />
+                                — Asveen Kaur <br />
                                 Manager, People Ops, Setu
                             </h6>
                         </Link>

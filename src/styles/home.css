@@ -67,12 +67,14 @@
         padding: 8px;
         width: 100%;
     }
+
     .platform-scroll-section {
         margin-left: 6vw;
         margin-right: 6vw;
-        width: 100%;
+        width: 90vw;
         overflow: hidden;
     }
+
     .scroll-item {
         min-width: 100%;
     }
