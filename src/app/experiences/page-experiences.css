@@ -25,25 +25,4 @@
     .center-flexbox {
         justify-content: center;
     }
-
-    .testimonial-card {
-        position: relative;
-        min-width: 400px;
-        height: 500px;
-        border-radius: 20px;
-        padding: 32px;
-        scroll-snap-align: start;
-    }
-
-    .scroll-container {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        width: 1040px;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        gap: 20px;
-    }
-
-
 }

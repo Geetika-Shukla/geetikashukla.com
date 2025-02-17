@@ -87,6 +87,69 @@ export default function Home() {
                 </Link>
             </Row>
 
+
+            <Row horizontalPadding="huge" marginBottom="tiny">
+                <Portion desktopSpan="12" marginTop="medium">
+                    <h5>From those I've worked with &nbsp; 👩🏻‍💻
+                    </h5>
+                </Portion>
+            </Row>
+
+            <Row className="platform-scroll-section" horizontalMargin="large" marginBottom="medium">
+                <Div className="scroll-container">
+
+                    <Card className="testimonial-card" bgColor="green-light10-opacity5" borderColor="green-light50-opacity10">
+                        <Text marginBottom="tiny">
+                            Geetika is one of my favourite people to collaborate with at Setu! Her work is filled with so much creativity, thought, and an incredible attention to not just detail, but craft. There’s a certain magic in everything she creates and every single time, she amazes me with the kind of work she puts out—I go to her with just a basic outline, and she transforms it into a masterpiece that never fails to leave me in awe. Couldn’t be more grateful for the outstanding people experience pieces she’s helped bring to life for our team.                        </Text>
+                        <Text marginBottom="small">
+                            Beyond work, she's also an amazing person at heart and a joy to be around—kind, thoughtful, and someone you can always count on to keep things real. Always rooting for you, Geetika ❤️</Text>
+                        <Link href="https://www.linkedin.com/in/ruby-jane/" target="_blank" rel="noopener noreferrer">
+                            <h6>
+                                —Ruby Jane Antony<br />
+                                Director, People Ops, Setu
+                            </h6>
+                        </Link>
+                    </Card>
+
+                    <Card className="testimonial-card" bgColor="violet-light10-opacity5" borderColor="violet-light50-opacity10">
+                        <Text marginBottom="tiny">
+                            I had the pleasure of working with Geetika to design the brand identity for my business, and I couldn't be more thrilled with the results! From the start, she took the time to understand my vision, values, and the essence of my brand.
+                        </Text>
+                        <Text marginBottom="tiny">
+                            The attention to detail, creativity, and expertise she brought to the table was evident in every aspect of the design. The logo, colour palette, typography, and overall style feel perfectly aligned with the identity I wanted to create.
+                        </Text>
+                        <Text marginBottom="small">
+                            What truly stood out was Geetika’s professionalism and communication throughout the process. She was very responsive, open to feedback, and delivered on time.
+                        </Text>
+                        <Link href="https://www.linkedin.com/in/sandeep-atmaram-234100217/" target="_blank" rel="noopener noreferrer">
+                            <h6>
+                                —Sandeep Atmaram<br />
+                                Co-founder, Heads Up for Tails
+                            </h6>
+                        </Link>
+                    </Card>
+
+                    <Card className="testimonial-card" bgColor="green-light10-opacity5" borderColor="green-light50-opacity10">
+                        <Text marginBottom="tiny">
+                            I had the privilege of working with Geetika while I was in the People Ops team at Setu, where she was our go-to designer for all visual communications. From custom letterheads for performance letters to posters, mailers, and employee swag, her work has always been exceptional.
+                        </Text>
+                        <Text  marginBottom="tiny">
+                            Her work is not only visually striking but also highly versatile and reusable across different contexts, making our processes more efficient. Her work truly elevated the People Ops team’s outputs.
+                        </Text>
+                        <Text  marginBottom="small">
+                            For anyone seeking a designer who combines creativity, clarity, and a keen understanding of purpose, Geetika is an outstanding choice.
+                        </Text>
+                        <Link href="https://www.linkedin.com/in/asveenkaur/" target="_blank" rel="noopener noreferrer">
+                            <h6>
+                                —Asveen Kaur <br />
+                                Manager, People Ops, Setu
+                            </h6>
+                        </Link>
+                    </Card>
+
+                </Div>
+            </Row>
+
         </article >
     );
 }

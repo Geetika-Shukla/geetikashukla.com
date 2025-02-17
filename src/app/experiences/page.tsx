@@ -102,63 +102,6 @@ const ExperiencePage = () => {
 
                 </Portion>
             </Row>
-
-            <Row horizontalPadding="huge" marginBottom="tiny">
-                <Portion desktopSpan="12" marginTop="small">
-                <h5>From those I've worked with &nbsp; 👩🏻‍💻
-                    </h5>
-                </Portion>
-            </Row>
-            <Row className="platform-scroll-section" horizontalMargin="large" marginBottom="medium">
-                <Div className="scroll-container">
-
-                    <Card className="testimonial-card" bgColor="green-light10-opacity5" borderColor="green-light50-opacity10">
-                        <Text marginBottom="tiny">
-                            I had the privilege of working with Geetika while I was in the People Ops team at Setu, where she was our go-to designer for all visual communications. From custom letterheads for performance letters to posters, mailers, and employee swag, her work has always been exceptional.
-                        </Text>
-                        <Text marginBottom="small">
-                            Geetika has a unique ability to take basic, half-baked ideas and transform them into designs that far exceed expectations. Her work is not only visually striking but also highly versatile and reusable across different contexts, making our processes more efficient.
-                        </Text>
-                        <Link href="https://www.linkedin.com/in/asveenkaur/" target="_blank" rel="noopener noreferrer">
-                            <h6>
-                                —Asveen Kaur <br />
-                                Manager, People Ops, Setu
-                            </h6>
-                        </Link>
-                        </Card>
-
-                    <Card className="testimonial-card" bgColor="violet-light10-opacity5" borderColor="violet-light50-opacity10">
-                        <Text marginBottom="tiny">
-                            I had the privilege of working with Geetika while I was in the People Ops team at Setu, where she was our go-to designer for all visual communications. From custom letterheads for performance letters to posters, mailers, and employee swag, her work has always been exceptional.
-                        </Text>
-                        <Text marginBottom="small">
-                            Geetika has a unique ability to take basic, half-baked ideas and transform them into designs that far exceed expectations. Her work is not only visually striking but also highly versatile and reusable across different contexts, making our processes more efficient.
-                        </Text>
-                        <Link href="https://www.linkedin.com/in/asveenkaur/" target="_blank" rel="noopener noreferrer">
-                            <h6>
-                                —Asveen Kaur <br />
-                                Manager, People Ops, Setu
-                            </h6>
-                        </Link>
-                    </Card>
-
-                    <Card className="testimonial-card" bgColor="green-light10-opacity5" borderColor="green-light50-opacity10">
-                        <Text marginBottom="tiny">
-                            I had the privilege of working with Geetika while I was in the People Ops team at Setu, where she was our go-to designer for all visual communications. From custom letterheads for performance letters to posters, mailers, and employee swag, her work has always been exceptional.
-                        </Text>
-                        <Text marginBottom="small">
-                            Geetika has a unique ability to take basic, half-baked ideas and transform them into designs that far exceed expectations. Her work is not only visually striking but also highly versatile and reusable across different contexts, making our processes more efficient.
-                        </Text>
-                        <Link href="https://www.linkedin.com/in/asveenkaur/" target="_blank" rel="noopener noreferrer">
-                            <h6>
-                                —Asveen Kaur <br />
-                                Manager, People Ops, Setu
-                            </h6>
-                        </Link>
-                    </Card>
-
-                    </Div>
-            </Row>
         </article >
     );
 };
