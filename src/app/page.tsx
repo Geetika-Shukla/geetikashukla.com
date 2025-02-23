@@ -131,13 +131,10 @@ export default function Home() {
 
                     <Card className="testimonial-card" bgColor="green-light10-opacity5" borderColor="green-light50-opacity10">
                         <Text marginBottom="tiny">
-                            I had the privilege of working with Geetika while I was in the People Ops team at Setu, where she was our go-to designer for all visual communications. From custom letterheads for performance letters to posters, mailers, and employee swag, her work has always been exceptional.
-                        </Text>
-                        <Text  marginBottom="tiny">
-                            Her work is not only visually striking but also highly versatile and reusable across different contexts, making our processes more efficient. Her work truly elevated the People Ops team’s outputs.
+                            I had the privilege of working with Geetika while in the People Ops team at Setu, where she was our go-to designer for all things visual. From custom letterheads and posters to mailers and swag, her work was always exceptional. She has a knack for turning half-baked ideas into designs that far exceed expectations—both visually striking and versatile.
                         </Text>
                         <Text  marginBottom="small">
-                            For anyone seeking a designer who combines creativity, clarity, and a keen understanding of purpose, Geetika is an outstanding choice.
+                            For anyone looking for a designer with creativity, clarity, and attention to detail, Geetika is an outstanding choice!
                         </Text>
                         <Link href="https://www.linkedin.com/in/asveenkaur/" target="_blank" rel="noopener noreferrer">
                             <h6>
