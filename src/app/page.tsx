@@ -39,7 +39,7 @@ export default function Home() {
 
             <Row layoutAsGrid horizontalPadding="huge" marginTop="medium" marginBottom="none">
                 <Portion desktopSpan="2" marginTop="large" className="overflow-left" hideOnMobile>
-                    <GreenStar alt="star" height="56px" />
+                    <GreenStar alt="stars" height="56px" />
                 </Portion>
                 <Portion desktopSpan="8">
                     <Heading1 className="hero-heading">
