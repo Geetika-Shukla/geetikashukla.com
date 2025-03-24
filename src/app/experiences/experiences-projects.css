@@ -21,4 +21,50 @@
         height: 100%;
     }
 
+    .horizontal-pointer-card {
+        flex-direction: row;
+        border-radius: 16px;
+        background-color: #F8FAFC;
+    }
+
+    .pointer-card {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        width: 176px;
+        height: 290px;
+        border-radius: 16px;
+        background-color: #F8FAFC;
+    }
+
+    .pointer {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .project-thumbnail {
+        position: relative;
+        width: 400px;
+        height: 200px;
+        overflow: hidden;
+        text-align: end;
+        border-radius: 20px;
+        background-color: #FAF8F5;
+    }
+
+    .project-thumbnail:hover {
+        background-color: #faf4ea;
+    }
+
+    .project-thumbnail-text {
+        position: absolute;
+        font-family: "zilla-slab", serif;
+        color: #BE9B74;
+        bottom: 24px;
+        right: 32px;
+    }
+
+    .center-flexbox {
+        justify-content: center;
+    }
 }

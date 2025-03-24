@@ -71,10 +71,10 @@ const ExperiencePage = () => {
             <Row layoutAsGrid horizontalPadding="huge" marginTop="none" marginBottom="small">
                 <Portion className="center-flexbox" layoutAsFlexbox verticallyCenterItems>
 
-                    <Link href="/">
+                    <Link href="/experiences/assisted-product-discovery">
                         <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                            <ProjectDiscoveryThumbnail alt="Product discovery at Setu" />
-                            <Heading6 className="project-thumbnail-text" >Product discovery at Setu</Heading6>
+                            <ProjectDiscoveryThumbnail alt="Assisted product discovery at Setu" />
+                            <Heading6 className="project-thumbnail-text" >Assisted product discovery at Setu</Heading6>
                         </Card>
                     </Link>
 
