@@ -33,6 +33,14 @@ import Home from "@/assets/images/product-discovery/home.svg";
 import ContactSales from "@/assets/images/product-discovery/contact-sales.svg";
 import ProductsMenu from "@/assets/images/product-discovery/products-menu.svg";
 
+import IconBoxWithBraces from "@/assets/images/BoxWithBraces.svg";
+import IconCircleWithExclamationMark from "@/assets/images/CircleWithExclamationMark.svg";
+import IconTeam from "@/assets/images/Team.svg";
+
+import IconLink from "@/assets/images/Link.svg";
+import IconSignPost from "@/assets/images/SignPost.svg";
+import IconPersonWithPuzzlePiece from "@/assets/images/PersonWithPuzzlePiece.svg";
+import IconFunnelWithPlusSymbol from "@/assets/images/FunnelWithPlusSymbol.svg";
 
 import IconTenacity from "@/assets/images/Tenacity.svg";
 import IconJigsaw from "@/assets/images/Jigsaw.svg";
@@ -81,17 +89,17 @@ export default function ProductDiscoveryPage() {
                 <Portion desktopSpan="10">
                     <Div layoutAsFlexbox style={{ gap: "16px"}} isFullHeight>
                         <Card className="horizontal-pointer-card" padding="small">
-                            <IconTenacity />
+                            <IconBoxWithBraces />
                             <Text>
                                 Users found it <strong>difficult to navigate Setu’s offerings</strong> and identify the most relevant use cases for their needs.                            </Text>
                         </Card>
                         <Card className="horizontal-pointer-card" padding="small">
-                            <IconJigsaw />
+                            <IconTeam />
                             <Text>
                                 The sales team <strong>spent over an hour on onboarding calls</strong>, explaining products and assessing fit for potential customers.                            </Text>
                         </Card>
                         <Card className="horizontal-pointer-card" padding="small">
-                            <IconDocument />
+                            <IconCircleWithExclamationMark />
                             <Text>
                                 <strong>High drop-off rates</strong> on product pages and the contact form, indicating friction in the discovery process.                            </Text>
                         </Card>
@@ -148,24 +156,24 @@ export default function ProductDiscoveryPage() {
 
             <Row layoutAsFlexbox className="grid-container" horizontalPadding="huge" marginTop="tiny" marginBottom="medium">
                 <Card className="horizontal-pointer-card" padding="small">
-                    <IconTenacity />
+                    <IconLink />
                     <Text>
                         I aimed to <strong>create a clear link between products, use cases, and industries</strong> for easy navigation and quick decision-making.
                     </Text>
                 </Card>
                 <Card className="horizontal-pointer-card flex items-center gap-2" padding="small">
-                    <IconJigsaw />
+                    <IconFunnelWithPlusSymbol />
                     <Text>
                         Instead of lengthy onboarding calls, <strong>sales can get pre-qualified leads with clear requirements</strong>, making conversations more efficient.
                     </Text>
                 </Card>
                 <Card className="horizontal-pointer-card" padding="small">
-                    <IconTenacity />
+                    <IconSignPost />
                     <Text>
                         A quiz mimics a <strong>conversational approach</strong>, making it feel more natural than a static form asking for details upfront.                            </Text>
                 </Card>
                 <Card className="horizontal-pointer-card" padding="small">
-                    <IconJigsaw />
+                    <IconPersonWithPuzzlePiece />
                     <Text>
                         Users receive <strong>tailored recommendations based on their answers</strong>, making the process more intuitive than manually browsing products.
                     </Text>
