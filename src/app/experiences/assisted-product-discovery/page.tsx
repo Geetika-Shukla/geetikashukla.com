@@ -248,30 +248,68 @@ export default function ProductDiscoveryPage() {
                 </Portion>
             </Row>
 
-            {/*<Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">*/}
-            {/*    <Portion desktopSpan="whole">*/}
-            {/*        <h5>Impact</h5>*/}
-            {/*    </Portion>*/}
-            {/*</Row>*/}
-            {/*<Row layoutAsFlexbox className="grid-container" horizontalPadding="huge" marginTop="tiny" marginBottom="medium">*/}
-            {/*    <Card className="impact-card">*/}
-            {/*        <IconTenacity />*/}
-            {/*        <h6>Feature engagement & usage</h6>*/}
-            {/*        <Text>*/}
-            {/*            <strong>21%</strong> website visitors engaged with the feature*/}
-            {/*        </Text>*/}
-            {/*        <Text>*/}
-            {/*            <strong>13%</strong> completed the quiz or interacted with recommendations*/}
-            {/*        </Text>*/}
-            {/*    </Card>*/}
-            {/*    <Card className="impact-card">*/}
-            {/*        <IconTenacity />*/}
-            {/*        <h6>Improved user clarity</h6>*/}
-            {/*        <Text>*/}
-            {/*            24% users reported better clarity in finding the right product for their business needs*/}
-            {/*        </Text>*/}
-            {/*    </Card>*/}
-            {/*</Row>*/}
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h5>Impact</h5>
+                </Portion>
+            </Row>
+
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="tiny" marginBottom="medium">
+                <Portion desktopSpan="11">
+                    <Card className="stat-card" marginBottom="nano">
+                        <Div>
+                            <h6>Feature engagement & usage</h6>
+                            <Div className="content-row" marginBottom="tiny" marginTop="tiny">
+                                <Text className="stat">
+                                    21%
+                                </Text>
+                                <Text>
+                                    website visitors engaged with the feature
+                                </Text>
+                            </Div>
+                            <Div className="content-row" marginBottom="tiny" marginTop="tiny">
+                                <Text className="stat">
+                                    13%
+                                </Text>
+                                <Text>
+                                    completed the quiz or interacted with recommendations
+                                </Text>
+                            </Div>
+                        <p className="source">Out of ~1700 unique visitors in 2 months</p>
+                        </Div>
+                    </Card>
+
+                    <Card className="stat-card">
+                        <Div>
+                            <h6>Improved user clarity</h6>
+                            <Div className="content-row" marginBottom="tiny" marginTop="tiny">
+                                <Text className="stat">
+                                    24%
+                                </Text>
+                                <Text>
+                                    users reported better clarity in finding the right product for their business needs
+                                </Text>
+                            </Div>
+                            <p className="source">Source: User feedback & surveys</p>
+                        </Div>
+                    </Card>
+                </Portion>
+
+                <Portion desktopSpan="half">
+                    <Card className="stat-card" isFullHeight>
+                        <Div>
+                            <h6>Internal feedback</h6>
+                                <Text marginTop="tiny">
+                                    Sales teams reported a significant improvement in lead quality due to better product understanding.
+                                </Text>
+                            <br />
+                                <Text>
+                                    Eventually, sales team ended up spending less time in discovery and high-level solutioning—they also got more time to cross-sell other products.
+                                </Text>
+                        </Div>
+                    </Card>
+                </Portion>
+            </Row>
 
 
             <hr className="brown-hr"/>
