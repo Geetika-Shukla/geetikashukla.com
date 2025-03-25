@@ -67,7 +67,7 @@ export default function ProductDiscoveryPage() {
                 </Portion>
             </Row>
 
-            <Row className="center-align-svg" marginBottom="none">
+            <Row marginBottom="none" className="full-width">
                 <AssistedHero height="500px" className="hero-alignment" />
             </Row>
 
@@ -79,20 +79,20 @@ export default function ProductDiscoveryPage() {
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="small">
                 <Portion desktopSpan="10">
-                    <Div layoutAsFlexbox style={{ gap: "16px"}}>
+                    <Div layoutAsFlexbox style={{ gap: "16px"}} isFullHeight>
                         <Card className="horizontal-pointer-card" padding="small">
                             <IconTenacity />
-                            <Text paddingTop="tiny">
+                            <Text>
                                 Users found it <strong>difficult to navigate Setu’s offerings</strong> and identify the most relevant use cases for their needs.                            </Text>
                         </Card>
                         <Card className="horizontal-pointer-card" padding="small">
                             <IconJigsaw />
-                            <Text paddingTop="tiny">
+                            <Text>
                                 The sales team <strong>spent over an hour on onboarding calls</strong>, explaining products and assessing fit for potential customers.                            </Text>
                         </Card>
                         <Card className="horizontal-pointer-card" padding="small">
                             <IconDocument />
-                            <Text paddingTop="tiny">
+                            <Text>
                                 <strong>High drop-off rates</strong> on product pages and the contact form, indicating friction in the discovery process.                            </Text>
                         </Card>
                     </Div>
@@ -109,34 +109,32 @@ export default function ProductDiscoveryPage() {
             </Row>
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="none">
-                <Portion desktopSpan="18">
-                    <Card className="pointer-card" padding="medium" bgColor="amber-light90" isFullHeight>
-                        <IconTenacity/>
-                        <h6>Find a product</h6>
-                        <Text marginTop="nano">
-                            I designed an intuitive, quiz-based experience placed in the site navigation and key entry points that could help the users discover the right product combinations.
-                        </Text>
-                    </Card>
-                </Portion>
-                <Portion desktopSpan="6">
-                    <Card className="pointer-card" padding="medium" bgColor="amber-light90">
+                <Portion desktopSpan="whole">
+                <Card className="overview-card">
+                    <Div className="overview-content">
                         <Div>
-                            <Text marginBottom="nano"><strong>Feature go-live</strong></Text>
-                            <Text>
-                                Jan 2024
+                            <Text className="overview-label" marginBottom="nano">Find a product</Text>
+                            <Text size="small">
+                            I designed an <strong>intuitive, quiz-based experience</strong> placed in the site navigation and key entry points that could help
+                            the users <strong>discover the right product combinations</strong>.
                             </Text>
                         </Div>
-                        <Div marginTop="tiny">
-                            <Text marginBottom="nano"><strong>My role</strong></Text>
-                            <Text>
-                                UI and UX design
-                            </Text>
+                        <Div className="overview-details">
+                            <Div marginBottom="tiny">
+                                <Text className="overview-label" marginBottom="nano">FEATURE GO-LIVE</Text>
+                                <Text size="small">Jan 2024</Text>
+                            </Div>
+                            <Div>
+                                <Text className="overview-label" marginBottom="nano">MY ROLE</Text>
+                                <Text size="small">UI and UX design</Text>
+                            </Div>
                         </Div>
-                    </Card>
+                    </Div>
+                </Card>
                 </Portion>
             </Row>
 
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+            <Row horizontalPadding="huge" marginTop="small" marginBottom="tiny">
                 <Portion desktopSpan="whole">
                     <h5>Mapping user needs to actions</h5>
                 </Portion>
@@ -148,56 +146,45 @@ export default function ProductDiscoveryPage() {
                 </Portion>
             </Row>
 
-            <Row horizontalPadding="huge" marginTop="none" marginBottom="small">
-                <Portion desktopSpan="10">
-                    <Div layoutAsFlexbox style={{ gap: "16px" }}>
-                        <Card className="horizontal-pointer-card" padding="small">
-                            <IconTenacity />
-                            <Text paddingTop="tiny">
-                                I aimed to <strong>create a clear link between products, use cases, and industries</strong> for easy navigation and quick decision-making.
-                            </Text>
-                            </Card>
-                        <Card className="horizontal-pointer-card flex items-center gap-2" padding="small">
-                            <IconJigsaw />
-                            <Text paddingTop="tiny">
-                                Instead of lengthy onboarding calls, <strong>sales can get pre-qualified leads with clear requirements</strong>, making conversations more efficient.
-                            </Text>
-                        </Card>
-                    </Div>
-                </Portion>
-                <Portion desktopSpan="10">
-                    <Div layoutAsFlexbox style={{ gap: "16px" }}>
-                        <Card className="horizontal-pointer-card" padding="small">
-                            <IconTenacity />
-                            <Text paddingTop="tiny">
-                                A quiz mimics a <strong>conversational approach</strong>, making it feel more natural than a static form asking for details upfront.                            </Text>
-                        </Card>
-                        <Card className="horizontal-pointer-card" padding="small">
-                            <IconJigsaw />
-                            <Text paddingTop="tiny">
-                                Users receive <strong>tailored recommendations based on their answers</strong>, making the process more intuitive than manually browsing products.
-                            </Text>
-                        </Card>
-                    </Div>
-                </Portion>
+            <Row layoutAsFlexbox className="grid-container" horizontalPadding="huge" marginTop="tiny" marginBottom="medium">
+                <Card className="horizontal-pointer-card" padding="small">
+                    <IconTenacity />
+                    <Text>
+                        I aimed to <strong>create a clear link between products, use cases, and industries</strong> for easy navigation and quick decision-making.
+                    </Text>
+                </Card>
+                <Card className="horizontal-pointer-card flex items-center gap-2" padding="small">
+                    <IconJigsaw />
+                    <Text>
+                        Instead of lengthy onboarding calls, <strong>sales can get pre-qualified leads with clear requirements</strong>, making conversations more efficient.
+                    </Text>
+                </Card>
+                <Card className="horizontal-pointer-card" padding="small">
+                    <IconTenacity />
+                    <Text>
+                        A quiz mimics a <strong>conversational approach</strong>, making it feel more natural than a static form asking for details upfront.                            </Text>
+                </Card>
+                <Card className="horizontal-pointer-card" padding="small">
+                    <IconJigsaw />
+                    <Text>
+                        Users receive <strong>tailored recommendations based on their answers</strong>, making the process more intuitive than manually browsing products.
+                    </Text>
+                </Card>
             </Row >
 
-            <Row horizontalPadding="huge" marginTop="none" marginBottom="none">
-                <Portion desktopSpan="whole">
-                    <Card className="pointer" padding="medium" bgColor="amber-light90">
-                        <IconTenacity paddingBottom="tiny"/>
-                        <h6>Experience the solution in action</h6>
-                        <Text marginTop="nano" marginBottom="tiny">
-                            Interact with the feature and see how it helps users discover the right solutions effortlessly.
-                        </Text>
-                        <Text size="small" marginRight="tiny">
-                            <Link href="https://setu.co/find-a-product/" target="_blank" rel="noopener noreferrer">
-                                Link to the feature
-                            </Link>
-                        </Text>
-                    </Card>
-                </Portion>
-            </Row>
+            <Card className="full-width-banner">
+                <Div className="banner-content" paddingLeft="large">
+                    <Div className="banner-text">
+                        <Text className="overview-label" marginBottom="nano">Experience the Solution in Action</Text>
+                        <Text>Interact with the feature and see how it helps users discover the right solutions effortlessly.</Text>
+                    </Div>
+                </Div>
+                <Div className="banner-links" paddingRight="large">
+                    <Text as="a" href="https://setu.co/find-a-product/" size="small" color="blue">Link to the feature</Text>
+                    <Text as="a" href="https://setu.co/find-a-product/" size="small" color="blue">Link to the prototype</Text>
+                </Div>
+            </Card>
+
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
                 <Portion desktopSpan="whole">
@@ -210,8 +197,8 @@ export default function ProductDiscoveryPage() {
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
                     <Portion desktopSpan="6">
-                        <Card className="horizontal-pointer-card" padding="medium" bgColor="violet-light90" isFullHeight>
-                            <Text textColor="violet-light20" paddingTop="large" size="medium">
+                        <Card className="violet-card" isFullHeight>
+                            <Text size="medium" className="violet-text">
                                 <strong>
                                 Inside the primary navigation—accessible from all parts of the website.
                                 </strong>
@@ -228,8 +215,8 @@ export default function ProductDiscoveryPage() {
                     <Home />
                 </Portion>
                 <Portion desktopSpan="6">
-                    <Card className="horizontal-pointer-card" padding="medium" bgColor="violet-light90" isFullHeight>
-                        <Text textColor="violet-light20" paddingTop="nano" size="medium">
+                    <Card className="violet-card" isFullHeight>
+                        <Text size="medium" className="violet-text">
                             <strong>
                                 On the home page, after the product suite section
                             </strong>
@@ -238,10 +225,10 @@ export default function ProductDiscoveryPage() {
                 </Portion>
             </Row>
 
-            <Row horizontalPadding="huge" marginTop="none" marginBottom="none">
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="medium">
                 <Portion desktopSpan="6">
-                    <Card className="horizontal-pointer-card" padding="medium" bgColor="violet-light90" isFullHeight>
-                        <Text textColor="violet-light20" paddingTop="nano" size="medium">
+                    <Card className="violet-card" isFullHeight>
+                        <Text size="medium" className="violet-text">
                             <strong>
                                 On the contact sales page
                             </strong>
@@ -253,11 +240,56 @@ export default function ProductDiscoveryPage() {
                 </Portion>
             </Row>
 
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
-                <Portion desktopSpan="whole">
-                    <h5>Impact</h5>
+            {/*<Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">*/}
+            {/*    <Portion desktopSpan="whole">*/}
+            {/*        <h5>Impact</h5>*/}
+            {/*    </Portion>*/}
+            {/*</Row>*/}
+            {/*<Row layoutAsFlexbox className="grid-container" horizontalPadding="huge" marginTop="tiny" marginBottom="medium">*/}
+            {/*    <Card className="impact-card">*/}
+            {/*        <IconTenacity />*/}
+            {/*        <h6>Feature engagement & usage</h6>*/}
+            {/*        <Text>*/}
+            {/*            <strong>21%</strong> website visitors engaged with the feature*/}
+            {/*        </Text>*/}
+            {/*        <Text>*/}
+            {/*            <strong>13%</strong> completed the quiz or interacted with recommendations*/}
+            {/*        </Text>*/}
+            {/*    </Card>*/}
+            {/*    <Card className="impact-card">*/}
+            {/*        <IconTenacity />*/}
+            {/*        <h6>Improved user clarity</h6>*/}
+            {/*        <Text>*/}
+            {/*            24% users reported better clarity in finding the right product for their business needs*/}
+            {/*        </Text>*/}
+            {/*    </Card>*/}
+            {/*</Row>*/}
+
+
+            <hr className="brown-hr"/>
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium">
+                <Portion desktopSpan="4">
+                    <h5>Other projects</h5>
+                </Portion>
+
+                <Portion desktopSpan="20" className="project-thumbnail-row">
+                    <Link href="/visual/people-experience">
+                        <Card className="project-thumbnail" marginBottom="micro">
+                            <PeopleExperienceThumbnail alt="people-experience" />
+                            <Heading6 className="project-thumbnail-text" >People experience at Setu</Heading6>
+                        </Card>
+                    </Link>
+                    <Link href="/visual/icon-system-for-setu">
+                        <Card className="project-thumbnail" marginBottom="micro">
+                            <IconSystemThumbnail alt="icon-system" />
+                            <Heading6 className="project-thumbnail-text" >Icon system for Setu</Heading6>
+                        </Card>
+                    </Link>
                 </Portion>
             </Row>
+
+
 
         </article>
     );

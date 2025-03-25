@@ -1,4 +1,8 @@
-.-project-page {
+.project-page {
+
+    .full-width {
+        width: 100%;
+    }
 
     .image-grid {
         display: grid;
@@ -21,25 +25,125 @@
         height: 100%;
     }
 
+    .violet-card {
+        padding: 24px;
+        border-radius: 16px;
+        background-color: #EFEAFB;
+    }
+
+    .violet-text {
+        color: #612DD7;
+    }
+
     .horizontal-pointer-card {
-        flex-direction: row;
+        display: flex;
+        align-items: center;
+        max-width: 34vw;
+        width: 100%;
+        gap: 24px;
+        padding: 24px;
         border-radius: 16px;
         background-color: #F8FAFC;
     }
 
-    .pointer-card {
-        position: relative;
+    .horizontal-pointer-card svg {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+    }
+
+    .overview-card {
+        background-color: #FEF9F3;
+        padding: 32px;
+        border-radius: 12px;
         display: flex;
-        flex-direction: row;
-        width: 176px;
-        height: 290px;
-        border-radius: 16px;
-        background-color: #F8FAFC;
+        flex-direction: column;
+        max-width: 1200px;
+    }
+
+    .overview-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        justify-content: space-between;
+        gap: 32px;
+    }
+
+    .overview-details {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        text-align: left;
+    }
+
+    .overview-label {
+        font-weight: bold;
+        color: #BE9B74;
+        text-transform: uppercase;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        width: 100%;
+    }
+
+    .full-width-banner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Pushes links to the right */
+        width: 100%;
+        padding-top: 32px;
+        padding-bottom: 32px;
+        background-color: #fdfaf4;
+    }
+
+    .banner-content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .banner-links {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+        gap: 16px;
     }
 
     .pointer {
         display: flex;
         flex-direction: row;
+    }
+
+    .impact-card {
+        display: flex;
+        flex-direction: column;
+        padding: 32px;
+        border-radius: 12px;
+        background-color: #FEF9F3;
+        gap: 16px;
+    }
+
+    .impact-card svg {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+    }
+
+    .brown-hr {
+        border: none;
+        height: 0.5px;
+        background-color: #BE9B74;
+        width: 68vw;
+        margin: 0 auto;
+
+    }
+
+    .project-thumbnail-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 
     .project-thumbnail {
@@ -62,9 +166,5 @@
         color: #BE9B74;
         bottom: 24px;
         right: 32px;
-    }
-
-    .center-flexbox {
-        justify-content: center;
     }
 }
