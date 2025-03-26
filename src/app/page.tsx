@@ -29,7 +29,7 @@ import GreenStar from "@/assets/images/green-star.svg";
 import PurpleStar from "@/assets/images/purple-star.svg";
 import VDCover from "@/assets/images/vd-cover.svg";
 import TypeCover from "@/assets/images/type-cover.svg";
-import Heart from "@/assets/images/heart.svg";
+import ExpCover from "@/assets/images/exp-cover.svg";
 
 
 export default function Home() {
@@ -80,9 +80,10 @@ export default function Home() {
                     </Card>
                 </Link>
 
-                <Link href="/hobbies">
+                <Link href="/experiences">
                     <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
-                        <Heart className="category-thumbnail-text" width="30px" />
+                        <ExpCover />
+                        <Heading6 className="category-thumbnail-text" >Experiences</Heading6>
                     </Card>
                 </Link>
             </Row>
