@@ -65,14 +65,8 @@
 
     .responsive-image {
         width: 100%;
-        max-width: 1000px;
         height: auto;
-    }
-
-    .responsive-image {
-        width: 100%;
-        height: auto;
-        max-width: 90%;
+        max-width: 100%;
     }
 
     .platform-scroll-section {
@@ -106,6 +100,43 @@
         height: auto;
         max-width: 100%;
         object-fit: contain;
+    }
+
+    .brown-hr {
+        border: none;
+        height: 0.5px;
+        background-color: #BE9B74;
+        width: 68vw;
+        margin: 0 auto;
+    }
+
+
+    .project-thumbnail-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .project-thumbnail {
+        position: relative;
+        width: 400px;
+        height: 200px;
+        overflow: hidden;
+        text-align: end;
+        border-radius: 20px;
+        background-color: #FAF8F5;
+    }
+
+    .project-thumbnail:hover {
+        background-color: #faf4ea;
+    }
+
+    .project-thumbnail-text {
+        position: absolute;
+        font-family: "zilla-slab", serif;
+        color: #BE9B74;
+        bottom: 24px;
+        right: 32px;
     }
 
 }
@@ -180,5 +211,6 @@
         display: block;
         margin: 0 auto;
     }
+
 
 }

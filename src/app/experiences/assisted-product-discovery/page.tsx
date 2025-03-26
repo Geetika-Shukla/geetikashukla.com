@@ -32,19 +32,16 @@ import FullFlow from "@/assets/images/product-discovery/full-flow.svg";
 import Home from "@/assets/images/product-discovery/home.svg";
 import ContactSales from "@/assets/images/product-discovery/contact-sales.svg";
 import ProductsMenu from "@/assets/images/product-discovery/products-menu.svg";
-
 import IconBoxWithBraces from "@/assets/images/BoxWithBraces.svg";
 import IconCircleWithExclamationMark from "@/assets/images/CircleWithExclamationMark.svg";
 import IconTeam from "@/assets/images/Team.svg";
-
 import IconLink from "@/assets/images/Link.svg";
 import IconSignPost from "@/assets/images/SignPost.svg";
 import IconPersonWithPuzzlePiece from "@/assets/images/PersonWithPuzzlePiece.svg";
 import IconFunnelWithPlusSymbol from "@/assets/images/FunnelWithPlusSymbol.svg";
-
-import IconTenacity from "@/assets/images/Tenacity.svg";
-import IconJigsaw from "@/assets/images/Jigsaw.svg";
-import IconDocument from "@/assets/images/DocumentWithGreenTick.svg";
+import IconChatBubbles from "@/assets/images/ChatBubbles.svg";
+import IconMobilewithCursor from "@/assets/images/MobilewithCursor.svg";
+import IconPersonWithSettings from "@/assets/images/PersonWithSettings.svg";
 import PeopleExperienceThumbnail from "@/assets/images/thumbnail-for-people-experience.svg";
 import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
 
@@ -278,6 +275,7 @@ export default function ProductDiscoveryPage() {
                             </Div>
                         <p className="source">Out of ~1700 unique visitors in 2 months</p>
                         </Div>
+                        <IconMobilewithCursor alt="icon" className="card-icon" />
                     </Card>
 
                     <Card className="stat-card">
@@ -293,6 +291,7 @@ export default function ProductDiscoveryPage() {
                             </Div>
                             <p className="source">Source: User feedback & surveys</p>
                         </Div>
+                        <IconPersonWithSettings alt="icon" className="card-icon" />
                     </Card>
                 </Portion>
 
@@ -308,10 +307,10 @@ export default function ProductDiscoveryPage() {
                                     Eventually, sales team ended up spending less time in discovery and high-level solutioning—they also got more time to cross-sell other products.
                                 </Text>
                         </Div>
+                        <IconChatBubbles alt="icon" className="card-icon" />
                     </Card>
                 </Portion>
             </Row>
-
 
             <hr className="brown-hr"/>
 
