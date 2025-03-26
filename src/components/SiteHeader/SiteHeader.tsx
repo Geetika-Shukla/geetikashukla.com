@@ -40,6 +40,8 @@ export const SiteHeader = () => {
 
                             <Link href="/type"><Text className="nav-links">Type</Text></Link>
 
+                            <Link href="/experiences"><Text className="nav-links">Experiences</Text></Link>
+
                             <Link href="/hobbies"><Heart width="24px" height="24px" /></Link>
                         </Div>
                     </Div>

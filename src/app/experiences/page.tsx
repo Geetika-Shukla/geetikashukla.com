@@ -27,14 +27,7 @@ import HDFCThumbnail from "@/assets/images/thumbnail-for-hdfc.svg";
 import FaveThumbnail from "@/assets/images/thumbnail-for-fave.svg";
 import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
 import PartnershipsThumbnail from "@/assets/images/thumbnail-for-partner-onboarding.svg";
-
-    import Guideline1 from "@/assets/images/guidelines-1.svg";
-import Guideline2 from "@/assets/images/guidelines-2.svg";
-import Guideline3 from "@/assets/images/guidelines-3.svg";
-import Guideline4 from "@/assets/images/guidelines-4.svg";
-import Guideline5 from "@/assets/images/guidelines-5.svg";
-import Guideline6 from "@/assets/images/guidelines-6.svg";
-import {cyan} from "next/dist/lib/picocolors";
+import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
 
 
 const ExperiencePage = () => {
@@ -78,13 +71,20 @@ const ExperiencePage = () => {
                         </Card>
                     </Link>
 
-
-                    <Link href="/">
+                    <Link href="../visual/icon-system-for-setu">
                         <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                            <HDFCThumbnail alt="hdfc" />
-                            <Heading6 className="project-thumbnail-text" >Digital journeys for HDFC Bank</Heading6>
+                            <IconSystemThumbnail alt="Icon system for Setu" />
+                            <Heading6 className="project-thumbnail-text" >Icon system for Setu</Heading6>
                         </Card>
                     </Link>
+
+
+                    {/*<Link href="/">*/}
+                    {/*    <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">*/}
+                    {/*        <HDFCThumbnail alt="hdfc" />*/}
+                    {/*        <Heading6 className="project-thumbnail-text" >Digital journeys for HDFC Bank</Heading6>*/}
+                    {/*    </Card>*/}
+                    {/*</Link>*/}
 
                     {/*<Link href="/">*/}
                     {/*    <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">*/}
