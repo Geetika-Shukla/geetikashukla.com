@@ -188,8 +188,9 @@ export default function ProductDiscoveryPage() {
                     </Div>
                 </Div>
                 <Div className="banner-links" paddingRight="large">
-                    <Text as="a" href="https://setu.co/find-a-product/" size="small" color="blue">Link to the feature</Text>
-                    <Text as="a" href="https://setu.co/find-a-product/" size="small" color="blue">Link to the prototype</Text>
+                    <Button shape="rounded" bgColor="blue-light90" textColour="violet-light30">
+                    <Link href="https://setu.co/find-a-product/" target="_blank" rel="noopener noreferrer">Link to the feature</Link>
+                    </Button>
                 </Div>
             </Card>
 
