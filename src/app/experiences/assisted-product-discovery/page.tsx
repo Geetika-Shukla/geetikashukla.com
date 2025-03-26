@@ -253,7 +253,7 @@ export default function ProductDiscoveryPage() {
             </Row>
 
             <Row layoutAsFlexbox horizontalPadding="huge" marginTop="tiny" marginBottom="medium">
-                <Portion desktopSpan="11">
+                <Portion desktopSpan="14">
                     <Card className="stat-card" marginBottom="nano">
                         <Div>
                             <h6>Feature engagement & usage</h6>
@@ -295,7 +295,7 @@ export default function ProductDiscoveryPage() {
                     </Card>
                 </Portion>
 
-                <Portion desktopSpan="half">
+                <Portion desktopSpan="9">
                     <Card className="stat-card" isFullHeight>
                         <Div>
                             <h6>Internal feedback</h6>
