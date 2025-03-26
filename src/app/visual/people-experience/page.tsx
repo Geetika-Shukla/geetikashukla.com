@@ -25,7 +25,6 @@ import Hiring3 from "@/assets/images/hiring-3.svg";
 import Onboarding from "@/assets/images/id-cards.webp";
 import Engagement1 from "@/assets/images/engagement-1.webp";
 import Engagement2 from "@/assets/images/engagement-2.webp";
-import PeopleExperienceThumbnail from "@/assets/images/thumbnail-for-people-experience.svg";
 import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
 import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
 

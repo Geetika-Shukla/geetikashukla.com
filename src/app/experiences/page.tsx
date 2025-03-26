@@ -28,6 +28,7 @@ import FaveThumbnail from "@/assets/images/thumbnail-for-fave.svg";
 import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
 import PartnershipsThumbnail from "@/assets/images/thumbnail-for-partner-onboarding.svg";
 import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
+import PeopleExperienceThumbnail from "@/assets/images/thumbnail-for-people-experience.svg";
 
 
 const ExperiencePage = () => {
@@ -71,10 +72,10 @@ const ExperiencePage = () => {
                         </Card>
                     </Link>
 
-                    <Link href="../visual/icon-system-for-setu">
+                    <Link href="../visual/people-experience">
                         <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                            <IconSystemThumbnail alt="Icon system for Setu" />
-                            <Heading6 className="project-thumbnail-text" >Icon system for Setu</Heading6>
+                            <PeopleExperienceThumbnail alt="people-experience" />
+                            <Heading6 className="project-thumbnail-text" >People experience at Setu</Heading6>
                         </Card>
                     </Link>
 
