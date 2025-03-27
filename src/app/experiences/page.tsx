@@ -79,27 +79,16 @@ const ExperiencePage = () => {
                         </Card>
                     </Link>
 
+                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
+                            <HDFCThumbnail alt="hdfc" />
+                            <Heading6 className="project-thumbnail-text" >Digital journeys for HDFC Bank</Heading6>
+                        </Card>
 
-                    {/*<Link href="/">*/}
-                    {/*    <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">*/}
-                    {/*        <HDFCThumbnail alt="hdfc" />*/}
-                    {/*        <Heading6 className="project-thumbnail-text" >Digital journeys for HDFC Bank</Heading6>*/}
-                    {/*    </Card>*/}
-                    {/*</Link>*/}
 
-                    {/*<Link href="/">*/}
-                    {/*    <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">*/}
-                    {/*        <PartnershipsThumbnail alt="Partnerships at Setu" />*/}
-                    {/*        <Heading6 className="project-thumbnail-text" >Path to partnerships at Setu</Heading6>*/}
-                    {/*    </Card>*/}
-                    {/*</Link>*/}
-
-                    {/*<Link href="/">*/}
-                    {/*    <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">*/}
-                    {/*        <FaveThumbnail alt="Fave" />*/}
-                    {/*        <Heading6 className="project-thumbnail-text" >Save — Personal Finance App</Heading6>*/}
-                    {/*    </Card>*/}
-                    {/*</Link>*/}
+                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
+                            <PartnershipsThumbnail alt="Partnerships at Setu" />
+                            <Heading6 className="project-thumbnail-text" >Path to partnerships at Setu</Heading6>
+                        </Card>
 
                 </Portion>
             </Row>
