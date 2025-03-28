@@ -38,7 +38,7 @@ const VisualPage = () => {
     return (
         <article id="page-visual">
 
-            <Row layoutAsGrid horizontalPadding="huge" marginTop="medium" marginBottom="none">
+            <Row layoutAsGrid  className="row-hide" horizontalPadding="huge" marginTop="medium" marginBottom="none">
                 <Portion desktopSpan="2" marginTop="large" className="overflow-left" hideOnMobile>
                     <GreenStar alt="star" height="56px" />
                 </Portion>

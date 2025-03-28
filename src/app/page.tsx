@@ -37,7 +37,7 @@ export default function Home() {
     return (
         <article id="page-home">
 
-            <Row layoutAsGrid horizontalPadding="huge" marginTop="medium" marginBottom="none">
+            <Row layoutAsGrid className="row-hide" horizontalPadding="huge" marginTop="medium" marginBottom="none">
                 <Portion desktopSpan="2" marginTop="large" className="overflow-left" hideOnMobile>
                     <GreenStar alt="stars" height="56px" />
                 </Portion>
