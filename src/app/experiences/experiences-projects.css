@@ -37,6 +37,19 @@
         color: #612DD7;
     }
 
+    .pointer-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 22vw;
+    }
+
+    .pointer-card svg {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+    }
+
     .horizontal-pointer-card {
         display: flex;
         align-items: center;

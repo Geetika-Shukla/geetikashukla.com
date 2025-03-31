@@ -24,10 +24,8 @@ import YellowStar from "@/assets/images/yellow-star.svg";
 import GreenStar from "@/assets/images/green-star.svg";
 import PurpleStar from "@/assets/images/purple-star.svg";
 import HDFCThumbnail from "@/assets/images/thumbnail-for-hdfc.svg";
-import FaveThumbnail from "@/assets/images/thumbnail-for-fave.svg";
 import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
 import PartnershipsThumbnail from "@/assets/images/thumbnail-for-partner-onboarding.svg";
-import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
 import PeopleExperienceThumbnail from "@/assets/images/thumbnail-for-people-experience.svg";
 
 

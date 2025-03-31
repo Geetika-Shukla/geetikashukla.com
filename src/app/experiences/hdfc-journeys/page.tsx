@@ -26,24 +26,21 @@ import "../page-experiences.css";
 
 // ASSETS ======================================================================
 import YellowStar from "@/assets/images/yellow-star.svg";
-import AssistedHero from "@/assets/images/product-discovery/assisted-components.svg";
-import Brief from "@/assets/images/product-discovery/project-brief.svg";
-import FullFlow from "@/assets/images/product-discovery/full-flow.svg";
-import Home from "@/assets/images/product-discovery/home.svg";
-import ContactSales from "@/assets/images/product-discovery/contact-sales.svg";
-import ProductsMenu from "@/assets/images/product-discovery/products-menu.svg";
-import IconBoxWithBraces from "@/assets/images/BoxWithBraces.svg";
-import IconCircleWithExclamationMark from "@/assets/images/CircleWithExclamationMark.svg";
-import IconTeam from "@/assets/images/Team.svg";
-import IconLink from "@/assets/images/Link.svg";
-import IconSignPost from "@/assets/images/SignPost.svg";
-import IconPersonWithPuzzlePiece from "@/assets/images/PersonWithPuzzlePiece.svg";
-import IconFunnelWithPlusSymbol from "@/assets/images/FunnelWithPlusSymbol.svg";
-import IconChatBubbles from "@/assets/images/ChatBubbles.svg";
-import IconMobilewithCursor from "@/assets/images/MobilewithCursor.svg";
-import IconPersonWithSettings from "@/assets/images/PersonWithSettings.svg";
-import PeopleExperienceThumbnail from "@/assets/images/thumbnail-for-people-experience.svg";
+import HDFCHero from "@/assets/images/hdfc-journeys/hdfc-cover.svg";
+import Portals from "@/assets/images/hdfc-journeys/hdfc-portals.svg";
+
+
+
+import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
 import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
+import IconBoxWithBraces from "@/assets/images/BoxWithBraces.svg";
+import IconTeam from "@/assets/images/Team.svg";
+import IconCircleWithExclamationMark from "@/assets/images/CircleWithExclamationMark.svg";
+import IconTenacity from "@/assets/images/Tenacity.svg";
+import IconJigsaw from "@/assets/images/Jigsaw.svg";
+import IconDocument from "@/assets/images/DocumentWithGreenTick.svg";
+import IconLink from "@/assets/images/Link.svg";
+import DesignStyles from "@/assets/images/design-styles.svg";
 
 
 export default function HdfcJourneysPage() {
@@ -75,8 +72,127 @@ export default function HdfcJourneysPage() {
             </Row>
 
             <Row marginBottom="none" className="full-width">
-                <AssistedHero height="500px" className="hero-alignment" />
+                <HDFCHero height="500px" className="hero-alignment" />
             </Row>
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h5>Problem overview</h5>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge">
+                <Portion desktopSpan="whole">
+                    <Text>
+                        HDFC Bank had digital journeys for Savings Accounts, Current Accounts, and Fixed Deposits but—
+                    </Text>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="small">
+                <Portion desktopSpan="8">
+                    <Div layoutAsFlexbox style={{ gap: "16px"}} isFullHeight>
+                        <Card className="horizontal-pointer-card" padding="small">
+                            <IconBoxWithBraces />
+                            <Text>
+                                they were fragmented
+                            </Text>
+                            </Card>
+                        <Card className="horizontal-pointer-card" padding="small">
+                            <IconTeam />
+                            <Text>
+                                were scattered across different HDFC portals
+                            </Text>
+                        </Card>
+                        <Card className="horizontal-pointer-card" padding="small">
+                            <IconCircleWithExclamationMark />
+                            <Text>
+                                had an inconsistent design language
+                            </Text>
+                        </Card>
+                    </Div>
+                </Portion>
+                <Portion desktopSpan="16">
+                    <Portals height="350px"/>
+                </Portion>
+            </Row >
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h5>Solution overview</h5>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="none">
+                <Portion desktopSpan="whole">
+                    <Card className="overview-card">
+                        <Div className="overview-content">
+                            <Div>
+                                <Text className="overview-label" marginBottom="nano">Digital journeys for HDFC Bank</Text>
+                                <Text size="small">
+                                    End-to-end digital banking journeys for new and existing HDFC customers, streamlining fragmented online experiences—on a single app.
+                                </Text>
+                            </Div>
+                            <Div className="overview-details">
+                                <Div marginBottom="tiny">
+                                    <Text className="overview-label" marginBottom="nano">GO-LIVE</Text>
+                                    <Text size="small">May 2023</Text>
+                                </Div>
+                                <Div>
+                                    <Text className="overview-label" marginBottom="nano">MY ROLE</Text>
+                                    <Text size="small">UI and UX design, visual design</Text>
+                                </Div>
+                            </Div>
+                        </Div>
+                    </Card>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="tiny" marginBottom="none">
+                <Portion desktopSpan="whole">
+                    The project was structured into three phases, considering its scale and user adoption—
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="small">
+                <Card className="pointer-card" padding="small">
+                    <Text className="overview-label" size="medium" marginTop="tiny"><strong>PHASE 1</strong></Text>
+                    <Text paddingTop="nano">
+                        Start with essential journeys—
+                    </Text>
+                    <Text paddingTop="nano">
+                        <li>Savings Accounts</li>
+                        <li>Current Accounts</li>
+                        <li>Fixed Deposits</li>
+                    </Text>
+                </Card>
+
+                <Card className="pointer-card" padding="small">
+                    <Text className="overview-label" size="medium" marginTop="tiny"><strong>PHASE 2</strong></Text>
+                    <Text paddingTop="nano">
+                        Gradually phase out fragmented journeys after adoption, guided by user testing and feedback.
+                    </Text>
+                </Card>
+
+                <Card className="pointer-card" padding="small">
+                    <Text className="overview-label" size="medium" marginTop="tiny"><strong>PHASE 3</strong></Text>
+                    <Text paddingTop="nano">
+                        Work on the next set of journeys—
+                    </Text>
+                    <Text paddingTop="nano">
+                        <li>Credit Card</li>
+                        <li>Recurring Deposits</li>
+                        <li>Joint Savings Account</li>
+                        <li>Personal and business loans</li>
+                    </Text>
+                </Card>
+
+
+
+            </Row >
+
+
+
 
 
             <hr className="brown-hr"/>
@@ -87,10 +203,10 @@ export default function HdfcJourneysPage() {
                 </Portion>
 
                 <Portion desktopSpan="20" className="project-thumbnail-row">
-                    <Link href="/visual/people-experience">
+                    <Link href="/experiences/assisted-product-discovery">
                         <Card className="project-thumbnail" marginBottom="micro">
-                            <PeopleExperienceThumbnail alt="people-experience" />
-                            <Heading6 className="project-thumbnail-text" >People experience at Setu</Heading6>
+                            <ProjectDiscoveryThumbnail alt="assisted-discovery-at-setu" />
+                            <Heading6 className="project-thumbnail-text" >Assisted product discovery at Setu</Heading6>
                         </Card>
                     </Link>
                     <Link href="/visual/icon-system-for-setu">
