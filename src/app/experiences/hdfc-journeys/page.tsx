@@ -34,6 +34,11 @@ import AssistedUnassisted from "@/assets/images/hdfc-journeys/assisted-unassiste
 import JourneysSticky from "@/assets/images/hdfc-journeys/journeys-sticky.svg";
 import ProfilesOne from "@/assets/images/hdfc-journeys/profiles-1.svg";
 import ProfilesTwo from "@/assets/images/hdfc-journeys/profiles-2.svg";
+import IconDocument from "@/assets/images/DocumentWithGreenTick.svg";
+import IconBank from "@/assets/images/bank.svg";
+import IconChat from "@/assets/images/ChatBubbles.svg";
+import IconLanguage from "@/assets/images/CalloutsWithMultipleScripts.svg";
+
 
 
 
@@ -44,7 +49,6 @@ import IconTeam from "@/assets/images/Team.svg";
 import IconCircleWithExclamationMark from "@/assets/images/CircleWithExclamationMark.svg";
 import IconTenacity from "@/assets/images/Tenacity.svg";
 import IconJigsaw from "@/assets/images/Jigsaw.svg";
-import IconDocument from "@/assets/images/DocumentWithGreenTick.svg";
 import IconLink from "@/assets/images/Link.svg";
 
 
@@ -273,6 +277,9 @@ export default function HdfcJourneysPage() {
                     <h6>
                         New to bank
                     </h6>
+                    <Text size="small" marginTop="nano">
+                        New customers have to complete their KYC process with the bank as a part of the application process.
+                    </Text>
                 </Card>
             </Row>
 
@@ -397,14 +404,14 @@ export default function HdfcJourneysPage() {
                 <Portion desktopSpan="8">
                     <Div layoutAsFlexbox style={{ gap: "16px"}} isFullHeight>
                         <Card className="pointer-card" padding="small" layoutAsFlexbox>
-                            <IconTeam />
+                            <IconBank />
                             <br/>
                             <h6>Choose bank branch</h6>
                             <Text size="tiny" marginTop="nano">
                                 This feature allowed users to select their bank branch while exploring the profile section. <br/> Once selected, the bank branch module is skipped in the account flows.                            </Text>
                         </Card>
                         <Card className="pointer-card" padding="small" layoutAsFlexbox>
-                            <IconTeam />
+                            <IconChat />
                             <br/>
                             <h6>Messages and alerts</h6>
                             <Text size="tiny" marginTop="nano">
@@ -425,7 +432,7 @@ export default function HdfcJourneysPage() {
                 <Portion desktopSpan="8">
                     <Div layoutAsFlexbox style={{ gap: "16px"}} isFullHeight>
                         <Card className="pointer-card" padding="small" layoutAsFlexbox>
-                            <IconTeam />
+                            <IconDocument />
                             <br/>
                             <h6>Manage documents</h6>
                             <Text size="tiny" marginTop="nano">
@@ -433,7 +440,7 @@ export default function HdfcJourneysPage() {
                             </Text>
                         </Card>
                         <Card className="pointer-card" padding="small" layoutAsFlexbox>
-                            <IconTeam />
+                            <IconLanguage />
                             <br/>
                             <h6>Change theme and language</h6>
                             <Text size="tiny" marginTop="nano">
