@@ -28,6 +28,12 @@ import "../page-experiences.css";
 import YellowStar from "@/assets/images/yellow-star.svg";
 import HDFCHero from "@/assets/images/hdfc-journeys/hdfc-cover.svg";
 import Portals from "@/assets/images/hdfc-journeys/hdfc-portals.svg";
+import Neobank from "@/assets/images/hdfc-journeys/neobank.svg";
+import StickyNeo from "@/assets/images/hdfc-journeys/sticky-neobank.svg";
+import AssistedUnassisted from "@/assets/images/hdfc-journeys/assisted-unassisted-sticky.svg";
+import JourneysSticky from "@/assets/images/hdfc-journeys/journeys-sticky.svg";
+import ProfilesOne from "@/assets/images/hdfc-journeys/profiles-1.svg";
+import ProfilesTwo from "@/assets/images/hdfc-journeys/profiles-2.svg";
 
 
 
@@ -40,7 +46,6 @@ import IconTenacity from "@/assets/images/Tenacity.svg";
 import IconJigsaw from "@/assets/images/Jigsaw.svg";
 import IconDocument from "@/assets/images/DocumentWithGreenTick.svg";
 import IconLink from "@/assets/images/Link.svg";
-import DesignStyles from "@/assets/images/design-styles.svg";
 
 
 export default function HdfcJourneysPage() {
@@ -48,6 +53,8 @@ export default function HdfcJourneysPage() {
     return (
 
         <article className="project-page">
+
+            {/* HERO SECTION */}
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="small">
                 <Portion desktopSpan="10" horizontalMargin="small">
@@ -74,6 +81,8 @@ export default function HdfcJourneysPage() {
             <Row marginBottom="none" className="full-width">
                 <HDFCHero height="500px" className="hero-alignment" />
             </Row>
+
+            {/* PRODBLEM OVERVIEW */}
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
                 <Portion desktopSpan="whole">
@@ -113,9 +122,12 @@ export default function HdfcJourneysPage() {
                     </Div>
                 </Portion>
                 <Portion desktopSpan="16">
-                    <Portals height="350px"/>
+                    <Portals height="350px" className="image"/>
                 </Portion>
             </Row >
+
+
+            {/* SOLUTION OVERVIEW */}
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
                 <Portion desktopSpan="whole">
@@ -186,14 +198,256 @@ export default function HdfcJourneysPage() {
                         <li>Personal and business loans</li>
                     </Text>
                 </Card>
+            </Row >
 
 
+            {/* SECONDARY RESEARCH */}
 
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h5>What we were looking at</h5>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
+                <Portion desktopSpan="6">
+                    <Card className="hdfc-blue-card" isFullHeight>
+                        <Text size="medium" className="white-text">
+                            <strong>
+                                HDFC Bank wanted to take inspiration from neobanks, revamp the user experience, and unify all journeys under a single platform.
+                            </strong>
+                        </Text>
+                    </Card>
+                </Portion>
+                <Portion desktopSpan="18">
+                    <Neobank className="image"/>
+                </Portion>
+            </Row>
+            <Row horizontalPadding="huge" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <StickyNeo className="image"/>
+                </Portion>
+            </Row>
+
+
+            {/* ASSISTED + UNASSISTED */}
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h5>Starting with the journeys</h5>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <AssistedUnassisted className="image"/>
+                </Portion>
+            </Row>
+
+            <Row layoutAsGrid horizontalPadding="huge" marginBottom="tiny">
+                <Card className="module-card" padding="medium">
+                    <h6>
+                        Assisted journey
+                    </h6>
+                    <Text size="small" marginTop="nano">
+                        These are guided journeys by the bank representative that can happen either on their or customer's device.
+                    </Text>
+                </Card>
+                <Card className="module-card" padding="medium">
+                    <h6>
+                        Unassisted journey
+                    </h6>
+                    <Text size="small" marginTop="nano">
+                        Customers navigate these journeys independently on their own devices.
+                    </Text>
+                </Card>
+                <Card className="module-card" padding="medium">
+                    <h6>
+                        Existing to bank
+                    </h6>
+                    <Text size="small" marginTop="nano">
+                        ETB customers are existing customers that have complete their KYC process with the bank in the past.
+                    </Text>
+                </Card>
+                <Card className="module-card" padding="medium">
+                    <h6>
+                        New to bank
+                    </h6>
+                </Card>
+            </Row>
+
+            {/* MODULES */}
+
+            <Row horizontalPadding="huge" marginTop="small">
+                <Portion desktopSpan="whole">
+                    <Text>
+                        We opted for a modular approach since parts of the account opening journey were meant to overlap.
+                    </Text>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <JourneysSticky className="image"/>
+                </Portion>
+            </Row>
+
+            <Row layoutAsFlexbox horizontalPadding="huge" marginBottom="tiny">
+                <Card className="module-card" padding="medium">
+                    <h6>
+                        KYC
+                    </h6>
+                    <Text size="small" marginTop="nano">
+                    </Text>
+                </Card>
+                <Card className="module-card" padding="medium">
+                    <h6>
+                        Personal details
+                    </h6>
+                    <Text size="small" marginTop="nano">
+                    </Text>
+                </Card>
+                <Card className="module-card" padding="medium">
+                    <h6>
+                        Bank branch and bank account type
+                    </h6>
+                    <Text size="small" marginTop="nano">
+                    </Text>
+                </Card>
+                <Card className="module-card" padding="medium">
+                    <h6>
+                        Nominee details
+                    </h6>
+                </Card>
+                <Card className="module-card" padding="medium">
+                    <h6>
+                        Business details
+                    </h6>
+                    <Text size="small" marginTop="nano">
+                    </Text>
+                </Card>
+                <Card className="module-card" padding="medium">
+                    <h6>
+                        vKYC
+                    </h6>
+                </Card>
+                <Card className="module-card" padding="medium">
+                    <h6>
+                        Review details
+                    </h6>
+                    <Text size="small" marginTop="nano">
+                    </Text>
+                </Card>
+                <Card className="module-card" padding="medium">
+                    <h6>
+                        Fund your account
+                    </h6>
+                </Card>
+            </Row>
+
+            {/* OTHER PARTS OF THE APP */}
+
+            <Row horizontalPadding="huge" marginTop="small">
+                <Portion desktopSpan="whole">
+                    <Text>
+                        Other pieces—
+                    </Text>
+                </Portion>
+            </Row>
+
+            <Row layoutAsGrid horizontalPadding="huge" marginBottom="tiny">
+                <Card className="module-card" padding="medium">
+                    <h6>
+                        Home
+                    </h6>
+                    <Text size="small" marginTop="nano">
+                    </Text>
+                </Card>
+                <Card className="module-card" padding="medium">
+                    <h6>
+                        Profile
+                    </h6>
+                    <Text size="small" marginTop="nano">
+                    </Text>
+                </Card>
+                <Card className="module-card" padding="medium">
+                    <h6>
+                        Settings
+                    </h6>
+                    <Text size="small" marginTop="nano">
+                    </Text>
+                </Card>
+                <Card className="module-card" padding="medium">
+                    <h6>
+                        Product overview
+                    </h6>
+                </Card>
+            </Row>
+
+
+            {/* PROFILE AND SETTINGS */}
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h5>Profile and settings</h5>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
+                <Portion desktopSpan="8">
+                    <Div layoutAsFlexbox style={{ gap: "16px"}} isFullHeight>
+                        <Card className="pointer-card" padding="small" layoutAsFlexbox>
+                            <IconTeam />
+                            <br/>
+                            <h6>Choose bank branch</h6>
+                            <Text size="tiny" marginTop="nano">
+                                This feature allowed users to select their bank branch while exploring the profile section. <br/> Once selected, the bank branch module is skipped in the account flows.                            </Text>
+                        </Card>
+                        <Card className="pointer-card" padding="small" layoutAsFlexbox>
+                            <IconTeam />
+                            <br/>
+                            <h6>Messages and alerts</h6>
+                            <Text size="tiny" marginTop="nano">
+                                This feature enables the user decide on the frequency and alert type that can be sent to them.
+                            </Text>
+                        </Card>
+                    </Div>
+                </Portion>
+                <Portion desktopSpan="16">
+                    <ProfilesOne height="350px" className="image"/>
+                </Portion>
+            </Row >
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="small">
+                <Portion desktopSpan="16">
+                    <ProfilesTwo height="350px" className="image"/>
+                </Portion>
+                <Portion desktopSpan="8">
+                    <Div layoutAsFlexbox style={{ gap: "16px"}} isFullHeight>
+                        <Card className="pointer-card" padding="small" layoutAsFlexbox>
+                            <IconTeam />
+                            <br/>
+                            <h6>Manage documents</h6>
+                            <Text size="tiny" marginTop="nano">
+                                This section lets the user look at their documents that are accessible by the bank. For phase 1, this is view only.
+                            </Text>
+                        </Card>
+                        <Card className="pointer-card" padding="small" layoutAsFlexbox>
+                            <IconTeam />
+                            <br/>
+                            <h6>Change theme and language</h6>
+                            <Text size="tiny" marginTop="nano">
+                                This was one of the proposed sections, with the language options primarily aimed at Tier-2 users.                            </Text>
+                        </Card>
+                    </Div>
+                </Portion>
             </Row >
 
 
 
 
+
+            {/* OTHER PROJECTS */}
 
             <hr className="brown-hr"/>
 
