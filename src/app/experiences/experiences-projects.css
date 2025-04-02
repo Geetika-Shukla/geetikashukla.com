@@ -216,16 +216,6 @@
         right: 32px;
     }
 
-    .module-card {
-        position: relative;
-        width: 16vw;
-        height: 16vw;
-        overflow: hidden;
-        text-align: start;
-        border-radius: 20px;
-        background-color: #F0F8FF;
-    }
-
     .embed-container {
         position: relative;
         padding-bottom: 47%; /* 16:9 Aspect Ratio */

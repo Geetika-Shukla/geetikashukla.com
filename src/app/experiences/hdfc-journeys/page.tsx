@@ -30,7 +30,6 @@ import HDFCHero from "@/assets/images/hdfc-journeys/hdfc-cover.svg";
 import Portals from "@/assets/images/hdfc-journeys/hdfc-portals.svg";
 import Neobank from "@/assets/images/hdfc-journeys/neobank.svg";
 import StickyNeo from "@/assets/images/hdfc-journeys/sticky-neobank.svg";
-import AssistedUnassisted from "@/assets/images/hdfc-journeys/assisted-unassisted-sticky.svg";
 import ProfilesOne from "@/assets/images/hdfc-journeys/profiles-1.svg";
 import ProfilesTwo from "@/assets/images/hdfc-journeys/profiles-2.svg";
 import IconDocument from "@/assets/images/DocumentWithGreenTick.svg";
@@ -45,6 +44,14 @@ import IconHome from "@/assets/images/HomeWithBraces.svg";
 import IconProfile from "@/assets/images/Person.svg";
 import IconSettings from "@/assets/images/Tools-settings.svg";
 import IconProductOverview from "@/assets/images/Notepad.svg";
+import IconKYC from "@/assets/images/KYC.svg";
+import IconVKYC from "@/assets/images/PersonScan.svg";
+import IconBizDetails from "@/assets/images/Buildings.svg";
+import IconPersonalDetails from "@/assets/images/DocumentWithDetails.svg";
+import IconReviewDetails from "@/assets/images/FolderWithMagnifyingGlass.svg";
+import IconBankBranch from "@/assets/images/Banking.svg";
+import IconNominee from "@/assets/images/People.svg";
+import IconFundYourAccount from "@/assets/images/BankWithCoin.svg";
 
 
 
@@ -251,6 +258,12 @@ export default function HdfcJourneysPage() {
                 </Portion>
             </Row>
 
+            <Row horizontalPadding="huge" marginTop="small" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h6>Types of journeys and customers—</h6>
+                </Portion>
+            </Row>
+
             <Row layoutAsGrid horizontalPadding="huge" marginBottom="tiny">
 
                 <div className="modules-card">
@@ -260,7 +273,8 @@ export default function HdfcJourneysPage() {
                             <h6>Assisted journey</h6>
                         </div>
                         <div className="card-back">
-                            <Text size="medium" fontStyle="serif">These are guided journeys by the bank representative that can happen either on their or
+                            <Text size="medium" fontStyle="serif">These are guided journeys by the bank representative
+                                that can happen either on their or
                                 the customer’s device.</Text>
                         </div>
                     </div>
@@ -273,7 +287,8 @@ export default function HdfcJourneysPage() {
                             <h6>Unassisted journey</h6>
                         </div>
                         <div className="card-back">
-                            <Text size="medium" fontStyle="serif">Customers navigate these journeys independently on their own devices.
+                            <Text size="medium" fontStyle="serif">Customers navigate these journeys independently on
+                                their own devices.
                             </Text>
                         </div>
                     </div>
@@ -286,7 +301,8 @@ export default function HdfcJourneysPage() {
                             <h6>Existing to bank</h6>
                         </div>
                         <div className="card-back">
-                            <Text size="medium" fontStyle="serif">ETB customers are existing customers that have complete their KYC process with the bank in the
+                            <Text size="medium" fontStyle="serif">ETB customers are existing customers that have
+                                complete their KYC process with the bank in the
                                 past.
                             </Text>
                         </div>
@@ -300,7 +316,8 @@ export default function HdfcJourneysPage() {
                             <h6>New to bank</h6>
                         </div>
                         <div className="card-back">
-                            <Text size="medium" fontStyle="serif">New customers have to complete their KYC process with the bank as a part of the application
+                            <Text size="medium" fontStyle="serif">New customers have to complete their KYC process with
+                                the bank as a part of the application
                                 process.
                             </Text>
                         </div>
@@ -315,8 +332,6 @@ export default function HdfcJourneysPage() {
             {/*    </Portion>*/}
             {/*</Row>*/}
 
-            {/* MODULES */}
-
             <Row horizontalPadding="huge" marginTop="small">
                 <Portion desktopSpan="whole">
                     <Text>
@@ -326,79 +341,134 @@ export default function HdfcJourneysPage() {
                 </Portion>
             </Row>
 
-                <div className="embed-container">
+            {/* FIGJAM EMBED */}
+
+            <div className="embed-container">
                 <iframe
                     width="100%"
                     height="400px"
-                    src="https://embed.figma.com/board/lbFVb3CjdPFHL9dCqMZEi1/HDFC-flows?node-id=0-1&embed-host=share"
+                    src="https://embed.figma.com/board/lbFVb3CjdPFHL9dCqMZEi1/HDFC-IA?embed-host=share"
                     allowFullScreen>
                 </iframe>
-                </div>
+            </div>
 
+
+            {/* MAIN MODULES */}
+
+            <Row horizontalPadding="huge" marginTop="tiny" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h6>Primary modules—</h6>
+                </Portion>
+            </Row>
 
             <Row layoutAsFlexbox horizontalPadding="huge" marginBottom="tiny">
+                <div className="modules-card">
+                    <div className="card-inner">
+                        <div className="card-front">
+                            <IconKYC/>
+                            <h6>KYC</h6>
+                        </div>
+                        <div className="card-back">
+                            <Text size="medium" fontStyle="serif">This includes PAN and Aadhaar verification, along with GST in case of current account opening journey.</Text>
+                        </div>
+                    </div>
+                </div>
 
-                <Card className="module-card" padding="medium">
-                    <h6>
-                        KYC
-                    </h6>
-                    <Text size="small" marginTop="nano">
-                    </Text>
-                </Card>
-                <Card className="module-card" padding="medium">
-                    <h6>
-                        Personal details
-                    </h6>
-                    <Text size="small" marginTop="nano">
-                    </Text>
-                </Card>
-                <Card className="module-card" padding="medium">
-                    <h6>
-                        Bank branch and bank account type
-                    </h6>
-                    <Text size="small" marginTop="nano">
-                    </Text>
-                </Card>
-                <Card className="module-card" padding="medium">
-                    <h6>
-                        Nominee details
-                    </h6>
-                </Card>
-                <Card className="module-card" padding="medium">
-                    <h6>
-                        Business details
-                    </h6>
-                    <Text size="small" marginTop="nano">
-                    </Text>
-                </Card>
-                <Card className="module-card" padding="medium">
-                    <h6>
-                        vKYC
-                    </h6>
-                </Card>
-                <Card className="module-card" padding="medium">
-                    <h6>
-                        Review details
-                    </h6>
-                    <Text size="small" marginTop="nano">
-                    </Text>
-                </Card>
-                <Card className="module-card" padding="medium">
-                    <h6>
-                        Fund your account
-                    </h6>
-                </Card>
+                <div className="modules-card">
+                    <div className="card-inner">
+                        <div className="card-front">
+                            <IconPersonalDetails/>
+                            <h6>Personal details</h6>
+                        </div>
+                        <div className="card-back">
+                            <Text size="medium" fontStyle="serif">This includes details like mother's name, marital status and mailing address.</Text>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="modules-card">
+                    <div className="card-inner">
+                        <div className="card-front">
+                            <IconNominee/>
+                            <h6>Nominee details</h6>
+                        </div>
+                        <div className="card-back">
+                            <Text size="medium" fontStyle="serif">This lets the customer add a nominee for their FD or bank account.
+                            </Text>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="modules-card">
+                    <div className="card-inner">
+                        <div className="card-front">
+                            <IconBizDetails/>
+                            <h6>Business details</h6>
+                        </div>
+                        <div className="card-back">
+                            <Text size="medium" fontStyle="serif">This is applicable for current account opening journey, the customer needs to share details like their annual turnover, and business proofs.</Text>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="modules-card">
+                    <div className="card-inner">
+                        <div className="card-front">
+                            <IconBankBranch/>
+                            <h6>Bank branch and account type</h6>
+                        </div>
+                        <div className="card-back">
+                            <Text size="medium" fontStyle="serif">Here, the customer can select their preferred bank branch and also account type.</Text>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="modules-card">
+                    <div className="card-inner">
+                        <div className="card-front">
+                            <IconReviewDetails/>
+                            <h6>Review details</h6>
+                        </div>
+                        <div className="card-back">
+                            <Text size="medium" fontStyle="serif">Review details page shows all the details that the customer has filled in during their account opening of FD journey.</Text>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="modules-card">
+                    <div className="card-inner">
+                        <div className="card-front">
+                            <IconFundYourAccount/>
+                            <h6>Fund your account</h6>
+                        </div>
+                        <div className="card-back">
+                            <Text size="medium" fontStyle="serif">Here, the customer needs to verify their bank account using RPD and fund their account or FD.</Text>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="modules-card">
+                    <div className="card-inner">
+                        <div className="card-front">
+                            <IconVKYC/>
+                            <h6>vKYC</h6>
+                        </div>
+                        <div className="card-back">
+                            <Text size="medium" fontStyle="serif">To remove transaction limits, the customer needs to complete vkYC. This step is not mandatory but is necessary from a regulatory point of view.</Text>
+                        </div>
+                    </div>
+                </div>
             </Row>
+
 
             {/* OTHER PARTS OF THE APP */}
 
-            <Row horizontalPadding="huge" marginTop="small">
+            <Row horizontalPadding="huge" marginTop="small" marginBottom="tiny">
                 <Portion desktopSpan="whole">
-                    <Text>
-                        Other pieces—
-                    </Text>
+                    <h6>Others—</h6>
                 </Portion>
             </Row>
+
 
             <Row layoutAsGrid horizontalPadding="huge" marginBottom="tiny">
                 <div className="modules-card">
@@ -408,7 +478,9 @@ export default function HdfcJourneysPage() {
                             <h6>Home</h6>
                         </div>
                         <div className="card-back">
-                            <Text size="medium" fontStyle="serif">The Home section shows the user's accounts, notifications, and action items while nudging them to explore other banking products.</Text>
+                            <Text size="medium" fontStyle="serif">The Home section shows the user's accounts,
+                                notifications, and action items while nudging them to explore other banking
+                                products.</Text>
                         </div>
                     </div>
                 </div>
@@ -420,7 +492,8 @@ export default function HdfcJourneysPage() {
                             <h6>Profile</h6>
                         </div>
                         <div className="card-back">
-                            <Text size="medium" fontStyle="serif">Profile page has personal details of the user along with options to choose bank branch, manage alerts, documents and start vKYC.</Text>
+                            <Text size="medium" fontStyle="serif">Profile page has personal details of the user along
+                                with options to choose bank branch, manage alerts, documents and start vKYC.</Text>
                         </div>
                     </div>
                 </div>
@@ -432,7 +505,8 @@ export default function HdfcJourneysPage() {
                             <h6>Settings</h6>
                         </div>
                         <div className="card-back">
-                            <Text size="medium" fontStyle="serif">Settings page has options to change theme and language.
+                            <Text size="medium" fontStyle="serif">Settings page has options to change theme and
+                                language.
                             </Text>
                         </div>
                     </div>
@@ -445,108 +519,109 @@ export default function HdfcJourneysPage() {
                             <h6>Product overview</h6>
                         </div>
                         <div className="card-back">
-                            <Text size="medium" fontStyle="serif">This section allows users to view and edit detailed information related to their FD, SA, or CA, such as balance, account number, and nominee details.</Text>
+                            <Text size="medium" fontStyle="serif">This section allows users to view and edit detailed
+                                information related to their FD, SA, or CA, such as balance, account number, and nominee
+                                details.</Text>
                         </div>
                     </div>
                 </div>
             </Row>
 
+            {/* PROFILE AND SETTINGS */}
 
-                {/* PROFILE AND SETTINGS */}
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h5>Profile and settings</h5>
+                </Portion>
+            </Row>
 
-                <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
-                    <Portion desktopSpan="whole">
-                        <h5>Profile and settings</h5>
-                    </Portion>
-                </Row>
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
+                <Portion desktopSpan="8">
+                    <Div layoutAsFlexbox style={{gap: "16px"}} isFullHeight>
+                        <Card className="pointer-card" padding="small" layoutAsFlexbox>
+                            <IconBank/>
+                            <br/>
+                            <h6>Choose bank branch</h6>
+                            <Text size="tiny" marginTop="nano">
+                                This feature allowed users to select their bank branch while exploring the profile
+                                section. <br/> Once selected, the bank branch module is skipped in the account
+                                flows.
+                            </Text>
+                        </Card>
+                        <Card className="pointer-card" padding="small" layoutAsFlexbox>
+                            <IconChat/>
+                            <br/>
+                            <h6>Messages and alerts</h6>
+                            <Text size="tiny" marginTop="nano">
+                                This feature enables the user decide on the frequency and alert type that can be
+                                sent to
+                                them.
+                            </Text>
+                        </Card>
+                    </Div>
+                </Portion>
+                <Portion desktopSpan="16">
+                    <ProfilesOne height="350px" className="image"/>
+                </Portion>
+            </Row>
 
-                <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
-                    <Portion desktopSpan="8">
-                        <Div layoutAsFlexbox style={{gap: "16px"}} isFullHeight>
-                            <Card className="pointer-card" padding="small" layoutAsFlexbox>
-                                <IconBank/>
-                                <br/>
-                                <h6>Choose bank branch</h6>
-                                <Text size="tiny" marginTop="nano">
-                                    This feature allowed users to select their bank branch while exploring the profile
-                                    section. <br/> Once selected, the bank branch module is skipped in the account
-                                    flows.
-                                </Text>
-                            </Card>
-                            <Card className="pointer-card" padding="small" layoutAsFlexbox>
-                                <IconChat/>
-                                <br/>
-                                <h6>Messages and alerts</h6>
-                                <Text size="tiny" marginTop="nano">
-                                    This feature enables the user decide on the frequency and alert type that can be
-                                    sent to
-                                    them.
-                                </Text>
-                            </Card>
-                        </Div>
-                    </Portion>
-                    <Portion desktopSpan="16">
-                        <ProfilesOne height="350px" className="image"/>
-                    </Portion>
-                </Row>
-
-                <Row horizontalPadding="huge" marginTop="none" marginBottom="small">
-                    <Portion desktopSpan="16">
-                        <ProfilesTwo height="350px" className="image"/>
-                    </Portion>
-                    <Portion desktopSpan="8">
-                        <Div layoutAsFlexbox style={{gap: "16px"}} isFullHeight>
-                            <Card className="pointer-card" padding="small" layoutAsFlexbox>
-                                <IconDocument/>
-                                <br/>
-                                <h6>Manage documents</h6>
-                                <Text size="tiny" marginTop="nano">
-                                    This section lets the user look at their documents that are accessible by the bank.
-                                    For
-                                    phase 1, this is view only.
-                                </Text>
-                            </Card>
-                            <Card className="pointer-card" padding="small" layoutAsFlexbox>
-                                <IconLanguage/>
-                                <br/>
-                                <h6>Change theme and language</h6>
-                                <Text size="tiny" marginTop="nano">
-                                    This was one of the proposed sections, with the language options primarily aimed at
-                                    Tier-2 users. </Text>
-                            </Card>
-                        </Div>
-                    </Portion>
-                </Row>
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="small">
+                <Portion desktopSpan="16">
+                    <ProfilesTwo height="350px" className="image"/>
+                </Portion>
+                <Portion desktopSpan="8">
+                    <Div layoutAsFlexbox style={{gap: "16px"}} isFullHeight>
+                        <Card className="pointer-card" padding="small" layoutAsFlexbox>
+                            <IconDocument/>
+                            <br/>
+                            <h6>Manage documents</h6>
+                            <Text size="tiny" marginTop="nano">
+                                This section lets the user look at their documents that are accessible by the bank.
+                                For
+                                phase 1, this is view only.
+                            </Text>
+                        </Card>
+                        <Card className="pointer-card" padding="small" layoutAsFlexbox>
+                            <IconLanguage/>
+                            <br/>
+                            <h6>Change theme and language</h6>
+                            <Text size="tiny" marginTop="nano">
+                                This was one of the proposed sections, with the language options primarily aimed at
+                                Tier-2 users. </Text>
+                        </Card>
+                    </Div>
+                </Portion>
+            </Row>
 
 
-                {/* OTHER PROJECTS */}
+            {/* OTHER PROJECTS */}
 
-                <hr className="brown-hr"/>
+            <hr className="brown-hr"/>
 
-                <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium">
-                    <Portion desktopSpan="4">
-                        <h5>Other projects</h5>
-                    </Portion>
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium">
+                <Portion desktopSpan="4">
+                    <h5>Other projects</h5>
+                </Portion>
 
-                    <Portion desktopSpan="20" className="project-thumbnail-row">
-                        <Link href="/experiences/assisted-product-discovery">
-                            <Card className="project-thumbnail" marginBottom="micro">
-                                <ProjectDiscoveryThumbnail alt="assisted-discovery-at-setu"/>
-                                <Heading6 className="project-thumbnail-text">Assisted product discovery at
-                                    Setu</Heading6>
-                            </Card>
-                        </Link>
-                        <Link href="/visual/icon-system-for-setu">
-                            <Card className="project-thumbnail" marginBottom="micro">
-                                <IconSystemThumbnail alt="icon-system"/>
-                                <Heading6 className="project-thumbnail-text">Icon system for Setu</Heading6>
-                            </Card>
-                        </Link>
-                    </Portion>
-                </Row>
+                <Portion desktopSpan="20" className="project-thumbnail-row">
+                    <Link href="/experiences/assisted-product-discovery">
+                        <Card className="project-thumbnail" marginBottom="micro">
+                            <ProjectDiscoveryThumbnail alt="assisted-discovery-at-setu"/>
+                            <Heading6 className="project-thumbnail-text">Assisted product discovery at
+                                Setu</Heading6>
+                        </Card>
+                    </Link>
+                    <Link href="/visual/icon-system-for-setu">
+                        <Card className="project-thumbnail" marginBottom="micro">
+                            <IconSystemThumbnail alt="icon-system"/>
+                            <Heading6 className="project-thumbnail-text">Icon system for Setu</Heading6>
+                        </Card>
+                    </Link>
+                </Portion>
+            </Row>
 
         </article>
-);
+    );
 };
 
 
