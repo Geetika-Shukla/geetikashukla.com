@@ -143,16 +143,6 @@
         flex-direction: row;
     }
 
-    .module-card {
-        position: relative;
-        width: 16vw;
-        height: 16vw;
-        overflow: hidden;
-        text-align: start;
-        border-radius: 20px;
-        background-color: #F0F8FF;
-    }
-
     .content-row {
         display: flex;
         flex-direction: row;
@@ -225,4 +215,88 @@
         bottom: 24px;
         right: 32px;
     }
+
+    .module-card {
+        position: relative;
+        width: 16vw;
+        height: 16vw;
+        overflow: hidden;
+        text-align: start;
+        border-radius: 20px;
+        background-color: #F0F8FF;
+    }
+
+    .embed-container {
+        position: relative;
+        padding-bottom: 47%; /* 16:9 Aspect Ratio */
+        height: 0;
+        overflow: hidden;
+        max-width: 67vw;
+        margin: 0 auto; /* Centers the iframe */
+    }
+
+    .embed-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80vh;
+        border: #D8D8D8 solid 1px;
+        border-radius: 20px;
+        align-self: center;
+    }
+
+
+    .modules-card {
+        position: relative;
+        width: 16vw;
+        height: 16vw;
+        perspective: 1000px; /* Enables 3D effect */
+    }
+
+    .card-inner {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        transform-style: preserve-3d;
+        transition: transform 0.6s;
+    }
+
+    .modules-card:hover .card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        background-color: #F0F8FF;
+        display: flex;
+        justify-content: center;
+        backface-visibility: hidden; /* Hides the back when front is visible */
+    }
+
+    .card-front {
+        background-color: #F0F8FF;
+        display: flex;
+        flex-direction: column;
+        padding: 0 0 32px 24px;
+        gap: 16px;
+        justify-content: flex-end;
+    }
+
+    .card-front svg {
+        flex-shrink: 0;
+        width: 64px;
+        height: 64px;
+    }
+
+    .card-back {
+        background-color: #F0F8FF;
+        transform: rotateY(180deg);
+        padding: 20px;
+        font-weight: 400;
+    }
+
 }
