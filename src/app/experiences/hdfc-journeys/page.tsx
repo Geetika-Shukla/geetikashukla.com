@@ -52,16 +52,24 @@ import IconReviewDetails from "@/assets/images/FolderWithMagnifyingGlass.svg";
 import IconBankBranch from "@/assets/images/Banking.svg";
 import IconNominee from "@/assets/images/People.svg";
 import IconFundYourAccount from "@/assets/images/BankWithCoin.svg";
-
-
-
+import EdgeCaseOne from "@/assets/images/hdfc-journeys/edge case-1.svg";
+import EdgeCaseTwo from "@/assets/images/hdfc-journeys/edge case-2.svg";
+import EdgeCaseThree from "@/assets/images/hdfc-journeys/edge case-3.svg";
+import EdgeCaseFour from "@/assets/images/hdfc-journeys/edge case-4.svg";
+import EdgeCaseFive from "@/assets/images/hdfc-journeys/edge case-5.svg";
+import IconTeam from "@/assets/images/Team.svg";
+import IconCircleWithExclamationMark from "@/assets/images/CircleWithExclamationMark.svg";
+import IconEdgeCase from "@/assets/images/Jigsaw.svg";
+import IconErrorState from "@/assets/images/CircleWithExclamationMarkRed.svg";
 import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
 import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
 import IconBoxWithBraces from "@/assets/images/BoxWithBraces.svg";
-import IconTeam from "@/assets/images/Team.svg";
-import IconCircleWithExclamationMark from "@/assets/images/CircleWithExclamationMark.svg";
-
-
+import ErrorStateOne from "@/assets/images/hdfc-journeys/error-state-1.svg";
+import ErrorStateTwo from "@/assets/images/hdfc-journeys/error-state-2.svg";
+import ErrorStateThree from "@/assets/images/hdfc-journeys/error-state-3.svg";
+import ErrorStateFour from "@/assets/images/hdfc-journeys/error-state-4.svg";
+import ErrorStateFive from "@/assets/images/hdfc-journeys/error-state-5.svg";
+import ErrorStateSix from "@/assets/images/hdfc-journeys/error-state-6.svg";
 
 export default function HdfcJourneysPage() {
 
@@ -593,6 +601,108 @@ export default function HdfcJourneysPage() {
                 </Portion>
             </Row>
 
+            {/* ERROR STATES & EDGE CASES */}
+
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="medium" marginBottom="small" style={{ flexWrap: "nowrap", gap: "32px" }}
+            >
+                <Portion desktopSpan="6" isFullHeight>
+                    <h5>Final touches</h5>
+                    <br /><br />
+                    <IconEdgeCase height="32px"/>
+                    <h6>Edge cases</h6>
+                    <Text marginTop="nano">
+                        We looked at a bunch of edge cases—mostly related to regulatory requirements, bank delays, or cases where the user drops off.
+                    </Text>
+                </Portion>
+                <Portion desktopSpan="10" isFullHeight>
+                    <EdgeCaseOne height="420px" />
+                    <Text size="tiny" marginTop="nano">
+                        If vKYC isn’t completed during the journey, the customer must accept or update FD rates upon resuming.
+                    </Text>
+                </Portion>
+                <Portion desktopSpan="6" isFullHeight>
+                    <EdgeCaseTwo height="420px"/>
+                    <Text size="tiny" marginTop="nano">
+                        FD will be funded in T+1 days, due to delays from either of the banks.
+                    </Text>
+                    </Portion>
+            </Row>
+
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="tiny" marginBottom="small" style={{ flexWrap: "nowrap", gap: "32px" }}
+            >
+                <Portion desktopSpan="6" isFullHeight>
+                    <EdgeCaseThree height="420px"/>
+                    <Text size="tiny" marginTop="nano">
+                        Video KYC can be done only during working hours.
+                    </Text>
+                </Portion>
+                <Portion desktopSpan="6" isFullHeight>
+                    <EdgeCaseFour height="420px" />
+                    <Text size="tiny" marginTop="nano">
+                        Let customers choose a GSTIN if multiple are linked to a PAN.
+                    </Text>
+                    </Portion>
+                <Portion desktopSpan="10" isFullHeight>
+                    <EdgeCaseFive height="420px"/>
+                    <Text size="tiny" marginTop="nano">
+                        Use case where nominee is a minor. HDFC Bank allows the customer to add a guardian for them.
+                    </Text>
+                </Portion>
+            </Row>
+
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="small" marginBottom="tiny" style={{ flexWrap: "nowrap", gap: "34px" }}
+            >
+                <Portion desktopSpan="5" isFullHeight>
+                    <ErrorStateOne height="420px" />
+                    <Text size="tiny" marginTop="nano">
+                        Not eligible to open a current account.
+                    </Text>
+                </Portion>
+                <Portion desktopSpan="5" isFullHeight>
+                    <ErrorStateTwo height="420px"/>
+                    <Text size="tiny" marginTop="nano">
+                        Pincode entered is outside of state limits.
+                    </Text>
+                </Portion>
+                <Portion desktopSpan="5" isFullHeight>
+                    <ErrorStateThree height="420px"/>
+                    <Text size="tiny" marginTop="nano">
+                        Drop off due to network issue.
+                    </Text>
+                </Portion>
+                <Portion desktopSpan="5">
+                    <IconErrorState height="32px"/>
+                    <h6>Error states</h6>
+                    <Text marginTop="nano">
+                        We covered key verification failures and most network and regulatory error states.</Text>
+                    <Text>
+                        <br />
+                        Also, Fictoan, our UI framework, handles the basic ones like password mismatch, invalid format, character limit etc.
+                    </Text>
+                </Portion>
+            </Row>
+
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="small" marginBottom="tiny" style={{ flexWrap: "nowrap", gap: "34px" }}
+            >
+                <Portion desktopSpan="5" isFullHeight>
+                    <ErrorStateFour height="420px" />
+                    <Text size="tiny" marginTop="nano">
+                        IP is outside of India.
+                    </Text>
+                </Portion>
+                <Portion desktopSpan="5" isFullHeight>
+                    <ErrorStateFive height="420px"/>
+                    <Text size="tiny" marginTop="nano">
+                        Session expired.
+                    </Text>
+                </Portion>
+                <Portion desktopSpan="5" isFullHeight>
+                    <ErrorStateSix height="420px"/>
+                    <Text size="tiny" marginTop="nano">
+                        Aadhaar and mobile number do not match.
+                    </Text>
+                </Portion>
+            </Row>
 
             {/* OTHER PROJECTS */}
 
