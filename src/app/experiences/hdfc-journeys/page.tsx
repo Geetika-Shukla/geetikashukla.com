@@ -8,6 +8,7 @@ import {
     Button,
     Header,
     Card,
+    Tabs,
     Element,
     Heading1,
     Portion,
@@ -83,6 +84,7 @@ export default function HdfcJourneysPage() {
 
         <article className="project-page">
 
+
             {/* HERO SECTION */}
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="small">
@@ -112,6 +114,7 @@ export default function HdfcJourneysPage() {
             <Row marginBottom="none" className="full-width">
                 <HDFCHero height="500px" className="hero-alignment"/>
             </Row>
+
 
             {/* PROBLEM OVERVIEW */}
 
@@ -355,6 +358,7 @@ export default function HdfcJourneysPage() {
                 </Portion>
             </Row>
 
+
             {/* FIGJAM EMBED */}
 
             <div className="embed-container">
@@ -475,6 +479,7 @@ export default function HdfcJourneysPage() {
             </Row>
 
 
+
             {/* OTHER PARTS OF THE APP */}
 
             <Row horizontalPadding="huge" marginTop="small" marginBottom="tiny">
@@ -482,7 +487,6 @@ export default function HdfcJourneysPage() {
                     <h6>Others—</h6>
                 </Portion>
             </Row>
-
 
             <Row layoutAsGrid horizontalPadding="huge" marginBottom="tiny">
                 <div className="modules-card">
@@ -540,6 +544,69 @@ export default function HdfcJourneysPage() {
                     </div>
                 </div>
             </Row>
+
+            {/* TABS */}
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h5>User flows and design decisions</h5>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                <Tabs
+                    align="left"
+                    tabs={[
+                        {
+                            key: "tab1",
+                            label: "Savings Account",
+                            content: (
+                                <iframe
+                                    width="400vw"
+                                    height="800px"
+                                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=87-7343&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=87%3A7343&embed-host=share"
+                                    allowFullScreen></iframe>
+                            )
+                        },
+                        {
+                            key: "tab2",
+                            label   : "Current Account",
+                            content : (
+                                <iframe
+                                    width="400vw"
+                                    height="800px"
+                                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=100-6120&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=100%3A6120&embed-host=share"
+                                    allowFullScreen></iframe>
+                            )
+                        },
+                        {
+                            key     : "tab3",
+                            label   : "Fixed Deposit + Savings Account",
+                            content : (
+                                <iframe
+                                    width="400vw"
+                                    height="800px"
+                                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=65-5997&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=65%3A5997&embed-host=share"
+                                    allowFullScreen></iframe>
+                            )
+                        },
+                        {
+                            key     : "tab4",
+                            label   : "Fixed Deposit (Savings Account exists)",
+                            content : (
+                                <iframe
+                                    width="400vw"
+                                    height="800px"
+                                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=82-6426&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=82%3A6426&embed-host=share"
+                                    allowFullScreen></iframe>
+                            )
+                        }
+                    ]}
+                />
+                </Portion>
+            </Row>
+
 
             {/* PROFILE AND SETTINGS */}
 
@@ -606,6 +673,7 @@ export default function HdfcJourneysPage() {
                     </Div>
                 </Portion>
             </Row>
+
 
             {/* ERROR STATES & EDGE CASES */}
 
@@ -705,27 +773,27 @@ export default function HdfcJourneysPage() {
                 </Portion>
             </Row>
 
+
             {/* USER TESTING */}
 
-            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="medium" marginBottom="small">
-                <Portion desktopSpan="whole">
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="medium" marginBottom="small" style={{ flexWrap: "nowrap", gap: "20px" }}
+            >
+                <Portion desktopSpan="5">
                     <h5>Feedback from user testing</h5>
                     <Text marginTop="tiny">
-                        Thanks to Vivek from our team for conducting user research and testing for the project. We implemented the following based on the feedback from the testing—                    </Text>
+                        Thanks to Vivek from our team for conducting user research and testing for the project. We implemented the following based on the feedback—
+                    </Text>
                 </Portion>
-            </Row>
-
-            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="small" marginBottom="small" style={{ flexWrap: "nowrap", gap: "32px" }}
-            >
-                <Portion desktopSpan="8">
-                    <TestingOne style={{ marginBottom: "24px" }} />
+                <Portion desktopSpan="7">
+                    <TestingOne style={{ marginBottom: "20px" }} />
                     <TestingTwo />
                 </Portion>
-                <Portion desktopSpan="15">
-                    <TestingThree style={{ marginBottom: "24px" }} />
+                <Portion desktopSpan="11">
+                    <TestingThree style={{ marginBottom: "20px" }} />
                     <TestingFour />
                 </Portion>
             </Row>
+
 
             {/* CONCLUSION */}
 
