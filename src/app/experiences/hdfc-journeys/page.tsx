@@ -64,12 +64,18 @@ import IconErrorState from "@/assets/images/CircleWithExclamationMarkRed.svg";
 import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
 import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
 import IconBoxWithBraces from "@/assets/images/BoxWithBraces.svg";
+import IconDiamond from "@/assets/images/Integrity.svg";
 import ErrorStateOne from "@/assets/images/hdfc-journeys/error-state-1.svg";
 import ErrorStateTwo from "@/assets/images/hdfc-journeys/error-state-2.svg";
 import ErrorStateThree from "@/assets/images/hdfc-journeys/error-state-3.svg";
-import ErrorStateFour from "@/assets/images/hdfc-journeys/error-state-4.svg";
 import ErrorStateFive from "@/assets/images/hdfc-journeys/error-state-5.svg";
 import ErrorStateSix from "@/assets/images/hdfc-journeys/error-state-6.svg";
+import TestingOne from "@/assets/images/hdfc-journeys/testing-1.svg";
+import TestingTwo from "@/assets/images/hdfc-journeys/testing-2.svg";
+import TestingThree from "@/assets/images/hdfc-journeys/testing-3.svg";
+import TestingFour from "@/assets/images/hdfc-journeys/testing-4.svg";
+
+
 
 export default function HdfcJourneysPage() {
 
@@ -107,7 +113,7 @@ export default function HdfcJourneysPage() {
                 <HDFCHero height="500px" className="hero-alignment"/>
             </Row>
 
-            {/* PRODBLEM OVERVIEW */}
+            {/* PROBLEM OVERVIEW */}
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
                 <Portion desktopSpan="whole">
@@ -606,7 +612,7 @@ export default function HdfcJourneysPage() {
             <Row layoutAsFlexbox horizontalPadding="huge" marginTop="medium" marginBottom="small" style={{ flexWrap: "nowrap", gap: "32px" }}
             >
                 <Portion desktopSpan="6" isFullHeight>
-                    <h5>Final touches</h5>
+                    <h5>Handling edge cases and error states</h5>
                     <br /><br />
                     <IconEdgeCase height="32px"/>
                     <h6>Edge cases</h6>
@@ -650,27 +656,9 @@ export default function HdfcJourneysPage() {
                 </Portion>
             </Row>
 
-            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="small" marginBottom="tiny" style={{ flexWrap: "nowrap", gap: "34px" }}
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="small" marginBottom="tiny" style={{ flexWrap: "nowrap", gap: "32px" }}
             >
-                <Portion desktopSpan="5" isFullHeight>
-                    <ErrorStateOne height="420px" />
-                    <Text size="tiny" marginTop="nano">
-                        Not eligible to open a current account.
-                    </Text>
-                </Portion>
-                <Portion desktopSpan="5" isFullHeight>
-                    <ErrorStateTwo height="420px"/>
-                    <Text size="tiny" marginTop="nano">
-                        Pincode entered is outside of state limits.
-                    </Text>
-                </Portion>
-                <Portion desktopSpan="5" isFullHeight>
-                    <ErrorStateThree height="420px"/>
-                    <Text size="tiny" marginTop="nano">
-                        Drop off due to network issue.
-                    </Text>
-                </Portion>
-                <Portion desktopSpan="5">
+                <Portion desktopSpan="6">
                     <IconErrorState height="32px"/>
                     <h6>Error states</h6>
                     <Text marginTop="nano">
@@ -680,27 +668,81 @@ export default function HdfcJourneysPage() {
                         Also, Fictoan, our UI framework, handles the basic ones like password mismatch, invalid format, character limit etc.
                     </Text>
                 </Portion>
+                <Portion desktopSpan="6" isFullHeight>
+                    <ErrorStateOne height="420px" />
+                    <Text size="tiny" marginTop="nano">
+                        Not eligible to open a current account.
+                    </Text>
+                </Portion>
+                <Portion desktopSpan="10" isFullHeight>
+                    <ErrorStateThree height="420px"/>
+                    <Text size="tiny" marginTop="nano">
+                        Network and location related— <br/>
+                        Drop off due to network issue. IP is outside of India.
+                    </Text>
+                </Portion>
             </Row>
 
             <Row layoutAsFlexbox horizontalPadding="huge" marginTop="small" marginBottom="tiny" style={{ flexWrap: "nowrap", gap: "34px" }}
             >
                 <Portion desktopSpan="5" isFullHeight>
-                    <ErrorStateFour height="420px" />
+                    <ErrorStateTwo height="420px"/>
                     <Text size="tiny" marginTop="nano">
-                        IP is outside of India.
+                        Pincode entered is outside of state limits.
                     </Text>
                 </Portion>
                 <Portion desktopSpan="5" isFullHeight>
                     <ErrorStateFive height="420px"/>
                     <Text size="tiny" marginTop="nano">
-                        Session expired.
+                        Aadhaar and mobile number are not linked.
                     </Text>
                 </Portion>
                 <Portion desktopSpan="5" isFullHeight>
                     <ErrorStateSix height="420px"/>
                     <Text size="tiny" marginTop="nano">
-                        Aadhaar and mobile number do not match.
+                        Session expired.
                     </Text>
+                </Portion>
+            </Row>
+
+            {/* USER TESTING */}
+
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="medium" marginBottom="small">
+                <Portion desktopSpan="whole">
+                    <h5>Feedback from user testing</h5>
+                    <Text marginTop="tiny">
+                        Thanks to Vivek from our team for conducting user research and testing for the project. We implemented the following based on the feedback from the testing—                    </Text>
+                </Portion>
+            </Row>
+
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="small" marginBottom="small" style={{ flexWrap: "nowrap", gap: "32px" }}
+            >
+                <Portion desktopSpan="8">
+                    <TestingOne style={{ marginBottom: "24px" }} />
+                    <TestingTwo />
+                </Portion>
+                <Portion desktopSpan="15">
+                    <TestingThree style={{ marginBottom: "24px" }} />
+                    <TestingFour />
+                </Portion>
+            </Row>
+
+            {/* CONCLUSION */}
+
+            <Row className="summary-section" horizontalMargin="large" marginBottom="medium" marginTop="small">
+                <Portion desktopSpan="6">
+                    <IconDiamond height="64px"/>
+                    <h5>
+                        Summing it up
+                    </h5>
+                </Portion>
+                <Portion desktopSpan="1" />
+                <Portion desktopSpan="17" marginTop="medium">
+
+                    <Text marginBottom="nano">
+                        We successfully concluded Phase 1, unifying HDFC Bank’s digital journeys and improving both self-service and assisted flows.                    </Text>
+                    <Text>
+                        By unifying fragmented experiences, refining user flows, and enhancing usability, we created a more seamless and efficient banking experience.                    </Text>
                 </Portion>
             </Row>
 
