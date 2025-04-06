@@ -171,6 +171,46 @@ export default function HdfcJourneysPage() {
                 </Row>
 
 
+            {/* SECONDARY RESEARCH */}
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h5>What we were looking at</h5>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny" isFullHeight>
+                <Portion desktopSpan="12">
+                    <Card className="hdfc-blue-card" isFullHeight>
+                        <IconUsers/>
+                        <br/>
+                        <h6>Target audience</h6>
+                        <Text size="small" marginTop="nano">
+                            As India’s largest private sector bank, HDFC Bank’s apps and portals cater to a broad user base, unlike niche neobanks. The primary audience includes users from Tier 2 and Tier 3 cities.
+                        </Text>
+                    </Card>
+                </Portion>
+                <Portion desktopSpan="12">
+                    <Card className="horizontal-pointer-card">
+                        <IconRocket/>
+                        <Text>
+                            HDFC Bank wanted to take <strong>inspiration from neobanks, revamp the user experience</strong>, and unify all journeys under a single platform.
+                        </Text>
+                    </Card>
+                    <br/>
+                    <Card className="horizontal-pointer-card">
+                        <IconBubble/>
+                        <Text>
+                            That said, their approach needed to <strong>innovation with the trust and familiarity</strong> expected by their broad user base.                        </Text>
+                    </Card>
+                </Portion>
+            </Row>
+            <Row horizontalPadding="huge" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <StickyNeo className="image"/>
+                </Portion>
+            </Row>
+
 
             {/* SOLUTION OVERVIEW */}
 
@@ -247,46 +287,6 @@ export default function HdfcJourneysPage() {
                 </Card>
             </Row>
 
-
-            {/* SECONDARY RESEARCH */}
-
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
-                <Portion desktopSpan="whole">
-                    <h5>What we were looking at</h5>
-                </Portion>
-            </Row>
-
-            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny" isFullHeight>
-                <Portion desktopSpan="12">
-                    <Card className="hdfc-blue-card" isFullHeight>
-                        <IconUsers/>
-                        <br/>
-                        <h6>Target audience</h6>
-                        <Text size="small" marginTop="nano">
-                                As India’s largest private sector bank, HDFC Bank’s apps and portals cater to a broad user base, unlike niche neobanks. The primary audience includes users from Tier 2 and Tier 3 cities.
-                        </Text>
-                    </Card>
-                </Portion>
-                <Portion desktopSpan="12">
-                    <Card className="horizontal-pointer-card">
-                        <IconRocket/>
-                        <Text>
-                            HDFC Bank wanted to take <strong>inspiration from neobanks, revamp the user experience</strong>, and unify all journeys under a single platform.
-                        </Text>
-                    </Card>
-                    <br/>
-                    <Card className="horizontal-pointer-card">
-                        <IconBubble/>
-                        <Text>
-                            That said, their approach needed to <strong>innovation with the trust and familiarity</strong> expected by their broad user base.                        </Text>
-                    </Card>
-                </Portion>
-            </Row>
-            <Row horizontalPadding="huge" marginBottom="tiny">
-                <Portion desktopSpan="whole">
-                    <StickyNeo className="image"/>
-                </Portion>
-            </Row>
 
 
             {/* ASSISTED + UNASSISTED */}

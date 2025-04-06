@@ -119,7 +119,7 @@ export default function ProductDiscoveryPage() {
                 <Card className="overview-card">
                     <Div className="overview-content">
                         <Div>
-                            <Text className="overview-label" marginBottom="nano">Find a product</Text>
+                            <Text className="overview-label" marginBottom="nano"  fontStyle="serif">Find a product</Text>
                             <Text size="small">
                             I designed an <strong>intuitive, quiz-based experience</strong> placed in the site navigation and key entry points that could help
                             the users <strong>discover the right product combinations</strong>.
@@ -127,11 +127,11 @@ export default function ProductDiscoveryPage() {
                         </Div>
                         <Div className="overview-details">
                             <Div marginBottom="tiny">
-                                <Text className="overview-label" marginBottom="nano">FEATURE GO-LIVE</Text>
+                                <Text className="overview-label" marginBottom="nano"  fontStyle="serif">FEATURE GO-LIVE</Text>
                                 <Text size="small">Jan 2024</Text>
                             </Div>
                             <Div>
-                                <Text className="overview-label" marginBottom="nano">MY ROLE</Text>
+                                <Text className="overview-label" marginBottom="nano"  fontStyle="serif">MY ROLE</Text>
                                 <Text size="small">UI and UX design</Text>
                             </Div>
                         </Div>
@@ -181,7 +181,7 @@ export default function ProductDiscoveryPage() {
             <Card className="full-width-banner">
                 <Div className="banner-content" paddingLeft="large">
                     <Div className="banner-text">
-                        <Text className="overview-label" marginBottom="nano">Experience the Solution in Action</Text>
+                        <Text className="overview-label" marginBottom="nano"  fontStyle="serif">Experience the Solution in Action</Text>
                         <Text>Interact with the feature and see how it helps users discover the right solutions effortlessly.</Text>
                     </Div>
                 </Div>
