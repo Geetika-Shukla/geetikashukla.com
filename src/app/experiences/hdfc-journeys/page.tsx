@@ -29,7 +29,6 @@ import "../page-experiences.css";
 import YellowStar from "@/assets/images/yellow-star.svg";
 import HDFCHero from "@/assets/images/hdfc-journeys/hdfc-cover.svg";
 import Portals from "@/assets/images/hdfc-journeys/hdfc-portals.svg";
-import Neobank from "@/assets/images/hdfc-journeys/neobank.svg";
 import StickyNeo from "@/assets/images/hdfc-journeys/sticky-neobank.svg";
 import ProfilesOne from "@/assets/images/hdfc-journeys/profiles-1.svg";
 import ProfilesTwo from "@/assets/images/hdfc-journeys/profiles-2.svg";
@@ -51,6 +50,9 @@ import IconBizDetails from "@/assets/images/Buildings.svg";
 import IconPersonalDetails from "@/assets/images/DocumentWithDetails.svg";
 import IconReviewDetails from "@/assets/images/FolderWithMagnifyingGlass.svg";
 import IconBankBranch from "@/assets/images/Banking.svg";
+import IconRocket from "@/assets/images/Rocket.svg";
+import IconUsers from "@/assets/images/PeopleWithColouredHeads.svg";
+import IconBubble from "@/assets/images/ThoughtCloud.svg";
 import IconNominee from "@/assets/images/People.svg";
 import IconFundYourAccount from "@/assets/images/BankWithCoin.svg";
 import EdgeCaseOne from "@/assets/images/hdfc-journeys/edge case-1.svg";
@@ -132,33 +134,41 @@ export default function HdfcJourneysPage() {
                 </Portion>
             </Row>
 
-            <Row horizontalPadding="huge" marginTop="none" marginBottom="small">
-                <Portion desktopSpan="8">
-                    <Div layoutAsFlexbox style={{gap: "16px"}} isFullHeight>
-                        <Card className="horizontal-pointer-card" padding="small">
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
+                    <Portion desktopSpan="8">
+                        <Card className="horizontal-pointer-card">
                             <IconBoxWithBraces/>
                             <Text>
-                                they were fragmented
+                                the digital journeys were fragmented
                             </Text>
                         </Card>
-                        <Card className="horizontal-pointer-card" padding="small">
+                    </Portion>
+
+                    <Portion desktopSpan="8">
+                        <Card className="horizontal-pointer-card">
                             <IconTeam/>
                             <Text>
-                                were scattered across different HDFC portals
+                                they were scattered across different HDFC portals
                             </Text>
                         </Card>
-                        <Card className="horizontal-pointer-card" padding="small">
+                    </Portion>
+
+                    <Portion desktopSpan="8">
+                        <Card className="horizontal-pointer-card">
                             <IconCircleWithExclamationMark/>
                             <Text>
-                                had an inconsistent design language
+                                they had an inconsistent design language
                             </Text>
                         </Card>
-                    </Div>
-                </Portion>
-                <Portion desktopSpan="16">
-                    <Portals height="350px" className="image"/>
-                </Portion>
+                    </Portion>
             </Row>
+
+            <Row horizontalPadding="huge" marginTop="nano" marginBottom="small">
+                    <Portion desktopSpan="whole">
+                        <Portals height="350px" className="image"/>
+                    </Portion>
+                </Row>
+
 
 
             {/* SOLUTION OVERVIEW */}
@@ -174,7 +184,7 @@ export default function HdfcJourneysPage() {
                     <Card className="overview-card">
                         <Div className="overview-content">
                             <Div>
-                                <Text className="overview-label" marginBottom="nano">Digital journeys for HDFC
+                                <Text className="overview-label" marginBottom="nano" fontStyle="serif">Digital journeys for HDFC
                                     Bank</Text>
                                 <Text size="small">
                                     End-to-end digital banking journeys for new and existing HDFC customers,
@@ -183,11 +193,11 @@ export default function HdfcJourneysPage() {
                             </Div>
                             <Div className="overview-details">
                                 <Div marginBottom="tiny">
-                                    <Text className="overview-label" marginBottom="nano">GO-LIVE</Text>
+                                    <Text className="overview-label" marginBottom="nano" fontStyle="serif">GO-LIVE</Text>
                                     <Text size="small">May 2023</Text>
                                 </Div>
                                 <Div>
-                                    <Text className="overview-label" marginBottom="nano">MY ROLE</Text>
+                                    <Text className="overview-label" marginBottom="nano" fontStyle="serif">MY ROLE</Text>
                                     <Text size="small">UI and UX design, visual design</Text>
                                 </Div>
                             </Div>
@@ -202,9 +212,9 @@ export default function HdfcJourneysPage() {
                 </Portion>
             </Row>
 
-            <Row horizontalPadding="huge" marginTop="none" marginBottom="small">
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
                 <Card className="pointer-card" padding="small">
-                    <Text className="overview-label" size="medium" marginTop="tiny"><strong>PHASE 1</strong></Text>
+                    <Text className="overview-label" size="medium" marginTop="tiny" fontStyle="serif"><strong>PHASE 1</strong></Text>
                     <Text paddingTop="nano">
                         Start with essential journeys—
                     </Text>
@@ -216,14 +226,14 @@ export default function HdfcJourneysPage() {
                 </Card>
 
                 <Card className="pointer-card" padding="small">
-                    <Text className="overview-label" size="medium" marginTop="tiny"><strong>PHASE 2</strong></Text>
+                    <Text className="overview-label" size="medium" marginTop="tiny" fontStyle="serif"><strong>PHASE 2</strong></Text>
                     <Text paddingTop="nano">
                         Gradually phase out fragmented journeys after adoption, guided by user testing and feedback.
                     </Text>
                 </Card>
 
                 <Card className="pointer-card" padding="small">
-                    <Text className="overview-label" size="medium" marginTop="tiny"><strong>PHASE 3</strong></Text>
+                    <Text className="overview-label" size="medium" marginTop="tiny" fontStyle="serif"><strong>PHASE 3</strong></Text>
                     <Text paddingTop="nano">
                         Work on the next set of journeys—
                     </Text>
@@ -245,19 +255,30 @@ export default function HdfcJourneysPage() {
                 </Portion>
             </Row>
 
-            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
-                <Portion desktopSpan="6">
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny" isFullHeight>
+                <Portion desktopSpan="12">
                     <Card className="hdfc-blue-card" isFullHeight>
-                        <Text size="medium" className="white-text">
-                            <strong>
-                                HDFC Bank wanted to take inspiration from neobanks, revamp the user experience, and
-                                unify all journeys under a single platform.
-                            </strong>
+                        <IconUsers/>
+                        <br/>
+                        <h6>Target audience</h6>
+                        <Text size="small" marginTop="nano">
+                                As India’s largest private sector bank, HDFC Bank’s apps and portals cater to a broad user base, unlike niche neobanks. The primary audience includes users from Tier 2 and Tier 3 cities.
                         </Text>
                     </Card>
                 </Portion>
-                <Portion desktopSpan="18">
-                    <Neobank className="image"/>
+                <Portion desktopSpan="12">
+                    <Card className="horizontal-pointer-card">
+                        <IconRocket/>
+                        <Text>
+                            HDFC Bank wanted to take <strong>inspiration from neobanks, revamp the user experience</strong>, and unify all journeys under a single platform.
+                        </Text>
+                    </Card>
+                    <br/>
+                    <Card className="horizontal-pointer-card">
+                        <IconBubble/>
+                        <Text>
+                            That said, their approach needed to <strong>innovation with the trust and familiarity</strong> expected by their broad user base.                        </Text>
+                    </Card>
                 </Portion>
             </Row>
             <Row horizontalPadding="huge" marginBottom="tiny">
@@ -343,12 +364,6 @@ export default function HdfcJourneysPage() {
 
             </Row>
 
-            {/*<Row horizontalPadding="huge" marginBottom="tiny">*/}
-            {/*    <Portion desktopSpan="whole">*/}
-            {/*        <AssistedUnassisted className="image"/>*/}
-            {/*    </Portion>*/}
-            {/*</Row>*/}
-
             <Row horizontalPadding="huge" marginTop="small">
                 <Portion desktopSpan="whole">
                     <Text>
@@ -370,10 +385,30 @@ export default function HdfcJourneysPage() {
                 </iframe>
             </div>
 
+            <Card className="full-width-banner" marginTop="tiny" marginBottom="tiny">
+                <Div className="banner-content" paddingLeft="large">
+                    <Div className="banner-text">
+                        <Text className="overview-label" marginBottom="nano">Experience the Solution in Action</Text>
+                        <Text>See how customer type—ETB or NTB—impacts the flow, in both assisted and unassisted scenarios.</Text>
+                    </Div>
+                </Div>
+                <Div className="banner-links" paddingRight="large">
+                    <Text size="tiny">
+                        <Link href="https://www.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=3-1818&p=f&t=fWs3zEiyB0EoBIXJ-1&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=3%3A1818&show-proto-sidebar=1" target="_blank" rel="noopener noreferrer">
+                            Link to assisted flow
+                        </Link>
+                    </Text>
+                    <Text size="tiny">
+                        <Link href="https://www.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=3-1625&p=f&t=fWs3zEiyB0EoBIXJ-1&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=3%3A1625&show-proto-sidebar=1" target="_blank" rel="noopener noreferrer">
+                            Link to unassisted flow
+                        </Link>
+                    </Text>
+                </Div>
+            </Card>
 
             {/* MAIN MODULES */}
 
-            <Row horizontalPadding="huge" marginTop="tiny" marginBottom="tiny">
+            <Row horizontalPadding="huge" marginTop="small" marginBottom="tiny">
                 <Portion desktopSpan="whole">
                     <h6>Primary modules—</h6>
                 </Portion>
