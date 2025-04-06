@@ -6,6 +6,12 @@
         align-items: center;
     }
 
+    .center-align-svg {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .image-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);

@@ -77,6 +77,7 @@ import TestingOne from "@/assets/images/hdfc-journeys/testing-1.svg";
 import TestingTwo from "@/assets/images/hdfc-journeys/testing-2.svg";
 import TestingThree from "@/assets/images/hdfc-journeys/testing-3.svg";
 import TestingFour from "@/assets/images/hdfc-journeys/testing-4.svg";
+import AssistedHero from "@/assets/images/product-discovery/assisted-components.svg";
 
 
 
@@ -113,8 +114,8 @@ export default function HdfcJourneysPage() {
                 </Portion>
             </Row>
 
-            <Row marginBottom="none" className="full-width">
-                <HDFCHero height="500px" className="hero-alignment"/>
+            <Row className="center-align-svg" marginBottom="tiny">
+                <HDFCHero width="100vw" className="hero-alignment" />
             </Row>
 
 

@@ -44,6 +44,7 @@ import IconMobilewithCursor from "@/assets/images/MobilewithCursor.svg";
 import IconPersonWithSettings from "@/assets/images/PersonWithSettings.svg";
 import PeopleExperienceThumbnail from "@/assets/images/thumbnail-for-people-experience.svg";
 import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
+import TypeGrid from "@/assets/images/type-grid.svg";
 
 
 export default function ProductDiscoveryPage() {
@@ -72,8 +73,8 @@ export default function ProductDiscoveryPage() {
                 </Portion>
             </Row>
 
-            <Row marginBottom="none" className="full-width">
-                <AssistedHero height="500px" className="hero-alignment" />
+            <Row className="center-align-svg" marginBottom="tiny">
+                <AssistedHero width="100vw" className="hero-alignment" />
             </Row>
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
