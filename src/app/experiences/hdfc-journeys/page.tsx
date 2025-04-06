@@ -78,6 +78,9 @@ import TestingTwo from "@/assets/images/hdfc-journeys/testing-2.svg";
 import TestingThree from "@/assets/images/hdfc-journeys/testing-3.svg";
 import TestingFour from "@/assets/images/hdfc-journeys/testing-4.svg";
 import AssistedHero from "@/assets/images/product-discovery/assisted-components.svg";
+import IconMobilewithCursor from "@/assets/images/MobilewithCursor.svg";
+import IconPersonWithSettings from "@/assets/images/PersonWithSettings.svg";
+import IconChatBubbles from "@/assets/images/ChatBubbles.svg";
 
 
 
