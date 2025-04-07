@@ -586,65 +586,65 @@ export default function HdfcJourneysPage() {
 
             {/* TABS */}
 
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
-                <Portion desktopSpan="whole">
-                    <h5>User flows and design decisions</h5>
-                </Portion>
-            </Row>
+            {/*<Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">*/}
+            {/*    <Portion desktopSpan="whole">*/}
+            {/*        <h5>User flows and design decisions</h5>*/}
+            {/*    </Portion>*/}
+            {/*</Row>*/}
 
-            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
-                <Portion desktopSpan="whole">
-                <Tabs
-                    align="left"
-                    tabs={[
-                        {
-                            key: "tab1",
-                            label: "Savings Account",
-                            content: (
-                                <iframe
-                                    width="400vw"
-                                    height="800px"
-                                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=87-7343&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=87%3A7343&embed-host=share"
-                                    allowFullScreen></iframe>
-                            )
-                        },
-                        {
-                            key: "tab2",
-                            label   : "Current Account",
-                            content : (
-                                <iframe
-                                    width="400vw"
-                                    height="800px"
-                                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=100-6120&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=100%3A6120&embed-host=share"
-                                    allowFullScreen></iframe>
-                            )
-                        },
-                        {
-                            key     : "tab3",
-                            label   : "Fixed Deposit + Savings Account",
-                            content : (
-                                <iframe
-                                    width="400vw"
-                                    height="800px"
-                                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=65-5997&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=65%3A5997&embed-host=share"
-                                    allowFullScreen></iframe>
-                            )
-                        },
-                        {
-                            key     : "tab4",
-                            label   : "Fixed Deposit (Savings Account exists)",
-                            content : (
-                                <iframe
-                                    width="400vw"
-                                    height="800px"
-                                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=82-6426&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=82%3A6426&embed-host=share"
-                                    allowFullScreen></iframe>
-                            )
-                        }
-                    ]}
-                />
-                </Portion>
-            </Row>
+            {/*<Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">*/}
+            {/*    <Portion desktopSpan="whole">*/}
+            {/*    <Tabs*/}
+            {/*        align="left"*/}
+            {/*        tabs={[*/}
+            {/*            {*/}
+            {/*                key: "tab1",*/}
+            {/*                label: "Savings Account",*/}
+            {/*                content: (*/}
+            {/*                    <iframe*/}
+            {/*                        width="400vw"*/}
+            {/*                        height="800px"*/}
+            {/*                        src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=87-7343&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=87%3A7343&embed-host=share"*/}
+            {/*                        allowFullScreen></iframe>*/}
+            {/*                )*/}
+            {/*            },*/}
+            {/*            {*/}
+            {/*                key: "tab2",*/}
+            {/*                label   : "Current Account",*/}
+            {/*                content : (*/}
+            {/*                    <iframe*/}
+            {/*                        width="400vw"*/}
+            {/*                        height="800px"*/}
+            {/*                        src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=100-6120&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=100%3A6120&embed-host=share"*/}
+            {/*                        allowFullScreen></iframe>*/}
+            {/*                )*/}
+            {/*            },*/}
+            {/*            {*/}
+            {/*                key     : "tab3",*/}
+            {/*                label   : "Fixed Deposit + Savings Account",*/}
+            {/*                content : (*/}
+            {/*                    <iframe*/}
+            {/*                        width="400vw"*/}
+            {/*                        height="800px"*/}
+            {/*                        src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=65-5997&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=65%3A5997&embed-host=share"*/}
+            {/*                        allowFullScreen></iframe>*/}
+            {/*                )*/}
+            {/*            },*/}
+            {/*            {*/}
+            {/*                key     : "tab4",*/}
+            {/*                label   : "Fixed Deposit (Savings Account exists)",*/}
+            {/*                content : (*/}
+            {/*                    <iframe*/}
+            {/*                        width="400vw"*/}
+            {/*                        height="800px"*/}
+            {/*                        src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=82-6426&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=82%3A6426&embed-host=share"*/}
+            {/*                        allowFullScreen></iframe>*/}
+            {/*                )*/}
+            {/*            }*/}
+            {/*        ]}*/}
+            {/*    />*/}
+            {/*    </Portion>*/}
+            {/*</Row>*/}
 
 
             {/* PROFILE AND SETTINGS */}

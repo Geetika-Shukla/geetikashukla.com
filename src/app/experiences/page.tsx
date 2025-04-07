@@ -63,6 +63,14 @@ const ExperiencePage = () => {
             <Row layoutAsGrid horizontalPadding="huge" marginTop="none" marginBottom="small">
                 <Portion className="center-flexbox" layoutAsFlexbox verticallyCenterItems>
 
+                    <Link href="../experiences/hdfc-journeys">
+                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
+                            <HDFCThumbnail alt="hdfc" />
+                            <Heading6 className="project-thumbnail-text" >Digital journeys for HDFC Bank</Heading6>
+                        </Card>
+                    </Link>
+
+
                     <Link href="/experiences/assisted-product-discovery">
                         <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
                             <ProjectDiscoveryThumbnail alt="Assisted product discovery at Setu" />
@@ -70,17 +78,13 @@ const ExperiencePage = () => {
                         </Card>
                     </Link>
 
+
                     <Link href="../visual/people-experience">
                         <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
                             <PeopleExperienceThumbnail alt="people-experience" />
                             <Heading6 className="project-thumbnail-text" >People experience at Setu</Heading6>
                         </Card>
                     </Link>
-
-                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                            <HDFCThumbnail alt="hdfc" />
-                            <Heading6 className="project-thumbnail-text" >Digital journeys for HDFC Bank</Heading6>
-                        </Card>
 
 
                         <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
