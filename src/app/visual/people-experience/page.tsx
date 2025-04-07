@@ -60,12 +60,12 @@ export default function PeopleExpPage() {
             </Row >
 
 
-            <Row layoutAsFlexbox className="people-hero">
+            <Row layoutAsFlexbox className="people-hero" hideOnMobile>
                 <Image src={PeopleOpsHero} height={564} alt="People Ops illustration"/>
             </Row>
 
 
-            <Row horizontallyCenterThis>
+            <Row horizontallyCenterThis hideOnMobile>
                 <Text className="credits" align="center"><em>A special thanks to Sujan for keeping the bar high, and to Madhuri for being an excellent sounding board.</em></Text>
             </Row>
 
@@ -136,9 +136,9 @@ export default function PeopleExpPage() {
                 <Image src={Engagement2} width={1200} className="people-images responsive-image" alt="engagement-images"/>
             </Row>
 
-            <hr className="brown-hr"/>
+            <hr className="brown-hr" />
 
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium">
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
                 <Portion desktopSpan="4">
                     <h5>Other projects</h5>
                 </Portion>

@@ -27,7 +27,7 @@ export const SiteHeader = () => {
 
     return (
         <Header id="site-header">
-            <Row horizontalPadding="large">
+            <Row className="nav-mobile" horizontalPadding="large">
                 <Portion>
                     <Div verticallyCenterItems pushItemsToEnds>
                         <Link href="/">
@@ -36,13 +36,13 @@ export const SiteHeader = () => {
 
                         <Div className="links-container">
 
-                            <Link href="/visual"><Text className="nav-links">Visual</Text></Link>
+                            <Link href="/visual"><Text className="nav-links" hideOnMobile>Visual</Text></Link>
 
-                            <Link href="/type"><Text className="nav-links">Type</Text></Link>
+                            <Link href="/type"><Text className="nav-links" hideOnMobile>Type</Text></Link>
 
-                            <Link href="/experiences"><Text className="nav-links">Experiences</Text></Link>
+                            <Link href="/experiences"><Text className="nav-links" hideOnMobile>Experiences</Text></Link>
 
-                            <Link href="/hobbies"><Heart width="24px" height="24px" /></Link>
+                            <Link href="/hobbies"><Heart className="nav-icon" width="24px" height="24px" /></Link>
                         </Div>
                     </Div>
                 </Portion>

@@ -38,7 +38,7 @@ export default function Home() {
         <article id="page-home">
 
             <Row layoutAsGrid className="row-hide" horizontalPadding="huge" marginTop="medium" marginBottom="none">
-                <Portion desktopSpan="2" marginTop="large" className="overflow-left" hideOnMobile>
+                <Portion desktopSpan="2" marginTop="large" className="overflow-left" hideOnMobile hideOnTabletPortrait hideOnTabletLandscape>
                     <GreenStar alt="stars" height="56px" />
                 </Portion>
                 <Portion desktopSpan="8">
@@ -59,7 +59,7 @@ export default function Home() {
                             experience design, web design, and a little bit of illustrations and coding too.</Text>
                     </Div>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" className="overflow-right" hideOnMobile>
+                <Portion desktopSpan="2" marginTop="small" className="overflow-right" hideOnMobile hideOnTabletPortrait hideOnTabletLandscape>
                     <PurpleStar alt="star" height="56px" />
                 </Portion>
             </Row >

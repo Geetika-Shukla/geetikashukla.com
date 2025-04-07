@@ -117,7 +117,7 @@ const IconSystemPage = () => {
                         </Text>
                     </Div>
 
-                    <Div layoutAsFlexbox style={{ gap: "16px" }}>
+                    <Div className="mobile-responsive-row" layoutAsFlexbox style={{ gap: "16px" }}>
                         <Card className="pointer-card" padding="small">
                             <IconTenacity />
                             <Text paddingTop="tiny">
@@ -286,7 +286,7 @@ const IconSystemPage = () => {
 
             <hr className="brown-hr"/>
 
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium">
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
                 <Portion desktopSpan="4">
                     <h5>Other projects</h5>
                 </Portion>

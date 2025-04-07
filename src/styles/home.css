@@ -53,6 +53,10 @@
         display: flex;
     }
 
+    .category-thumbnail svg {
+        margin-top: -64px;
+    }
+
     .category-thumbnail-text {
         font-size: 1.5rem;
     }

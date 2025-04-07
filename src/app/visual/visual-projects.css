@@ -60,7 +60,7 @@
     }
 
     .people-hero {
-        display: "flex";
+        display: flex;
         justify-content: center;
     }
 
@@ -117,7 +117,6 @@
         margin: 0 auto;
     }
 
-
     .project-thumbnail-row {
         display: flex;
         flex-direction: row;
@@ -150,6 +149,7 @@
 
 @media (max-width: 600px) {
 
+
     .hero-alignment {
         height: auto;
         transform: scale(0.7);
@@ -167,12 +167,24 @@
         align-items: center;
         justify-self: center;
         transform: scale(0.8);
-
     }
 
     .responsive-row {
-        transform: scale(0.9);
+        transform: scale(0.8);
         transform-origin: top;
+        margin-left: -10vw;
+        margin-bottom: -16vw;
+        margin-top: -12vw;
+
+    }
+
+    .mobile-responsive-row {
+        display: flex;
+        transform: scale(0.8);
+        transform-origin: top;
+        margin-left: -10vw;
+        margin-bottom: -24vw;
+        margin-top: 6vw;
     }
 
     .people-hero {
@@ -189,10 +201,14 @@
         margin: 0 auto;
     }
 
+    .images-in-a-row {
+        flex-direction: column !important;
+        align-items: center;
+    }
+
     .images-in-a-row svg {
         max-width: 80%;
         height: auto;
-
     }
 
     .scroll-container {

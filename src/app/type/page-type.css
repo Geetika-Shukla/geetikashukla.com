@@ -27,3 +27,11 @@
     }
 
 }
+
+@media (max-width: 768px) {
+
+    .project-thumbnail {
+        width: 350px !important;
+    }
+
+}

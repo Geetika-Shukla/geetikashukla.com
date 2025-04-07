@@ -86,11 +86,12 @@ const ExperiencePage = () => {
                         </Card>
                     </Link>
 
-
+                    <Link href="/">
                         <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
                             <PartnershipsThumbnail alt="Partnerships at Setu" />
                             <Heading6 className="project-thumbnail-text" >Path to partnerships at Setu</Heading6>
                         </Card>
+                    </Link>
 
                 </Portion>
             </Row>
