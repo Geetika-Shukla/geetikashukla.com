@@ -58,6 +58,7 @@ import crucible from "@/assets/images/crucible.gif";
 import PeopleExperienceThumbnail from "@/assets/images/thumbnail-for-people-experience.svg";
 import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
 import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
+import process from "@/assets/images/devanagari/47days.gif";
 
 
 
@@ -96,7 +97,6 @@ const IconSystemPage = () => {
             <Row className="center-align-svg">
                 <IconsHero height="300px" className="hero-alignment" />
             </Row>
-
 
 
             <Row horizontallyCenterThis>

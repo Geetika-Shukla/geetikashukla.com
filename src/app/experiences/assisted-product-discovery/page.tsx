@@ -73,8 +73,8 @@ export default function ProductDiscoveryPage() {
                 </Portion>
             </Row>
 
-            <Row className="center-align-svg" marginBottom="tiny">
-                <AssistedHero width="100vw" className="hero-alignment" />
+            <Row className="center-align-svg" marginBottom="tiny" hideOnMobile>
+                <AssistedHero width="100vw"/>
             </Row>
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
@@ -84,7 +84,7 @@ export default function ProductDiscoveryPage() {
             </Row>
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="small">
-                <Portion desktopSpan="10">
+                <Portion desktopSpan="10" isFullHeight>
                     <Div layoutAsFlexbox style={{ gap: "16px"}} isFullHeight>
                         <Card className="horizontal-pointer-card" padding="small">
                             <IconBoxWithBraces />
@@ -104,7 +104,7 @@ export default function ProductDiscoveryPage() {
                     </Div>
                 </Portion>
                 <Portion desktopSpan="14">
-                    <Brief height="500px"/>
+                    <Brief height="500px" className="please-respond"/>
                 </Portion>
             </Row >
 
@@ -212,16 +212,16 @@ export default function ProductDiscoveryPage() {
                             </Text>
                         </Card>
                     </Portion>
-                <Portion desktopSpan="18">
+                <Portion className="margins" desktopSpan="18">
                     <ProductsMenu />
                 </Portion>
             </Row>
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
-                <Portion desktopSpan="18">
+                <Portion  className="margins"  desktopSpan="18">
                     <Home />
                 </Portion>
-                <Portion desktopSpan="6">
+                <Portion  className="margins" desktopSpan="6">
                     <Card className="violet-card" isFullHeight>
                         <Text size="medium" className="violet-text">
                             <strong>
@@ -233,7 +233,7 @@ export default function ProductDiscoveryPage() {
             </Row>
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="medium">
-                <Portion desktopSpan="6">
+                <Portion className="margins" desktopSpan="6">
                     <Card className="violet-card" isFullHeight>
                         <Text size="medium" className="violet-text">
                             <strong>
@@ -242,7 +242,7 @@ export default function ProductDiscoveryPage() {
                         </Text>
                     </Card>
                 </Portion>
-                <Portion desktopSpan="18">
+                <Portion  className="margins"  desktopSpan="18">
                     <ContactSales />
                 </Portion>
             </Row>
@@ -296,7 +296,7 @@ export default function ProductDiscoveryPage() {
                     </Card>
                 </Portion>
 
-                <Portion desktopSpan="9">
+                <Portion desktopSpan="9" hideOnMobile>
                     <Card className="stat-card" isFullHeight>
                         <Div>
                             <h6>Internal feedback</h6>
@@ -308,14 +308,14 @@ export default function ProductDiscoveryPage() {
                                     Eventually, sales team ended up spending less time in discovery and high-level solutioning—they also got more time to cross-sell other products.
                                 </Text>
                         </Div>
-                        <IconChatBubbles alt="icon" className="card-icon" />
+                        <IconChatBubbles alt="icon" className="card-icon"/>
                     </Card>
                 </Portion>
             </Row>
 
             <hr className="brown-hr"/>
 
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium">
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
                 <Portion desktopSpan="4">
                     <h5>Other projects</h5>
                 </Portion>
