@@ -16,4 +16,5 @@
   --tab-label-active       : #014C92;
   --tab-label-disabled     : #838383;
   --tab-border-active      : #014C92;
-}
+  --tab-font-family        : "Zilla Slab", serif;
+  }

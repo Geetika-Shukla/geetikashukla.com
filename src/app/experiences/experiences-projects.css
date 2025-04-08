@@ -251,6 +251,11 @@
         align-self: center;
     }
 
+    .proto-embed-container {
+        border-radius: 20px;
+        border: #D8D8D8 solid 1px;
+    }
+
 
     .modules-card {
         position: relative;
@@ -372,7 +377,7 @@
     }
 
     .modules-card svg {
-        width: 40px !important;
+        width: 48px !important;
     }
 
     .embed-container {
@@ -386,7 +391,7 @@
     }
 
     .card-front h6 {
-        font-size: 1rem; /* or any size you prefer */
+        font-size: 1.2rem;
         line-height: 1;
         margin-top: -2px !important;
     }
