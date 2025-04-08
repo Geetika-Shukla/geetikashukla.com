@@ -360,4 +360,50 @@
         max-width: 100%;
         height: auto;
     }
+
+    .pointer-card {
+        width: 88vw !important;
+        flex-direction: column;
+    }
+
+    .modules-card {
+        width: 42vw !important;
+        height: 42vw !important;
+    }
+
+    .modules-card svg {
+        width: 40px !important;
+    }
+
+    .embed-container {
+        max-width: 88vw !important;
+        padding-bottom: 56.25% !important;
+    }
+
+    .embed-container iframe {
+        height: 100% !important;
+        border-radius: 12px !important;
+    }
+
+    .card-front h6 {
+        font-size: 1rem; /* or any size you prefer */
+        line-height: 1;
+        margin-top: -2px !important;
+    }
+
+    .summary-section {
+        margin-left: 6vw;
+        margin-right: 6vw;
+    }
+
+    .center-text-mobile {
+        text-align: center;
+    }
+
+    .wrap-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
 }

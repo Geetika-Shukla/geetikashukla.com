@@ -183,7 +183,7 @@ export default function HdfcJourneysPage() {
             </Row>
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny" isFullHeight>
-                <Portion desktopSpan="12">
+                <Portion desktopSpan="12" marginBottom="tiny">
                     <Card className="hdfc-blue-card" isFullHeight>
                         <IconUsers/>
                         <br/>
@@ -256,7 +256,7 @@ export default function HdfcJourneysPage() {
                 </Portion>
             </Row>
 
-            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
+            <Row className="wrap-row" horizontalPadding="huge" marginTop="none" marginBottom="tiny">
                 <Card className="pointer-card" padding="small">
                     <Text className="overview-label" size="medium" marginTop="tiny" fontStyle="serif"><strong>PHASE 1</strong></Text>
                     <Text paddingTop="nano">
@@ -306,7 +306,7 @@ export default function HdfcJourneysPage() {
                 </Portion>
             </Row>
 
-            <Row layoutAsGrid horizontalPadding="huge" marginBottom="tiny">
+            <Row layoutAsFlexbox horizontalPadding="huge" marginBottom="tiny">
 
                 <div className="modules-card">
                     <div className="card-inner">
@@ -527,7 +527,7 @@ export default function HdfcJourneysPage() {
                 </Portion>
             </Row>
 
-            <Row layoutAsGrid horizontalPadding="huge" marginBottom="tiny">
+            <Row layoutAsFlexbox horizontalPadding="huge" marginBottom="tiny">
                 <div className="modules-card">
                     <div className="card-inner">
                         <div className="card-front">
@@ -716,9 +716,9 @@ export default function HdfcJourneysPage() {
 
             {/* ERROR STATES & EDGE CASES */}
 
-            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="medium" marginBottom="small" style={{ flexWrap: "nowrap", gap: "32px" }}
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="medium" marginBottom="small" style={{ flexWrap: "wrap", gap: "32px" }}
             >
-                <Portion desktopSpan="6" isFullHeight>
+                <Portion desktopSpan="6" mobileSpan="whole" isFullHeight>
                     <h5>Handling edge cases and error states</h5>
                     <br /><br />
                     <IconEdgeCase height="32px"/>
@@ -727,45 +727,45 @@ export default function HdfcJourneysPage() {
                         We looked at a bunch of edge cases—mostly related to regulatory requirements, bank delays, or cases where the user drops off.
                     </Text>
                 </Portion>
-                <Portion desktopSpan="10" isFullHeight>
-                    <EdgeCaseOne height="420px" />
+                <Portion className="center-text-mobile" desktopSpan="10" mobileSpan="whole" isFullHeight>
+                    <EdgeCaseOne height="420px" style={{ width: "100%" }} />
                     <Text size="tiny" marginTop="nano">
                         If vKYC isn’t completed during the journey, the customer must accept or update FD rates upon resuming.
                     </Text>
                 </Portion>
-                <Portion desktopSpan="6" isFullHeight>
-                    <EdgeCaseTwo height="420px"/>
+                <Portion className="center-text-mobile" desktopSpan="6" mobileSpan="whole" isFullHeight>
+                    <EdgeCaseTwo height="420px" style={{ width: "100%" }} />
                     <Text size="tiny" marginTop="nano">
                         FD will be funded in T+1 days, due to delays from either of the banks.
                     </Text>
                     </Portion>
             </Row>
 
-            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="tiny" marginBottom="small" style={{ flexWrap: "nowrap", gap: "32px" }}
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="tiny" marginBottom="small" style={{ flexWrap: "wrap", gap: "32px" }}
             >
-                <Portion desktopSpan="6" isFullHeight>
-                    <EdgeCaseThree height="420px"/>
+                <Portion className="center-text-mobile" desktopSpan="6" mobileSpan="whole" isFullHeight>
+                    <EdgeCaseThree height="420px" style={{ width: "100%" }} />
                     <Text size="tiny" marginTop="nano">
                         Video KYC can be done only during working hours.
                     </Text>
                 </Portion>
-                <Portion desktopSpan="6" isFullHeight>
-                    <EdgeCaseFour height="420px" />
+                <Portion className="center-text-mobile" desktopSpan="6" mobileSpan="whole" isFullHeight>
+                    <EdgeCaseFour height="420px" style={{ width: "100%" }} />
                     <Text size="tiny" marginTop="nano">
                         Let customers choose a GSTIN if multiple are linked to a PAN.
                     </Text>
                     </Portion>
-                <Portion desktopSpan="10" isFullHeight>
-                    <EdgeCaseFive height="420px"/>
+                <Portion className="center-text-mobile" desktopSpan="10" mobileSpan="whole" isFullHeight>
+                    <EdgeCaseFive height="420px" style={{ width: "100%" }} />
                     <Text size="tiny" marginTop="nano">
                         Use case where nominee is a minor. HDFC Bank allows the customer to add a guardian for them.
                     </Text>
                 </Portion>
             </Row>
 
-            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="small" marginBottom="tiny" style={{ flexWrap: "nowrap", gap: "32px" }}
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="small" marginBottom="tiny" style={{ flexWrap: "wrap", gap: "32px" }}
             >
-                <Portion desktopSpan="6">
+                <Portion desktopSpan="6" mobileSpan="whole">
                     <IconErrorState height="32px"/>
                     <h6>Error states</h6>
                     <Text marginTop="nano">
@@ -775,14 +775,14 @@ export default function HdfcJourneysPage() {
                         Also, Fictoan, our UI framework, handles the basic ones like password mismatch, invalid format, character limit etc.
                     </Text>
                 </Portion>
-                <Portion desktopSpan="6" isFullHeight>
-                    <ErrorStateOne height="420px" />
+                <Portion className="center-text-mobile" desktopSpan="6" mobileSpan="whole" isFullHeight>
+                    <ErrorStateOne height="420px" style={{ width: "100%" }} />
                     <Text size="tiny" marginTop="nano">
                         Not eligible to open a current account.
                     </Text>
                 </Portion>
-                <Portion desktopSpan="10" isFullHeight>
-                    <ErrorStateThree height="420px"/>
+                <Portion className="center-text-mobile" desktopSpan="10" mobileSpan="whole" isFullHeight>
+                    <ErrorStateThree height="420px" style={{ width: "100%" }} />
                     <Text size="tiny" marginTop="nano">
                         Network and location related— <br/>
                         Drop off due to network issue. IP is outside of India.
@@ -790,23 +790,23 @@ export default function HdfcJourneysPage() {
                 </Portion>
             </Row>
 
-            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="small" marginBottom="tiny" style={{ flexWrap: "nowrap", gap: "34px" }}
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="small" marginBottom="tiny" style={{ flexWrap: "wrap", gap: "34px" }}
             >
-                <Portion desktopSpan="5" isFullHeight>
-                    <ErrorStateTwo height="420px"/>
+                <Portion className="center-text-mobile" desktopSpan="5" mobileSpan="whole" isFullHeight>
+                    <ErrorStateTwo height="420px" style={{ width: "100%" }} />
                     <Text size="tiny" marginTop="nano">
                         Pincode entered is outside of state limits.
                     </Text>
                 </Portion>
-                <Portion desktopSpan="5" isFullHeight>
-                    <ErrorStateFive height="420px"/>
+                <Portion className="center-text-mobile" desktopSpan="5" mobileSpan="whole" isFullHeight>
+                    <ErrorStateFive height="420px" style={{ width: "100%" }} />
                     <Text size="tiny" marginTop="nano">
                         Aadhaar and mobile number are not linked.
                     </Text>
                 </Portion>
-                <Portion desktopSpan="5" isFullHeight>
-                    <ErrorStateSix height="420px"/>
-                    <Text size="tiny" marginTop="nano">
+                <Portion className="center-text-mobile" desktopSpan="5" mobileSpan="whole" isFullHeight>
+                    <ErrorStateSix height="420px" style={{ width: "100%" }} />
+                    <Text size="tiny" marginTop="nano" style={{ width: "100%" }} >
                         Session expired.
                     </Text>
                 </Portion>
@@ -815,21 +815,21 @@ export default function HdfcJourneysPage() {
 
             {/* USER TESTING */}
 
-            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="medium" marginBottom="small" style={{ flexWrap: "nowrap", gap: "20px" }}
+            <Row layoutAsFlexbox horizontalPadding="huge" marginTop="medium" marginBottom="small" style={{ flexWrap: "wrap", gap: "20px" }}
             >
-                <Portion desktopSpan="5">
+                <Portion desktopSpan="5" mobileSpan="whole">
                     <h5>Feedback from user testing</h5>
                     <Text marginTop="tiny">
                         Thanks to Vivek from our team for conducting user research and testing for the project. We implemented the following based on the feedback—
                     </Text>
                 </Portion>
-                <Portion desktopSpan="7">
-                    <TestingOne style={{ marginBottom: "20px" }} />
-                    <TestingTwo />
+                <Portion desktopSpan="7" mobileSpan="whole">
+                    <TestingOne style={{ width: "100%", marginBottom: "20px" }} />
+                    <TestingTwo style={{ width: "100%" }} />
                 </Portion>
-                <Portion desktopSpan="11">
-                    <TestingThree style={{ marginBottom: "20px" }} />
-                    <TestingFour />
+                <Portion desktopSpan="11" mobileSpan="whole">
+                    <TestingThree style={{ width: "100%", marginBottom: "20px" }} />
+                    <TestingFour style={{ width: "100%" }} />
                 </Portion>
             </Row>
 
@@ -837,14 +837,14 @@ export default function HdfcJourneysPage() {
             {/* CONCLUSION */}
 
             <Row className="summary-section" horizontalMargin="large" marginBottom="medium" marginTop="small">
-                <Portion desktopSpan="6">
+                <Portion desktopSpan="6" mobileSpan="whole">
                     <IconDiamond height="64px"/>
                     <h5>
                         Summing it up
                     </h5>
                 </Portion>
-                <Portion desktopSpan="1" />
-                <Portion desktopSpan="17" marginTop="medium">
+                <Portion desktopSpan="1" hideOnMobile/>
+                <Portion desktopSpan="17" marginTop="medium" mobileSpan="whole">
 
                     <Text marginBottom="nano">
                         We successfully concluded Phase 1, unifying HDFC Bank’s digital journeys and improving both self-service and assisted flows.                    </Text>
@@ -857,7 +857,7 @@ export default function HdfcJourneysPage() {
 
             <hr className="brown-hr"/>
 
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium">
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
                 <Portion desktopSpan="4">
                     <h5>Other projects</h5>
                 </Portion>
