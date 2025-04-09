@@ -45,6 +45,7 @@ import IconPersonWithSettings from "@/assets/images/PersonWithSettings.svg";
 import PeopleExperienceThumbnail from "@/assets/images/thumbnail-for-people-experience.svg";
 import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
 import TypeGrid from "@/assets/images/type-grid.svg";
+import ReportsThumbnail from "@/assets/images/thumbnail-for-reports.svg";
 
 
 export default function ProductDiscoveryPage() {
@@ -321,10 +322,10 @@ export default function ProductDiscoveryPage() {
                 </Portion>
 
                 <Portion desktopSpan="20" className="project-thumbnail-row">
-                    <Link href="/visual/people-experience">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <PeopleExperienceThumbnail alt="people-experience" />
-                            <Heading6 className="project-thumbnail-text" >People experience at Setu</Heading6>
+                    <Link href="/experiences/revamping-reports">
+                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
+                            <ReportsThumbnail alt="revamping-reports" />
+                            <Heading6 className="project-thumbnail-text" >Revamping reports on Bridge</Heading6>
                         </Card>
                     </Link>
                     <Link href="/visual/icon-system-for-setu">

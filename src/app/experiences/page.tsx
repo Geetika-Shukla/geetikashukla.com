@@ -26,6 +26,7 @@ import PurpleStar from "@/assets/images/purple-star.svg";
 import HDFCThumbnail from "@/assets/images/thumbnail-for-hdfc.svg";
 import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
 import PartnershipsThumbnail from "@/assets/images/thumbnail-for-partner-onboarding.svg";
+import ReportsThumbnail from "@/assets/images/thumbnail-for-reports.svg";
 import PeopleExperienceThumbnail from "@/assets/images/thumbnail-for-people-experience.svg";
 
 
@@ -79,12 +80,13 @@ const ExperiencePage = () => {
                     </Link>
 
 
-                    <Link href="../visual/people-experience">
+                    <Link href="../experiences/revamping-reports">
                         <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                            <PeopleExperienceThumbnail alt="people-experience" />
-                            <Heading6 className="project-thumbnail-text" >People experience at Setu</Heading6>
+                            <ReportsThumbnail alt="revamping-reports" />
+                            <Heading6 className="project-thumbnail-text" >Revamping reports on Bridge</Heading6>
                         </Card>
                     </Link>
+
 
                     <Link href="/">
                         <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">

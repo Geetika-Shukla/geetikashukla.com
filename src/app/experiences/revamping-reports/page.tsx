@@ -50,6 +50,7 @@ import IconHistory from "@/assets/images/DocumentWithGreenTick.svg";
 import IconRefunds from "@/assets/images/MagnifyingGlassWithRupee.svg";
 import Notifications from "@/assets/images/reports/notifications.svg";
 import DownloadSuccess from "@/assets/images/reports/download-success.svg";
+import SchedulerIA from "@/assets/images/reports/scheduler-ia.svg";
 
 
 
@@ -397,6 +398,84 @@ export default function RevampingReportsPage() {
                 </Portion>
             </Row>
 
+
+            {/* REPORTS 2.0 */}
+
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+
+                <Portion desktopSpan="8" marginRight="nano">
+                    <h5>Reports 2.0
+                        <br/>
+                        reports scheduler</h5>
+                    <Text size="small" marginTop="tiny">
+                        Reports Scheduler allows users to automate report delivery to team members—regardless of their access to Bridge.
+                    </Text>
+                    <Text size="small" marginTop="tiny">
+                        Users can schedule reports by type, product, and date range filters. They can also view history, edit, enable, or disable schedules as needed.
+                    </Text>
+                </Portion>
+
+                <Portion desktopSpan="16">
+                    <SchedulerIA className="please-respond"/>
+                </Portion>
+            </Row>
+
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
+
+                <Portion desktopSpan="8">
+                    <Card className="pointer-card" padding="small" layoutAsFlexbox>
+                        <br/>
+                        <IconRefunds/>
+                        <Text size="small" fontStyle="serif" marginTop="nano">
+                            <strong>Flexible scheduling</strong>
+                        </Text>
+                        <Text size="tiny" marginTop="nano">
+                            Set up report schedules tailored to your needs—choose the report type, product, and apply relevant filters.
+                        </Text>
+                    </Card>
+                </Portion>
+
+                <Portion desktopSpan="8">
+                    <Card className="pointer-card" padding="small" layoutAsFlexbox>
+                        <br/>
+                        <IconRefunds/>
+                        <Text size="small" fontStyle="serif" marginTop="nano">
+                            <strong>Manage schedules</strong>
+                        </Text>
+                        <Text size="tiny" marginTop="nano">
+                            Easily edit, pause, or disable any of your existing scheduled reports.
+                        </Text>
+                    </Card>
+                </Portion>
+
+                <Portion desktopSpan="8">
+                        <Card className="pointer-card" padding="small" layoutAsFlexbox>
+                            <br/>
+                            <IconRefunds/>
+                            <Text size="small" fontStyle="serif" marginTop="nano">
+                                <strong>Automated delivery</strong>
+                            </Text>
+                            <Text size="tiny" marginTop="nano">
+                                Have reports sent directly to your inbox or your team’s, even if they don’t have access to Bridge.                            </Text>
+                        </Card>
+                </Portion>
+            </Row>
+
+
+            {/* FIGMA EMBED */}
+
+            <div className="embed-container">
+                <iframe
+                    width="100%"
+                    height="400px"
+                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/Prototypes?node-id=355-7143&scaling=scale-down-width&content-scaling=fixed&page-id=325%3A6047&starting-point-node-id=355%3A7143&embed-host=share"
+                    allowFullScreen>
+                </iframe>
+            </div>
+
+            <Row marginBottom="small"/>
 
 
             {/* OTHER PROJECTS */}
