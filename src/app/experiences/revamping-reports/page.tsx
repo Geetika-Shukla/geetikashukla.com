@@ -1,0 +1,247 @@
+// EXTERNAL DEPS ===============================================================
+import React from "react";
+import Link from "next/link";
+import Image from 'next/image';
+
+// INTERNAL DEPS ===============================================================
+import {
+    Button,
+    Header,
+    Card,
+    Tabs,
+    Element,
+    Heading1,
+    Portion,
+    Row,
+    Div,
+    Text,
+    Footer,
+    CodeBlock, Heading6
+} from "fictoan-react";
+
+// COMPONENTS ==================================================================
+
+// STYLES ======================================================================
+import "../experiences-projects.css";
+import "../page-experiences.css";
+
+// ASSETS ======================================================================
+import YellowStar from "@/assets/images/yellow-star.svg";
+import ReportsHero from "@/assets/images/reports/reports-hero.svg";
+import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
+import HDFCThumbnail from "@/assets/images/thumbnail-for-hdfc.svg";
+import IconTenacity from "@/assets/images/Tenacity.svg";
+import IconSandbox from "@/assets/images/BoxWithShapes.svg";
+import IconBadge from "@/assets/images/BadgeWithRibbon.svg";
+import IconUsability from "@/assets/images/PersonWithSettings.svg";
+import IconRocket from "@/assets/images/Rocket.svg";
+import IconReports from "@/assets/images/Transactions.svg";
+import IconBridge from "@/assets/images/WindowWithBlocks.svg";
+import IconTesting from "@/assets/images/FlaskWithBraces.svg";
+import IconTools from "@/assets/images/Tools-settings.svg";
+
+
+
+export default function RevampingReportsPage() {
+
+    return (
+
+        <article className="project-page">
+
+
+            {/* HERO SECTION */}
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="small">
+                <Portion desktopSpan="10" horizontalMargin="small">
+                    <Heading1 className="hero-heading">
+                        Revamping reports on Bridge
+                    </Heading1>
+                </Portion>
+
+                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
+                    <YellowStar alt="star" height="32px"/>
+                </Portion>
+
+                <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
+                    <Div marginTop="small">
+                        <Text marginBottom="tiny">
+                            Together with Kavya and Madhuri from Setu’s design team, I worked on revamping Bridge reports over a span of two years.</Text>
+                        <Text marginBottom="tiny">
+                            This involved rethinking the experience to cater to different types of products, significant UI enhancements, and rolling out feature updates based on real usage insights.
+                        </Text>
+                    </Div>
+                </Portion>
+            </Row>
+
+            <Row className="center-align-svg" marginBottom="tiny">
+                <ReportsHero width="100vw" className="hero-alignment" />
+            </Row>
+
+
+            {/* BRIDGE OVERVIEW */}
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h5>Bridge overview</h5>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="nano" marginBottom="tiny">
+                <Portion desktopSpan="8">
+                    <Card className="bridge-cyan-card" isFullHeight>
+                        <IconBridge/>
+                        <br/>
+                        <Text size="small" marginTop="nano">
+                            Bridge is a self-serve B2B platform for Setu’s partners to independently explore, integrate, and operate financial products—with the same ease as SaaS dashboards.
+                        </Text>
+                    </Card>
+                </Portion>
+                <Portion desktopSpan="8">
+                    <Card className="bridge-grey-card" isFullHeight>
+                        <IconTesting/>
+                        <br/>
+                        <h6>API integration playground</h6>
+                        <Text size="small" marginTop="nano">
+                            Partners can configure products, test transactions, and simulate end-to-end journeys in sandbox environments before going live.                        </Text>
+                    </Card>
+                </Portion>
+                <Portion desktopSpan="8">
+                    <Card className="bridge-grey-card" isFullHeight>
+                        <IconTools/>
+                        <br/>
+                        <h6>Testing & validation Tools</h6>
+                        <Text size="small" marginTop="nano">
+                            Bridge provides tools to test setups, validate configurations, and catch errors early without developer intervention from Setu’s side.                        </Text>
+                    </Card>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
+                <Portion desktopSpan="8">
+                    <Card className="bridge-grey-card" isFullHeight>
+                        <IconReports/>
+                        <br/>
+                        <h6>Reports & reconciliation</h6>
+                        <Text size="small" marginTop="nano">
+                            Once live, partners can view detailed reports, making it easier for them to reconcile with their internal systems.
+                        </Text>
+                    </Card>
+                </Portion>
+                <Portion desktopSpan="8">
+                    <Card className="bridge-grey-card" isFullHeight>
+                        <IconUsability/>
+                        <br/>
+                        <h6>Self configuration</h6>
+                        <Text size="small" marginTop="nano">
+                            Partners can add/update business details, configure products, manage webhooks, keys, and callback URLs.
+                        </Text>
+                    </Card>
+                </Portion>
+                <Portion desktopSpan="8">
+                    <Card className="bridge-grey-card" isFullHeight>
+                        <IconRocket/>
+                        <br/>
+                        <h6>Go-live process</h6>
+                        <Text size="small" marginTop="nano">
+                            Bridge facilitates the onboarding flow for new partners—letting them move from sandbox to production smoothly.
+                        </Text>
+                    </Card>
+                </Portion>
+            </Row>
+
+
+
+            {/* SOLUTION OVERVIEW */}
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h5>Solution overview</h5>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="none">
+                <Portion desktopSpan="whole">
+                    <Card className="overview-card">
+                        <Div className="overview-content">
+                            <Div>
+                                <Text className="overview-label" marginBottom="nano" fontStyle="serif">
+                                    Revamping bridge reports
+                                </Text>
+                                <Text size="small">
+                                    Over a span of two years, this process involved rethinking the experience to cater to different types of products, significant UI enhancements, and rolling out feature updates.
+                                </Text>
+                            </Div>
+                            <Div className="overview-details">
+                                <Div marginBottom="tiny">
+                                    <Text className="overview-label" marginBottom="nano" fontStyle="serif">GO-LIVE</Text>
+                                    <Text size="small">2022–2024</Text>
+                                </Div>
+                                <Div>
+                                    <Text className="overview-label" marginBottom="nano" fontStyle="serif">MY ROLE</Text>
+                                    <Text size="small">UI and UX design</Text>
+                                </Div>
+                            </Div>
+                        </Div>
+                    </Card>
+                </Portion>
+            </Row>
+
+            <Row layoutAsFlexbox className="grid-container" horizontalPadding="huge" marginTop="tiny" marginBottom="medium">
+                <Card className="horizontal-pointer-card" padding="small">
+                    <IconSandbox />
+                    <Text>
+                        Addressed the limitations of Reports 1.0, which was built for a single product (Bill Collect).
+                    </Text>
+                </Card>
+                <Card className="horizontal-pointer-card" padding="small">
+                    <IconUsability />
+                    <Text>
+                        Improved usability through UI revamp, smarter defaults, and contextual filters.
+                    </Text>
+                    </Card>
+                <Card className="horizontal-pointer-card flex items-center gap-2" padding="small">
+                    <IconBadge />
+                    <Text>
+                        Introduced new features like Reports Scheduler to automate workflows.
+                    </Text>
+                </Card>
+                <Card className="horizontal-pointer-card" padding="small">
+                    <IconTenacity />
+                    <Text>
+                        Focused on flexibility, performance, and adoption across customers.
+                    </Text>
+                </Card>
+            </Row>
+
+
+            {/* OTHER PROJECTS */}
+
+            <hr className="brown-hr"/>
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
+                <Portion desktopSpan="4">
+                    <h5>Other projects</h5>
+                </Portion>
+
+                <Portion desktopSpan="20" className="project-thumbnail-row">
+                    <Link href="/experiences/assisted-product-discovery">
+                        <Card className="project-thumbnail" marginBottom="micro">
+                            <ProjectDiscoveryThumbnail alt="assisted-discovery-at-setu"/>
+                            <Heading6 className="project-thumbnail-text">Assisted product discovery at
+                                Setu</Heading6>
+                        </Card>
+                    </Link>
+                    <Link href="/experiences/hdfc-journeys">
+                        <Card className="project-thumbnail" marginBottom="micro">
+                            <HDFCThumbnail alt="hdfc"/>
+                            <Heading6 className="project-thumbnail-text">Digital journeys for HDFC Bank</Heading6>
+                        </Card>
+                    </Link>
+                </Portion>
+            </Row>
+
+        </article>
+    );
+};
+
+
