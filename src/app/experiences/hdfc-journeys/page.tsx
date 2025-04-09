@@ -389,30 +389,49 @@ export default function HdfcJourneysPage() {
                 </iframe>
             </div>
 
-            <Card className="full-width-banner" marginTop="tiny" marginBottom="tiny">
-                <Div className="banner-content" paddingLeft="large">
-                    <Div className="banner-text">
-                        <Text className="overview-label" marginBottom="nano">Experience the Solution in Action</Text>
-                        <Text>See how customer type—ETB or NTB—impacts the flow, in both assisted and unassisted scenarios.</Text>
-                    </Div>
-                </Div>
-                <Div className="banner-links" paddingRight="large">
-                    <Text size="tiny">
-                        <Link href="https://www.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=3-1818&p=f&t=fWs3zEiyB0EoBIXJ-1&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=3%3A1818&show-proto-sidebar=1" target="_blank" rel="noopener noreferrer">
-                            Link to assisted flow
-                        </Link>
-                    </Text>
-                    <Text size="tiny">
-                        <Link href="https://www.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=3-1625&p=f&t=fWs3zEiyB0EoBIXJ-1&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=3%3A1625&show-proto-sidebar=1" target="_blank" rel="noopener noreferrer">
-                            Link to unassisted flow
-                        </Link>
-                    </Text>
-                </Div>
-            </Card>
+            {/* FIGJAM EMBED */}
+
+            <Row horizontalPadding="huge" marginTop="tiny">
+                <Portion desktopSpan="whole">
+                <h6>Agent assisted journey
+                </h6>
+                </Portion>
+            </Row>
+
+            <div className="embed-container">
+                <iframe
+                    width="100%"
+                    height="400px"
+                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/Prototypes?node-id=3-1818&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=3%3A1818&embed-host=share"
+                    allowFullScreen>
+                </iframe>
+            </div>
+
+
+            {/*<Card className="full-width-banner" marginTop="tiny" marginBottom="tiny">*/}
+            {/*    <Div className="banner-content" paddingLeft="large">*/}
+            {/*        <Div className="banner-text">*/}
+            {/*            <Text className="overview-label" marginBottom="nano">Experience the Solution in Action</Text>*/}
+            {/*            <Text>See how customer type—ETB or NTB—impacts the flow, in both assisted and unassisted scenarios.</Text>*/}
+            {/*        </Div>*/}
+            {/*    </Div>*/}
+            {/*    <Div className="banner-links" paddingRight="large">*/}
+            {/*        <Text size="tiny">*/}
+            {/*            <Link href="https://www.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=3-1818&p=f&t=fWs3zEiyB0EoBIXJ-1&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=3%3A1818&show-proto-sidebar=1" target="_blank" rel="noopener noreferrer">*/}
+            {/*                Link to assisted flow*/}
+            {/*            </Link>*/}
+            {/*        </Text>*/}
+            {/*        <Text size="tiny">*/}
+            {/*            <Link href="https://www.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=3-1625&p=f&t=fWs3zEiyB0EoBIXJ-1&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=3%3A1625&show-proto-sidebar=1" target="_blank" rel="noopener noreferrer">*/}
+            {/*                Link to unassisted flow*/}
+            {/*            </Link>*/}
+            {/*        </Text>*/}
+            {/*    </Div>*/}
+            {/*</Card>*/}
 
             {/* MAIN MODULES */}
 
-            <Row horizontalPadding="huge" marginTop="small" marginBottom="tiny">
+            <Row horizontalPadding="huge" marginTop="tiny" marginBottom="tiny">
                 <Portion desktopSpan="whole">
                     <h6>Primary modules—</h6>
                 </Portion>

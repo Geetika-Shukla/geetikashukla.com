@@ -360,7 +360,7 @@ export default function RevampingReportsPage() {
                             <br/>
                             <IconRefunds/>
                             <Text size="small" fontStyle="serif" marginTop="nano">
-                                <strong>Refunds and transactions</strong>
+                                <strong>Transactions and refunds</strong>
                             </Text>
                             <Text size="tiny" marginTop="nano">
                                 As per the requirements, transactions and refunds are displayed as different tabs—this also support reports for other products that may have similar bifurcation.                            </Text>
