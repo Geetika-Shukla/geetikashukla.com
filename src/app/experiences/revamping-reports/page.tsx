@@ -39,6 +39,10 @@ import IconReports from "@/assets/images/Transactions.svg";
 import IconBridge from "@/assets/images/WindowWithBlocks.svg";
 import IconTesting from "@/assets/images/FlaskWithBraces.svg";
 import IconTools from "@/assets/images/Tools-settings.svg";
+import ReportsV1 from "@/assets/images/reports/reports-1.svg";
+import ReportsV2 from "@/assets/images/reports/reports-2.svg";
+import Reports1Sticky from "@/assets/images/reports/reports-1-sticky.svg";
+import Reports1SS from "@/assets/images/reports/reports-v1.svg";
 
 
 
@@ -150,7 +154,6 @@ export default function RevampingReportsPage() {
             </Row>
 
 
-
             {/* SOLUTION OVERVIEW */}
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
@@ -212,6 +215,82 @@ export default function RevampingReportsPage() {
                     </Text>
                 </Card>
             </Row>
+
+
+
+            {/* BRIDGE OVER THE YEARS */}
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h5>Bridge—over the years</h5>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
+                <Portion desktopSpan="8">
+                    <Card className="bridge-cyan-card" isFullHeight>
+                        <h6>2020–21</h6>
+                        <br/>
+                        <Text fontStyle="serif" marginTop="small">
+                            <strong>Reports 1.0</strong>
+                        </Text>
+                        <Text size="small" marginTop="nano">
+                            Designed specifically for bill payments, with basic filtering and search capabilities.
+                        </Text>
+                        <Text size="small" marginTop="nano">
+                            It was tailored to meet the needs of merchants handling transaction queries.
+                        </Text>
+                    </Card>
+                </Portion>
+                <Portion desktopSpan="16">
+                    <ReportsV1 height="334px" className="please-respond" style={{ borderRadius: "20px" }}/>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="small">
+                <Portion desktopSpan="16">
+                    <ReportsV2 height="346px" className="please-respond" style={{ borderRadius: "20px" }}/>
+                </Portion>
+                <Portion desktopSpan="8">
+                    <Card className="bridge-cyan-card" isFullHeight>
+                        <h6>2022–24</h6>
+                        <br/>
+                        <Text fontStyle="serif" marginTop="small">
+                            <strong>Reports 2.0</strong>
+                        </Text>
+                        <Text size="small" marginTop="nano">
+                            Revamped the UI based on customer usage patterns and feedback. Introduced a new feature—Reports Scheduler—to enhance the existing experience.                        </Text>
+                    </Card>
+                </Portion>
+            </Row>
+
+
+            {/* REPORTS 1.0 */}
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h5>Reports 1.0</h5>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
+                <Portion desktopSpan="8" marginRight="nano">
+                    <h6>Here is the very first version of reports on the Bridge.</h6>
+                    <Text size="small" marginTop="tiny">
+                        Designed specifically for bill payments, the reports focused on fetching transactions using filters like date range, instrument type, and bill status. Merchants could also search using various IDs.
+                    </Text>
+                </Portion>
+                <Portion desktopSpan="16">
+                    <Reports1Sticky className="please-respond"/>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <Reports1SS style={{ borderRadius: "20px" }}/>
+                </Portion>
+            </Row>
+
 
 
             {/* OTHER PROJECTS */}

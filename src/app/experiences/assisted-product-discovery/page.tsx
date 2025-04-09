@@ -176,7 +176,7 @@ export default function ProductDiscoveryPage() {
                         Users receive <strong>tailored recommendations based on their answers</strong>, making the process more intuitive than manually browsing products.
                     </Text>
                 </Card>
-            </Row>
+            </Row >
 
             <Card className="full-width-banner">
                 <Div className="banner-content" paddingLeft="large">
