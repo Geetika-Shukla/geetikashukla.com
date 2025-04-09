@@ -43,6 +43,13 @@ import ReportsV1 from "@/assets/images/reports/reports-1.svg";
 import ReportsV2 from "@/assets/images/reports/reports-2.svg";
 import Reports1Sticky from "@/assets/images/reports/reports-1-sticky.svg";
 import Reports1SS from "@/assets/images/reports/reports-v1.svg";
+import IconFunnel from "@/assets/images/FunnelWithPlusSymbol.svg";
+import IconTransactions from "@/assets/images/PaperWithCoin.svg";
+import IconFileType from "@/assets/images/DocumentWithArrow.svg";
+import IconHistory from "@/assets/images/DocumentWithGreenTick.svg";
+import IconRefunds from "@/assets/images/MagnifyingGlassWithRupee.svg";
+import Notifications from "@/assets/images/reports/notifications.svg";
+import DownloadSuccess from "@/assets/images/reports/download-success.svg";
 
 
 
@@ -288,6 +295,105 @@ export default function RevampingReportsPage() {
             <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
                 <Portion desktopSpan="whole">
                     <Reports1SS style={{ borderRadius: "20px" }}/>
+                </Portion>
+            </Row>
+
+            {/* REPORTS 2.0 */}
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h5>Reports 2.0</h5>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
+                <Portion desktopSpan="8">
+                    <Div layoutAsFlexbox style={{gap: "16px"}} isFullHeight>
+                        <Card className="pointer-card" padding="small" layoutAsFlexbox>
+                            <h6>General</h6>
+                            <br/>
+                            <IconFunnel/>
+                            <Text size="small" fontStyle="serif" marginTop="nano">
+                                <strong>Search and filters</strong>
+                            </Text>
+                            <Text size="tiny" marginTop="nano">
+                                Reduced upfront filters by moving all product-specific ones into the side panel for a cleaner experience.
+                            </Text>
+                        </Card>
+                        <Card className="pointer-card" padding="small" layoutAsFlexbox>
+                            <IconTransactions/>
+                            <Text size="small" fontStyle="serif" marginTop="nano">
+                                <strong>Transaction details</strong>
+                            </Text>
+                            <Text size="tiny" marginTop="nano">
+                                Clicking on a transaction row reveals detailed information as a slip on the side panel.
+                            </Text>
+                        </Card>
+                    </Div>
+                </Portion>
+                <Portion desktopSpan="8">
+                    <Div layoutAsFlexbox style={{gap: "16px"}} isFullHeight>
+                        <Card className="pointer-card" padding="small" layoutAsFlexbox>
+                            <h6>Download functionality</h6>
+                            <br/>
+                            <IconFileType/>
+                            <Text size="small" fontStyle="serif" marginTop="nano">
+                                <strong>File type and email</strong>
+                            </Text>
+                            <Text size="tiny" marginTop="nano">
+                                Allow CSV and XLS file download. There’s also an option to email the same file to the email id of the user logged in.                            </Text>
+                        </Card>
+                        <Card className="pointer-card" padding="small" layoutAsFlexbox>
+                            <IconHistory/>
+                            <Text size="small" fontStyle="serif" marginTop="nano">
+                                <strong>Download history</strong>
+                            </Text>
+                            <Text size="tiny" marginTop="nano">
+                                Access to download logs along with option to download the files again.                            </Text>
+                        </Card>
+                    </Div>
+                </Portion>
+                <Portion desktopSpan="8">
+                    <Div layoutAsFlexbox style={{gap: "16px"}} isFullHeight>
+                        <Card className="pointer-card" padding="small" layoutAsFlexbox>
+                            <h6>Other changes</h6>
+                            <br/>
+                            <IconRefunds/>
+                            <Text size="small" fontStyle="serif" marginTop="nano">
+                                <strong>Refunds and transactions</strong>
+                            </Text>
+                            <Text size="tiny" marginTop="nano">
+                                As per the requirements, transactions and refunds are displayed as different tabs—this also support reports for other products that may have similar bifurcation.                            </Text>
+                        </Card>
+                    </Div>
+                </Portion>
+            </Row>
+
+
+            {/* FIGMA EMBED */}
+
+            <div className="embed-container">
+                <iframe
+                    width="100%"
+                    height="400px"
+                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/Prototypes?node-id=325-6658&p=f&scaling=scale-down-width&content-scaling=fixed&page-id=325%3A6047&embed-host=share"
+                    allowFullScreen>
+                </iframe>
+            </div>
+
+
+            {/* Notifications */}
+
+            <Row horizontalPadding="huge" marginTop="nano" marginBottom="tiny">
+                <Portion desktopSpan="9" marginRight="nano" isFullHeight>
+                    <h6>Catering to edge cases</h6>
+                    <Text size="small" marginTop="tiny" marginBottom="tiny">
+                        Added notifications for empty search results and limitations related to time range or file size.
+                    </Text>
+                    <Notifications className="please-respond"/>
+                </Portion>
+                <Portion desktopSpan="15">
+                    <DownloadSuccess className="please-respond"/>
                 </Portion>
             </Row>
 
