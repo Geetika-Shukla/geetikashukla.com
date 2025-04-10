@@ -236,13 +236,14 @@
     .project-thumbnail-row {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        gap: 2vw;
+
     }
 
     .project-thumbnail {
         position: relative;
-        width: 400px;
-        height: 200px;
+        width: 26vw;
+        height: 12vw;
         overflow: hidden;
         text-align: end;
         border-radius: 20px;
@@ -259,6 +260,7 @@
         color: #BE9B74;
         bottom: 24px;
         right: 32px;
+        font-size: 1rem;
     }
 
     .embed-container {

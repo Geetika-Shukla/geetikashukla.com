@@ -42,9 +42,7 @@ import IconFunnelWithPlusSymbol from "@/assets/images/FunnelWithPlusSymbol.svg";
 import IconChatBubbles from "@/assets/images/ChatBubbles.svg";
 import IconMobilewithCursor from "@/assets/images/MobilewithCursor.svg";
 import IconPersonWithSettings from "@/assets/images/PersonWithSettings.svg";
-import PeopleExperienceThumbnail from "@/assets/images/thumbnail-for-people-experience.svg";
 import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
-import TypeGrid from "@/assets/images/type-grid.svg";
 import ReportsThumbnail from "@/assets/images/thumbnail-for-reports.svg";
 
 

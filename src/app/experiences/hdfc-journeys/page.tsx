@@ -402,7 +402,7 @@ export default function HdfcJourneysPage() {
                 <iframe
                     width="100%"
                     height="400px"
-                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/Prototypes?node-id=3-1818&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=3%3A1818&embed-host=share"
+                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/Prototypes?scaling=scale-down&content-scaling=responsive&page-id=0%3A1&node-id=3-1818&starting-point-node-id=3%3A1818&embed-host=share"
                     allowFullScreen>
                 </iframe>
             </div>
@@ -623,7 +623,7 @@ export default function HdfcJourneysPage() {
                                 <iframe className="proto-embed-container"
                                     width="100%"
                                     height="900px"
-                                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=87-7343&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=87%3A7343&embed-host=share"
+                                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/Prototypes?scaling=scale-down&content-scaling=responsive&page-id=0%3A1&node-id=87-7343&starting-point-node-id=87%3A7343&embed-host=share"
                                     allowFullScreen></iframe>
                             )
                         },
@@ -635,7 +635,7 @@ export default function HdfcJourneysPage() {
                                     className="proto-embed-container"
                                     width="100%"
                                     height="900px"
-                                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=100-6120&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=100%3A6120&embed-host=share"
+                                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/Prototypes?scaling=scale-down&content-scaling=responsive&page-id=0%3A1&node-id=100-6120&starting-point-node-id=100%3A6120&embed-host=share"
                                     allowFullScreen></iframe>
                             )
                         },
@@ -647,7 +647,7 @@ export default function HdfcJourneysPage() {
                                     className="proto-embed-container"
                                     width="100%"
                                     height="900px"
-                                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=65-5997&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=65%3A5997&embed-host=share"
+                                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/Prototypes?scaling=scale-down&content-scaling=responsive&page-id=0%3A1&node-id=65-5997&starting-point-node-id=65%3A5997&embed-host=share"
                                     allowFullScreen></iframe>
                             )
                         },
@@ -659,7 +659,7 @@ export default function HdfcJourneysPage() {
                                     className="proto-embed-container"
                                     width="100%"
                                     height="900px"
-                                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/HDFC?node-id=82-6426&p=f&scaling=scale-down&content-scaling=responsive&page-id=0%3A1&starting-point-node-id=82%3A6426&embed-host=share"
+                                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/Prototypes?scaling=scale-down&content-scaling=responsive&page-id=0%3A1&node-id=82-6426&starting-point-node-id=82%3A6426&embed-host=share"
                                     allowFullScreen></iframe>
                             )
                         }
@@ -849,7 +849,7 @@ export default function HdfcJourneysPage() {
                     <TestingOne style={{ width: "100%", marginBottom: "20px" }} />
                     <TestingTwo style={{ width: "100%" }} />
                 </Portion>
-                <Portion desktopSpan="11" mobileSpan="whole">
+                <Portion desktopSpan="10" mobileSpan="whole">
                     <TestingThree style={{ width: "100%", marginBottom: "20px" }} />
                     <TestingFour style={{ width: "100%" }} />
                 </Portion>

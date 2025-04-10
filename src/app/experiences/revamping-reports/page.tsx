@@ -48,6 +48,9 @@ import IconTransactions from "@/assets/images/PaperWithCoin.svg";
 import IconFileType from "@/assets/images/DocumentWithArrow.svg";
 import IconHistory from "@/assets/images/DocumentWithGreenTick.svg";
 import IconRefunds from "@/assets/images/MagnifyingGlassWithRupee.svg";
+import IconJigsaw from "@/assets/images/Jigsaw.svg";
+import IconCalendar from "@/assets/images/Calendar.svg";
+import IconEnvelope from "@/assets/images/Envelope.svg";
 import Notifications from "@/assets/images/reports/notifications.svg";
 import DownloadSuccess from "@/assets/images/reports/download-success.svg";
 import SchedulerIA from "@/assets/images/reports/scheduler-ia.svg";
@@ -185,7 +188,7 @@ export default function RevampingReportsPage() {
                             <Div className="overview-details">
                                 <Div marginBottom="tiny">
                                     <Text className="overview-label" marginBottom="nano" fontStyle="serif">GO-LIVE</Text>
-                                    <Text size="small">2022–2024</Text>
+                                    <Text size="small">2022–2023</Text>
                                 </Div>
                                 <Div>
                                     <Text className="overview-label" marginBottom="nano" fontStyle="serif">MY ROLE</Text>
@@ -261,7 +264,7 @@ export default function RevampingReportsPage() {
                 </Portion>
                 <Portion desktopSpan="8">
                     <Card className="bridge-cyan-card" isFullHeight>
-                        <h6>2022–24</h6>
+                        <h6>2022–23</h6>
                         <br/>
                         <Text fontStyle="serif" marginTop="small">
                             <strong>Reports 2.0</strong>
@@ -427,7 +430,7 @@ export default function RevampingReportsPage() {
                 <Portion desktopSpan="8">
                     <Card className="pointer-card" padding="small" layoutAsFlexbox>
                         <br/>
-                        <IconRefunds/>
+                        <IconCalendar/>
                         <Text size="small" fontStyle="serif" marginTop="nano">
                             <strong>Flexible scheduling</strong>
                         </Text>
@@ -440,7 +443,7 @@ export default function RevampingReportsPage() {
                 <Portion desktopSpan="8">
                     <Card className="pointer-card" padding="small" layoutAsFlexbox>
                         <br/>
-                        <IconRefunds/>
+                        <IconJigsaw/>
                         <Text size="small" fontStyle="serif" marginTop="nano">
                             <strong>Manage schedules</strong>
                         </Text>
@@ -453,7 +456,7 @@ export default function RevampingReportsPage() {
                 <Portion desktopSpan="8">
                         <Card className="pointer-card" padding="small" layoutAsFlexbox>
                             <br/>
-                            <IconRefunds/>
+                            <IconEnvelope/>
                             <Text size="small" fontStyle="serif" marginTop="nano">
                                 <strong>Automated delivery</strong>
                             </Text>
@@ -487,7 +490,7 @@ export default function RevampingReportsPage() {
                     <h5>Other projects</h5>
                 </Portion>
 
-                <Portion desktopSpan="20" className="project-thumbnail-row">
+                <Portion desktopSpan="18" className="project-thumbnail-row">
                     <Link href="/experiences/assisted-product-discovery">
                         <Card className="project-thumbnail" marginBottom="micro">
                             <ProjectDiscoveryThumbnail alt="assisted-discovery-at-setu"/>
