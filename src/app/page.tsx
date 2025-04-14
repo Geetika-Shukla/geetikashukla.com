@@ -66,6 +66,13 @@ export default function Home() {
 
             <Row className="category-row" layoutAsFlexbox horizontalPadding="huge" marginTop="none" horizontallyCenterThis>
 
+                <Link href="/experiences">
+                    <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
+                        <ExpCover />
+                        <Heading6 className="category-thumbnail-text" >Experiences</Heading6>
+                    </Card>
+                </Link>
+
                 <Link href="/visual">
                     <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
                         <VDCover />
@@ -80,12 +87,6 @@ export default function Home() {
                     </Card>
                 </Link>
 
-                <Link href="/experiences">
-                    <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
-                        <ExpCover />
-                        <Heading6 className="category-thumbnail-text" >Experiences</Heading6>
-                    </Card>
-                </Link>
             </Row>
 
 
