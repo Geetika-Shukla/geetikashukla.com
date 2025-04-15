@@ -140,6 +140,13 @@
         gap: 32px;
     }
 
+    .overview-content-half {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: space-between;
+        gap: 32px;
+    }
+
     .overview-details {
         display: flex;
         flex-direction: column;
