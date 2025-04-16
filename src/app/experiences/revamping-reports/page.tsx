@@ -312,9 +312,9 @@ export default function RevampingReportsPage() {
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
                 <Portion desktopSpan="8">
-                    <Div layoutAsFlexbox style={{gap: "16px"}} isFullHeight>
+                    <Div layoutAsFlexbox style={{gap: "16px"}}>
+                        <h6>General</h6>
                         <Card className="pointer-card" padding="small" layoutAsFlexbox>
-                            <h6>General</h6>
                             <br/>
                             <IconFunnel/>
                             <Text size="small" fontStyle="serif" marginTop="nano">
@@ -336,9 +336,9 @@ export default function RevampingReportsPage() {
                     </Div>
                 </Portion>
                 <Portion desktopSpan="8">
-                    <Div layoutAsFlexbox style={{gap: "16px"}} isFullHeight>
+                    <Div layoutAsFlexbox style={{gap: "16px"}}>
+                        <h6>Download functionality</h6>
                         <Card className="pointer-card" padding="small" layoutAsFlexbox>
-                            <h6>Download functionality</h6>
                             <br/>
                             <IconFileType/>
                             <Text size="small" fontStyle="serif" marginTop="nano">
@@ -358,9 +358,9 @@ export default function RevampingReportsPage() {
                     </Div>
                 </Portion>
                 <Portion desktopSpan="8">
-                    <Div layoutAsFlexbox style={{gap: "16px"}} isFullHeight>
+                    <Div layoutAsFlexbox style={{gap: "16px"}}>
+                        <h6>Other changes</h6>
                         <Card className="pointer-card" padding="small" layoutAsFlexbox>
-                            <h6>Other changes</h6>
                             <br/>
                             <IconRefunds/>
                             <Text size="small" fontStyle="serif" marginTop="nano">
