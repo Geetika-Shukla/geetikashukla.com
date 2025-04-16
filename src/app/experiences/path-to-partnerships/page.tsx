@@ -27,13 +27,13 @@ import "../page-experiences.css";
 
 // ASSETS ======================================================================
 import YellowStar from "@/assets/images/yellow-star.svg";
-import PartnershipsHero from "@/assets/images/partnerships-cover.svg";
+import PartnershipsHero from "@/assets/images/building-partnerships/partnerships-cover.svg";
 import ExistingLogos from "@/assets/images/building-partnerships/existing-logos.svg";
 import ExistingBlog from "@/assets/images/building-partnerships/existing-blog.svg";
 import TestimonialPlacement from "@/assets/images/building-partnerships/testimonials-placement.svg";
-import Bridge from "@/assets/images/building-partnerships/bridge.svg";
+import BridgeOne from "@/assets/images/building-partnerships/bridge-1.svg";
+import BridgeTwo from "@/assets/images/building-partnerships/bridge-2.svg";
 import Mailers from "@/assets/images/building-partnerships/mailers.svg";
-
 import HDFCThumbnail from "@/assets/images/thumbnail-for-hdfc.svg";
 import IconWallOfLove from "@/assets/images/PersonWithHeart.svg";
 import IconLink from "@/assets/images/Link.svg";
@@ -75,8 +75,8 @@ export default function RevampingReportsPage() {
                         <Text marginBottom="tiny">
                             This project focused on enhancing the user experience and building trust across various discovery and onboarding touch points for potential partners and clients at Setu.
                         </Text>
-                            <Text marginBottom="tiny">
-                                Key initiatives include creating testimonials, case studies, bridge onboarding screens, mailers, and product showcase videos.
+                        <Text marginBottom="tiny">
+                            I led these initiatives end-to-end, covering web design, videos, motion design, illustrations, and development for Setu’s latest case studies.
                         </Text>
                     </Div>
                 </Portion>
@@ -86,8 +86,8 @@ export default function RevampingReportsPage() {
                 <PartnershipsHero width="100vw" className="hero-alignment" />
             </Row>
 
-            <Row horizontallyCenterThis>
-                <Text className="credits" align="center"><em>Special thanks to Pankaj for leading the development, and to Monika and Pete from the Growth and Marketing team for content and collaborative jamming sessions.</em></Text>
+            <Row horizontalPadding="large" horizontallyCenterThis>
+                <Text className="credits" align="center"><em>Special thanks to Pankaj for leading the development, and to Monika and Pete from the Growth and Marketing team for content and collaborative jamming sessions, and to Vivek for helping with the Account Aggregator screens for the video.</em></Text>
             </Row>
 
 
@@ -109,7 +109,7 @@ export default function RevampingReportsPage() {
             <Row horizontalPadding="huge" marginTop="nano" marginBottom="tiny">
 
                 <Portion desktopSpan="8">
-                    <Text marginBottom="tiny">
+                    <Text marginTop="tiny" marginBottom="tiny">
                         We started by mapping touch points for both new and existing users across Setu’s website and B2B self-serve platform, Bridge.
                     </Text>
                     <Text>
@@ -118,7 +118,7 @@ export default function RevampingReportsPage() {
                 </Portion>
 
                 <Portion desktopSpan="8">
-                    <Div layoutAsFlexbox style={{gap: "16px"}} isFullHeight>
+                    <Div marginTop="tiny" layoutAsFlexbox style={{gap: "16px"}} isFullHeight>
                         <h6>Discovery</h6>
                         <Card className="bridge-grey-card" padding="small" layoutAsFlexbox>
                             <IconWallOfLove/>
@@ -143,9 +143,8 @@ export default function RevampingReportsPage() {
                 </Portion>
 
                 <Portion desktopSpan="8">
-                    <Div layoutAsFlexbox style={{gap: "16px"}} isFullHeight>
+                    <Div marginTop="tiny" layoutAsFlexbox style={{gap: "16px"}} isFullHeight>
                         <h6>Onboarding</h6>
-
                         <Card className="bridge-grey-card" padding="small" layoutAsFlexbox>
                             <IconBridge/>
                             <Text size="small" fontStyle="serif" marginTop="nano">
@@ -257,8 +256,6 @@ export default function RevampingReportsPage() {
                 <Portion desktopSpan="16">
                     <ExistingLogos className="please-respond" style={{ borderRadius: "20px" }}/>
                 </Portion>
-
-
             </Row>
 
 
@@ -273,7 +270,6 @@ export default function RevampingReportsPage() {
                     allowFullScreen>
                 </iframe>
             </div>
-
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
 
@@ -390,10 +386,17 @@ export default function RevampingReportsPage() {
             </Row>
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
-                <Portion desktopSpan="whole">
-                    <Bridge className="please-respond" style={{ borderRadius: "20px" }}/>
+                <Portion desktopSpan="whole" mobileSpan="whole">
+                    <BridgeOne />
                 </Portion>
             </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
+                <Portion desktopSpan="whole" mobileSpan="whole">
+                    <BridgeTwo />
+                </Portion>
+            </Row>
+
 
             {/* MAILERS AND VIDEOS */}
 
@@ -415,37 +418,46 @@ export default function RevampingReportsPage() {
             </Row>
 
 
+            {/* YOUTUBE EMBED */}
+
+            <div className="embed-container">
+                <iframe
+                    width="100%"
+                    height="200px"
+                    src="https://www.youtube.com/embed/9FVkApowTBs"
+                    allowFullScreen>
+                </iframe>
+            </div>
 
 
-            {/* OTHER PROJECTS */}
 
-            <hr className="brown-hr"/>
+            {/* LINKS  */}
 
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
-                <Portion desktopSpan="6">
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="small" hideOnMobile>
+                <Portion desktopSpan="6" mobileSpan="whole">
                     <h5>Experience these in action</h5>
                 </Portion>
 
-                <Portion desktopSpan="18" className="project-thumbnail-row">
+                <Portion desktopSpan="17" className="project-thumbnail-row">
                     <Link href="https://setu.co/testimonials/">
                         <Card className="bridge-cyan-card" horizontalMargin="tiny" marginBottom="micro">
                             <IconHistory alt="testimonials" />
                             <br/>
-                            <Heading6 fontStyle="serif">Testimonials</Heading6>
+                            <Text size="small" fontStyle="serif">Testimonials</Text>
                         </Card>
                     </Link>
                     <Link href="https://setu.co/case-studies/">
                         <Card className="bridge-cyan-card" horizontalMargin="tiny" marginBottom="micro">
                             <IconRocket alt="case studies" />
                             <br/>
-                            <Heading6 fontStyle="serif">Setu Impact</Heading6>
+                            <Text size="small" fontStyle="serif">Setu Impact</Text>
                         </Card>
                     </Link>
                     <Link href="https://www.youtube.com/@setu-fintech/videos">
                         <Card className="bridge-cyan-card" horizontalMargin="tiny" marginBottom="micro">
                             <IconPlay alt="youtube" />
                             <br/>
-                            <Heading6 fontStyle="serif">Setu's youtube channel</Heading6>
+                            <Text size="small" fontStyle="serif">Setu’s youtube channel</Text>
                         </Card>
                     </Link>
                 </Portion>
