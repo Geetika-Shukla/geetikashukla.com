@@ -29,7 +29,11 @@ import "../page-experiences.css";
 import YellowStar from "@/assets/images/yellow-star.svg";
 import PartnershipsHero from "@/assets/images/partnerships-cover.svg";
 import ExistingLogos from "@/assets/images/building-partnerships/existing-logos.svg";
+import ExistingBlog from "@/assets/images/building-partnerships/existing-blog.svg";
 import TestimonialPlacement from "@/assets/images/building-partnerships/testimonials-placement.svg";
+import Bridge from "@/assets/images/building-partnerships/bridge.svg";
+import Mailers from "@/assets/images/building-partnerships/mailers.svg";
+
 import HDFCThumbnail from "@/assets/images/thumbnail-for-hdfc.svg";
 import IconWallOfLove from "@/assets/images/PersonWithHeart.svg";
 import IconLink from "@/assets/images/Link.svg";
@@ -320,6 +324,130 @@ export default function RevampingReportsPage() {
                         We placed CTAs on homepage, primary navigation and footer—
                     </Text>
                     <TestimonialPlacement style={{ borderRadius: "20px" }}/>
+                </Portion>
+            </Row>
+
+
+            {/* SETU IMPACT */}
+
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <Div marginBottom="nano">
+                        <IconRocket width="48px" height="48px" />
+                    </Div>
+                    <h5>Setu Impact</h5>
+                    <Text marginTop="nano">Case studies</Text>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
+                <Portion desktopSpan="8" isFullHeight>
+                    <Card className="bridge-grey-card" isFullHeight>
+                        <Text marginBottom="tiny">
+                            Initially, Setu’s case studies lived on the blog, mixed with other team articles.
+                        </Text>
+                        <Text marginBottom="tiny">
+                            We aimed to create a dedicated space with a consistent structure and design to house them all.
+                        </Text>
+                        <Text marginBottom="tiny">
+                            A snippet of Setu blog—
+                        </Text>
+                    </Card>
+                </Portion>
+                <Portion desktopSpan="16">
+                    <ExistingBlog className="please-respond" style={{ borderRadius: "20px" }}/>
+                </Portion>
+
+
+            </Row>
+
+
+
+            {/* FIGMA EMBED */}
+
+            <div className="embed-container">
+                <iframe
+                    width="100%"
+                    height="400px"
+                    src="https://embed.figma.com/proto/w0anbvzmhQZsuneSdO9U3S/Prototypes?node-id=532-2035&scaling=scale-down-width&content-scaling=fixed&page-id=463%3A6047&starting-point-node-id=532%3A2035&embed-host=share"
+                    allowFullScreen>
+                </iframe>
+            </div>
+
+
+            {/* BRIDGE */}
+
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <Div marginBottom="nano">
+                        <IconBridge width="48px" height="48px" />
+                    </Div>
+                    <h5>Bridge onboarding</h5>
+                    <Text marginTop="nano">B2B self-serve platform for financial journeys</Text>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <Bridge className="please-respond" style={{ borderRadius: "20px" }}/>
+                </Portion>
+            </Row>
+
+            {/* MAILERS AND VIDEOS */}
+
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <Div marginBottom="nano">
+                        <IconPlay width="48px" height="48px" />
+                    </Div>
+                    <h5>Mailers and videos</h5>
+                    <Text marginTop="nano">Product updates and showcase videos and mailers</Text>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <Mailers className="please-respond" style={{ borderRadius: "20px" }}/>
+                </Portion>
+            </Row>
+
+
+
+
+            {/* OTHER PROJECTS */}
+
+            <hr className="brown-hr"/>
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
+                <Portion desktopSpan="6">
+                    <h5>Experience these in action</h5>
+                </Portion>
+
+                <Portion desktopSpan="18" className="project-thumbnail-row">
+                    <Link href="https://setu.co/testimonials/">
+                        <Card className="bridge-cyan-card" horizontalMargin="tiny" marginBottom="micro">
+                            <IconHistory alt="testimonials" />
+                            <br/>
+                            <Heading6 fontStyle="serif">Testimonials</Heading6>
+                        </Card>
+                    </Link>
+                    <Link href="https://setu.co/case-studies/">
+                        <Card className="bridge-cyan-card" horizontalMargin="tiny" marginBottom="micro">
+                            <IconRocket alt="case studies" />
+                            <br/>
+                            <Heading6 fontStyle="serif">Setu Impact</Heading6>
+                        </Card>
+                    </Link>
+                    <Link href="https://www.youtube.com/@setu-fintech/videos">
+                        <Card className="bridge-cyan-card" horizontalMargin="tiny" marginBottom="micro">
+                            <IconPlay alt="youtube" />
+                            <br/>
+                            <Heading6 fontStyle="serif">Setu's youtube channel</Heading6>
+                        </Card>
+                    </Link>
                 </Portion>
             </Row>
 
