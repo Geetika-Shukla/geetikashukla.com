@@ -27,7 +27,9 @@ import HDFCThumbnail from "@/assets/images/thumbnail-for-hdfc.svg";
 import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
 import PartnershipsThumbnail from "@/assets/images/thumbnail-for-partner-onboarding.svg";
 import ReportsThumbnail from "@/assets/images/thumbnail-for-reports.svg";
-import PeopleExperienceThumbnail from "@/assets/images/thumbnail-for-people-experience.svg";
+import COUThumbnail from "@/assets/images/thumbnail-for-cou.svg";
+import AtherThumbnail from "@/assets/images/thumbnail-for-ather.svg";
+
 
 
 const ExperiencePage = () => {
@@ -40,7 +42,7 @@ const ExperiencePage = () => {
                 </Portion>
                 <Portion desktopSpan="8">
                     <Heading1 className="hero-heading">
-                        All things interface
+                        All things experience
                     </Heading1>
                 </Portion>
                 <Portion desktopSpan="2" marginTop="small" hideOnMobile>
@@ -94,6 +96,16 @@ const ExperiencePage = () => {
                             <Heading6 className="project-thumbnail-text" >Path to partnerships at Setu</Heading6>
                         </Card>
                     </Link>
+
+                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
+                            <COUThumbnail alt="Ather Energy" />
+                            <Heading6 className="project-thumbnail-text" >Bill Pay — payment experience </Heading6>
+                        </Card>
+
+                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
+                            <AtherThumbnail alt="Ather Energy" />
+                            <Heading6 className="project-thumbnail-text" >Ather Go — exhibition design system</Heading6>
+                        </Card>
 
                 </Portion>
             </Row>
