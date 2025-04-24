@@ -189,7 +189,7 @@ export default function HdfcJourneysPage() {
                         <br/>
                         <h6>Target audience</h6>
                         <Text size="small" marginTop="nano">
-                            As India’s largest private sector bank, HDFC Bank’s apps and portals cater to a broad user base, unlike niche neobanks. The primary audience includes users from Tier 2 and Tier 3 cities.
+                            As India’s largest private sector bank, HDFC Bank’s apps and portals cater to a broad user base, unlike niche neobanks. The primary audience includes users from Tier 1 and Tier 2 cities.
                         </Text>
                     </Card>
                 </Portion>
