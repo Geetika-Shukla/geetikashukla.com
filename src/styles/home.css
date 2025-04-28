@@ -80,9 +80,9 @@
 
     .scroll-container > * {
         scroll-snap-align: start;
-        flex: 0 0 45%;
-        max-width: 45%;
-        min-width: 45%;
+        flex: 0 0 30%;
+        max-width: 30%;
+        min-width: 30%;
         flex-shrink: 0;
     }
 
