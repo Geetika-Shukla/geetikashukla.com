@@ -31,7 +31,7 @@ import calliOne from "@/assets/images/calli-1.png";
 import calliTwo from "@/assets/images/calli-2.png";
 import ghibli from "@/assets/images/ghibli-image.jpg";
 import sleeve from "@/assets/images/laptop-sleeve.jpg";
-import japanFic from "@/assets/images/japan-fiction.jpg";
+import japanFic from "@/assets/images/japan-books.jpg";
 import lego from "@/assets/images/japan-lego.jpg";
 import plants from "@/assets/images/plants.gif";
 import spirited from "@/assets/images/spirited-away.jpg";

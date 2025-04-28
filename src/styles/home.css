@@ -70,13 +70,27 @@
         gap: 10px;
         padding: 8px;
         width: 100%;
+        scroll-snap-type: x mandatory;
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scroll-padding-left: 6vw;
+        scroll-padding-right: 6vw;
+    }
+
+    .scroll-container > * {
+        scroll-snap-align: start;
+        flex: 0 0 45%;
+        max-width: 45%;
+        min-width: 45%;
     }
 
     .platform-scroll-section {
         margin-left: 6vw;
         margin-right: 6vw;
         width: 90vw;
-        overflow: hidden;
+        overflow-x: visible;
+        overflow-y: hidden;
     }
 
     .scroll-item {
