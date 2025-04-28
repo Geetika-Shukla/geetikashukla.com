@@ -72,7 +72,7 @@
         width: 100%;
         scroll-snap-type: x mandatory;
         display: flex;
-        overflow-x: auto;
+        overflow-x: scroll;
         scroll-behavior: smooth;
         scroll-padding-left: 6vw;
         scroll-padding-right: 6vw;
@@ -83,6 +83,7 @@
         flex: 0 0 45%;
         max-width: 45%;
         min-width: 45%;
+        flex-shrink: 0;
     }
 
     .platform-scroll-section {
