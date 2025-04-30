@@ -11,7 +11,8 @@
     }
 
     .category-thumbnail:hover {
-        background-color: #faf4ea;
+        background-color: #F8F0E2;
+        box-shadow: 2px 2px 4px 2px #EFEFEF;
     }
 
     .category-thumbnail-text {
