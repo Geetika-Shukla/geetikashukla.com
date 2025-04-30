@@ -1,5 +1,9 @@
 #page-home {
 
+    .intro-text {
+        font-weight: 600;
+    }
+
     .category-thumbnail {
         position: relative;
         width: 25vh;
@@ -21,6 +25,20 @@
         color: #BE9B74;
         bottom: 24px;
         right: 32px;
+    }
+
+    .resume-button {
+        display: inline-block;
+        padding: 10px 20px;
+        text-decoration: none;
+        background-color: #EBF4FF;
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+    }
+
+    .resume-button:hover {
+        background-color: #DBECFF;
+        color: white;
     }
 
     .testimonial-card {

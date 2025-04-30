@@ -6,6 +6,13 @@
 }
 
 @font-face {
+    font-family: "barlow";
+    src: url("../assets/fonts/barlow/Barlow-Medium.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
     font-family: "zilla-slab";
     src: url("../assets/fonts/zilla-slab/ZillaSlab-Light.ttf") format("truetype");
     font-weight: 300;

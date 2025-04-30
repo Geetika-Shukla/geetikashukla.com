@@ -50,13 +50,23 @@ export default function Home() {
                     <YellowStar alt="star" height="32px" />
                 </Portion>
                 <Portion desktopSpan="10" marginBottom="small">
-                    <Div marginTop="small">
-                        <Text>I’m Geetika, a multidisciplinary designer. I’m an eager learner and a pre-crastinator.</Text>
-                        <br />
+                    <Div marginTop="small" className="intro-text">
+                        <Text>I’m Geetika, a multi-disciplinary designer with around 7 years of experience spanning
+                            brand, exhibition, web, and product design.
+                        </Text>
 
-                        <Text>Previously, I’ve worked as an architect. I’ve also dabbled in exhibition design, brand design, user
-                            interface and
-                            experience design, web design, and a little bit of illustrations and coding too.</Text>
+                        <br/>
+
+                        <Text>I’ve spent the last 5 years designing 0–1 fintech B2B SaaS products—applying systems
+                            thinking with purposeful visual design to turn complex ideas into intuitive user journeys.
+                        </Text>
+
+
+                        <Button className="resume-button" size="small" marginTop="tiny" marginBottom="tiny">
+                            <a href="/geetika-resume.pdf" target="_blank" download>
+                                Download Resume
+                            </a>
+                        </Button>
                     </Div>
                 </Portion>
                 <Portion desktopSpan="2" marginTop="small" className="overflow-right" hideOnMobile hideOnTabletPortrait hideOnTabletLandscape>
