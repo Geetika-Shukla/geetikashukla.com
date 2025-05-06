@@ -63,7 +63,7 @@ export default function Home() {
 
 
                         <Button className="resume-button" size="small" marginTop="tiny" marginBottom="tiny">
-                            <a href="https://drive.google.com/uc?export=download&id=1scUVfg3Hs9U8Io-aOYIQw9NYWuKlm1uE" target="_blank" download>
+                            <a href="https://drive.google.com/uc?export=download&id=1UXkFA6hBj2m-KuHozLz3eFtyUJKckFoY" target="_blank" download>
                                 Download Resume
                             </a>
                         </Button>
