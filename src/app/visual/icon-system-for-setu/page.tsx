@@ -100,7 +100,7 @@ const IconSystemPage = () => {
 
 
             <Row horizontallyCenterThis>
-                <Text className="credits" align="center"><em>Special thanks to Prajna for defining the style, Poorvi for the brainstorming sessions and Sujan for
+                <Text className="credits" align="center"><em>Special thanks to Prajna and Poorvi for the brainstorming sessions and Sujan for
                     his guidance throughout the process.</em></Text>
             </Row>
 
