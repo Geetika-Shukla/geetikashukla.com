@@ -30,6 +30,10 @@ import PurpleStar from "@/assets/images/purple-star.svg";
 import VDCover from "@/assets/images/vd-cover.svg";
 import TypeCover from "@/assets/images/type-cover.svg";
 import ExpCover from "@/assets/images/exp-cover.svg";
+import ReportsThumbnail from "@/assets/images/thumbnail-for-reports.svg";
+import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
+import HDFCThumbnail from "@/assets/images/thumbnail-for-hdfc.svg";
+import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
 
 
 export default function Home() {
@@ -74,7 +78,8 @@ export default function Home() {
                 </Portion>
             </Row >
 
-            <Row className="category-row" layoutAsFlexbox horizontalPadding="huge" marginTop="none" horizontallyCenterThis>
+
+            <Row className="category-row" layoutAsFlexbox horizontalPadding="huge" marginTop="none" marginBottom="medium" horizontallyCenterThis>
 
                 <Link href="/experiences">
                     <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
@@ -96,12 +101,58 @@ export default function Home() {
                         <Heading6 className="category-thumbnail-text" >Type</Heading6>
                     </Card>
                 </Link>
-
             </Row>
 
 
+            <hr className="brown-hr"/>
+
+            <Row horizontalPadding="huge" marginBottom="small" marginTop="medium">
+                <Portion desktopSpan="6">
+                    <h5>Recent projects
+                    </h5>
+                    <Text marginTop="tiny">
+                        These projects feature intuitive digital experiences for web, app and platform, complemented by in-depth design system implementations.
+                    </Text>
+                    </Portion>
+
+                <Portion desktopSpan="1" hideOnMobile/>
+
+                <Portion desktopSpan="17" className="recent-projects-row">
+
+                    <Link href="/experiences/revamping-reports">
+                        <Card className="project-thumbnail" marginBottom="micro">
+                            <ReportsThumbnail alt="revamping-reports" />
+                            <Heading6 className="project-thumbnail-text" >Revamping reports on Bridge</Heading6>
+                        </Card>
+                    </Link>
+
+                    <Link href="/experiences/hdfc-journeys">
+                        <Card className="project-thumbnail" marginBottom="micro">
+                            <HDFCThumbnail alt="hdfc"/>
+                            <Heading6 className="project-thumbnail-text">Digital journeys for HDFC Bank</Heading6>
+                        </Card>
+                    </Link>
+
+                    <Link href="/visual/icon-system-for-setu">
+                        <Card className="project-thumbnail" marginBottom="micro">
+                            <IconSystemThumbnail alt="icon-system" />
+                            <Heading6 className="project-thumbnail-text" >Icon system for Setu</Heading6>
+                        </Card>
+                    </Link>
+
+                    <Link href="/experiences/assisted-product-discovery">
+                        <Card className="project-thumbnail" marginBottom="micro">
+                            <ProjectDiscoveryThumbnail alt="assisted-discovery-at-setu"/>
+                            <Heading6 className="project-thumbnail-text">Assisted product discovery at
+                                Setu</Heading6>
+                        </Card>
+                    </Link>
+
+                </Portion>
+            </Row>
+
             <Row horizontalPadding="huge" marginBottom="tiny">
-                <Portion desktopSpan="12" marginTop="medium">
+                <Portion desktopSpan="12" marginTop="tiny">
                     <h5>From those I've worked with &nbsp; 👩🏻‍💻
                     </h5>
                 </Portion>
