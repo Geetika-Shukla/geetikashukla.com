@@ -84,7 +84,11 @@
 
     .project-thumbnail:hover {
         background-color: #faf4ea;
-        box-shadow: 2px 2px 4px 2px #EFEFEF;
+        box-shadow: 2px 2px 8px 0px #EFEFEF;
+    }
+
+    .key-project-bg {
+        background: linear-gradient(to bottom, white, #ECE7F3);
     }
 
     .project-thumbnail-text {

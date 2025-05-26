@@ -79,7 +79,7 @@ export default function Home() {
             </Row >
 
 
-            <Row className="category-row" layoutAsFlexbox horizontalPadding="huge" marginTop="none" marginBottom="medium" horizontallyCenterThis showOnlyOnMobile>
+            <Row className="category-row" layoutAsFlexbox horizontalPadding="huge" marginTop="none" marginBottom="small" horizontallyCenterThis showOnlyOnMobile>
 
                 <Link href="/experiences">
                     <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
@@ -104,11 +104,10 @@ export default function Home() {
             </Row>
 
 
-            <Row horizontalPadding="huge" marginBottom="small" marginTop="tiny" hideOnMobile>
+            <Row horizontalPadding="huge" className="key-project-bg" marginBottom="small" marginTop="none" paddingTop="small" paddingBottom="tiny" hideOnMobile>
                 <Portion desktopSpan="6">
-                    <h5>Key projects
-                    </h5>
-                    <Text marginTop="tiny">
+                    <h5>Key projects</h5>
+                    <Text marginTop="nano">
                         These projects feature intuitive digital experiences for web, app and platform, complemented by in-depth design system implementations.
                     </Text>
                     </Portion>
