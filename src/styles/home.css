@@ -96,12 +96,22 @@
         font-size: 1.15rem;
     }
 
-    .brown-hr {
-        border: none;
-        height: 0.5px;
+    .project-tag {
+        position: absolute;
+        top: 0px;
+        right: 32px;
+        color: #FAF8F5;
         background-color: #BE9B74;
-        width: 68vw;
-        margin: 0 auto;
+        font-size: 0.8rem;
+        font-weight: 600;
+        font-family: "zilla-slab", sans-serif;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        z-index: 2;
+        letter-spacing: 0.5px;
+        box-shadow: 0px 2px 6px 0px #BBBBBB;
     }
 }
 

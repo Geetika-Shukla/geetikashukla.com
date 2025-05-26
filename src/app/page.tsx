@@ -79,7 +79,7 @@ export default function Home() {
             </Row >
 
 
-            <Row className="category-row" layoutAsFlexbox horizontalPadding="huge" marginTop="none" marginBottom="medium" horizontallyCenterThis>
+            <Row className="category-row" layoutAsFlexbox horizontalPadding="huge" marginTop="none" marginBottom="medium" horizontallyCenterThis showOnlyOnMobile>
 
                 <Link href="/experiences">
                     <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
@@ -103,13 +103,10 @@ export default function Home() {
                 </Link>
             </Row>
 
-            <Row hideOnMobile horizontallyCenterThis>
-                <hr className="brown-hr"/>
-            </Row>
 
-            <Row horizontalPadding="huge" marginBottom="small" marginTop="medium" hideOnMobile>
+            <Row horizontalPadding="huge" marginBottom="small" marginTop="tiny" hideOnMobile>
                 <Portion desktopSpan="6">
-                    <h5>Recent projects
+                    <h5>Key projects
                     </h5>
                     <Text marginTop="tiny">
                         These projects feature intuitive digital experiences for web, app and platform, complemented by in-depth design system implementations.
@@ -122,6 +119,7 @@ export default function Home() {
 
                     <Link href="/experiences/revamping-reports">
                         <Card className="project-thumbnail" marginBottom="micro">
+                            <div className="project-tag">experiences</div>
                             <ReportsThumbnail alt="revamping-reports" />
                             <Heading6 className="project-thumbnail-text" >Revamping reports on Bridge</Heading6>
                         </Card>
@@ -129,6 +127,7 @@ export default function Home() {
 
                     <Link href="/experiences/hdfc-journeys">
                         <Card className="project-thumbnail" marginBottom="micro">
+                            <div className="project-tag">experiences</div>
                             <HDFCThumbnail alt="hdfc"/>
                             <Heading6 className="project-thumbnail-text">Digital journeys for HDFC Bank</Heading6>
                         </Card>
@@ -136,6 +135,7 @@ export default function Home() {
 
                     <Link href="/visual/icon-system-for-setu">
                         <Card className="project-thumbnail" marginBottom="micro">
+                            <div className="project-tag">visual</div>
                             <IconSystemThumbnail alt="icon-system" />
                             <Heading6 className="project-thumbnail-text" >Icon system for Setu</Heading6>
                         </Card>
@@ -143,6 +143,7 @@ export default function Home() {
 
                     <Link href="/experiences/assisted-product-discovery">
                         <Card className="project-thumbnail" marginBottom="micro">
+                            <div className="project-tag">experiences</div>
                             <ProjectDiscoveryThumbnail alt="assisted-discovery-at-setu"/>
                             <Heading6 className="project-thumbnail-text">Assisted product discovery at
                                 Setu</Heading6>
