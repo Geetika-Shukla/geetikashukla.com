@@ -103,10 +103,11 @@ export default function Home() {
                 </Link>
             </Row>
 
+            <Row hideOnMobile horizontallyCenterThis>
+                <hr className="brown-hr"/>
+            </Row>
 
-            <hr className="brown-hr"/>
-
-            <Row horizontalPadding="huge" marginBottom="small" marginTop="medium">
+            <Row horizontalPadding="huge" marginBottom="small" marginTop="medium" hideOnMobile>
                 <Portion desktopSpan="6">
                     <h5>Recent projects
                     </h5>
@@ -117,7 +118,7 @@ export default function Home() {
 
                 <Portion desktopSpan="1" hideOnMobile/>
 
-                <Portion desktopSpan="17" className="recent-projects-row">
+                <Portion desktopSpan="17" className="recent-projects-row" hideOnMobile>
 
                     <Link href="/experiences/revamping-reports">
                         <Card className="project-thumbnail" marginBottom="micro">
