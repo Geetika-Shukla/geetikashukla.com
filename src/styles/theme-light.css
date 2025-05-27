@@ -3,7 +3,7 @@
   --font-serif: "zilla-slab", serif;
   --font-mono: "IBM Plex Mono", monospace;
 
-  --heading-font: "zilla-slab";
+  --heading-font: "zilla-slab", serif;
   --heading-font-weight: 700;
 
   --heading-text-colour: #343537;

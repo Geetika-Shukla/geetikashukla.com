@@ -98,6 +98,7 @@
     .project-thumbnail:hover {
         background-color: #faf4ea;
         box-shadow: 2px 2px 30px 0px #d1d1d1;
+        outline: 2px solid #FCFAF8;
     }
 
     .key-project-bg {
