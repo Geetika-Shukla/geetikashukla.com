@@ -108,8 +108,9 @@ export default function Home() {
             <Row horizontalPadding="huge" className="key-project-bg" marginBottom="small" marginTop="nano" paddingTop="small" paddingBottom="tiny" hideOnMobile>
                 <Portion desktopSpan="6">
                     <h5>Key projects</h5>
-                    <Text marginTop="nano">
+                    <Text marginTop="nano"><strong>
                         These projects feature intuitive digital experiences for web, app and platform, complemented by in-depth design system implementations.
+                    </strong>
                     </Text>
                     </Portion>
 
