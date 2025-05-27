@@ -33,7 +33,7 @@ const TypePage = () => {
 
             <Row layoutAsGrid  className="row-hide" horizontalPadding="huge" marginTop="medium" marginBottom="none">
                 <Portion desktopSpan="2" marginTop="large" className="overflow-left" hideOnMobile>
-                    <GreenStar alt="star" height="56px" />
+                    <GreenStar className="star" alt="star" height="56px" />
                 </Portion>
                 <Portion desktopSpan="8">
                     <Heading1 className="hero-heading">
@@ -41,7 +41,7 @@ const TypePage = () => {
                     </Heading1>
                 </Portion>
                 <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height="32px" />
+                    <YellowStar className="star" alt="star" height="32px" />
                 </Portion>
                 <Portion desktopSpan="10" marginBottom="small">
                     <Div marginTop="small">
@@ -53,7 +53,7 @@ const TypePage = () => {
                     </Div>
                 </Portion>
                 <Portion desktopSpan="2" marginTop="small" className="overflow-right" hideOnMobile>
-                    <PurpleStar alt="star" height="56px" />
+                    <PurpleStar className="star" alt="star" height="56px" />
                 </Portion>
             </Row >
 

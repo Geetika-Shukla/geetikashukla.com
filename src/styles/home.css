@@ -2,6 +2,16 @@
 
     .intro-text {
         font-weight: 600;
+        font-size: 1.5rem;
+    }
+
+    .star {
+        display: inline-block;
+        transition: transform 4s ease-in-out;
+    }
+
+    .star:hover {
+        transform: rotate(360deg);
     }
 
     .category-thumbnail {
@@ -31,14 +41,17 @@
         display: inline-block;
         padding: 10px 20px;
         text-decoration: none;
-        background-color: #EBF4FF;
+        background-color: #242424;
+        color: white;
         border-radius: 6px;
         transition: background-color 0.3s ease;
+        font-size: 1rem;
     }
 
     .resume-button:hover {
-        background-color: #DBECFF;
-        color: white;
+        background-color: #404040 !important;
+        color: white !important;
+        box-shadow: 1px 1px 10px 0px #d1d1d1;
     }
 
     .testimonial-card {
@@ -84,11 +97,11 @@
 
     .project-thumbnail:hover {
         background-color: #faf4ea;
-        box-shadow: 2px 2px 8px 0px #EFEFEF;
+        box-shadow: 2px 2px 30px 0px #d1d1d1;
     }
 
     .key-project-bg {
-        background: linear-gradient(to bottom, white, #ECE7F3);
+        background-color: #EFE9E0;
     }
 
     .project-thumbnail-text {
@@ -105,7 +118,7 @@
         top: 0px;
         right: 32px;
         color: #FAF8F5;
-        background-color: #BE9B74;
+        background-color: #B18758;
         font-size: 0.8rem;
         font-weight: 600;
         font-family: "zilla-slab", sans-serif;

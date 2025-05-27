@@ -42,8 +42,8 @@ export default function Home() {
         <article id="page-home">
 
             <Row layoutAsGrid className="row-hide" horizontalPadding="huge" marginTop="medium" marginBottom="none">
-                <Portion desktopSpan="2" marginTop="large" className="overflow-left" hideOnMobile hideOnTabletPortrait hideOnTabletLandscape>
-                    <GreenStar alt="stars" height="56px" />
+                <Portion desktopSpan="2" marginTop="large" className="overflow-left" showOnlyOnDesktop>
+                    <GreenStar className="star" alt="stars" height="56px" />
                 </Portion>
                 <Portion desktopSpan="8">
                     <Heading1 className="hero-heading">
@@ -51,30 +51,31 @@ export default function Home() {
                     </Heading1>
                 </Portion>
                 <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height="32px" />
+                    <YellowStar className="star"  alt="star" height="32px" />
                 </Portion>
                 <Portion desktopSpan="10" marginBottom="small">
                     <Div marginTop="small" className="intro-text">
                         <Text>I’m Geetika, a multi-disciplinary designer with around 7 years of experience spanning
                             brand, exhibition, web, and product design.
                         </Text>
-
                         <br/>
-
-                        <Text>I’ve spent the last 5 years designing 0–1 fintech B2B SaaS products—applying systems
+                        <Text>I’ve spent the last 5 years designing 0-1 fintech B2B SaaS products—applying systems
                             thinking with purposeful visual design to turn complex ideas into intuitive user journeys.
                         </Text>
-
-
-                        <Button className="resume-button" size="small" marginTop="tiny" marginBottom="tiny">
-                            <a href="https://drive.google.com/uc?export=download&id=1UXkFA6hBj2m-KuHozLz3eFtyUJKckFoY" target="_blank" download>
-                                Download Resume
-                            </a>
-                        </Button>
+                    </Div>
+                    <Div marginTop="tiny">
+                        <a
+                            className="resume-button"
+                            href="https://drive.google.com/uc?export=download&id=1UXkFA6hBj2m-KuHozLz3eFtyUJKckFoY"
+                            target="_blank"
+                            download
+                        >
+                            Download Resume
+                        </a>
                     </Div>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" className="overflow-right" hideOnMobile hideOnTabletPortrait hideOnTabletLandscape>
-                    <PurpleStar alt="star" height="56px" />
+                <Portion desktopSpan="2" marginTop="small" className="overflow-right" showOnlyOnDesktop>
+                    <PurpleStar className="star" alt="star" height="56px" />
                 </Portion>
             </Row >
 
@@ -104,7 +105,7 @@ export default function Home() {
             </Row>
 
 
-            <Row horizontalPadding="huge" className="key-project-bg" marginBottom="small" marginTop="none" paddingTop="small" paddingBottom="tiny" hideOnMobile>
+            <Row horizontalPadding="huge" className="key-project-bg" marginBottom="small" marginTop="nano" paddingTop="small" paddingBottom="tiny" hideOnMobile>
                 <Portion desktopSpan="6">
                     <h5>Key projects</h5>
                     <Text marginTop="nano">
@@ -203,7 +204,7 @@ export default function Home() {
                         <Link href="https://www.linkedin.com/in/asveenkaur/" target="_blank" rel="noopener noreferrer">
                             <h6>
                                 — Asveen Kaur <br />
-                                Manager, People Ops, Setu
+                                Former Manager, People Ops, Setu
                             </h6>
                         </Link>
                     </Card>

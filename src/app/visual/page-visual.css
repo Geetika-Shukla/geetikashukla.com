@@ -1,5 +1,14 @@
 #page-visual {
 
+    .star {
+        display: inline-block;
+        transition: transform 4s ease-in-out;
+    }
+
+    .star:hover {
+        transform: rotate(360deg);
+    }
+
     .project-thumbnail {
         position: relative;
         width: 400px;
@@ -12,7 +21,7 @@
 
     .project-thumbnail:hover {
         background-color: #F8F0E2;
-        box-shadow: 2px 2px 4px 2px #EFEFEF;
+        box-shadow: 2px 2px 16px 0px #efefef;
     }
 
     .project-thumbnail-text {
