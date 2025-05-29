@@ -16,18 +16,16 @@
         margin-bottom: 20px;
     }
 
-    .testimonial-card {
-        position: relative;
-        width: 33vw;
-        border-radius: 20px;
-        padding: 32px;
-        scroll-snap-align: start;
-    }
-
     .testimonial-grid {
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
+    }
+
+    .testimonial-card {
+        width: 33vw;
+        border-radius: 20px;
+        padding: 32px;
     }
 
     .brown-hr {
@@ -38,26 +36,15 @@
         margin: 0 auto;
     }
 
-    @media (max-width: 600px) {
-        .bento-grid {
-            grid-template-columns: 1fr;
-            /* Stacks items into one column */
+    @media (max-width: 768px) {
+        .testimonial-grid {
+            flex-direction: column; /* Force cards to stack vertically */
+            align-items: center;     /* Center the cards horizontally */
         }
 
-        .item-1 {
-            grid-column: span 6;
-        }
-
-        .item-6 {
-            grid-column: span 6;
-        }
-
-        .item-7 {
-            grid-column: span 6;
-        }
-
-        .item-8 {
-            grid-column: span 6;
+        .testimonial-card {
+            width: 90% !important;   /* Take up most of screen */
+            padding: 24px;
         }
     }
 

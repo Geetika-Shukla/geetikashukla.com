@@ -74,7 +74,7 @@ const DetailsPage = () => {
             {/* EDUCATION AND WORK */}
 
             <Row horizontalPadding="huge" marginBottom="small" marginTop="small">
-                <Portion desktopSpan="7">
+                <Portion desktopSpan="7" mobileSpan="whole">
 
                     <div>
                     <h5>Education</h5>
@@ -93,9 +93,7 @@ const DetailsPage = () => {
                             Design for Retail Experience
                         </Text>
                         <Text><strong>
-                            National Institute of Design,
-                            <br/>
-                            Bengaluru, Karnataka
+                            National Institute of Design, Bengaluru, Karnataka
                         </strong>
                         </Text>
                     </div>
@@ -113,7 +111,6 @@ const DetailsPage = () => {
                     </Text>
                     <Text><strong>
                         Faculty of Architecture,
-                        <br/>
                         Lucknow, Uttar Pradesh
                     </strong>
                     </Text>
@@ -122,7 +119,7 @@ const DetailsPage = () => {
 
                 <Portion desktopSpan="1"/>
 
-                <Portion desktopSpan="16">
+                <Portion desktopSpan="16" mobileSpan="whole">
                     <div>
                         <h5>Work Experience</h5>
                     </div>
@@ -198,14 +195,13 @@ const DetailsPage = () => {
             {/* TESTIMONIALS */}
 
             <Row horizontalPadding="huge" marginBottom="tiny" marginTop="tiny">
-                <Portion desktopSpan="12" marginTop="tiny">
+                <Portion marginTop="tiny">
                     <h5>From those I've worked with &nbsp; 👩🏻‍💻
                     </h5>
                 </Portion>
             </Row>
 
-            <Row horizontalMargin="large" marginBottom="medium">
-                <Portion className="testimonial-grid" desktopSpan="whole">
+            <Row  className="testimonial-grid" horizontalMargin="large" marginBottom="medium">
                     <Card className="testimonial-card" bgColor="green-light10-opacity5" borderColor="green-light50-opacity10">
                         <Text marginBottom="tiny">
                             Geetika is one of my favourite people to collaborate with at Setu! Her work is filled with so much creativity, thought, and an incredible attention to not just detail, but craft. There’s a certain magic in everything she creates and every single time, she amazes me with the kind of work she puts out—I go to her with just a basic outline, and she transforms it into a masterpiece that never fails to leave me in awe. Couldn’t be more grateful for the outstanding people experience pieces she’s helped bring to life for our team.                        </Text>
@@ -251,8 +247,6 @@ const DetailsPage = () => {
                             </h6>
                         </Link>
                     </Card>
-
-            </Portion>
             </Row>
 
 
