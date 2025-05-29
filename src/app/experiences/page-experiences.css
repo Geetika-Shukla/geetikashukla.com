@@ -65,7 +65,7 @@
 
     .project-thumbnail-text {
         font-size: 0.9rem !important;
-        top: 20vh !important;
+        top: 15vh !important;
     }
 }
 @media (min-width: 1280px) and (max-width: 1440px) {

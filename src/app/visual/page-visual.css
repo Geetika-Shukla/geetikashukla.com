@@ -39,21 +39,49 @@
 
 }
 
-@media (min-width: 1700px) {
+@media (min-width: 1440px) {
     .project-thumbnail {
         width: 22vw !important;
         height: 10.5vw !important;
     }
+
+    .project-thumbnail-text {
+        font-size: 0.9rem !important;
+        top: 15vh !important;
+    }
+}
+@media (min-width: 1280px) and (max-width: 1440px) {
+    .project-thumbnail {
+        width: 22vw !important;
+        height: 11vw !important;
+    }
+
+    .project-thumbnail-text {
+        font-size: 1rem !important;
+        top: 13.5vh !important;
+    }
 }
 
-@media (min-width: 1025px) and (max-width: 1280px) {
+@media (min-width: 1120px) and (max-width: 1280px) {
     .project-thumbnail {
-        width: 300px !important;
-        height: 150px !important;
+        width: 26vw !important;
+        height: 13vw !important;
     }
 
     .project-thumbnail-text {
         font-size: 0.9rem !important;
+        top: 16vh !important;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1120px) {
+    .project-thumbnail {
+        width: 26vw !important;
+        height: 13vw !important;
+    }
+
+    .project-thumbnail-text {
+        font-size: 0.8rem !important;
         top: 14vh !important;
     }
 }
@@ -65,3 +93,4 @@
     }
 
 }
+
