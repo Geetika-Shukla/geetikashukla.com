@@ -19,14 +19,13 @@ article {
     flex: 1 0 auto;
 }
 
-
 h6 {
-    font-weight: 600;
     font-size: 1.3rem;
 }
 
 p {
     font-size: 1.1rem;
+    font-weight: 400;
 }
 
 .row-hide {
@@ -57,10 +56,8 @@ p {
     right: -18vw;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
+.semi-bold {
+    font-weight: 600;
 }
 
 @media (max-width : 768px) {

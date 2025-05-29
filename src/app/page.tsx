@@ -63,7 +63,7 @@ export default function Home() {
                             thinking with purposeful visual design to turn complex ideas into intuitive user journeys.
                         </Text>
                     </Div>
-                    <Div className="buttons-gap" marginTop="tiny">
+                    <Div className="buttons-gap" marginTop="tiny" marginBottom="nano">
                         <a
                             className="resume-button"
                             href="https://drive.google.com/uc?export=download&id=1UXkFA6hBj2m-KuHozLz3eFtyUJKckFoY"
@@ -116,9 +116,8 @@ export default function Home() {
             <Row horizontalPadding="huge" className="key-project-bg" marginBottom="small" marginTop="nano" paddingTop="small" paddingBottom="tiny" hideOnMobile>
                 <Portion desktopSpan="6">
                     <h5>Key projects</h5>
-                    <Text marginTop="nano"><strong>
+                    <Text marginTop="nano">
                         These projects feature intuitive digital experiences for web, app and platform, complemented by in-depth design system implementations.
-                    </strong>
                     </Text>
                     </Portion>
 

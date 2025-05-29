@@ -24,8 +24,10 @@
 
     .testimonial-card {
         width: 33vw;
+        height: auto;
         border-radius: 20px;
         padding: 32px;
+
     }
 
     .brown-hr {
@@ -37,13 +39,16 @@
     }
 
     @media (max-width: 768px) {
+
         .testimonial-grid {
-            flex-direction: column; /* Force cards to stack vertically */
-            align-items: center;     /* Center the cards horizontally */
+            width: 100% !important;
+            align-items: center !important;
+            padding-left: 7vw;         /* remove inner padding */
+            margin: 0 auto;
         }
 
         .testimonial-card {
-            width: 90% !important;   /* Take up most of screen */
+            width: 80vw !important;   /* Take up most of screen */
             padding: 24px;
         }
     }
