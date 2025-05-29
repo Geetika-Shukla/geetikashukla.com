@@ -194,14 +194,14 @@ const DetailsPage = () => {
 
             {/* TESTIMONIALS */}
 
-            <Row horizontalPadding="huge" marginBottom="tiny" marginTop="tiny">
+            <Row horizontalPadding="huge" marginBottom="tiny" marginTop="tiny" hideOnMobile>
                 <Portion marginTop="tiny">
                     <h5>From those I've worked with &nbsp; 👩🏻‍💻
                     </h5>
                 </Portion>
             </Row>
 
-            <Row  className="testimonial-grid" horizontalMargin="large" marginBottom="medium">
+            <Row  className="testimonial-grid" horizontalMargin="large" marginBottom="medium" hideOnMobile>
                     <Card className="testimonial-card" bgColor="green-light10-opacity5" borderColor="green-light50-opacity10">
                         <Text marginBottom="tiny">
                             Geetika is one of my favourite people to collaborate with at Setu! Her work is filled with so much creativity, thought, and an incredible attention to not just detail, but craft. There’s a certain magic in everything she creates and every single time, she amazes me with the kind of work she puts out—I go to her with just a basic outline, and she transforms it into a masterpiece that never fails to leave me in awe. Couldn’t be more grateful for the outstanding people experience pieces she’s helped bring to life for our team.                        </Text>
