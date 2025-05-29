@@ -85,12 +85,16 @@
         row-gap: 1vw;
     }
 
+    .key-project-bg {
+        background-color: #EFE9E0;
+    }
+
     .project-thumbnail {
         position: relative;
         width: 22.5vw;
-        height: 11.5vw;
+        height: 16vw;
         overflow: hidden;
-        text-align: end;
+        text-align: start;
         border-radius: 20px;
         background-color: #FAF8F5;
     }
@@ -101,17 +105,23 @@
         outline: 2px solid #FCFAF8;
     }
 
-    .key-project-bg {
-        background-color: #EFE9E0;
-    }
-
-    .project-thumbnail-text {
+    .project-thumbnail-heading {
         position: absolute;
         font-family: "zilla-slab", serif;
         color: #BE9B74;
-        bottom: 24px;
-        right: 32px;
+        top: 132px;
+        left: 24px;
+        right: 24px;
         font-size: 1.15rem;
+    }
+
+    .project-thumbnail-description {
+        position: absolute;
+        font-size: 0.9rem;
+        color: #888888;
+        left: 24px;
+        right: 24px;
+        top: 160px;
     }
 
     .project-tag {
@@ -136,25 +146,43 @@
 @media (min-width: 1700px) {
     .project-thumbnail {
         width: 17vw !important;
-        height: 9vw !important;
+        height: 13.5vw !important;
     }
 
     .scroll-container {
         width: 1240px !important;
     }
+
+    .project-thumbnail-heading {
+        top: 110px !important;
+        font-size: 1rem !important;
+    }
+
+    .project-thumbnail-description {
+        top: 140px !important;
+    }
 }
 
 
 @media (min-width: 1025px) and (max-width: 1280px) {
-    .project-thumbnail-text {
-        font-size: 0.85rem !important;
-        top: 12vh !important;
-        right: 1.5vw !important;
+    .project-thumbnail {
+        width: 22vw !important;
+        height: 18.5vw !important;
     }
 
-    .project-thumbnail {
-        width: 21vw !important;
-        height: 10vw !important;
+    .project-thumbnail-text {
+        font-size: 0.8rem !important;
+        top: 13vh !important;
+    }
+
+    .project-thumbnail-heading {
+        top: 110px !important;
+        font-size: 1rem !important;
+    }
+
+    .project-thumbnail-description {
+        top: 150px !important;
+        font-size: 0.8rem;
     }
 }
 

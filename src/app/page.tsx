@@ -79,6 +79,7 @@ export default function Home() {
                 </Portion>
             </Row >
 
+            {/*CATEGORIES FOR MOBILE */}
 
             <Row className="category-row" layoutAsFlexbox horizontalPadding="huge" marginTop="none" marginBottom="small" horizontallyCenterThis showOnlyOnMobile>
 
@@ -104,6 +105,7 @@ export default function Home() {
                 </Link>
             </Row>
 
+            {/* KEY PROJECTS */}
 
             <Row horizontalPadding="huge" className="key-project-bg" marginBottom="small" marginTop="nano" paddingTop="small" paddingBottom="tiny" hideOnMobile>
                 <Portion desktopSpan="6">
@@ -122,7 +124,9 @@ export default function Home() {
                         <Card className="project-thumbnail" marginBottom="micro">
                             <div className="project-tag">experiences</div>
                             <ReportsThumbnail alt="revamping-reports" />
-                            <Heading6 className="project-thumbnail-text" >Revamping reports on Bridge</Heading6>
+                            <Heading6 className="project-thumbnail-heading" >Revamping reports on Bridge</Heading6>
+                            <Text className="project-thumbnail-description">
+                                Revamped reports with scheduling, smarter filters, and enhanced flexibility to improve performance and user adoption.                            </Text>
                         </Card>
                     </Link>
 
@@ -130,7 +134,9 @@ export default function Home() {
                         <Card className="project-thumbnail" marginBottom="micro">
                             <div className="project-tag">experiences</div>
                             <HDFCThumbnail alt="hdfc"/>
-                            <Heading6 className="project-thumbnail-text">Digital journeys for HDFC Bank</Heading6>
+                            <Heading6 className="project-thumbnail-heading">Digital journeys for HDFC Bank</Heading6>
+                            <Text className="project-thumbnail-description">
+                                Redesigned HDFC’s account opening flows to simplify the experience for both customers and bank agents.                            </Text>
                         </Card>
                     </Link>
 
@@ -138,7 +144,10 @@ export default function Home() {
                         <Card className="project-thumbnail" marginBottom="micro">
                             <div className="project-tag">visual</div>
                             <IconSystemThumbnail alt="icon-system" />
-                            <Heading6 className="project-thumbnail-text" >Icon system for Setu</Heading6>
+                            <Heading6 className="project-thumbnail-heading" >Icon system for Setu</Heading6>
+                            <Text className="project-thumbnail-description">
+                                Designed a versatile icon set of ~150 icons used across various Setu platforms, decks, print, and even Slack emojis.
+                            </Text>
                         </Card>
                     </Link>
 
@@ -146,13 +155,19 @@ export default function Home() {
                         <Card className="project-thumbnail" marginBottom="micro">
                             <div className="project-tag">experiences</div>
                             <ProjectDiscoveryThumbnail alt="assisted-discovery-at-setu"/>
-                            <Heading6 className="project-thumbnail-text">Assisted product discovery at
+                            <Heading6 className="project-thumbnail-heading">Assisted product discovery at
                                 Setu</Heading6>
+                            <Text className="project-thumbnail-description">
+                                Crafted an intuitive, quiz-based product discovery tool to help users find the right Setu solutions.
+                            </Text>
                         </Card>
                     </Link>
 
                 </Portion>
             </Row>
+
+            {/* TESTIMONIALS */}
+
 
             <Row horizontalPadding="huge" marginBottom="tiny">
                 <Portion desktopSpan="12" marginTop="tiny">

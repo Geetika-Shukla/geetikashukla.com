@@ -98,11 +98,13 @@ const ExperiencePage = () => {
                     </Link>
 
                         <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
+                            <div className="project-tag">UPCOMING</div>
                             <COUThumbnail alt="Ather Energy" />
                             <Heading6 className="project-thumbnail-text" >Bill Pay — payment experience </Heading6>
                         </Card>
 
                         <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
+                            <div className="project-tag">UPCOMING</div>
                             <AtherThumbnail alt="Ather Energy" />
                             <Heading6 className="project-thumbnail-text" >Ather Go — exhibition design system</Heading6>
                         </Card>
