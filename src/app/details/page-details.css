@@ -1,0 +1,64 @@
+#page-details {
+
+    .star {
+        display: inline-block;
+        transition: transform 4s ease-in-out;
+    }
+
+    .star:hover {
+        transform: rotate(360deg);
+    }
+
+    .display-pic {
+        width: 80%;
+        height: auto;
+        border-radius: 40px;
+        margin-bottom: 20px;
+    }
+
+    .testimonial-card {
+        position: relative;
+        width: 33vw;
+        border-radius: 20px;
+        padding: 32px;
+        scroll-snap-align: start;
+    }
+
+    .testimonial-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .brown-hr {
+        border: none;
+        height: 0.5px;
+        background-color: #BE9B74;
+        width: 68vw;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 600px) {
+        .bento-grid {
+            grid-template-columns: 1fr;
+            /* Stacks items into one column */
+        }
+
+        .item-1 {
+            grid-column: span 6;
+        }
+
+        .item-6 {
+            grid-column: span 6;
+        }
+
+        .item-7 {
+            grid-column: span 6;
+        }
+
+        .item-8 {
+            grid-column: span 6;
+        }
+    }
+
+}

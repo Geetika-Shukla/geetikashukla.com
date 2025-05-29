@@ -63,7 +63,7 @@ export default function Home() {
                             thinking with purposeful visual design to turn complex ideas into intuitive user journeys.
                         </Text>
                     </Div>
-                    <Div marginTop="tiny">
+                    <Div className="buttons-gap" marginTop="tiny">
                         <a
                             className="resume-button"
                             href="https://drive.google.com/uc?export=download&id=1UXkFA6hBj2m-KuHozLz3eFtyUJKckFoY"
@@ -71,6 +71,12 @@ export default function Home() {
                             download
                         >
                             Download Resume
+                        </a>
+                        <a
+                            className="tert-button"
+                            href="/details"
+                        >
+                            More about me
                         </a>
                     </Div>
                 </Portion>
@@ -98,7 +104,7 @@ export default function Home() {
                 </Link>
 
                 <Link href="/type">
-                    <Card href="@/" className="category-thumbnail" shape="rounded" horizontalMargin="micro">
+                    <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
                         <TypeCover />
                         <Heading6 className="category-thumbnail-text" >Type</Heading6>
                     </Card>
@@ -164,68 +170,6 @@ export default function Home() {
                     </Link>
 
                 </Portion>
-            </Row>
-
-            {/* TESTIMONIALS */}
-
-
-            <Row horizontalPadding="huge" marginBottom="tiny">
-                <Portion desktopSpan="12" marginTop="tiny">
-                    <h5>From those I've worked with &nbsp; 👩🏻‍💻
-                    </h5>
-                </Portion>
-            </Row>
-
-            <Row className="platform-scroll-section" horizontalMargin="large" marginBottom="medium">
-                <Div className="scroll-container">
-
-                    <Card className="testimonial-card" bgColor="green-light10-opacity5" borderColor="green-light50-opacity10">
-                        <Text marginBottom="tiny">
-                            Geetika is one of my favourite people to collaborate with at Setu! Her work is filled with so much creativity, thought, and an incredible attention to not just detail, but craft. There’s a certain magic in everything she creates and every single time, she amazes me with the kind of work she puts out—I go to her with just a basic outline, and she transforms it into a masterpiece that never fails to leave me in awe. Couldn’t be more grateful for the outstanding people experience pieces she’s helped bring to life for our team.                        </Text>
-                        <Text marginBottom="small">
-                            Beyond work, she's also an amazing person at heart and a joy to be around—kind, thoughtful, and someone you can always count on to keep things real. Always rooting for you, Geetika ❤️</Text>
-                        <Link href="https://www.linkedin.com/in/ruby-jane/" target="_blank" rel="noopener noreferrer">
-                            <h6>
-                                — Ruby Jane Antony<br />
-                                Director, People Ops, Setu
-                            </h6>
-                        </Link>
-                    </Card>
-
-                    <Card className="testimonial-card" bgColor="violet-light10-opacity5" borderColor="violet-light50-opacity10">
-                        <Text marginBottom="tiny">
-                            I had the pleasure of working with Geetika to design the brand identity for my business, and I couldn't be more thrilled with the results! From the start, she took the time to understand my vision, values, and the essence of my brand.
-                        </Text>
-                        <Text marginBottom="tiny">
-                            The attention to detail, creativity, and expertise she brought to the table was evident in every aspect of the design. The logo, colour palette, typography, and overall style feel perfectly aligned with the identity I wanted to create.
-                        </Text>
-                        <Text marginBottom="small">
-                            What truly stood out was Geetika’s professionalism and communication throughout the process. She was very responsive, open to feedback, and delivered on time.
-                        </Text>
-                        <Link href="https://www.linkedin.com/in/sandeep-atmaram-234100217/" target="_blank" rel="noopener noreferrer">
-                            <h6>
-                                — Sandeep Atmaram<br />
-                                Co-founder, Heads Up for Tails
-                            </h6>
-                        </Link>
-                    </Card>
-
-                    <Card className="testimonial-card" bgColor="green-light10-opacity5" borderColor="green-light50-opacity10">
-                        <Text marginBottom="tiny">
-                            I had the privilege of working with Geetika while in the People Ops team at Setu, where she was our go-to designer for all things visual. From custom letterheads and posters to mailers and swag, her work was always exceptional. She has a knack for turning half-baked ideas into designs that far exceed expectations—both visually striking and versatile.
-                        </Text>
-                        <Text  marginBottom="small">
-                            For anyone looking for a designer with creativity, clarity, and attention to detail, Geetika is an outstanding choice!
-                        </Text>
-                        <Link href="https://www.linkedin.com/in/asveenkaur/" target="_blank" rel="noopener noreferrer">
-                            <h6>
-                                — Asveen Kaur <br />
-                                Former Manager, People Ops, Setu
-                            </h6>
-                        </Link>
-                    </Card>
-
-                </Div>
             </Row>
 
         </article >
