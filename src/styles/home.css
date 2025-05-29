@@ -133,6 +133,31 @@
     }
 }
 
+@media (min-width: 1700px) {
+    .project-thumbnail {
+        width: 17vw !important;
+        height: 9vw !important;
+    }
+
+    .scroll-container {
+        width: 1240px !important;
+    }
+}
+
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .project-thumbnail-text {
+        font-size: 0.85rem !important;
+        top: 12vh !important;
+        right: 1.5vw !important;
+    }
+
+    .project-thumbnail {
+        width: 21vw !important;
+        height: 10vw !important;
+    }
+}
+
 @media (max-width: 768px) {
     .category-thumbnail {
         margin-top: 20px;
@@ -183,5 +208,6 @@
     .scroll-item {
         min-width: 100%;
     }
+
 
 }

@@ -1,5 +1,14 @@
 #page-hobbies {
 
+    .star {
+        display: inline-block;
+        transition: transform 4s ease-in-out;
+    }
+
+    .star:hover {
+        transform: rotate(360deg);
+    }
+    
     .hobby-heading {
         color: #242424;
         font-family: "zilla-slab", serif;
