@@ -22,7 +22,7 @@ import {
 // COMPONENTS ==================================================================
 
 // STYLES ======================================================================
-import "./page-details.css";
+import "./page-more-about-me.css";
 
 // ASSETS ======================================================================
 import GreenStar from "@/assets/images/green-star.svg";
@@ -41,9 +41,9 @@ import IconProcess from "@/assets/images/SignPost.svg";
 
 
 
-const DetailsPage = () => {
+const MoreAboutMePage = () => {
     return (
-        <article id="page-details">
+        <article id="page-more-about-me">
 
             <Row layoutAsGrid className="row-hide" horizontalPadding="huge" marginTop="medium" marginBottom="none">
                 <Portion desktopSpan="2" marginTop="large" className="overflow-left" showOnlyOnDesktop>
@@ -118,6 +118,7 @@ const DetailsPage = () => {
                         Lucknow, Uttar Pradesh
                     </Text>
                     </div>
+
                 </Portion>
 
                 <Portion desktopSpan="1"/>
@@ -182,9 +183,22 @@ const DetailsPage = () => {
                             Nonesuch Studio · Oct 2018 – Nov 2019
 
                         </Text>
-                        <Text marginBottom="tiny">
+                        <Text>
                             Worked on brand identity, editorial and social media for a pet hospital.
                         </Text>
+                    </div>
+
+                    <br/><br/>
+
+                    <div>
+                        <a
+                            className="resume-button"
+                            href="https://drive.google.com/uc?export=download&id=1UXkFA6hBj2m-KuHozLz3eFtyUJKckFoY"
+                            target="_blank"
+                            download
+                        >
+                            Download Resume
+                        </a>
                     </div>
                 </Portion>
 
@@ -324,5 +338,5 @@ const DetailsPage = () => {
     );
 };
 
-export default DetailsPage;
+export default MoreAboutMePage;
 

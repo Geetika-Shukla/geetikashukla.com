@@ -74,7 +74,7 @@ export default function Home() {
                         </a>
                         <a
                             className="tert-button"
-                            href="/details"
+                            href="/more-about-me"
                         >
                             More about me
                         </a>
