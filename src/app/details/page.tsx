@@ -34,7 +34,10 @@ import FOALogo from "@/assets/images/foa-logo.svg";
 import SetuLogo from "@/assets/images/setu-logo.svg";
 import AtherLogo from "@/assets/images/ather-logo.svg";
 import NSLogo from "@/assets/images/ns-logo.svg";
-
+import IconCollab from "@/assets/images/Link.svg";
+import IconForm from "@/assets/images/BoxWithShapes.svg";
+import IconSystem from "@/assets/images/Integrity.svg";
+import IconProcess from "@/assets/images/SignPost.svg";
 
 
 
@@ -69,7 +72,9 @@ const DetailsPage = () => {
                 </Portion>
             </Row >
 
+
             <hr className="brown-hr"/>
+
 
             {/* EDUCATION AND WORK */}
 
@@ -177,7 +182,7 @@ const DetailsPage = () => {
                             Nonesuch Studio · Oct 2018 – Nov 2019
 
                         </Text>
-                        <Text>
+                        <Text marginBottom="tiny">
                             Worked on brand identity, editorial and social media for a pet hospital.
                         </Text>
                     </div>
@@ -186,15 +191,78 @@ const DetailsPage = () => {
             </Row>
 
 
+            {/* WAYS OF WORKING */}
 
-            <hr className="brown-hr"/>
+            <Row horizontalPadding="huge" marginBottom="tiny" marginTop="small">
+                <Portion marginTop="tiny">
+                    <h5>In practice 👩🏻‍💻
+                    </h5>
+                </Portion>
+            </Row>
+
+            <Row layoutAsFlexbox className="ways-of-working" horizontalPadding="huge" marginBottom="medium">
+
+                <div className="modules-card">
+                    <div className="card-inner">
+                        <div className="card-front">
+                            <IconCollab/>
+                            <h6>Collaborative by nature</h6>
+                        </div>
+                        <div className="card-back">
+                            <Text size="medium" fontStyle="serif">I thrive in open, async environments with clear communication—it gives me the space to focus deeply while staying aligned with the team.</Text>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="modules-card">
+                    <div className="card-inner">
+                        <div className="card-front">
+                            <IconSystem/>
+                            <h6>Systems thinker</h6>
+                            <h6/>
+                        </div>
+                        <div className="card-back">
+                            <Text size="medium" fontStyle="serif">
+                                I enjoy building frameworks that bring clarity and cohesion to complex problems. Structure helps teams move faster and design more consistently.
+                            </Text>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="modules-card">
+                    <div className="card-inner">
+                        <div className="card-front">
+                            <IconForm/>
+                            <h6>Form follows<br/> function</h6>
+                        </div>
+                        <div className="card-back">
+                            <Text size="medium" fontStyle="serif">
+                                I care deeply about aesthetics, but never at the cost of usability. I believe good design begins with purpose—and looks better because of it.
+                            </Text>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="modules-card">
+                    <div className="card-inner">
+                        <div className="card-front">
+                            <IconProcess/>
+                            <h6>Process-driven, not process-bound</h6>
+                        </div>
+                        <div className="card-back">
+                            <Text size="medium" fontStyle="serif">
+                                I believe in a flexible but clear process—enough to keep things moving with intent, but not so rigid that it stifles exploration.                            </Text>
+                        </div>
+                    </div>
+                </div>
+            </Row>
 
 
             {/* TESTIMONIALS */}
 
-            <Row horizontalPadding="huge" marginBottom="small" marginTop="tiny">
-                <Portion marginTop="tiny">
-                    <h5>From those I've worked with &nbsp; 👩🏻‍💻
+            <Row horizontalPadding="huge" marginBottom="tiny" marginTop="tiny">
+                <Portion>
+                    <h5>From those I've worked with &nbsp; 🤍
                     </h5>
                 </Portion>
             </Row>

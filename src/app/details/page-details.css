@@ -38,7 +38,145 @@
         margin: 0 auto;
     }
 
-    @media (max-width: 768px) {
+
+    .modules-card {
+        position: relative;
+        width: 16vw;
+        height: 16vw;
+        perspective: 1000px;
+    }
+
+    .card-inner {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        transform-style: preserve-3d;
+        transition: transform 0.6s;
+    }
+
+    .modules-card:hover .card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        background-color: #F0F8FF;
+        display: flex;
+        justify-content: center;
+        backface-visibility: hidden;
+    }
+
+    .card-front {
+        background-color: #F4F8FB;
+        display: flex;
+        flex-direction: column;
+        padding: 0 0 32px 32px;
+        gap: 16px;
+        justify-content: flex-end;
+    }
+
+    .card-front svg {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+    }
+
+    .card-back {
+        background-color: #F4F8FB;
+        transform: rotateY(180deg);
+        padding: 20px;
+        font-weight: 400;
+    }
+
+    .ways-of-working {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+
+        @media (min-width: 1200px) and (max-width: 1440px) {
+
+        .modules-card {
+            width: 15.5vw !important;
+            height: 15.5vw !important;
+        }
+
+        .modules-card svg {
+            width: 40px !important;
+        }
+
+        .card-front {
+            padding: 0 20px 20px 20px;
+        }
+
+        .card-front h6 {
+            font-size: 0.9rem;
+        }
+
+        .card-back .text-medium {
+            font-size: 0.9rem;
+        }
+
+    }
+
+
+        @media (min-width: 1025px) and (max-width: 1200px) {
+        .ways-of-working {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-between !important;
+        }
+        .modules-card {
+            width: 17vw !important;
+            height: 17vw !important;
+        }
+
+        .modules-card svg {
+            width: 40px !important;
+        }
+
+        .card-front {
+            padding: 0 20px 20px 20px;
+        }
+
+        .card-front h6 {
+            font-size: 1rem;
+        }
+
+        .card-back .text-medium {
+            font-size: 0.9rem;
+        }
+    }
+
+        @media (min-width: 901px) and (max-width: 1025px) {
+        .modules-card {
+            width: 24vw !important;
+            height: 24vw !important;
+        }
+
+        .modules-card svg {
+            width: 44px !important;
+        }
+
+        .card-front {
+            padding: 0 32px 32px 32px;
+        }
+
+        .card-front h6 {
+            font-size: 1.2rem;
+        }
+
+        .card-back .text-medium {
+            font-size: 1rem;
+        }
+
+    }
+
+        @media (max-width: 768px) {
 
         .testimonial-grid {
             width: 100% !important;
@@ -51,6 +189,28 @@
             width: 80vw !important;   /* Take up most of screen */
             padding: 24px;
         }
+
+        .modules-card {
+            width: 40vw !important;
+            height: 40vw !important;
+        }
+
+        .modules-card svg {
+            width: 40px !important;
+        }
+
+        .card-front {
+            padding: 0 20px 20px 20px;
+        }
+
+        .card-front h6 {
+            font-size: 0.9rem;
+        }
+
+        .card-back .text-medium {
+            font-size: 0.8rem;
+        }
+
     }
 
 }
