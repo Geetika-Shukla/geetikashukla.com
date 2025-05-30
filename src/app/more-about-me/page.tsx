@@ -113,7 +113,7 @@ const MoreAboutMePage = () => {
                         <Text marginBottom="nano" marginTop="nano">
                         Architecture
                     </Text>
-                    <Text>
+                    <Text marginBottom="medium">
                         Faculty of Architecture,
                         Lucknow, Uttar Pradesh
                     </Text>
