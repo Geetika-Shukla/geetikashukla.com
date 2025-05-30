@@ -46,7 +46,7 @@
     }
 
     .project-thumbnail-text {
-        font-size: 0.9rem !important;
+        font-size: 1rem !important;
         top: 15vh !important;
     }
 }
@@ -58,7 +58,7 @@
 
     .project-thumbnail-text {
         font-size: 1rem !important;
-        top: 13.5vh !important;
+        top: 15vh !important;
     }
 }
 
@@ -70,7 +70,7 @@
 
     .project-thumbnail-text {
         font-size: 0.9rem !important;
-        top: 16vh !important;
+        top: 18vh !important;
     }
 }
 
