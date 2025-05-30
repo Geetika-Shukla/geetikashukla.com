@@ -247,7 +247,7 @@ const MoreAboutMePage = () => {
                     <div className="card-inner">
                         <div className="card-front">
                             <IconForm/>
-                            <h6>Form follows<br/> function</h6>
+                            <h6>Rooted in function, refined in form</h6>
                         </div>
                         <div className="card-back">
                             <Text size="medium" fontStyle="serif">
