@@ -9,6 +9,11 @@
         transform: rotate(360deg);
     }
 
+    .college-logo {
+        display: inline-block;
+        height: 50px;
+    }
+
     .display-pic {
         width: 80%;
         height: auto;

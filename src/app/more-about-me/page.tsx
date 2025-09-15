@@ -32,6 +32,7 @@ import MyPhoto from "@/assets/images/me.svg";
 import NIDLogo from "@/assets/images/nid-logo.svg";
 import FOALogo from "@/assets/images/foa-logo.svg";
 import SetuLogo from "@/assets/images/setu-logo.svg";
+import RBIHLogo from "@/assets/images/rbih-logo.svg";
 import AtherLogo from "@/assets/images/ather-logo.svg";
 import NSLogo from "@/assets/images/ns-logo.svg";
 import IconCollab from "@/assets/images/Link.svg";
@@ -126,6 +127,22 @@ const MoreAboutMePage = () => {
                 <Portion desktopSpan="16" mobileSpan="whole">
                     <div>
                         <h5>Work Experience</h5>
+                    </div>
+
+                    <br/><br/>
+                    <div>
+
+                        <RBIHLogo className="college-logo"/>
+                        <Text marginTop="micro"><strong>
+                            Design Manager
+                        </strong>
+                        </Text>
+                        <Text marginBottom="tiny" marginTop="nano">
+                            Reserve Bank Innovation Hub · Aug 2025 – present
+                        </Text>
+                        <Text marginBottom="nano">
+                            Currently working on rebranding initiatives and building a scalable design system that connects visual identity with product experience.
+                        </Text>
                     </div>
 
                     <br/><br/>
