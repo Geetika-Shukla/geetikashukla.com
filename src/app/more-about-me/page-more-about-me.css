@@ -98,7 +98,7 @@
 
     .ways-of-working {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         gap: 20px;
     }
 
@@ -123,6 +123,10 @@
 
 
     @media (min-width: 1200px) and (max-width: 1440px) {
+
+        .ways-of-working {
+            flex-wrap: nowrap;
+        }
 
         .modules-card {
             width: 15.5vw !important;
@@ -151,8 +155,7 @@
         @media (min-width: 1025px) and (max-width: 1200px) {
         .ways-of-working {
             display: flex;
-            flex-wrap: wrap;
-            align-content: space-between !important;
+            flex-wrap: nowrap;
         }
         .modules-card {
             width: 17vw !important;
@@ -177,30 +180,39 @@
     }
 
         @media (min-width: 901px) and (max-width: 1025px) {
+        .ways-of-working {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
         .modules-card {
-            width: 24vw !important;
-            height: 24vw !important;
+            width: 20vw !important;
+            height: 20vw !important;
         }
 
         .modules-card svg {
-            width: 44px !important;
+            width: 40px !important;
         }
 
         .card-front {
-            padding: 0 32px 32px 32px;
+            padding: 0 20px 20px 20px;
         }
 
         .card-front h6 {
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         .card-back .text-medium {
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
     }
 
         @media (max-width: 768px) {
+
+        .ways-of-working {
+            flex-wrap: wrap;
+        }
 
         .testimonial-grid {
             width: 100% !important;

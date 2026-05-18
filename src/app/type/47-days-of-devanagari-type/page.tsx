@@ -104,13 +104,13 @@ export default function DevanagariPage() {
 
             <Row style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <Div style={{ maxWidth: "1050px", width: "100%" }}>
-                    <Image src={process} alt="cover" height={200} width={1000} />
+                    <Image src={process} alt="cover" height={200} width={1000} style={{ width: '100%', height: 'auto' }} />
                 </Div>
             </Row>
 
             <Row layoutAsFlexbox horizontalPadding="large" marginTop="medium" marginBottom="medium" horizontallyCenterThis>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '28px', justifyContent: 'center', maxWidth: '960px' }}>
+                    <div className="gallery-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '28px', justifyContent: 'center', maxWidth: '960px' }}>
                         <One width={300} height={300} />
                         <Two width={300} height={300} />
                         <Three width={300} height={300} />

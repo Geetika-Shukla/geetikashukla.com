@@ -147,12 +147,12 @@ import T from "@/assets/images/26days/t.svg";
             </Row >
 
             <Div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <Image src={process} alt="concept" height={300} width={1800} />
+                <Image src={process} alt="concept" height={300} width={1800} style={{ width: '100%', height: 'auto' }} />
             </Div>
 
             <Row layoutAsFlexbox horizontalPadding="large" marginTop="medium" marginBottom="medium" horizontallyCenterThis>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '64px', justifyContent: 'center', maxWidth: '960px' }}>
+                    <div className="gallery-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '64px', justifyContent: 'center', maxWidth: '960px' }}>
                         <A width={240} height={240} />
                         <B width={240} height={240} />
                         <C width={240} height={240} />

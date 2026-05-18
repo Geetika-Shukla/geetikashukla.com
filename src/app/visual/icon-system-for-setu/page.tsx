@@ -171,12 +171,12 @@ const IconSystemPage = () => {
 
             <Row className="platform-scroll-section" horizontalMargin="large">
                 <Div className="scroll-container">
-                    <Guideline1 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
-                    <Guideline2 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
-                    <Guideline3 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
-                    <Guideline4 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
-                    <Guideline5 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
-                    <Guideline6 style={{ borderRadius: "16px", minWidth: "900px", scrollSnapAlign: "start" }} />
+                    <Guideline1 className="scroll-item" />
+                    <Guideline2 className="scroll-item" />
+                    <Guideline3 className="scroll-item" />
+                    <Guideline4 className="scroll-item" />
+                    <Guideline5 className="scroll-item" />
+                    <Guideline6 className="scroll-item" />
                 </Div>
             </Row>
 

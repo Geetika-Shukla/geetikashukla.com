@@ -134,7 +134,7 @@ const MoreAboutMePage = () => {
 
                         <RBIHLogo className="college-logo"/>
                         <Text marginTop="micro"><strong>
-                            Design Manager
+                            Manager — Design
                         </strong>
                         </Text>
                         <Text marginBottom="tiny" marginTop="nano">

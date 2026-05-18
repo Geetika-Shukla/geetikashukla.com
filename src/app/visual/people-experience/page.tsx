@@ -115,7 +115,9 @@ export default function PeopleExpPage() {
             </Row>
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="small" horizontallyCenterThis>
-                <Image src={Onboarding} width={1000} className="people-images responsive-image" alt="onboarding-images"/>
+                <Portion desktopSpan="whole">
+                    <Image src={Onboarding} width={1000} className="people-images responsive-image" alt="onboarding-images"/>
+                </Portion>
             </Row>
 
 

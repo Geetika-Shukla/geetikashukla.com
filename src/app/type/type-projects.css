@@ -1,3 +1,8 @@
+.gallery-grid svg {
+    max-width: 100%;
+    height: auto;
+}
+
 .-project-page {
 
     .image-grid {

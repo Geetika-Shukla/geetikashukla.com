@@ -61,7 +61,7 @@ export default function InktoberPage() {
 
             <Row layoutAsFlexbox horizontalPadding="large" marginTop="tiny" marginBottom="medium" horizontallyCenterThis>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center', maxWidth: '960px' }}>
+                    <div className="gallery-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center', maxWidth: '960px' }}>
                 <Deep width={300} height={300}/>
                 <Cloud width={300} height={300}/>
                 <Fall width={300} height={300}/>
