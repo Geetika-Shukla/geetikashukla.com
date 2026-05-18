@@ -366,7 +366,7 @@
 
     .grid-container {
         display: flex !important;
-        width: 100vw;
+        width: 100%;
     }
 
     .full-width-banner {

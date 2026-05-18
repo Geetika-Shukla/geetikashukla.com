@@ -70,8 +70,9 @@
 
     .testimonial-card {
         position: relative;
-        min-width: 400px;
-        height: 600px;
+        min-width: min(400px, 80vw);
+        height: auto;
+        min-height: 400px;
         border-radius: 20px;
         padding: 32px;
         scroll-snap-align: start;
@@ -81,7 +82,7 @@
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        width: 1040px;
+        width: 100%;
         scrollbar-width: none;
         -ms-overflow-style: none;
         gap: 20px;
@@ -123,7 +124,7 @@
         position: absolute;
         font-family: "zilla-slab", serif;
         color: #B18758;
-        top: 132px;
+        top: 9vw;
         left: 24px;
         right: 24px;
         font-size: 1.15rem;
@@ -135,7 +136,7 @@
         color: #656565;
         left: 24px;
         right: 24px;
-        top: 160px;
+        top: 12vw;
         font-weight: 500;
     }
 
@@ -281,7 +282,6 @@
     .scroll-container {
         gap: 10px;
         padding: 8px;
-        width: 100%;
         scroll-snap-type: x mandatory;
         display: flex;
         overflow-x: scroll;

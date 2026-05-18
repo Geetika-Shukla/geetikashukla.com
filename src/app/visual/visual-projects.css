@@ -8,8 +8,9 @@
     }
 
     .image-item {
-        width: 280px;
-        height: 280px;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        height: auto;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -36,8 +37,9 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        width: 176px;
-        height: 290px;
+        width: clamp(140px, 14vw, 176px);
+        height: auto;
+        min-height: 220px;
         border-radius: 16px;
         background-color: #F8FAFC;
     }
@@ -86,7 +88,7 @@
         scroll-snap-type: x mandatory;
         gap: 16px;
         padding: 10px;
-        width: 1000px;
+        width: 100%;
         white-space: nowrap;
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -99,7 +101,7 @@
     .scroll-item {
         border-radius: 16px;
         scroll-snap-align: start;
-        min-width: 900px;
+        min-width: min(900px, 90vw);
     }
 
     .please-respond {

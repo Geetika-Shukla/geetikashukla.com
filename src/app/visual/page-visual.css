@@ -11,8 +11,8 @@
 
     .project-thumbnail {
         position: relative;
-        width: 400px;
-        height: 200px;
+        width: clamp(260px, 38vw, 400px);
+        height: clamp(130px, 19vw, 200px);
         overflow: hidden;
         text-align: end;
         border-radius: 20px;
@@ -89,7 +89,9 @@
 @media (max-width: 768px) {
 
     .project-thumbnail {
-        width: 350px !important;
+        width: min(350px, 88vw) !important;
+        height: auto !important;
+        min-height: 150px !important;
     }
 
 }

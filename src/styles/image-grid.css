@@ -1,7 +1,6 @@
 .image-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* Default 3 columns */
     gap: 64px;
     justify-items: center;
     width: 100%;
@@ -9,8 +8,9 @@
 }
 
 .image-grid .image-item {
-    width: 260px;
-    height: 260px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,17 +23,14 @@
 }
 
 @media (max-width: 600px) {
-    @media (max-width: 600px) {
-        .image-grid {
-            grid-template-columns: 1fr !important;
-        }
-
-        .image-grid .image-item {
-            width: 100% !important;
-            max-width: 320px;
-            height: auto;
-        }
+    .image-grid {
+        grid-template-columns: 1fr !important;
+        gap: 32px;
     }
 
-
+    .image-grid .image-item {
+        width: 100% !important;
+        max-width: 320px;
+        height: auto;
+    }
 }
