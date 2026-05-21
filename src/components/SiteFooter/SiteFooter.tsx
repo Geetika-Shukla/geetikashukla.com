@@ -30,10 +30,9 @@ export const SiteFooter = () => {
 
     return (
         <Footer id="site-footer">
-            <Row horizontalPadding="large">
+            <Row>
                 <Portion>
-                    <Div verticallyCenterItems pushItemsToEnds>
-                        <Text className="footer-text" hideOnMobile>👩🏻‍💻 &nbsp; Thanks for stopping by! I'm learning to code, and this website has been built by me.</Text>
+                    <Div verticallyCenterItems horizontallyCenterThis>
                         <Div className="links-container">
                             <Link href="https://github.com/Geetika-Shukla/geetikashukla.com"  target="_blank" rel="noopener noreferrer">
                                 <GitHub alt="github" height="30px" />

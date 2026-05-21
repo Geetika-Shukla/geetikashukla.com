@@ -130,84 +130,75 @@ const MoreAboutMePage = () => {
                     </div>
 
                     <br/><br/>
-                    <div>
+                    <div className="timeline">
 
-                        <RBIHLogo className="college-logo"/>
-                        <Text marginTop="micro"><strong>
-                            Manager — Design
-                        </strong>
-                        </Text>
-                        <Text marginBottom="tiny" marginTop="nano">
-                            Reserve Bank Innovation Hub · Aug 2025 – present
-                        </Text>
-                        <Text marginBottom="nano">
-                            Currently working on rebranding initiatives and building a scalable design system that connects visual identity with product experience.
-                        </Text>
+                        <div className="timeline-entry">
+                            <RBIHLogo className="college-logo"/>
+                            <Text marginTop="micro"><strong>
+                                Manager — Design
+                            </strong>
+                            </Text>
+                            <Text marginBottom="tiny" marginTop="nano">
+                                Reserve Bank Innovation Hub · Aug 2025 – present
+                            </Text>
+                            <Text marginBottom="nano">
+                                Currently working on rebranding initiatives and building a scalable design system that connects visual identity with product experience.
+                            </Text>
+                        </div>
+
+                        <div className="timeline-entry">
+                            <SetuLogo className="college-logo"/>
+                            <Text marginTop="nano"><strong>
+                                Lead Growth Designer
+                            </strong>
+                            </Text>
+                            <Text marginBottom="tiny" marginTop="nano">
+                                Setu by Pine Labs · Feb 2020 – May 2025
+                            </Text>
+                            <Text marginBottom="nano">
+                                Led visual and UI design for Setu's core and service-based products.
+                            </Text>
+                            <Text marginBottom="nano">
+                                Built scalable UI frameworks and design systems for in-house products and services used by HDFC, ICICI, and Axis Bank.
+                            </Text>
+                            <Text>
+                                Defined brand identity for Setu AA, and maintained visual consistency across web, dashboard, digital products, blog, and social media.
+                            </Text>
+                        </div>
+
+                        <div className="timeline-entry">
+                            <AtherLogo className="college-logo"/>
+                            <Text marginTop="nano"><strong>
+                                Retail Experience Designer
+                            </strong>
+                            </Text>
+                            <Text marginBottom="tiny" marginTop="nano">
+                                Ather Energy · Jun 2019 – Dec 2019
+                            </Text>
+                            <Text>
+                                Created an exhibition design system and guidelines for pop-up and delivery events.
+                            </Text>
+                        </div>
+
+                        <div className="timeline-entry">
+                            <NSLogo className="college-logo"/>
+                            <Text marginTop="nano"><strong>
+                                Freelance Graphic Designer
+                            </strong>
+                            </Text>
+                            <Text marginBottom="tiny" marginTop="nano">
+                                Nonesuch Studio · Oct 2018 – Nov 2019
+                            </Text>
+                            <Text>
+                                Worked on brand identity, editorial and social media for a pet hospital.
+                            </Text>
+                        </div>
+
                     </div>
 
                     <br/><br/>
 
-                    <div>
-                        <SetuLogo className="college-logo"/>
-                        <Text marginTop="nano"><strong>
-                            Lead Growth Designer
-                        </strong>
-                        </Text>
-                        <Text marginBottom="tiny" marginTop="nano">
-                            Setu by Pine Labs · Feb 2020 – May 2025
-                        </Text>
-                        <Text marginBottom="nano">
-                            Led visual and UI design for Setu's core and service-based products.
-                        </Text>
-                        <Text marginBottom="nano">
-                            Built scalable UI frameworks and design systems for in-house products and services used by HDFC, ICICI, and Axis Bank.
-                        </Text>
-                        <Text>
-                            Defined brand identity for Setu AA, and maintained visual consistency across web, dashboard, digital products, blog, and social media.
-                        </Text>
-                    </div>
-
-                    <br/><br/>
-
-                    <div>
-                        <AtherLogo className="college-logo"/>
-                        <Text marginTop="nano"><strong>
-                            Retail Experience Designer
-                        </strong>
-                        </Text>
-                        <Text marginBottom="nano">
-
-                        </Text>
-                        <Text marginBottom="tiny" marginTop="nano">
-                            Ather Energy · Jun 2019 – Dec 2019
-                        </Text>
-                        <Text>
-                            Created an exhibition design system and guidelines for pop-up and delivery events.
-                        </Text>
-                    </div>
-
-                    <br/><br/>
-
-                    <div>
-                        <NSLogo className="college-logo"/>
-                        <Text marginTop="nano"><strong>
-                            Freelance Graphic Designer
-                        </strong>
-                        </Text>
-                        <Text marginBottom="nano">
-                        </Text>
-                        <Text marginBottom="tiny" marginTop="nano">
-                            Nonesuch Studio · Oct 2018 – Nov 2019
-
-                        </Text>
-                        <Text>
-                            Worked on brand identity, editorial and social media for a pet hospital.
-                        </Text>
-                    </div>
-
-                    <br/><br/>
-
-                    <div>
+                    <div style={{ paddingLeft: '50px' }}>
                         <a
                             className="resume-button"
                             href="https://drive.google.com/uc?export=download&id=1UXkFA6hBj2m-KuHozLz3eFtyUJKckFoY"

@@ -13,6 +13,21 @@
         font-size: 1rem;
         color: hsl(210, 9%, 38%);
     }
+
+    .links-container {
+        justify-content: center;
+        padding: 0;
+        gap: 32px;
+    }
+
+    .links-container a svg {
+        filter: grayscale(100%);
+        transition: filter 0.3s ease;
+    }
+
+    .links-container a:hover svg {
+        filter: none;
+    }
 }
 
 

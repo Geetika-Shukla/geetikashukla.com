@@ -42,6 +42,8 @@ export const SiteHeader = () => {
 
                             <Link href="/type"><Text className="nav-links" hideOnMobile>Type</Text></Link>
 
+                            <Link href="/more-about-me"><Text className="nav-links" hideOnMobile>About me</Text></Link>
+
                             <Link href="/hobbies"><Heart className="nav-icon" width="24px" height="24px" /></Link>
                         </Div>
                     </Div>

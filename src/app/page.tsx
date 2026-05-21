@@ -24,9 +24,6 @@ import {
 import "@/styles/home.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
-import GreenStar from "@/assets/images/green-star.svg";
-import PurpleStar from "@/assets/images/purple-star.svg";
 import VDCover from "@/assets/images/vd-cover.svg";
 import TypeCover from "@/assets/images/type-cover.svg";
 import ExpCover from "@/assets/images/exp-cover.svg";
@@ -41,19 +38,18 @@ export default function Home() {
     return (
         <article id="page-home">
 
-            <Row layoutAsGrid className="row-hide" horizontalPadding="huge" marginTop="medium" marginBottom="none">
-                <Portion desktopSpan="2" marginTop="large" className="overflow-left" showOnlyOnDesktop>
-                    <GreenStar className="star" alt="stars" height="56px" />
-                </Portion>
+            <div className="page-grid-lines" aria-hidden="true">
+                <span/><span/><span/><span/>
+            </div>
+
+            <Row layoutAsGrid horizontalPadding="huge" marginTop="medium" marginBottom="none">
                 <Portion desktopSpan="8">
                     <Heading1 className="hero-heading">
                         Hello there!
                     </Heading1>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar className="star"  alt="star" height="32px" />
-                </Portion>
-                <Portion desktopSpan="10" marginBottom="small">
+                <Portion desktopSpan="8" />
+                <Portion desktopSpan="8" marginBottom="small">
                     <Div marginTop="small" className="intro-text">
                         <Text>I’m Geetika, a multi-disciplinary designer with around 7 years of experience spanning
                             brand, exhibition, web, and product design.
@@ -63,27 +59,8 @@ export default function Home() {
                             thinking with purposeful visual design to turn complex ideas into intuitive user journeys.
                         </Text>
                     </Div>
-                    <Div className="buttons-gap" marginTop="tiny" marginBottom="nano">
-                        <a
-                            className="resume-button"
-                            href="https://drive.google.com/uc?export=download&id=1UXkFA6hBj2m-KuHozLz3eFtyUJKckFoY"
-                            target="_blank"
-                            download
-                        >
-                            Download Resume
-                        </a>
-                        <a
-                            className="tert-button"
-                            href="/more-about-me"
-                        >
-                            More about me
-                        </a>
-                    </Div>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" className="overflow-right" showOnlyOnDesktop>
-                    <PurpleStar className="star" alt="star" height="56px" />
-                </Portion>
-            </Row >
+            </Row>
 
             {/*CATEGORIES FOR MOBILE */}
 
@@ -113,63 +90,55 @@ export default function Home() {
 
             {/* KEY PROJECTS */}
 
-            <Row horizontalPadding="huge" className="key-project-bg" marginBottom="small" marginTop="nano" paddingTop="small" paddingBottom="tiny" hideOnMobile>
-                <Portion desktopSpan="6">
-                    <h5>Key projects</h5>
-                    <Text marginTop="nano">
-                        These projects feature intuitive digital experiences for web, app and platform, complemented by in-depth design system implementations.
-                    </Text>
+            <div className="key-projects-wrapper">
+                <h3 className="key-projects-label">Key projects</h3>
+                <Row layoutAsGrid horizontalPadding="huge" className="key-projects-section" marginBottom="none" marginTop="none" paddingTop="small" paddingBottom="small" hideOnMobile>
+
+                    {/* Column 1 — stacked thumbnails for projects 1 & 2 */}
+                    <Portion desktopSpan="8">
+                    <Link href="/experiences/revamping-reports" className="project-link" style={{ display: "block", width: "100%" }}>
+                        <Card className="project-thumbnail project-thumbnail--half">
+                            <ReportsThumbnail alt="revamping-reports"/>
+                        </Card>
+                    </Link>
+
+                    <div style={{ height: "32px" }} />
+
+                    <Link href="/experiences/hdfc-journeys" className="project-link" style={{ display: "block", width: "100%" }}>
+                        <Card className="project-thumbnail project-thumbnail--tall">
+                            <HDFCThumbnail alt="hdfc" />
+                        </Card>
+                    </Link>
+                </Portion>
+
+                    {/* Column 2 — stacked descriptions for projects 1 & 2 */}
+                    <Portion desktopSpan="8" style={{ paddingLeft: "24px", paddingRight: "24px" }}>
+                        <Link href="/experiences/revamping-reports" className="project-link">
+                            <p className="project-thumbnail-heading">Revamping reports on Bridge</p>
+                            <p className="project-thumbnail-description">Scheduling, smarter filters, and enhanced flexibility for better performance.</p>
+                        </Link>
+
+                        <div style={{ height: "128px" }} />
+
+                        <Link href="/experiences/hdfc-journeys" className="project-link">
+                            <p className="project-thumbnail-heading">Digital journeys for HDFC Bank</p>
+                            <p className="project-thumbnail-description">Simplified account opening flows for customers and bank agents alike.</p>
+                        </Link>
                     </Portion>
 
-                <Portion desktopSpan="1" hideOnMobile/>
+                    {/* Column 3 — tall thumbnail + description for project 3 */}
+                    <Portion desktopSpan="8">
+                        <Link href="/visual/icon-system-for-setu" className="project-link">
+                            <Card className="project-thumbnail project-thumbnail--tall">
+                                <IconSystemThumbnail alt="icon-system" />
+                            </Card>
+                            <p className="project-thumbnail-heading">Icon system for Setu</p>
+                            <p className="project-thumbnail-description">A versatile set of ~150 icons across products, decks, print, and Slack.</p>
+                        </Link>
+                    </Portion>
 
-                <Portion desktopSpan="17" className="recent-projects-row" hideOnMobile>
-
-                    <Link href="/experiences/revamping-reports">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <div className="project-tag">experiences</div>
-                            <ReportsThumbnail alt="revamping-reports" />
-                            <Heading6 className="project-thumbnail-heading" >Revamping reports on Bridge</Heading6>
-                            <Text className="project-thumbnail-description">
-                                Revamped reports with scheduling, smarter filters, and enhanced flexibility to improve performance and user adoption.                            </Text>
-                        </Card>
-                    </Link>
-
-                    <Link href="/experiences/hdfc-journeys">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <div className="project-tag">experiences</div>
-                            <HDFCThumbnail alt="hdfc"/>
-                            <Heading6 className="project-thumbnail-heading">Digital journeys for HDFC Bank</Heading6>
-                            <Text className="project-thumbnail-description">
-                                Redesigned HDFC’s account opening flows to simplify the experience for both customers and bank agents.                            </Text>
-                        </Card>
-                    </Link>
-
-                    <Link href="/visual/icon-system-for-setu">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <div className="project-tag">visual</div>
-                            <IconSystemThumbnail alt="icon-system" />
-                            <Heading6 className="project-thumbnail-heading" >Icon system for Setu</Heading6>
-                            <Text className="project-thumbnail-description">
-                                Designed a versatile icon set of ~150 icons used across various Setu platforms, decks, print, and even Slack emojis.
-                            </Text>
-                        </Card>
-                    </Link>
-
-                    <Link href="/experiences/assisted-product-discovery">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <div className="project-tag">experiences</div>
-                            <ProjectDiscoveryThumbnail alt="assisted-discovery-at-setu"/>
-                            <Heading6 className="project-thumbnail-heading">Assisted product discovery at
-                                Setu</Heading6>
-                            <Text className="project-thumbnail-description">
-                                Crafted an intuitive, quiz-based product discovery tool to help users find the right Setu solutions.
-                            </Text>
-                        </Card>
-                    </Link>
-
-                </Portion>
-            </Row>
+                </Row>
+            </div>
 
         </article >
     );
