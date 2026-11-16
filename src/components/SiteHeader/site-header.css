@@ -22,9 +22,10 @@
     transition: opacity 0.3s ease;
 }
 
-/* At the top of the home page the nav sits clear over the scene; the blur
-   comes in once the page scrolls */
-html.is-page-top .site-header::before {
+/* On the home page the nav sits clear at the top over the scene and once the
+   page settles on the work floor; the glass shows while scrolling between */
+html.is-page-top .site-header::before,
+html.is-at-work .site-header::before {
     opacity: 0;
 }
 

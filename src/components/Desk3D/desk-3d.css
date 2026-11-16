@@ -102,7 +102,9 @@
     z-index: 1;
     margin-top: -22svh;
     padding-top: 12svh;
-    background: linear-gradient(to bottom, transparent 0, var(--floor) 22svh);
+    /* Solid by the floor's top edge (its 12svh padding), so nothing of the room
+       shows through once the page settles on the work floor */
+    background: linear-gradient(to bottom, transparent 0, var(--floor) 12svh);
     /* Links to #work land with the floor filling the screen */
     scroll-margin-top: -12svh;
 }

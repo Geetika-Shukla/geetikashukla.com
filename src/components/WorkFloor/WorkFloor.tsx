@@ -98,35 +98,43 @@ const filterFromHash = (hash: string): Category | null =>
  * between them, the page glides on to the floor (scrolling down) or back to
  * the room (scrolling up). Below the floor's top, scrolling is free. Done in
  * script because CSS snapping pulls a short wheel scroll back to the room.
+ * Marks the page (html.is-at-work) while it rests on the floor, so the nav
+ * can drop its background there.
  */
 const useSnapToFloor = (floorRef: React.RefObject<HTMLElement | null>) => {
     useEffect(() => {
         let lastY = window.scrollY;
         let direction = 0;
         let timer: number | undefined;
+        const root = document.documentElement;
+        const floorTop = () => {
+            const floor = floorRef.current;
+            return floor ? Math.round(floor.getBoundingClientRect().top + window.scrollY) : Infinity;
+        };
 
         const settle = () => {
-            const floor = floorRef.current;
-            if (!floor) return;
-            const floorTop = Math.round(floor.getBoundingClientRect().top + window.scrollY);
+            const top = floorTop();
             const y = window.scrollY;
-            if (y <= 0 || y >= floorTop - 1) return;
+            if (y <= 0 || y >= top - 1) return;
             const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-            window.scrollTo({ top: direction > 0 ? floorTop : 0, behavior: smooth ? "smooth" : "auto" });
+            window.scrollTo({ top: direction > 0 ? top : 0, behavior: smooth ? "smooth" : "auto" });
         };
 
         const onScroll = () => {
             const y = window.scrollY;
+            root.classList.toggle("is-at-work", y >= floorTop() - 1);
             if (y !== lastY) direction = Math.sign(y - lastY);
             lastY = y;
             window.clearTimeout(timer);
             timer = window.setTimeout(settle, 140);
         };
 
+        onScroll();
         window.addEventListener("scroll", onScroll, { passive: true });
         return () => {
             window.removeEventListener("scroll", onScroll);
             window.clearTimeout(timer);
+            root.classList.remove("is-at-work");
         };
     }, [floorRef]);
 };
