@@ -52,34 +52,34 @@ const HobbiesPage = () => {
                 <Portion>
                     <div className="bento-grid">
                         <div className="bento-item item-1">
-                            <Image src={calliOne} alt="Image 1" width={400} height={400} loading="lazy" />
+                            <Image src={calliOne} alt="Calligraphy piece" width={400} height={400} loading="lazy" />
                         </div>
                         <div className="bento-item item-2">
-                            <Image src={ghibli} alt="Image 2" width={500} height={100} loading="lazy" />
+                            <Image src={ghibli} alt="Studio Ghibli-inspired artwork" width={500} height={100} loading="lazy" />
                         </div>
                     </div>
 
                     <div className="bento-grid">
                         <div className="bento-item item-3">
-                            <Image src={spirited} alt="Image 3" width={400} height={400} loading="lazy" />
+                            <Image src={spirited} alt="Spirited Away-inspired artwork" width={400} height={400} loading="lazy" />
                         </div>
                         <div className="bento-item item-4">
-                            <Image src={japanFic} alt="Image 5" width={400} height={400} loading="lazy" />
+                            <Image src={japanFic} alt="Japanese fiction books" width={400} height={400} loading="lazy" />
                         </div>
                         <div className="bento-item item-5">
-                            <Image src={calliTwo} alt="Image 4" width={400} height={400} loading="lazy" />
+                            <Image src={calliTwo} alt="Calligraphy piece" width={400} height={400} loading="lazy" />
                         </div>
                     </div>
 
                     <div className="bento-grid">
                         <div className="bento-item item-6">
-                            <Image src={plants} alt="Image 6" width={500} height={200} loading="lazy" />
+                            <Image src={plants} alt="Animation of house plants" width={500} height={200} loading="lazy" />
                         </div>
                         <div className="bento-item item-7">
-                            <Image src={lego} alt="Image 7" width={500} height={200} loading="lazy" />
+                            <Image src={lego} alt="Japan-themed Lego build" width={500} height={200} loading="lazy" />
                         </div>
                         <div className="bento-item item-8">
-                            <Image src={sleeve} alt="Image 8" width="400" height="300" loading="lazy" />
+                            <Image src={sleeve} alt="Handmade laptop sleeve" width="400" height="300" loading="lazy" />
                         </div>
                     </div>
 

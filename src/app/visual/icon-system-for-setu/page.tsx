@@ -187,7 +187,7 @@ const IconSystemPage = () => {
             </Row >
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="small" horizontallyCenterThis>
-                <Image src={crucible} alt="crucible-gif" height={200} width={1200} />
+                <Image src={crucible} alt="Animation of the icon set" height={200} width={1200} />
             </Row>
 
             <Row horizontalPadding="huge">

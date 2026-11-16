@@ -93,7 +93,7 @@ export default function DevanagariPage() {
 
             <Row style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <Div style={{ maxWidth: "1050px", width: "100%" }}>
-                    <Image src={process} alt="cover" height={200} width={1000} style={{ width: '100%', height: 'auto' }} />
+                    <Image src={process} alt="Animation of Devanagari letterforms from the 47 days project" height={200} width={1000} style={{ width: '100%', height: 'auto' }} />
                 </Div>
             </Row>
 

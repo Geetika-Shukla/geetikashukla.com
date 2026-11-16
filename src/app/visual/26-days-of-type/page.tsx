@@ -136,7 +136,7 @@ import T from "@/assets/images/26days/t.svg";
             </Row >
 
             <Div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <Image src={process} alt="concept" height={300} width={1800} style={{ width: '100%', height: 'auto' }} />
+                <Image src={process} alt="Animation of the letterform concept" height={300} width={1800} style={{ width: '100%', height: 'auto' }} />
             </Div>
 
             <Row layoutAsFlexbox horizontalPadding="large" marginTop="medium" marginBottom="medium" horizontallyCenterThis>

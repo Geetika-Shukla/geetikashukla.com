@@ -113,7 +113,7 @@ export default function PeopleExpPage() {
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="small" horizontallyCenterThis>
                 <Portion desktopSpan="whole">
-                    <Image src={Onboarding} width={1000} className="people-images responsive-image" alt="onboarding-images"/>
+                    <Image src={Onboarding} width={1000} className="people-images responsive-image" alt="Onboarding ID cards"/>
                 </Portion>
             </Row>
 
@@ -131,8 +131,8 @@ export default function PeopleExpPage() {
             </Row>
 
             <Row layoutAsFlexbox horizontalPadding="huge" marginTop="none" marginBottom="medium" horizontallyCenterThis >
-                <Image src={Engagement1} width={1200} className="people-images responsive-image" alt="engagement-images"/>
-                <Image src={Engagement2} width={1200} className="people-images responsive-image" alt="engagement-images"/>
+                <Image src={Engagement1} width={1200} className="people-images responsive-image" alt="Employee engagement design"/>
+                <Image src={Engagement2} width={1200} className="people-images responsive-image" alt="Employee engagement design"/>
             </Row>
 
             <hr className="brown-hr" />
