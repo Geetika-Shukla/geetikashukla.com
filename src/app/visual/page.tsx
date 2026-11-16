@@ -54,7 +54,7 @@ const VisualPage = () => {
                     <Div marginTop="small">
                         <Text marginBottom="tiny">I work towards creating engrossing brand identities, designing engaging digital experiences with a sprinkling of animations.</Text>
 
-                        <Text>Trying to echo Mies’ timeless wisdom—"God lies in the details"—one pixel at a time.</Text>
+                        <Text>Trying to echo Mies’ timeless wisdom—&quot;God lies in the details&quot;—one pixel at a time.</Text>
                     </Div>
                 </Portion>
                 <Portion desktopSpan="2" marginTop="small" className="overflow-right" hideOnMobile>

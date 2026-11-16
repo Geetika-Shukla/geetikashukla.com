@@ -156,7 +156,7 @@ const MoreAboutMePage = () => {
                                 Setu by Pine Labs · Feb 2020 – May 2025
                             </Text>
                             <Text marginBottom="nano">
-                                Led visual and UI design for Setu's core and service-based products.
+                                Led visual and UI design for Setu&apos;s core and service-based products.
                             </Text>
                             <Text marginBottom="nano">
                                 Built scalable UI frameworks and design systems for in-house products and services used by HDFC, ICICI, and Axis Bank.
@@ -284,7 +284,7 @@ const MoreAboutMePage = () => {
 
             <Row horizontalPadding="huge" marginBottom="tiny" marginTop="tiny">
                 <Portion>
-                    <h5>From those I've worked with &nbsp; 🤍
+                    <h5>From those I&apos;ve worked with &nbsp; 🤍
                     </h5>
                 </Portion>
             </Row>
@@ -306,7 +306,7 @@ const MoreAboutMePage = () => {
 
                     <Card className="testimonial-card" bgColor="violet-light10-opacity5" borderColor="violet-light50-opacity10">
                         <Text marginBottom="tiny">
-                            I had the pleasure of working with Geetika to design the brand identity for my business, and I couldn't be more thrilled with the results! From the start, she took the time to understand my vision, values, and the essence of my brand.
+                            I had the pleasure of working with Geetika to design the brand identity for my business, and I couldn&apos;t be more thrilled with the results! From the start, she took the time to understand my vision, values, and the essence of my brand.
                         </Text>
                         <Text marginBottom="tiny">
                             The attention to detail, creativity, and expertise she brought to the table was evident in every aspect of the design. The logo, colour palette, typography, and overall style feel perfectly aligned with the identity I wanted to create.

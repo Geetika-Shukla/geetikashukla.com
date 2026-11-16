@@ -133,7 +133,7 @@ const IconSystemPage = () => {
                         <Card className="pointer-card" padding="small">
                             <IconDocument />
                             <Text paddingTop="tiny">
-                                Given Setu's focus on finance and tech, a style that could balance vibrance and seriousness.
+                                Given Setu&apos;s focus on finance and tech, a style that could balance vibrance and seriousness.
                             </Text>
                         </Card>
                         <Card className="pointer-card" padding="small">

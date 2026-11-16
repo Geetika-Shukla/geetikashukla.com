@@ -457,7 +457,7 @@ export default function HdfcJourneysPage() {
                             <h6>Personal details</h6>
                         </div>
                         <div className="card-back">
-                            <Text size="medium" fontStyle="serif">This includes details like mother's name, marital status and mailing address.</Text>
+                            <Text size="medium" fontStyle="serif">This includes details like mother&apos;s name, marital status and mailing address.</Text>
                         </div>
                     </div>
                 </div>
@@ -554,7 +554,7 @@ export default function HdfcJourneysPage() {
                             <h6>Home</h6>
                         </div>
                         <div className="card-back">
-                            <Text size="medium" fontStyle="serif">The Home section shows the user's accounts,
+                            <Text size="medium" fontStyle="serif">The Home section shows the user&apos;s accounts,
                                 notifications, and action items while nudging them to explore other banking
                                 products.</Text>
                         </div>
