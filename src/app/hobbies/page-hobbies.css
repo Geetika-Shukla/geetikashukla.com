@@ -2,18 +2,16 @@
  * Interests: an intro on the left, beside photos on an isometric floor
  * (IsoFloor, which also sets up the floor-coloured page shell).
  */
-/* A white page: the floor, the page behind it and the footer */
-body:has(.interests),
+/* On the site's off-white: the floor, the page behind it and the footer */
 .site:has(.interests.iso-page) {
-    --floor: #FFFFFF;
-    background-color: #FFFFFF;
+    --floor: var(--color-bg);
 }
 
 .interests {
     background-color: var(--floor);
 }
 
-/* Neutral card shadows to suit the white floor */
+/* Neutral card shadows to suit the off-white floor */
 .interests .tile3d__card {
     box-shadow: 4px 4px 0 #E8E8E6;
 }
