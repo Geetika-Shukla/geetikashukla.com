@@ -1,17 +1,3 @@
-/* Floor colour, shared by the room's floor, the work floor and the footer
-   (matches FLOOR in Room.tsx) */
-.site:has(.d3-page) {
-    --floor: #E4DCCD;
-    /* How far the footer overlaps the bottom of the work floor (wide screens):
-       its full height, so the icons sit on the floor's one screen */
-    --footer-overlap: 124px;
-}
-
-/* On the home page the header overlays the 3D scene */
-.site:has(.d3-page) > .site-header {
-    margin-bottom: calc(var(--header-height) * -1);
-}
-
 /* SCENE ==================================================================== */
 .d3__stage {
     position: relative;
@@ -107,30 +93,6 @@
     background: linear-gradient(to bottom, transparent 0, var(--floor) 10svh);
     /* Links to #work land with the floor filling the screen */
     scroll-margin-top: -12svh;
-}
-
-/* FOOTER =================================================================== */
-/* The social icons sit on the floor: no rule, bottom left */
-.site:has(.d3-page) > .site-footer {
-    position: relative;
-    z-index: 2;
-    margin-top: 0;
-    border-top: 0;
-    background-color: var(--floor);
-}
-
-/* Raised off the bottom edge */
-.site:has(.d3-page) .site-footer__inner {
-    justify-content: flex-start;
-    padding-block: 48px;
-}
-
-/* Wide screens: over the bottom of the floor */
-@media (min-width: 900px) {
-    .site:has(.d3-page) > .site-footer {
-        margin-top: calc(var(--footer-overlap) * -1);
-        background-color: transparent;
-    }
 }
 
 /* Portrait: smaller headline above the room */

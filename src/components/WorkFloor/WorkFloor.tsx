@@ -1,8 +1,10 @@
 "use client";
 
 // EXTERNAL DEPS ===============================================================
-import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
+
+// COMPONENTS ==================================================================
+import { IsoFloor } from "@/components/IsoFloor/IsoFloor";
 
 // DATA ========================================================================
 import { timeline } from "@/data/projects";
@@ -11,6 +13,7 @@ import { timeline } from "@/data/projects";
 import "./work-floor.css";
 
 // TYPES =======================================================================
+import type { IsoSize, IsoTile } from "@/components/IsoFloor/IsoFloor";
 import type { Project } from "@/data/projects";
 
 type Category = Project["category"];
@@ -23,16 +26,11 @@ const FILTERS: { id: string; label: string; category: Category }[] = [
 ];
 
 /*
- * Bento tiles on a regular lattice spread over the visible floor. The lattice
- * pitch is 11 grid cells (a 9-cell tile + a 2-cell gutter), so tiles in the same
- * row share a top edge and columns line up. Positions are the top-left corner
- * in cells (u across, v down the plane) from the floor's centre, chosen to spread
- * the tiles over the viewport and keep the list's column clear.
- * Sizes: 1×1 is 9 × 9 cells, 2×1 is 20 × 9.
- * `art` scales a thumbnail down inside its card where it reads too large.
+ * Project cards on the floor's lattice (see IsoFloor), spread over the viewport
+ * and clear of the list's column. `art` scales a thumbnail down inside its card
+ * where it reads too large.
  */
-type Size = "1x1" | "2x1";
-const BENTO: { href: string; size: Size; u: number; v: number; art?: number }[] = [
+const BENTO: { href: string; size: IsoSize; u: number; v: number; art?: number }[] = [
     { href: "/visual/26-days-of-type", size: "2x1", u: 0, v: -31 },
     { href: "/visual/kannauj-perfumery", size: "2x1", u: -11, v: -20 },
     { href: "/experiences/path-to-partnerships", size: "2x1", u: 11, v: -20 },
@@ -45,50 +43,11 @@ const BENTO: { href: string; size: Size; u: number; v: number; art?: number }[] 
     { href: "/type/47-days-of-devanagari-type", size: "2x1", u: 0, v: 13 },
 ];
 
-const WIDTH: Record<Size, number> = { "1x1": 9, "2x1": 20 };
-const DEPTH = 9;
-// The gap kept between cards, and how far same-row neighbours ease aside while a card is open (cells)
-const GAP = 2;
-const NUDGE = 1;
-
 const BY_HREF = new Map(timeline.flatMap((period) => period.projects).map((project) => [project.href, project]));
-const TILES = BENTO.flatMap(({ href, size, u, v, art = 1 }) => {
-    const project = BY_HREF.get(href);
-    return project ? [{ ...project, size, u, v, art }] : [];
+const PROJECTS = BENTO.flatMap((spot) => {
+    const project = BY_HREF.get(spot.href);
+    return project ? [{ ...spot, project }] : [];
 });
-
-type Tile = (typeof TILES)[number];
-
-type Open = { tile: Tile; grow: number };   // grow: how far the open card grows (cells)
-
-/*
- * Where every tile moves while one is open, as [cells across, cells down].
- * Same-row neighbours ease a step aside. Then, row by row from the top, each
- * tile moves down just enough to keep the gap below every tile above it in
- * overlapping columns, counting the open card's growth and any tile already
- * pushed down, so nothing ends up overlapping.
- */
-const layoutFor = (open: Open | null): Map<Tile, [number, number]> => {
-    const offsets = new Map<Tile, [number, number]>(TILES.map((tile) => [tile, [0, 0]]));
-    if (!open) return offsets;
-    const { tile: o, grow } = open;
-
-    TILES.forEach((tile) => {
-        if (tile !== o && tile.v === o.v) offsets.set(tile, [tile.u > o.u ? NUDGE : -NUDGE, 0]);
-    });
-
-    const left = (t: Tile) => t.u + offsets.get(t)![0];
-    const top = (t: Tile) => t.v + offsets.get(t)![1];
-    const bottom = (t: Tile) => top(t) + DEPTH + (t === o ? grow : 0);
-    const sharesColumns = (a: Tile, b: Tile) => left(a) < left(b) + WIDTH[b.size] && left(b) < left(a) + WIDTH[a.size];
-
-    [...TILES].sort((a, b) => a.v - b.v).forEach((tile) => {
-        const above = TILES.filter((other) => other.v < tile.v && sharesColumns(other, tile));
-        const clear = Math.max(tile.v, ...above.map((other) => bottom(other) + GAP));
-        offsets.set(tile, [offsets.get(tile)![0], clear - tile.v]);
-    });
-    return offsets;
-};
 
 const filterFromHash = (hash: string): Category | null =>
     FILTERS.find(({ id }) => `#${id}` === hash)?.category ?? null;
@@ -143,14 +102,6 @@ export const WorkFloor = () => {
     const [filter, setFilter] = useState<Category | null>(null);
     const floorRef = useRef<HTMLDivElement>(null);
     useSnapToFloor(floorRef);
-    // The open card, and how far it grows: the measured height of its title and description
-    const [open, setOpen] = useState<Open | null>(null);
-    const openTile = (tile: Tile, element: HTMLElement) => {
-        const info = element.querySelector<HTMLElement>(".tile3d__info");
-        const cell = element.offsetWidth / WIDTH[tile.size];
-        setOpen({ tile, grow: (info?.scrollHeight ?? 0) / cell });
-    };
-    const offsets = layoutFor(open);
 
     // Nav links point at /#experiences etc.: pick up the filter from the address
     useEffect(() => {
@@ -163,8 +114,16 @@ export const WorkFloor = () => {
         return () => window.removeEventListener("hashchange", sync);
     }, []);
 
+    const tiles: IsoTile[] = PROJECTS.map(({ href, size, u, v, art, project: { title, description, category, Thumbnail } }) => ({
+        id     : href,
+        href, size, u, v, art, title, description,
+        dimmed : filter !== null && category !== filter,
+        // Wide imagery is cropped to fill its card; square imagery shows whole
+        face   : <Thumbnail aria-hidden="true" preserveAspectRatio={size === "2x1" ? "xMidYMid slice" : "xMidYMid meet"} />,
+    }));
+
     return (
-        <div className="work">
+        <div className="work iso">
             <nav className="work__list" aria-label="Filter work">
                 {/* The title clears the filter: every card back in colour */}
                 <h2 id="work-title" className="work__title">
@@ -189,42 +148,7 @@ export const WorkFloor = () => {
                 </ul>
             </nav>
 
-            <div className="floor" ref={floorRef}>
-                <div className="floor__plane">
-                    <ul className="floor__tiles">
-                        {TILES.map((tile) => {
-                            const { title, description, href, Thumbnail, size, category, u, v, art } = tile;
-                            const [du, dv] = offsets.get(tile)!;
-                            const isOpen = open?.tile === tile;
-                            return (
-                                <li
-                                    key={title}
-                                    className={`tile3d tile3d--${size}`}
-                                    style={{ "--u": u, "--v": v, "--art": art, "--du": du, "--dv": dv, "--grow": isOpen ? open.grow : 0 } as React.CSSProperties}
-                                    data-open={isOpen}
-                                    data-dimmed={filter !== null && category !== filter}
-                                    onMouseEnter={(event) => openTile(tile, event.currentTarget)}
-                                    onMouseLeave={() => setOpen(null)}
-                                    onFocus={(event) => openTile(tile, event.currentTarget)}
-                                    onBlur={() => setOpen(null)}
-                                >
-                                    <Link href={href!} className="tile3d__card">
-                                        <span className="tile3d__face">
-                                            {/* Wide imagery is cropped to fill its tile; square imagery shows whole */}
-                                            <Thumbnail aria-hidden="true" preserveAspectRatio={size === "2x1" ? "xMidYMid slice" : "xMidYMid meet"} />
-                                        </span>
-                                        {/* Revealed when the card expands */}
-                                        <span className="tile3d__info">
-                                            <span className="tile3d__title">{title}</span>
-                                            <span className="tile3d__description">{description}</span>
-                                        </span>
-                                    </Link>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </div>
-            </div>
+            <IsoFloor tiles={tiles} floorRef={floorRef} />
         </div>
     );
 };

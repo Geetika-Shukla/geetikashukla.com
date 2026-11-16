@@ -1,0 +1,331 @@
+/*
+ * An isometric floor carrying cards (IsoFloor.tsx), and the page shell for the
+ * pages built on it (the home page and Interests): a floor-coloured page with
+ * the nav laid over its top and the social icons sitting on its bottom edge.
+ *
+ * One plane carries both the grid and the cards, rotated with CSS 3D to a true
+ * isometric angle (edges at 30°). Everything on the plane is sized and placed
+ * in whole grid cells (--c), so every card edge lands on a grid line:
+ *   lattice pitch: 11 (9-cell card + 2-cell gutter)
+ *   1×1 card: 9 × 9 · 2×1 card: 20 × 9 · 1×2 card: 9 × 18
+ * Cards are placed at (--u, --v) cells from the plane's centre. The cell size
+ * scales with the viewport so the arrangement always fills it.
+ * On screen, a cell (u, v) lies (u − v) × 0.7071 cells right of the plane's
+ * centre and (u + v) × 0.40825 cells below it.
+ */
+
+/* PAGE SHELL =============================================================== */
+.site:has(.iso-page) {
+    /* Floor colour, shared by the room's floor, the iso floor and the footer
+       (matches FLOOR in Desk3D/Room.tsx) */
+    --floor: #E4DCCD;
+    /* How far the footer overlaps the bottom of the floor (wide screens): its
+       full height, so the icons sit on the floor's one screen */
+    --footer-overlap: 124px;
+}
+
+/* The nav is laid over the top of the page */
+.site:has(.iso-page) > .site-header {
+    margin-bottom: calc(var(--header-height) * -1);
+}
+
+/* The social icons sit on the floor: no rule, bottom left */
+.site:has(.iso-page) > .site-footer {
+    position: relative;
+    z-index: 2;
+    margin-top: 0;
+    border-top: 0;
+    background-color: var(--floor);
+}
+
+/* Raised off the bottom edge */
+.site:has(.iso-page) .site-footer__inner {
+    justify-content: flex-start;
+    padding-block: 48px;
+}
+
+/* Wide screens: over the bottom of the floor */
+@media (min-width: 900px) {
+    .site:has(.iso-page) > .site-footer {
+        margin-top: calc(var(--footer-overlap) * -1);
+        background-color: transparent;
+    }
+}
+
+/* SCENE ==================================================================== */
+/* Wraps a floor and whatever sits beside it; sets the grid's cell and line */
+.iso {
+    --c: min(calc(100vw / 68), calc(100svh / 38));
+    --line: color-mix(in srgb, var(--color-text) 6%, transparent);
+    /* How far the plane sits off centre, across */
+    --plane-shift: -5vw;
+
+    position: relative;
+}
+
+/* FLOOR ==================================================================== */
+.floor {
+    position: relative;
+    /* One screen; the site footer's icons sit over its bottom edge */
+    height: 100svh;
+    min-height: 640px;
+    overflow: clip;
+    /* The grid fades in at the top */
+    mask-image: linear-gradient(to bottom, transparent 0, #000 160px);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 160px);
+}
+
+/* A plane much larger than the screen, centred on the floor; cell (0, 0) is its centre */
+.floor__plane {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(160 * var(--c));
+    height: calc(160 * var(--c));
+    background-image:
+        linear-gradient(to right, var(--line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: var(--c) var(--c);
+    transform: translate(calc(-50% + var(--plane-shift)), -50%) rotateX(54.7356deg) rotateZ(45deg);
+    transform-style: preserve-3d;
+    /* Cards share the plane's depth; let the pointer reach them, not the plane */
+    pointer-events: none;
+}
+
+.floor__tiles {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    transform-style: preserve-3d;
+}
+
+/* CARDS ==================================================================== */
+/* Cards move by (--du, --dv) cells while a neighbour is open */
+.tile3d {
+    position: absolute;
+    top: calc((80 + var(--v)) * var(--c));
+    left: calc((80 + var(--u)) * var(--c));
+    width: calc(9 * var(--c));
+    height: calc(9 * var(--c));
+    transform: translate(calc(var(--du, 0) * var(--c)), calc(var(--dv, 0) * var(--c)));
+    transform-style: preserve-3d;
+    pointer-events: auto;
+    transition:
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.3s ease,
+        opacity 0.3s ease;
+}
+
+.tile3d--2x1 {
+    width: calc(20 * var(--c));
+}
+
+.tile3d--1x2 {
+    height: calc(18 * var(--c));
+}
+
+/* Dimmed (e.g. filtered out): greyscale and faded */
+.tile3d[data-dimmed="true"] {
+    filter: grayscale(1);
+    opacity: 0.45;
+}
+
+/* The card: imagery on top, with an info strip below that opens on hover */
+.tile3d__card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: var(--color-surface);
+    box-shadow: 4px 4px 0 #D9D2C5;
+    color: inherit;
+    text-decoration: none;
+    outline-offset: 4px;
+    transition: height 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+
+.tile3d[data-open="true"] .tile3d__card {
+    /* Grows by the measured height of its title and description (--grow, cells) */
+    height: calc(100% + var(--grow, 0) * var(--c));
+    box-shadow: 6px 6px 0 #CFC7B8;
+}
+
+.tile3d__face {
+    display: block;
+    flex-shrink: 0;
+    width: 100%;
+    height: calc(9 * var(--c));
+    /* Clipped, so tall imagery can't stretch its box past the card's shape */
+    overflow: hidden;
+}
+
+.tile3d--1x2 .tile3d__face {
+    height: calc(18 * var(--c));
+}
+
+/* Artwork fills its card; --art scales it down where it reads too large */
+.tile3d__face svg,
+.tile3d__face img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(var(--art, 1));
+}
+
+.tile3d__info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 16px 14px;
+    min-width: 0;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.tile3d[data-open="true"] .tile3d__info {
+    opacity: 1;
+    transition-delay: 0.1s;
+}
+
+/* Narrow cards: tighter padding so the text wraps less */
+.tile3d--1x1 .tile3d__info,
+.tile3d--1x2 .tile3d__info {
+    padding: 10px 12px 12px;
+}
+
+.tile3d__title {
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.tile3d__description {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.35;
+}
+
+/* Overlaid captions: the title sits on the imagery, bottom left, over a dark
+   gradient that keeps it legible; nothing opens on hover */
+.floor--overlay .tile3d__info {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 48px 16px 14px;
+    background: linear-gradient(to top, rgba(20, 20, 22, 0.62), rgba(20, 20, 22, 0));
+    opacity: 1;
+    pointer-events: none;
+}
+
+.floor--overlay .tile3d__title {
+    color: #FFFFFF;
+    font-weight: 400;
+}
+
+/* NARROW SCREENS =========================================================== */
+/* The floor would be too small: cards laid out flat in two columns, with
+   their title and description always showing */
+@media (max-width: 899px) {
+    .floor {
+        height: auto;
+        min-height: 0;
+        overflow: visible;
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+
+    .floor__plane {
+        position: static;
+        width: auto;
+        height: auto;
+        background: none;
+        transform: none;
+    }
+
+    .floor__tiles {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* Square cards backfill the gaps wide cards leave */
+        grid-auto-flow: dense;
+        gap: 16px;
+    }
+
+    .tile3d,
+    .tile3d--2x1,
+    .tile3d--1x2 {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: auto;
+        height: auto;
+        transform: none;
+    }
+
+    .tile3d--2x1 {
+        grid-column: span 2;
+    }
+
+    .tile3d__card,
+    .tile3d[data-open="true"] .tile3d__card {
+        position: relative;
+        height: auto;
+    }
+
+    .tile3d__face,
+    .tile3d--1x2 .tile3d__face {
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    .tile3d--2x1 .tile3d__face {
+        aspect-ratio: 2 / 1;
+    }
+
+    /* Tall cards span two rows, their imagery stretching to fill them */
+    .tile3d--1x2 {
+        grid-row: span 2;
+    }
+
+    .tile3d--1x2 .tile3d__card {
+        height: 100%;
+    }
+
+    .tile3d--1x2 .tile3d__face {
+        flex: 1;
+        aspect-ratio: auto;
+    }
+
+    .tile3d__info {
+        opacity: 1;
+    }
+
+    .floor--overlay .tile3d__info {
+        padding: 32px 12px 10px;
+    }
+
+    .tile3d__title {
+        font-size: 1.05rem;
+    }
+
+    .tile3d__description {
+        font-size: 0.85rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tile3d,
+    .tile3d__card,
+    .tile3d__info {
+        transition: none;
+    }
+}

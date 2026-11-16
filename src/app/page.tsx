@@ -8,7 +8,7 @@ import "@/components/Desk3D/desk-3d.css";
 
 export default function Home() {
     return (
-        <article className="d3-page">
+        <article className="d3-page iso-page">
             <section className="d3__stage" aria-label="Desk">
                 <Desk3DLoader />
 
