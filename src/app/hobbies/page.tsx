@@ -29,18 +29,18 @@ import type { IsoSize, IsoTile } from "@/components/IsoFloor/IsoFloor";
  *   column k = (u − v) / 11, from −3 at the intro to 0 at the right edge
  *   row    r = (u + v) / 11, from 0 under the nav to 4 at the bottom
  * Wide imagery takes a 2×1 card (two slots, stepping down to the right).
- * Free slots for more photos: (u 22, v 22) bottom right, and (22, 11) and
- * (22, 0) along the right edge, partly cropped.
+ * Free slots for more photos, along the right edge (partly cropped):
+ * (u 11, v 0) and (22, 11).
  * `focus` picks which part of a cropped photo stays in view.
  */
 const PHOTOS: { title: string; alt: string; image: StaticImageData; size: IsoSize; u: number; v: number; focus?: string }[] = [
-    { title: "Studio Ghibli", alt: "Studio Ghibli-inspired artwork", image: ghibli, size: "2x1", u: 0, v: 0 },
+    { title: "Calligraphy", alt: "Calligraphy piece", image: calliTwo, size: "1x1", u: 0, v: 0 },
     { title: "Calligraphy", alt: "Calligraphy piece", image: calliOne, size: "1x1", u: -11, v: 11 },
     { title: "Japanese fiction", alt: "Japanese fiction books", image: japanFic, size: "1x1", u: 0, v: 11 },
     { title: "Sewing", alt: "Handmade laptop sleeve", image: sleeve, size: "1x1", u: 11, v: 11 },
     { title: "Vinyls", alt: "Spirited Away-inspired artwork", image: spirited, size: "1x1", u: -11, v: 22 },
     { title: "Gardening", alt: "Animation of house plants", image: plants, size: "1x1", u: 0, v: 22, focus: "50% 100%" },
-    { title: "Calligraphy", alt: "Calligraphy piece", image: calliTwo, size: "1x1", u: 11, v: 22 },
+    { title: "Studio Ghibli", alt: "Studio Ghibli-inspired artwork", image: ghibli, size: "2x1", u: 11, v: 22 },
     { title: "Lego", alt: "Japan-themed Lego build", image: lego, size: "2x1", u: 0, v: 33, focus: "50% 70%" },
 ];
 
