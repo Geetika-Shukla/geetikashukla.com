@@ -1,32 +1,35 @@
 /*
  * Once the page scrolls, the nav sits on a frosted-glass band: a light tint
  * over a strong, saturated blur, with a bright rim along the bottom edge.
+ * The glass is on the header itself: a backdrop blur on a pseudo-element
+ * behind it doesn't take effect.
  */
 .site-header {
     position: sticky;
     top: 0;
     z-index: 10;
-}
-
-.site-header::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.55);
     background-color: rgba(255, 255, 255, 0.28);
     box-shadow: 0 1px 0 rgba(43, 45, 56, 0.05), 0 6px 20px rgba(43, 45, 56, 0.04);
     backdrop-filter: blur(16px) saturate(170%);
     -webkit-backdrop-filter: blur(16px) saturate(170%);
-    transition: opacity 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        backdrop-filter 0.3s ease,
+        -webkit-backdrop-filter 0.3s ease;
 }
 
 /* The nav sits clear at the top of a page (and, on the home page, once it
    settles on the work floor); the glass shows once the page scrolls */
-html.is-page-top .site-header::before,
-html.is-at-work .site-header::before {
-    opacity: 0;
+html.is-page-top .site-header,
+html.is-at-work .site-header {
+    border-bottom-color: transparent;
+    background-color: transparent;
+    box-shadow: none;
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(0);
 }
 
 .site-header__inner {
