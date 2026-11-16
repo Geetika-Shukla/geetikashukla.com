@@ -27,6 +27,8 @@ export const FLOOR = "#E4DCCD";
  * the cell matched on screen to the work grid's (--c), so the two read as one.
  */
 const GRID_LINE = [28 / 255, 28 / 255, 30 / 255];
+// Lines start from the floor's corner, where the skirting meets it (side wall x, back wall z)
+const GRID_ORIGIN = new THREE.Vector2(-8.42, -1.62);
 const GRID_OPACITY = 0.06;
 const workGridCell = () => Math.min(window.innerWidth / 68, window.innerHeight / 38);   // --c, px
 
@@ -36,6 +38,7 @@ const FloorGrid = () => {
         depthWrite: false,
         uniforms: {
             cell    : { value: 0.3 },
+            origin  : { value: GRID_ORIGIN },
             width   : { value: 1 },
             color   : { value: new THREE.Vector3(...GRID_LINE) },
             opacity : { value: GRID_OPACITY },
@@ -49,12 +52,13 @@ const FloorGrid = () => {
             }`,
         fragmentShader: `
             uniform float cell;
+            uniform vec2 origin;
             uniform float width;
             uniform vec3 color;
             uniform float opacity;
             varying vec2 vFloor;
             void main() {
-                vec2 coord = vFloor / cell;
+                vec2 coord = (vFloor - origin) / cell;
                 vec2 distance = abs(fract(coord - 0.5) - 0.5) / fwidth(coord);
                 float line = 1.0 - clamp(min(distance.x, distance.y) - width * 0.5 + 0.5, 0.0, 1.0);
                 gl_FragColor = vec4(color, line * opacity);
