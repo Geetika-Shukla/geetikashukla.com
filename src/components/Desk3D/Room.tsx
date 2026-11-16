@@ -18,6 +18,8 @@ import type { MutableRefObject } from "react";
 const WALL = "#F2EEE6";
 const SIDE_WALL = "#ECE6DB";
 const SKIRTING = "#FBFAF6";
+// Must match --floor in desk-3d.css
+export const FLOOR = "#E4DCCD";
 const WINDOW = { left: -3.6, right: 3.6, bottom: 1.2, top: 5.6 };
 
 const Walls = () => (
@@ -29,7 +31,10 @@ const Walls = () => (
         <mesh position={[0, 16.3, -1.8]} receiveShadow><boxGeometry args={[7.2, 21.4, 0.2]} /><Mat color={WALL} /></mesh>
         {/* Side wall, floor and skirting */}
         <mesh position={[-8.6, 12, 8]} receiveShadow><boxGeometry args={[0.2, 30, 19.6]} /><Mat color={SIDE_WALL} /></mesh>
-        <mesh position={[4, -3.1, 8]} receiveShadow><boxGeometry args={[40, 0.2, 20]} /><Mat color="#E6DED0" /></mesh>
+        {/* Floor: flat, unlit colour shared with the work section below, so the two meet seamlessly.
+            Shadows are drawn on a transparent layer just above it. */}
+        <mesh position={[4, -3.1, 8]}><boxGeometry args={[40, 0.2, 20]} /><meshBasicMaterial color={FLOOR} toneMapped={false} /></mesh>
+        <mesh position={[4, -2.995, 8]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow><planeGeometry args={[40, 20]} /><shadowMaterial opacity={0.18} /></mesh>
         <mesh position={[4, -2.84, -1.66]}><boxGeometry args={[40, 0.32, 0.08]} /><Mat color={SKIRTING} /></mesh>
         <mesh position={[-8.46, -2.84, 8]}><boxGeometry args={[0.08, 0.32, 19.6]} /><Mat color={SKIRTING} /></mesh>
     </group>
@@ -37,13 +42,13 @@ const Walls = () => (
 
 // Striped dhurrie-style rug under the desk
 const Rug = () => (
-    <group position={[0.4, -2.99, 1]}>
-        <RoundedBox args={[12, 0.03, 5.4]} radius={0.01} receiveShadow><Mat color="#34507F" /></RoundedBox>
-        <mesh position={[0, 0.02, 0]} receiveShadow><boxGeometry args={[11.2, 0.01, 4.6]} /><Mat color="#F4ECDD" /></mesh>
-        <mesh position={[0, 0.025, 0]} receiveShadow><boxGeometry args={[10.6, 0.01, 4]} /><Mat color="#C9683E" /></mesh>
-        <mesh position={[0, 0.03, 0]} receiveShadow><boxGeometry args={[10, 0.01, 3.4]} /><Mat color="#34507F" /></mesh>
+    <group position={[0.25, -2.99, 1]}>
+        <RoundedBox args={[10.6, 0.03, 5.4]} radius={0.01} receiveShadow><Mat color="#34507F" /></RoundedBox>
+        <mesh position={[0, 0.02, 0]} receiveShadow><boxGeometry args={[9.8, 0.01, 4.6]} /><Mat color="#F4ECDD" /></mesh>
+        <mesh position={[0, 0.025, 0]} receiveShadow><boxGeometry args={[9.2, 0.01, 4]} /><Mat color="#C9683E" /></mesh>
+        <mesh position={[0, 0.03, 0]} receiveShadow><boxGeometry args={[8.6, 0.01, 3.4]} /><Mat color="#34507F" /></mesh>
         {[-1, 0, 1].map((i) => (
-            <mesh key={i} position={[0, 0.035, i * 0.9]} receiveShadow><boxGeometry args={[9.4, 0.01, 0.16]} /><Mat color="#E3B94C" /></mesh>
+            <mesh key={i} position={[0, 0.035, i * 0.9]} receiveShadow><boxGeometry args={[8, 0.01, 0.16]} /><Mat color="#E3B94C" /></mesh>
         ))}
     </group>
 );

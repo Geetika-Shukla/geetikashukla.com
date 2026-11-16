@@ -3,7 +3,7 @@ import Link from "next/link";
 
 // COMPONENTS ==================================================================
 import PersonalLogo from "@/assets/images/logo.svg";
-import { Pixels, fromRows } from "@/components/Pixel/pixel";
+import Heart from "@/assets/images/heart.svg";
 
 // STYLES ======================================================================
 import "./site-header.css";
@@ -12,22 +12,6 @@ const NAV_LINKS = [
     { href: "/#work", label: "Work" },
     { href: "/more-about-me", label: "About me" },
 ];
-
-// Symmetric heart with a small highlight at top left and a shaded right edge.
-// Drawn at exactly 2px per pixel so every pixel is the same size.
-const HEART = fromRows([
-    "..RRR...RRR..",
-    ".RRRRR.RRRRR.",
-    "RRHHRRRRRRRRD",
-    "RRHRRRRRRRRRD",
-    "RRRRRRRRRRRRD",
-    ".RRRRRRRRRRD.",
-    "..RRRRRRRRD..",
-    "...RRRRRRD...",
-    "....RRRRD....",
-    ".....RRD.....",
-    "......D......",
-], { R: "#E04A3C", D: "#B23327", H: "#F58E80" });
 
 export const SiteHeader = () => {
     return (
@@ -42,9 +26,7 @@ export const SiteHeader = () => {
                         <Link key={href} href={href} className="site-header__link">{label}</Link>
                     ))}
                     <Link href="/hobbies" className="site-header__heart" aria-label="Hobbies" title="Hobbies">
-                        <svg viewBox="0 0 13 11" shapeRendering="crispEdges" aria-hidden="true">
-                            <Pixels rects={HEART} />
-                        </svg>
+<Heart aria-hidden="true" />
                     </Link>
                 </nav>
             </div>

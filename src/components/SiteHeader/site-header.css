@@ -7,7 +7,30 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    /* Teal glow from the top-left corner, over a faint veil */
+}
+
+/* Background layers: the blur (::before) and the teal glow (::after). They are
+   separate layers so they can fade in and out together (see the home page). */
+.site-header::before,
+.site-header::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.site-header::before {
+    inset: 0 0 -16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+}
+
+/* Teal glow from the top-left corner, over a faint veil */
+.site-header::after {
+    inset: 0;
     background:
         radial-gradient(
             ellipse 70% 260% at 0% 0%,
@@ -18,16 +41,11 @@
         color-mix(in srgb, var(--color-bg) 50%, transparent);
 }
 
-.site-header::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 -16px;
-    z-index: -1;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
-    pointer-events: none;
+/* At the top of the home page the nav sits clear over the scene; the background
+   comes in once the page scrolls */
+html.is-page-top .site-header::before,
+html.is-page-top .site-header::after {
+    opacity: 0;
 }
 
 .site-header__inner {
@@ -48,7 +66,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
-    gap: 8px 48px;
+    gap: 8px 64px;
 }
 
 .site-header__link {
@@ -66,12 +84,12 @@
 
 .site-header__heart {
     display: flex;
-    transition: transform 0.2s steps(2);
+    transition: transform 0.2s ease;
 }
 
 .site-header__heart svg {
-    width: 26px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
 }
 
 .site-header__heart:hover,
@@ -89,7 +107,7 @@
     }
 
     .site-header__nav {
-        gap: 4px 24px;
+        gap: 4px 32px;
     }
 
     .site-header__link {

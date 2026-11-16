@@ -1,28 +1,31 @@
 // COMPONENTS ==================================================================
 import { Desk3DLoader } from "@/components/Desk3D/Desk3DLoader";
-import { ProjectChips } from "@/components/ProjectChips/ProjectChips";
+import { WorkFloor } from "@/components/WorkFloor/WorkFloor";
+
+// STYLES ======================================================================
+// The page renders the stage, headline and arrow itself, so it owns the styles
+import "@/components/Desk3D/desk-3d.css";
 
 export default function Home() {
     return (
         <article className="d3-page">
-            {/* The headline is server-rendered over the scene, so it shows before the 3D loads */}
             <section className="d3__stage" aria-label="Desk">
                 <Desk3DLoader />
 
+                {/* Server-rendered so it shows before the 3D loads */}
                 <header className="d3__intro">
-                    <p className="d3__eyebrow">Multi-disciplinary designer</p>
-                    <h1 className="d3__title">Geetika <span>Shukla</span></h1>
+                    <h1 className="d3__title">Geetika Shukla</h1>
                     <p className="d3__bio">
                         I’m Geetika, a multi-disciplinary designer with around 7 years of experience spanning brand,
                         exhibition, web, and product design.
                     </p>
                 </header>
-                <p className="d3__hint">Hover the desk to look closer</p>
+
             </section>
 
-            <section id="work" className="d3-work container" aria-labelledby="work-title">
-                <h2 id="work-title" className="d3-work__title">Work</h2>
-                <ProjectChips />
+            <section id="work" className="d3-work" aria-labelledby="work-title">
+                <h2 id="work-title" className="d3-work__title container">Work</h2>
+                <WorkFloor />
             </section>
         </article>
     );

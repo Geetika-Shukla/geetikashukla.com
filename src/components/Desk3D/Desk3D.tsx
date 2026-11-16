@@ -2,46 +2,50 @@
 
 // EXTERNAL DEPS ===============================================================
 import { useRouter } from "next/navigation";
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 
 // COMPONENTS ==================================================================
 import { DeskScene3D } from "./DeskScene3D";
 
-// STYLES ======================================================================
-import "./desk-3d.css";
-
 // TYPES =======================================================================
-import type { PillAnchor } from "./DeskScene3D";
+import type { LabelAnchor } from "./DeskScene3D";
 import type { DeskObjectId, ObjectHandlers } from "./objects";
 
 const RESUME_URL = "https://drive.google.com/uc?export=download&id=1UXkFA6hBj2m-KuHozLz3eFtyUJKckFoY";
 const LINKEDIN_URL = "https://www.linkedin.com/in/geetikashukla/";
 
-// Clickable objects: label and where it sits in the scene
-const OBJECTS: (PillAnchor & { label: string })[] = [
-    { id: "monitor", label: "Work", position: [-1.8, 3.55, -0.75] },
-    { id: "echo", label: "About me", position: [-4.3, 1.25, -0.3] },
-    { id: "shelf", label: "Hobbies", position: [4.6, 3.05, -0.85] },
-    { id: "journals", label: "Résumé", position: [1.6, 0.45, 0.9] },
-    { id: "phone", label: "LinkedIn", position: [3.1, 1.75, -0.3] },
+// Hover titles, pinned to the top-left edge of each object's front face
+const LABELS: (LabelAnchor & { label: string })[] = [
+    { id: "monitor", label: "Work", position: [-3.9, 3.3, -0.69] },
+    { id: "echo", label: "About me", position: [-4.45, 0.85, 0.15] },
+    { id: "shelf", label: "Hobbies", position: [2.6, 3, -0.37] },
+    { id: "journals", label: "Résumé", position: [0.45, 0.4, -0.15] },
+    { id: "phone", label: "LinkedIn", position: [2.15, 1.15, 0] },
 ];
 
-// The desk scene, rendered inside the page's .d3__stage. Scrolling past it raises
-// the blind; hovering an object leans the camera towards it; clicking opens it.
+// The desk scene, rendered inside the page's .d3__stage. Hovering an object
+// shows its title; clicking opens it.
 export default function Desk3D() {
     const router = useRouter();
     const progressRef = useRef(0);
     const hoveredRef = useRef<DeskObjectId | null>(null);
-    const pillRefs = useRef<Record<string, HTMLElement | null>>({});
-    const [meowing, setMeowing] = useState(false);
+    const labelRefs = useRef<Record<string, HTMLElement | null>>({});
 
-    // 0 at the top of the page, 1 once the visitor has scrolled 60% of a screen
+    // Scrolling raises the blind. The top of the page is marked so the nav can
+    // stay clear over the scene there.
     useEffect(() => {
-        const onScroll = () => { progressRef.current = Math.min(window.scrollY / (window.innerHeight * 0.6), 1); };
+        const root = document.documentElement;
+        const onScroll = () => {
+            progressRef.current = Math.min(window.scrollY / (window.innerHeight * 0.6), 1);
+            root.classList.toggle("is-page-top", window.scrollY <= 0);
+        };
         onScroll();
         window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            root.classList.remove("is-page-top");
+        };
     }, []);
 
     const select = useCallback((id: DeskObjectId) => {
@@ -51,15 +55,19 @@ export default function Desk3D() {
         else window.open(id === "journals" ? RESUME_URL : LINKEDIN_URL, "_blank", "noopener,noreferrer");
     }, [router]);
 
-    const handlers: ObjectHandlers = useMemo(() => ({
-        onHover  : (id) => { hoveredRef.current = id; },
-        onSelect : select,
-    }), [select]);
-
-    const meow = useCallback(() => {
-        setMeowing(true);
-        window.setTimeout(() => setMeowing(false), 1600);
+    // Leaving an object waits a moment before releasing the hover, so the camera
+    // doesn't jolt back when the pointer crosses a gap between an object's parts
+    const releaseTimer = useRef<number | undefined>(undefined);
+    const setHovered = useCallback((id: DeskObjectId | null) => {
+        window.clearTimeout(releaseTimer.current);
+        if (id) hoveredRef.current = id;
+        else releaseTimer.current = window.setTimeout(() => { hoveredRef.current = null; }, 180);
     }, []);
+
+    const handlers: ObjectHandlers = useMemo(() => ({
+        onHover  : setHovered,
+        onSelect : select,
+    }), [setHovered, select]);
 
     return (
         <>
@@ -68,29 +76,28 @@ export default function Desk3D() {
                     progressRef={progressRef}
                     hoveredRef={hoveredRef}
                     handlers={handlers}
-                    pills={OBJECTS}
-                    pillRefs={pillRefs}
-                    onMeow={meow}
+                    labels={LABELS}
+                    labelRefs={labelRefs}
                 />
             </Canvas>
 
-            {OBJECTS.map(({ id, label }) => (
+            {/* Titles show when their object is hovered. They ignore the mouse (so they
+                never steal the hover from the object) but stay keyboard-focusable. */}
+            {LABELS.map(({ id, label }) => (
                 <button
                     key={id}
                     type="button"
-                    ref={(element) => { pillRefs.current[id] = element; }}
-                    className="d3-pill"
+                    ref={(element) => { labelRefs.current[id] = element; }}
+                    className="d3-tag"
+                    data-visible="false"
                     onClick={() => select(id)}
-                    onMouseEnter={() => { hoveredRef.current = id; }}
-                    onMouseLeave={() => { hoveredRef.current = null; }}
-                    onFocus={() => { hoveredRef.current = id; }}
-                    onBlur={() => { hoveredRef.current = null; }}
+                    onFocus={() => setHovered(id)}
+                    onBlur={() => setHovered(null)}
                 >
                     {label}
                 </button>
             ))}
 
-            {meowing && <p className="d3__meow" aria-live="polite">Meow!</p>}
         </>
     );
 }
