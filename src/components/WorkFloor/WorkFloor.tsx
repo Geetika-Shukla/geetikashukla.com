@@ -46,10 +46,10 @@ const BENTO: { href: string; size: Size; u: number; v: number; art?: number }[] 
 ];
 
 const WIDTH: Record<Size, number> = { "1x1": 9, "2x1": 20 };
-// How far same-row neighbours ease aside while a card is open (cells)
+const DEPTH = 9;
+// The gap kept between cards, and how far same-row neighbours ease aside while a card is open (cells)
+const GAP = 2;
 const NUDGE = 1;
-// Space kept between an open card's new bottom edge and the card below it (px)
-const CLEARANCE = 16;
 
 const BY_HREF = new Map(timeline.flatMap((period) => period.projects).map((project) => [project.href, project]));
 const TILES = BENTO.flatMap(({ href, size, u, v, art = 1 }) => {
@@ -59,18 +59,35 @@ const TILES = BENTO.flatMap(({ href, size, u, v, art = 1 }) => {
 
 type Tile = (typeof TILES)[number];
 
+type Open = { tile: Tile; grow: number };   // grow: how far the open card grows (cells)
+
 /*
- * Where a tile moves while another is open: tiles below it in overlapping
- * columns slide down (by the px the open card grew) to clear it; tiles in the
- * same row ease a step away to either side. Returns [cells across, px down].
+ * Where every tile moves while one is open, as [cells across, cells down].
+ * Same-row neighbours ease a step aside. Then, row by row from the top, each
+ * tile moves down just enough to keep the gap below every tile above it in
+ * overlapping columns, counting the open card's growth and any tile already
+ * pushed down, so nothing ends up overlapping.
  */
-const offsetFor = (tile: Tile, open: { tile: Tile; grow: number } | null): [number, number] => {
-    if (!open || open.tile === tile) return [0, 0];
+const layoutFor = (open: Open | null): Map<Tile, [number, number]> => {
+    const offsets = new Map<Tile, [number, number]>(TILES.map((tile) => [tile, [0, 0]]));
+    if (!open) return offsets;
     const { tile: o, grow } = open;
-    const overlaps = tile.u < o.u + WIDTH[o.size] && o.u < tile.u + WIDTH[tile.size];
-    if (overlaps && tile.v > o.v) return [0, grow + CLEARANCE];
-    if (tile.v === o.v) return [tile.u > o.u ? NUDGE : -NUDGE, 0];
-    return [0, 0];
+
+    TILES.forEach((tile) => {
+        if (tile !== o && tile.v === o.v) offsets.set(tile, [tile.u > o.u ? NUDGE : -NUDGE, 0]);
+    });
+
+    const left = (t: Tile) => t.u + offsets.get(t)![0];
+    const top = (t: Tile) => t.v + offsets.get(t)![1];
+    const bottom = (t: Tile) => top(t) + DEPTH + (t === o ? grow : 0);
+    const sharesColumns = (a: Tile, b: Tile) => left(a) < left(b) + WIDTH[b.size] && left(b) < left(a) + WIDTH[a.size];
+
+    [...TILES].sort((a, b) => a.v - b.v).forEach((tile) => {
+        const above = TILES.filter((other) => other.v < tile.v && sharesColumns(other, tile));
+        const clear = Math.max(tile.v, ...above.map((other) => bottom(other) + GAP));
+        offsets.set(tile, [offsets.get(tile)![0], clear - tile.v]);
+    });
+    return offsets;
 };
 
 const filterFromHash = (hash: string): Category | null =>
@@ -119,11 +136,13 @@ export const WorkFloor = () => {
     const floorRef = useRef<HTMLDivElement>(null);
     useSnapToFloor(floorRef);
     // The open card, and how far it grows: the measured height of its title and description
-    const [open, setOpen] = useState<{ tile: Tile; grow: number } | null>(null);
+    const [open, setOpen] = useState<Open | null>(null);
     const openTile = (tile: Tile, element: HTMLElement) => {
         const info = element.querySelector<HTMLElement>(".tile3d__info");
-        setOpen({ tile, grow: info?.scrollHeight ?? 0 });
+        const cell = element.offsetWidth / WIDTH[tile.size];
+        setOpen({ tile, grow: (info?.scrollHeight ?? 0) / cell });
     };
+    const offsets = layoutFor(open);
 
     // Nav links point at /#experiences etc.: pick up the filter from the address
     useEffect(() => {
@@ -173,13 +192,13 @@ export const WorkFloor = () => {
                     <ul className="floor__tiles">
                         {TILES.map((tile) => {
                             const { title, description, href, Thumbnail, size, category, u, v, art } = tile;
-                            const [du, dy] = offsetFor(tile, open);
+                            const [du, dv] = offsets.get(tile)!;
                             const isOpen = open?.tile === tile;
                             return (
                                 <li
                                     key={title}
                                     className={`tile3d tile3d--${size}`}
-                                    style={{ "--u": u, "--v": v, "--art": art, "--du": du, "--dy": `${dy}px`, "--grow": `${isOpen ? open.grow : 0}px` } as React.CSSProperties}
+                                    style={{ "--u": u, "--v": v, "--art": art, "--du": du, "--dv": dv, "--grow": isOpen ? open.grow : 0 } as React.CSSProperties}
                                     data-open={isOpen}
                                     data-dimmed={filter !== null && category !== filter}
                                     onMouseEnter={(event) => openTile(tile, event.currentTarget)}
