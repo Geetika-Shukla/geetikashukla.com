@@ -10,9 +10,7 @@ export default function Home() {
     return (
         <article className="d3-page">
             <section className="d3__stage" aria-label="Desk">
-                {/* Snap point for the room: one screen, though the stage runs taller */}
-            <span className="d3__snap" aria-hidden="true" />
-            <Desk3DLoader />
+                <Desk3DLoader />
 
                 {/* Server-rendered so it shows before the 3D loads */}
                 <header className="d3__intro">

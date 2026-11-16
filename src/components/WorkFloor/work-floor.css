@@ -23,7 +23,7 @@
 /* LIST ===================================================================== */
 .work__list {
     position: absolute;
-    top: calc(var(--header-height) + 24px);
+    top: calc(var(--header-height) + 64px);
     left: max(var(--page-gutter), calc((100% - var(--page-max-width)) / 2 + var(--page-gutter)));
     z-index: 2;
 }
@@ -73,9 +73,6 @@
     position: relative;
     /* Runs on below the screen; the site footer's icons sit on this strip */
     height: calc(100svh + var(--footer-overlap, 0px));
-    scroll-snap-align: start;
-    /* A scroll from the room always stops here before the footer */
-    scroll-snap-stop: always;
     min-height: 640px;
     overflow: clip;
     /* The grid fades in at the top so it blends in after the rug */
@@ -171,6 +168,8 @@
     display: block;
     width: 100%;
     height: 100%;
+    /* Per-card artwork scale (art in WorkFloor.tsx) */
+    transform: scale(var(--art, 1));
 }
 
 .tile3d__info {

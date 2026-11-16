@@ -2,7 +2,7 @@
 
 // EXTERNAL DEPS ===============================================================
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // DATA ========================================================================
 import { timeline } from "@/data/projects";
@@ -29,9 +29,10 @@ const FILTERS: { id: string; label: string; category: Category }[] = [
  * in cells (u across, v down the plane) from the floor's centre, chosen to spread
  * the tiles over the viewport and keep the list's column clear.
  * Sizes: 1×1 is 9 × 9 cells, 2×1 is 20 × 9.
+ * `art` scales a thumbnail down inside its card where it reads too large.
  */
 type Size = "1x1" | "2x1";
-const BENTO: { href: string; size: Size; u: number; v: number }[] = [
+const BENTO: { href: string; size: Size; u: number; v: number; art?: number }[] = [
     { href: "/visual/26-days-of-type", size: "2x1", u: 0, v: -31 },
     { href: "/visual/kannauj-perfumery", size: "2x1", u: -11, v: -20 },
     { href: "/experiences/path-to-partnerships", size: "2x1", u: 11, v: -20 },
@@ -40,7 +41,7 @@ const BENTO: { href: string; size: Size; u: number; v: number }[] = [
     { href: "/visual/icon-system-for-setu", size: "1x1", u: 22, v: -9 },
     { href: "/experiences/hdfc-journeys", size: "1x1", u: -11, v: 2 },
     { href: "/experiences/assisted-product-discovery", size: "1x1", u: 0, v: 2 },
-    { href: "/type/inktober-2017", size: "2x1", u: 11, v: 2 },
+    { href: "/type/inktober-2017", size: "2x1", u: 11, v: 2, art: 0.7 },
     { href: "/type/47-days-of-devanagari-type", size: "2x1", u: 0, v: 13 },
 ];
 
@@ -51,9 +52,9 @@ const NUDGE = 1;
 const CLEARANCE = 16;
 
 const BY_HREF = new Map(timeline.flatMap((period) => period.projects).map((project) => [project.href, project]));
-const TILES = BENTO.flatMap(({ href, size, u, v }) => {
+const TILES = BENTO.flatMap(({ href, size, u, v, art = 1 }) => {
     const project = BY_HREF.get(href);
-    return project ? [{ ...project, size, u, v }] : [];
+    return project ? [{ ...project, size, u, v, art }] : [];
 });
 
 type Tile = (typeof TILES)[number];
@@ -75,8 +76,48 @@ const offsetFor = (tile: Tile, open: { tile: Tile; grow: number } | null): [numb
 const filterFromHash = (hash: string): Category | null =>
     FILTERS.find(({ id }) => `#${id}` === hash)?.category ?? null;
 
+/*
+ * Snaps between the room above and the floor: when scrolling stops part-way
+ * between them, the page glides on to the floor (scrolling down) or back to
+ * the room (scrolling up). Below the floor's top, scrolling is free. Done in
+ * script because CSS snapping pulls a short wheel scroll back to the room.
+ */
+const useSnapToFloor = (floorRef: React.RefObject<HTMLElement | null>) => {
+    useEffect(() => {
+        let lastY = window.scrollY;
+        let direction = 0;
+        let timer: number | undefined;
+
+        const settle = () => {
+            const floor = floorRef.current;
+            if (!floor) return;
+            const floorTop = Math.round(floor.getBoundingClientRect().top + window.scrollY);
+            const y = window.scrollY;
+            if (y <= 0 || y >= floorTop - 1) return;
+            const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            window.scrollTo({ top: direction > 0 ? floorTop : 0, behavior: smooth ? "smooth" : "auto" });
+        };
+
+        const onScroll = () => {
+            const y = window.scrollY;
+            if (y !== lastY) direction = Math.sign(y - lastY);
+            lastY = y;
+            window.clearTimeout(timer);
+            timer = window.setTimeout(settle, 140);
+        };
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            window.clearTimeout(timer);
+        };
+    }, [floorRef]);
+};
+
 export const WorkFloor = () => {
     const [filter, setFilter] = useState<Category | null>(null);
+    const floorRef = useRef<HTMLDivElement>(null);
+    useSnapToFloor(floorRef);
     // The open card, and how far it grows: the measured height of its title and description
     const [open, setOpen] = useState<{ tile: Tile; grow: number } | null>(null);
     const openTile = (tile: Tile, element: HTMLElement) => {
@@ -100,6 +141,17 @@ export const WorkFloor = () => {
             <nav className="work__list" aria-label="Filter work">
                 <h2 id="work-title" className="work__title">Work</h2>
                 <ul>
+                    {/* Clears the filter: every card back in colour */}
+                    <li>
+                        <button
+                            type="button"
+                            className="work__filter"
+                            aria-pressed={filter === null}
+                            onClick={() => setFilter(null)}
+                        >
+                            All
+                        </button>
+                    </li>
                     {FILTERS.map(({ id, label, category }) => (
                         <li key={id}>
                             <button
@@ -116,18 +168,18 @@ export const WorkFloor = () => {
                 </ul>
             </nav>
 
-            <div className="floor">
+            <div className="floor" ref={floorRef}>
                 <div className="floor__plane">
                     <ul className="floor__tiles">
                         {TILES.map((tile) => {
-                            const { title, description, href, Thumbnail, size, category, u, v } = tile;
+                            const { title, description, href, Thumbnail, size, category, u, v, art } = tile;
                             const [du, dy] = offsetFor(tile, open);
                             const isOpen = open?.tile === tile;
                             return (
                                 <li
                                     key={title}
                                     className={`tile3d tile3d--${size}`}
-                                    style={{ "--u": u, "--v": v, "--du": du, "--dy": `${dy}px`, "--grow": `${isOpen ? open.grow : 0}px` } as React.CSSProperties}
+                                    style={{ "--u": u, "--v": v, "--art": art, "--du": du, "--dy": `${dy}px`, "--grow": `${isOpen ? open.grow : 0}px` } as React.CSSProperties}
                                     data-open={isOpen}
                                     data-dimmed={filter !== null && category !== filter}
                                     onMouseEnter={(event) => openTile(tile, event.currentTarget)}
