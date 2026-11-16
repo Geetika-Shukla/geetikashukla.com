@@ -18,8 +18,10 @@ import type { MutableRefObject } from "react";
 const WALL = "#F2EEE6";
 const SIDE_WALL = "#ECE6DB";
 const SKIRTING = "#FBFAF6";
-// Walls glow a little in their own colour, so they read lighter under the scene's lighting
-const WALL_GLOW = 0.35;
+// Walls glow a little in their own colour, so they read lighter under the scene's
+// lighting; the back (right-hand) wall a touch less, so it sits slightly darker
+const WALL_GLOW = 0.22;
+const SIDE_WALL_GLOW = 0.5;
 // Must match --floor in desk-3d.css
 export const FLOOR = "#E4DCCD";
 
@@ -93,7 +95,7 @@ const Walls = () => (
         <mesh position={[0, -0.9, -1.8]} receiveShadow><boxGeometry args={[7.2, 4.2, 0.2]} /><Mat color={WALL} emissive={WALL} emissiveIntensity={WALL_GLOW} /></mesh>
         <mesh position={[0, 16.3, -1.8]} receiveShadow><boxGeometry args={[7.2, 21.4, 0.2]} /><Mat color={WALL} emissive={WALL} emissiveIntensity={WALL_GLOW} /></mesh>
         {/* Side wall, floor and skirting */}
-        <mesh position={[-8.6, 12, 8]} receiveShadow><boxGeometry args={[0.2, 30, 19.6]} /><Mat color={SIDE_WALL} emissive={SIDE_WALL} emissiveIntensity={WALL_GLOW} /></mesh>
+        <mesh position={[-8.6, 12, 8]} receiveShadow><boxGeometry args={[0.2, 30, 19.6]} /><Mat color={SIDE_WALL} emissive={SIDE_WALL} emissiveIntensity={SIDE_WALL_GLOW} /></mesh>
         {/* Floor: flat, unlit colour shared with the work section below, so the two meet seamlessly.
             Shadows are drawn on a transparent layer just above it. */}
         <mesh position={[4, -3.1, 8]}><boxGeometry args={[40, 0.2, 20]} /><meshBasicMaterial color={FLOOR} toneMapped={false} /></mesh>
@@ -178,11 +180,15 @@ const SLATS = 14;
 const SLAT_TOP = 5.35;
 const SLAT_PITCH = 0.3;
 const SLAT_STACK = 0.06;
+// Pull cord: hangs from just under the head rail to the acorn
+const CORD_TOP = 5.4;
+const ACORN_Y = 2.2;
 
 const Blind = ({ progressRef, hoverRef }: { progressRef: MutableRefObject<number>; hoverRef: MutableRefObject<boolean> }) => {
     const slats = useRef<THREE.Mesh[]>([]);
     const tapes = useRef<THREE.Mesh[]>([]);
-    const cord = useRef<THREE.Group>(null);
+    const cord = useRef<THREE.Mesh>(null);
+    const acorn = useRef<THREE.Mesh>(null);
     const open = useRef(0);
 
     useFrame((_, delta) => {
@@ -198,7 +204,15 @@ const Blind = ({ progressRef, hoverRef }: { progressRef: MutableRefObject<number
             tape.scale.y = drop;
             tape.position.y = SLAT_TOP + 0.15 - drop / 2;
         });
-        if (cord.current) cord.current.position.y = open.current * 1.8;
+        // The acorn rises as the blind opens; the cord hangs from under the rail
+        // down to it, getting shorter, so it never pokes out above the rail
+        const acornY = ACORN_Y + open.current * 1.8;
+        if (acorn.current) acorn.current.position.y = acornY;
+        if (cord.current) {
+            const length = CORD_TOP - acornY;
+            cord.current.scale.y = length;
+            cord.current.position.y = acornY + length / 2;
+        }
     });
 
     return (
@@ -217,10 +231,11 @@ const Blind = ({ progressRef, hoverRef }: { progressRef: MutableRefObject<number
                 </mesh>
             ))}
             {/* Pull cord with a wooden acorn */}
-            <group ref={cord}>
-                <mesh position={[1.2, 3.9, 0.2]}><cylinderGeometry args={[0.012, 0.012, 3.2, 4]} /><Mat color="#F1E6D2" /></mesh>
-                <mesh position={[1.2, 2.2, 0.2]} castShadow><capsuleGeometry args={[0.06, 0.14, 4, 8]} /><Mat color="#B5844A" /></mesh>
-            </group>
+            <mesh ref={cord} position={[1.2, (CORD_TOP + ACORN_Y) / 2, 0.2]} scale={[1, CORD_TOP - ACORN_Y, 1]}>
+                <cylinderGeometry args={[0.012, 0.012, 1, 4]} />
+                <Mat color="#F1E6D2" />
+            </mesh>
+            <mesh ref={acorn} position={[1.2, ACORN_Y, 0.2]} castShadow><capsuleGeometry args={[0.06, 0.14, 4, 8]} /><Mat color="#B5844A" /></mesh>
         </group>
     );
 };
