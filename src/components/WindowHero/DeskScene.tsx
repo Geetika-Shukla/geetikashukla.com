@@ -85,11 +85,12 @@ const desk = (): Rect[] => {
 const cup = (): Rect[] => [
     ...contact(74, 16),
     ...ellipse(74, 139, 16, 3, C.ceramicSh), ...ellipse(74, 138, 15, 2.5, C.ceramic),
+    // Teal mug on a cream saucer
     ...raster(84, 124, 94, 136, (x, y) => {
         const d = Math.hypot(x - 84, y - 130);
         return d <= 6 && d >= 3;
-    }, C.ceramic),
-    ...roundRect(62, 120, 24, 18, 5, C.ceramic), rect(80, 122, 4, 14, C.ceramicSh),
+    }, "#5E9E98"),
+    ...roundRect(62, 120, 24, 18, 5, "#5E9E98"), rect(64, 123, 3, 12, "#7DBAB4"), rect(80, 122, 4, 14, "#4A847F"),
     ...ellipse(74, 121, 11, 2, "#7A5238"),
     // Steam
     ...line(70, 106, 72, 114, 2, C.ceramicSh), ...line(72, 98, 70, 106, 2, C.ceramicSh),
@@ -99,16 +100,17 @@ const cup = (): Rect[] => [
 const echoDot = (): Rect[] => {
     const rects: Rect[] = [
         ...contact(122, 16),
-        ...ellipse(122, 126, 15, 14, C.echo),
-        ...raster(107, 112, 137, 140, (x, y) => ((x - 122) / 15) ** 2 + ((y - 126) / 14) ** 2 <= 1 && x < 116 && y < 124, C.echoHi),
+        // Sphere with a flat bottom where it sits on the desk
+        ...raster(107, 113, 137, 140, (x, y) => ((x - 122) / 15) ** 2 + ((y - 128) / 15) ** 2 <= 1, C.echo),
+        ...raster(107, 113, 137, 140, (x, y) => ((x - 122) / 15) ** 2 + ((y - 128) / 15) ** 2 <= 1 && x < 116 && y < 126, C.echoHi),
     ];
     // Fabric texture
-    for (let y = 116; y < 134; y += 3) {
+    for (let y = 117; y < 134; y += 3) {
         for (let x = 112 + (y % 2); x < 134; x += 3) {
-            if (((x - 122) / 13) ** 2 + ((y - 126) / 12) ** 2 <= 1) rects.push(rect(x, y, 1, 1, C.echoDot));
+            if (((x - 122) / 13) ** 2 + ((y - 128) / 13) ** 2 <= 1) rects.push(rect(x, y, 1, 1, C.echoDot));
         }
     }
-    rects.push(...roundRect(110, 134, 24, 2, 1, C.ring), ...roundRect(114, 136, 16, 1, 0.5, "#B5E9FA"));
+    rects.push(...roundRect(110, 135, 24, 2, 1, C.ring), ...roundRect(114, 137, 16, 1, 0.5, "#B5E9FA"));
     return rects;
 };
 
@@ -205,9 +207,9 @@ const phone = (): Rect[] => [
 // SHELF =======================================================================
 const shelf = (): Rect[] => [
     ...contact(459, 64),
-    // Posts
-    ...roundRect(404, 42, 6, 98, 2, C.shelfShade), rect(404, 44, 2, 96, C.shelf),
-    ...roundRect(508, 42, 6, 98, 2, C.shelfShade), rect(512, 44, 2, 96, C.shelfDark),
+    // Posts, ending at the top tier
+    rect(404, 84, 6, 56, C.shelfShade), rect(404, 84, 2, 56, C.shelf),
+    rect(508, 84, 6, 56, C.shelfShade), rect(512, 84, 2, 56, C.shelfDark),
     // Tiers with a curved front lip and handle slots
     ...roundRect(398, 80, 122, 9, 4, C.shelf), rect(402, 86, 114, 2, C.shelfDark),
     ...roundRect(410, 82, 12, 2, 1, C.shelfShade), ...roundRect(496, 82, 12, 2, 1, C.shelfShade),

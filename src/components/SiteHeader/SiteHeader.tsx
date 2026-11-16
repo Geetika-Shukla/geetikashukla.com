@@ -13,19 +13,21 @@ const NAV_LINKS = [
     { href: "/more-about-me", label: "About me" },
 ];
 
-// Two-tone heart: darker right edge, with a small shine at top left
+// Symmetric heart with a small highlight at top left and a shaded right edge.
+// Drawn at exactly 2px per pixel so every pixel is the same size.
 const HEART = fromRows([
-    "..RR...DD..",
-    ".RRRR.RRDD.",
-    "RRDRRRRRRDD",
-    "RRDRRRRRRDD",
-    "RRRDRRRRRDD",
-    ".RRRRRRRD..",
-    "..RRRRRD...",
-    "...RRRD....",
-    "....RD.....",
-    ".....D.....",
-], { R: "#DB4535", D: "#A62E22" });
+    "..RRR...RRR..",
+    ".RRRRR.RRRRR.",
+    "RRHHRRRRRRRRD",
+    "RRHRRRRRRRRRD",
+    "RRRRRRRRRRRRD",
+    ".RRRRRRRRRRD.",
+    "..RRRRRRRRD..",
+    "...RRRRRRD...",
+    "....RRRRD....",
+    ".....RRD.....",
+    "......D......",
+], { R: "#E04A3C", D: "#B23327", H: "#F58E80" });
 
 export const SiteHeader = () => {
     return (
@@ -40,7 +42,7 @@ export const SiteHeader = () => {
                         <Link key={href} href={href} className="site-header__link">{label}</Link>
                     ))}
                     <Link href="/hobbies" className="site-header__heart" aria-label="Hobbies" title="Hobbies">
-                        <svg viewBox="0 0 11 10" shapeRendering="crispEdges" aria-hidden="true">
+                        <svg viewBox="0 0 13 11" shapeRendering="crispEdges" aria-hidden="true">
                             <Pixels rects={HEART} />
                         </svg>
                     </Link>
