@@ -71,7 +71,8 @@
 /* FLOOR ==================================================================== */
 .floor {
     position: relative;
-    height: 100svh;
+    /* Runs on below the screen; the site footer's icons sit on this strip */
+    height: calc(100svh + var(--footer-overlap, 0px));
     scroll-snap-align: start;
     /* A scroll from the room always stops here before the footer */
     scroll-snap-stop: always;
@@ -85,7 +86,8 @@
 /* A plane much larger than the screen, centred on the floor; cell (0, 0) is its centre */
 .floor__plane {
     position: absolute;
-    top: 50%;
+    /* Centred on the floor's first screen; the strip below it is for the footer */
+    top: max(50svh, 320px);
     left: 50%;
     width: calc(160 * var(--c));
     height: calc(160 * var(--c));
