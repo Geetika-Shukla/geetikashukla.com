@@ -76,8 +76,9 @@ interface IsoFloorProps {
     floorRef? : RefObject<HTMLDivElement>;
     /* "reveal": hovering or focusing a card opens it, growing at the bottom to
        show its title (and description) while the cards around it make room.
-       "overlay": titles always show over the imagery, and cards stay still. */
-    captions? : "reveal" | "overlay";
+       "overlay": titles always show over the imagery, and cards stay still.
+       "none": imagery only, and cards stay still. */
+    captions? : "reveal" | "overlay" | "none";
 }
 
 export const IsoFloor = ({ tiles, floorRef, captions = "reveal" }: IsoFloorProps) => {
@@ -101,11 +102,12 @@ export const IsoFloor = ({ tiles, floorRef, captions = "reveal" }: IsoFloorProps
                         const content = (
                             <>
                                 <span className="tile3d__face">{face}</span>
-                                {/* Revealed when the card opens */}
-                                <span className="tile3d__info">
-                                    <span className="tile3d__title">{title}</span>
-                                    {description && <span className="tile3d__description">{description}</span>}
-                                </span>
+                                {captions !== "none" && (
+                                    <span className="tile3d__info">
+                                        <span className="tile3d__title">{title}</span>
+                                        {description && <span className="tile3d__description">{description}</span>}
+                                    </span>
+                                )}
                             </>
                         );
                         return (
