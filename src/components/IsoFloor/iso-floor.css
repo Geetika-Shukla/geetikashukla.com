@@ -168,13 +168,15 @@
     height: calc(18 * var(--c));
 }
 
-/* Artwork fills its card; --art scales it down where it reads too large */
+/* Artwork fills its card, cropped around --focus; --art scales it down where
+   it reads too large */
 .tile3d__face svg,
 .tile3d__face img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: var(--focus, 50% 50%);
     transform: scale(var(--art, 1));
 }
 

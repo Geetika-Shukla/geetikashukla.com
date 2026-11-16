@@ -24,23 +24,23 @@ import type { IsoSize, IsoTile } from "@/components/IsoFloor/IsoFloor";
 
 /*
  * Photos laid on the floor's lattice (see IsoFloor) in a flat band that runs
- * off the right of the screen, beside the intro. Tall imagery takes a 1×2
- * card, wide imagery 2×1.
+ * off the right of the screen, beside the intro. Wide imagery takes a 2×1
+ * card; `focus` picks which part of a cropped photo stays in view.
  */
-const PHOTOS: { title: string; alt: string; image: StaticImageData; size: IsoSize; u: number; v: number }[] = [
+const PHOTOS: { title: string; alt: string; image: StaticImageData; size: IsoSize; u: number; v: number; focus?: string }[] = [
     { title: "Studio Ghibli", alt: "Studio Ghibli-inspired artwork", image: ghibli, size: "2x1", u: 0, v: 0 },
         { title: "Calligraphy", alt: "Calligraphy piece", image: calliOne, size: "1x1", u: -11, v: 11 },
     { title: "Japanese fiction", alt: "Japanese fiction books", image: japanFic, size: "1x1", u: 0, v: 11 },
     { title: "Sewing", alt: "Handmade laptop sleeve", image: sleeve, size: "1x1", u: 11, v: 11 },
     { title: "Calligraphy", alt: "Calligraphy piece", image: calliTwo, size: "1x1", u: 22, v: 11 },
     { title: "Vinyls", alt: "Spirited Away-inspired artwork", image: spirited, size: "1x1", u: -11, v: 22 },
-    { title: "Gardening", alt: "Animation of house plants", image: plants, size: "1x2", u: 0, v: 22 },
-    { title: "Lego", alt: "Japan-themed Lego build", image: lego, size: "2x1", u: 11, v: 22 },
+    { title: "Gardening", alt: "Animation of house plants", image: plants, size: "1x1", u: 0, v: 22, focus: "50% 100%" },
+    { title: "Lego", alt: "Japan-themed Lego build", image: lego, size: "2x1", u: 11, v: 22, focus: "50% 70%" },
 ];
 
-const TILES: IsoTile[] = PHOTOS.map(({ title, alt, image, size, u, v }) => ({
+const TILES: IsoTile[] = PHOTOS.map(({ title, alt, image, size, u, v, focus }) => ({
     id   : image.src,
-    title, size, u, v,
+    title, size, u, v, focus,
     face : <Image src={image} alt={alt} sizes="(min-width: 900px) 30vw, 50vw" />,
 }));
 

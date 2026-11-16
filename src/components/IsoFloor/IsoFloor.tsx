@@ -30,6 +30,7 @@ export interface IsoTile {
     href?        : string;      // cards link here when given
     dimmed?      : boolean;     // greyed out, e.g. by a filter
     art?         : number;      // scales the artwork down inside its card
+    focus?       : string;      // which part of cropped imagery stays in view (object-position)
     face         : ReactNode;   // the card's imagery
 }
 
@@ -94,7 +95,7 @@ export const IsoFloor = ({ tiles, floorRef, captions = "reveal" }: IsoFloorProps
             <div className="floor__plane">
                 <ul className="floor__tiles">
                     {tiles.map((tile) => {
-                        const { id, size, u, v, title, description, href, dimmed = false, art = 1, face } = tile;
+                        const { id, size, u, v, title, description, href, dimmed = false, art = 1, focus = "50% 50%", face } = tile;
                         const [du, dv] = offsets.get(tile)!;
                         const isOpen = open?.tile === tile;
                         const content = (
@@ -111,7 +112,7 @@ export const IsoFloor = ({ tiles, floorRef, captions = "reveal" }: IsoFloorProps
                             <li
                                 key={id}
                                 className={`tile3d tile3d--${size}`}
-                                style={{ "--u": u, "--v": v, "--art": art, "--du": du, "--dv": dv, "--grow": isOpen ? open.grow : 0 } as React.CSSProperties}
+                                style={{ "--u": u, "--v": v, "--art": art, "--focus": focus, "--du": du, "--dv": dv, "--grow": isOpen ? open.grow : 0 } as React.CSSProperties}
                                 data-open={isOpen}
                                 data-dimmed={dimmed}
                                 onMouseEnter={reveal ? (event) => openTile(tile, event.currentTarget) : undefined}
