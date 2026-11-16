@@ -18,6 +18,8 @@ import type { MutableRefObject } from "react";
 const WALL = "#F2EEE6";
 const SIDE_WALL = "#ECE6DB";
 const SKIRTING = "#FBFAF6";
+// Walls glow a little in their own colour, so they read lighter under the scene's lighting
+const WALL_GLOW = 0.35;
 // Must match --floor in desk-3d.css
 export const FLOOR = "#E4DCCD";
 
@@ -86,12 +88,12 @@ const WINDOW = { left: -3.6, right: 3.6, bottom: 1.2, top: 5.6 };
 const Walls = () => (
     <group>
         {/* Back wall, built around the window opening */}
-        <mesh position={[-11.8, 12, -1.8]} receiveShadow><boxGeometry args={[16.4, 30, 0.2]} /><Mat color={WALL} /></mesh>
-        <mesh position={[11.8, 12, -1.8]} receiveShadow><boxGeometry args={[16.4, 30, 0.2]} /><Mat color={WALL} /></mesh>
-        <mesh position={[0, -0.9, -1.8]} receiveShadow><boxGeometry args={[7.2, 4.2, 0.2]} /><Mat color={WALL} /></mesh>
-        <mesh position={[0, 16.3, -1.8]} receiveShadow><boxGeometry args={[7.2, 21.4, 0.2]} /><Mat color={WALL} /></mesh>
+        <mesh position={[-11.8, 12, -1.8]} receiveShadow><boxGeometry args={[16.4, 30, 0.2]} /><Mat color={WALL} emissive={WALL} emissiveIntensity={WALL_GLOW} /></mesh>
+        <mesh position={[11.8, 12, -1.8]} receiveShadow><boxGeometry args={[16.4, 30, 0.2]} /><Mat color={WALL} emissive={WALL} emissiveIntensity={WALL_GLOW} /></mesh>
+        <mesh position={[0, -0.9, -1.8]} receiveShadow><boxGeometry args={[7.2, 4.2, 0.2]} /><Mat color={WALL} emissive={WALL} emissiveIntensity={WALL_GLOW} /></mesh>
+        <mesh position={[0, 16.3, -1.8]} receiveShadow><boxGeometry args={[7.2, 21.4, 0.2]} /><Mat color={WALL} emissive={WALL} emissiveIntensity={WALL_GLOW} /></mesh>
         {/* Side wall, floor and skirting */}
-        <mesh position={[-8.6, 12, 8]} receiveShadow><boxGeometry args={[0.2, 30, 19.6]} /><Mat color={SIDE_WALL} /></mesh>
+        <mesh position={[-8.6, 12, 8]} receiveShadow><boxGeometry args={[0.2, 30, 19.6]} /><Mat color={SIDE_WALL} emissive={SIDE_WALL} emissiveIntensity={WALL_GLOW} /></mesh>
         {/* Floor: flat, unlit colour shared with the work section below, so the two meet seamlessly.
             Shadows are drawn on a transparent layer just above it. */}
         <mesh position={[4, -3.1, 8]}><boxGeometry args={[40, 0.2, 20]} /><meshBasicMaterial color={FLOOR} toneMapped={false} /></mesh>
