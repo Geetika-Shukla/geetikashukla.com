@@ -1,6 +1,7 @@
 /*
- * No background colour. Content scrolling underneath is softened by a blur
- * that fades out towards the bottom edge, instead of meeting a hard line.
+ * Once the page scrolls, content underneath is softened by a translucent,
+ * blurred wash of the page colour (the floor colour on the home page) that
+ * fades out towards the bottom edge, instead of meeting a hard line.
  */
 .site-header {
     position: sticky;
@@ -14,8 +15,9 @@
     inset: 0 0 -16px;
     z-index: -1;
     pointer-events: none;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background-color: color-mix(in srgb, var(--floor, var(--color-bg)) 72%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
     transition: opacity 0.3s ease;
