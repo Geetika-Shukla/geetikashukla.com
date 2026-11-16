@@ -158,19 +158,13 @@ export const WorkFloor = () => {
     return (
         <div className="work">
             <nav className="work__list" aria-label="Filter work">
-                <h2 id="work-title" className="work__title">Work</h2>
+                {/* The title clears the filter: every card back in colour */}
+                <h2 id="work-title" className="work__title">
+                    <button type="button" className="work__reset" onClick={() => setFilter(null)} disabled={filter === null}>
+                        Work
+                    </button>
+                </h2>
                 <ul>
-                    {/* Clears the filter: every card back in colour */}
-                    <li>
-                        <button
-                            type="button"
-                            className="work__filter"
-                            aria-pressed={filter === null}
-                            onClick={() => setFilter(null)}
-                        >
-                            All
-                        </button>
-                    </li>
                     {FILTERS.map(({ id, label, category }) => (
                         <li key={id}>
                             <button
