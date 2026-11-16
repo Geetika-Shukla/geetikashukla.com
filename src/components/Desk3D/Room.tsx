@@ -20,6 +20,63 @@ const SIDE_WALL = "#ECE6DB";
 const SKIRTING = "#FBFAF6";
 // Must match --floor in desk-3d.css
 export const FLOOR = "#E4DCCD";
+
+/*
+ * The work section's isometric grid, carried onto the room's floor: lines in
+ * the text colour at 6% (as --line in work-floor.css), one CSS pixel wide, with
+ * the cell matched on screen to the work grid's (--c), so the two read as one.
+ */
+const GRID_LINE = [28 / 255, 28 / 255, 30 / 255];
+const GRID_OPACITY = 0.06;
+const workGridCell = () => Math.min(window.innerWidth / 68, window.innerHeight / 38);   // --c, px
+
+const FloorGrid = () => {
+    const material = useMemo(() => new THREE.ShaderMaterial({
+        transparent: true,
+        depthWrite: false,
+        uniforms: {
+            cell    : { value: 0.3 },
+            width   : { value: 1 },
+            color   : { value: new THREE.Vector3(...GRID_LINE) },
+            opacity : { value: GRID_OPACITY },
+        },
+        vertexShader: `
+            varying vec2 vFloor;
+            void main() {
+                vec4 world = modelMatrix * vec4(position, 1.0);
+                vFloor = world.xz;
+                gl_Position = projectionMatrix * viewMatrix * world;
+            }`,
+        fragmentShader: `
+            uniform float cell;
+            uniform float width;
+            uniform vec3 color;
+            uniform float opacity;
+            varying vec2 vFloor;
+            void main() {
+                vec2 coord = vFloor / cell;
+                vec2 distance = abs(fract(coord - 0.5) - 0.5) / fwidth(coord);
+                float line = 1.0 - clamp(min(distance.x, distance.y) - width * 0.5 + 0.5, 0.0, 1.0);
+                gl_FragColor = vec4(color, line * opacity);
+            }`,
+    }), []);
+    useEffect(() => () => material.dispose(), [material]);
+
+    const meshRef = useRef<THREE.Mesh>(null);
+    useFrame(({ camera, gl }) => {
+        const uniforms = (meshRef.current?.material as THREE.ShaderMaterial | undefined)?.uniforms;
+        if (!uniforms) return;
+        // World units per CSS pixel is 1 / zoom; keep the cell the same size as the work grid's
+        uniforms.cell.value = workGridCell() / camera.zoom;
+        uniforms.width.value = gl.getPixelRatio();
+    });
+
+    return (
+        <mesh ref={meshRef} position={[4, -2.997, 8]} rotation={[-Math.PI / 2, 0, 0]} material={material}>
+            <planeGeometry args={[40, 20]} />
+        </mesh>
+    );
+};
 const WINDOW = { left: -3.6, right: 3.6, bottom: 1.2, top: 5.6 };
 
 const Walls = () => (
@@ -34,6 +91,7 @@ const Walls = () => (
         {/* Floor: flat, unlit colour shared with the work section below, so the two meet seamlessly.
             Shadows are drawn on a transparent layer just above it. */}
         <mesh position={[4, -3.1, 8]}><boxGeometry args={[40, 0.2, 20]} /><meshBasicMaterial color={FLOOR} toneMapped={false} /></mesh>
+        <FloorGrid />
         <mesh position={[4, -2.995, 8]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow><planeGeometry args={[40, 20]} /><shadowMaterial opacity={0.18} /></mesh>
         <mesh position={[4, -2.84, -1.66]}><boxGeometry args={[40, 0.32, 0.08]} /><Mat color={SKIRTING} /></mesh>
         <mesh position={[-8.46, -2.84, 8]}><boxGeometry args={[0.08, 0.32, 19.6]} /><Mat color={SKIRTING} /></mesh>
