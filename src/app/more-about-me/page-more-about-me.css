@@ -1,3 +1,10 @@
+/* About me: a plain white page, with corners squared down to match the
+   cards on the rest of the site */
+body:has(#page-more-about-me),
+.site:has(#page-more-about-me) {
+    background-color: #FFFFFF;
+}
+
 #page-more-about-me {
 
     .college-logo {
@@ -8,7 +15,7 @@
     .display-pic {
         width: 80%;
         height: auto;
-        border-radius: 40px;
+        border-radius: 8px;
         margin-bottom: 20px;
     }
 
@@ -23,7 +30,7 @@
         flex: 1;
         min-width: 0;
         height: auto;
-        border-radius: 20px;
+        border-radius: 8px;
         padding: 24px;
     }
 
@@ -58,7 +65,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        border-radius: 20px;
+        border-radius: 8px;
         background-color: #F0F8FF;
         display: flex;
         justify-content: center;
@@ -138,7 +145,7 @@
         text-decoration: none;
         background-color: #242424;
         color: white;
-        border-radius: 6px;
+        border-radius: 4px;
         transition: background-color 0.3s ease;
         font-size: 1rem;
         font-weight: 500;
