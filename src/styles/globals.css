@@ -66,6 +66,30 @@ p {
     padding-inline: var(--page-gutter);
 }
 
+/* Square pixel grid drawn behind the hero and the timeline. A grid line runs
+   exactly through the page centre, so things centred on the page sit on it. */
+.pixel-grid {
+    --unit: 24px;
+    --grid-line: color-mix(in srgb, var(--color-text) 7%, transparent);
+    background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: var(--unit) var(--unit);
+    background-position: calc(50% - var(--unit) / 2 - 0.5px) 0, 0 0;
+}
+
+@media (max-width: 1023px) {
+    .pixel-grid {
+        --unit: 20px;
+    }
+}
+
+@media (max-width: 599px) {
+    .pixel-grid {
+        --unit: 16px;
+    }
+}
+
 .row-hide {
     overflow: hidden;
 }

@@ -4,28 +4,27 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 // COMPONENTS ==================================================================
-import { PixelSprite } from "@/components/PixelSprite/PixelSprite";
 import { DeskScene } from "./DeskScene";
-import { sun, moon, skyline } from "./sprites";
+import { Sky } from "./Sky";
+import { fromRows, tileDataUri } from "@/components/Pixel/pixel";
 
 // STYLES ======================================================================
 import "./window-hero.css";
 
 // TYPES =======================================================================
-import type { Sprite } from "@/components/PixelSprite/PixelSprite";
-import type { Hotspot } from "./DeskScene";
+import type { DeskLink } from "./DeskScene";
+import type { Phase } from "./Sky";
 
-type Phase = "night" | "dawn" | "day" | "dusk";
 // "auto" follows scroll; "down" / "up" are set by the pull cord until the visitor scrolls
-type ShadeMode = "auto" | "down" | "up";
+type BlindMode = "auto" | "down" | "up";
 
 interface WindowHeroProps {
-    hotspots : Hotspot[];
-    children : React.ReactNode;
+    deskLinks : DeskLink[];
+    children  : React.ReactNode;
 }
 
-const SHADE_SCROLL_DISTANCE = 0.6; // fraction of viewport height to fully raise the shade
-const MODE_RESET_SCROLL = 120;     // px of scrolling that hands the shade back to scroll control
+const BLIND_SCROLL_DISTANCE = 0.6; // fraction of viewport height that fully raises the blind
+const MODE_RESET_SCROLL = 120;     // px of scrolling that hands the blind back to scroll control
 
 const phaseForHour = (hour: number): Phase => {
     if (hour >= 5 && hour < 8) return "dawn";
@@ -34,47 +33,67 @@ const phaseForHour = (hour: number): Phase => {
     return "night";
 };
 
-const Pixels = ({ sprite, className }: { sprite: Sprite; className?: string }) => (
-    <PixelSprite
-        sprite={sprite}
-        className={className}
-        style={{ "--rows": sprite.rows.length } as React.CSSProperties}
-    />
-);
+// Block-print pattern for the blind: a small buti flower on a half-drop repeat,
+// in indigo and rust with mustard leaves, as on Bagru / Sanganeri prints.
+const BUTI = [
+    "...I...",
+    "..IGI..",
+    ".I.R.I.",
+    "IGRRRGI",
+    ".I.R.I.",
+    "..IGI..",
+    "...I...",
+];
+const BUTI_COLOURS = { I: "#3E5A8A", R: "#B4532A", G: "#C9A24A" };
+const BLIND_PATTERN = tileDataUri([
+    ...fromRows(BUTI, BUTI_COLOURS, 1, 1),
+    ...fromRows(BUTI, BUTI_COLOURS, 9, 9),
+], 16, 16);
 
-export const WindowHero = ({ hotspots, children }: WindowHeroProps) => {
-    const shadeRef = useRef<HTMLDivElement>(null);
-    const fabricRef = useRef<HTMLDivElement>(null);
-    const modeRef = useRef<ShadeMode>("auto");
+// Border of hanging triangles above the hem
+const BLIND_BORDER = tileDataUri(fromRows([
+    "RRRRRRRR",
+    "IIIIIIII",
+    ".RRRRRR.",
+    "..RRRR..",
+    "...RR...",
+    "........",
+    "...I....",
+], { R: "#B4532A", I: "#3E5A8A" }), 8, 7);
+
+export const WindowHero = ({ deskLinks, children }: WindowHeroProps) => {
+    const blindRef = useRef<HTMLDivElement>(null);
+    const labelRef = useRef<HTMLDivElement>(null);
+    const modeRef = useRef<BlindMode>("auto");
     const toggleScrollY = useRef(0);
 
-    const [shadeDown, setShadeDown] = useState(true);
+    const [blindDown, setBlindDown] = useState(true);
     const [phase, setPhase] = useState<Phase>("day");
     const [meowing, setMeowing] = useState(false);
 
-    const updateShade = useCallback(() => {
-        const shade = shadeRef.current;
-        if (!shade) return;
+    const updateBlind = useCallback(() => {
+        const blind = blindRef.current;
+        if (!blind) return;
 
         if (modeRef.current !== "auto" && Math.abs(window.scrollY - toggleScrollY.current) > MODE_RESET_SCROLL) {
             modeRef.current = "auto";
         }
 
-        const scrolled = Math.min(Math.max(window.scrollY / (window.innerHeight * SHADE_SCROLL_DISTANCE), 0), 1);
+        const scrolled = Math.min(Math.max(window.scrollY / (window.innerHeight * BLIND_SCROLL_DISTANCE), 0), 1);
         const up = modeRef.current === "down" ? 0 : modeRef.current === "up" ? 1 : scrolled;
 
-        shade.style.setProperty("--shade-up", up.toFixed(3));
-        fabricRef.current?.toggleAttribute("inert", up > 0.5);
-        setShadeDown(up <= 0.5);
+        blind.style.setProperty("--blind-up", up.toFixed(3));
+        labelRef.current?.toggleAttribute("inert", up > 0.5);
+        setBlindDown(up <= 0.5);
     }, []);
 
-    // Shade follows scroll
+    // Blind follows scroll
     useEffect(() => {
         let frame = 0;
         const onScroll = () => {
-            if (!frame) frame = requestAnimationFrame(() => { frame = 0; updateShade(); });
+            if (!frame) frame = requestAnimationFrame(() => { frame = 0; updateBlind(); });
         };
-        updateShade();
+        updateBlind();
         window.addEventListener("scroll", onScroll, { passive: true });
         window.addEventListener("resize", onScroll);
         return () => {
@@ -82,27 +101,25 @@ export const WindowHero = ({ hotspots, children }: WindowHeroProps) => {
             window.removeEventListener("scroll", onScroll);
             window.removeEventListener("resize", onScroll);
         };
-    }, [updateShade]);
+    }, [updateBlind]);
 
-    const setMode = useCallback((mode: ShadeMode) => {
+    const setMode = useCallback((mode: BlindMode) => {
         modeRef.current = mode;
         toggleScrollY.current = window.scrollY;
-        updateShade();
-    }, [updateShade]);
+        updateBlind();
+    }, [updateBlind]);
 
-    const toggleShade = () => setMode(shadeDown ? "up" : "down");
-
-    // Escape raises the shade
+    // Escape raises the blind
     useEffect(() => {
         const onKey = (event: KeyboardEvent) => {
-            if (event.key === "Escape" && shadeDown) setMode("up");
+            if (event.key === "Escape" && blindDown) setMode("up");
         };
         window.addEventListener("keydown", onKey);
         return () => window.removeEventListener("keydown", onKey);
-    }, [shadeDown, setMode]);
+    }, [blindDown, setMode]);
 
     // Sky follows the visitor's local time. Starts as "day" on the server; the
-    // shade covers the window on first paint, so the switch is not visible.
+    // blind covers the window on first paint, so the switch is not visible.
     useEffect(() => {
         const update = () => setPhase(phaseForHour(new Date().getHours()));
         update();
@@ -122,41 +139,37 @@ export const WindowHero = ({ hotspots, children }: WindowHeroProps) => {
     }, [meow]);
 
     return (
-        <>
-            <section className="window-hero" data-phase={phase} aria-label="Window">
-                <div className="window-hero__stage">
-                    <div className="window">
-                        <div className="window__view">
-                            {phase === "night" && (
-                                <div className="window__stars" aria-hidden="true">
-                                    {Array.from({ length: 14 }, (_, i) => <span key={i} />)}
-                                </div>
-                            )}
-                            <Pixels sprite={phase === "night" ? moon : sun} className="window__celestial" />
-                            <Pixels sprite={skyline} className="window__skyline" />
+        <section className="window-hero pixel-grid" aria-label="Introduction">
+            <div className="window-hero__stage">
+                <div className="window">
+                    <div className="window__pane">
+                        <Sky phase={phase} />
+                        <div className="window__mullions" aria-hidden="true" />
+
+                        <div className="blind" ref={blindRef}>
+                            <div className="blind__fabric" style={{ backgroundImage: BLIND_PATTERN }}>
+                                <div className="blind__label" ref={labelRef}>{children}</div>
+                            </div>
+                            <div className="blind__border" style={{ backgroundImage: BLIND_BORDER }} />
+                            <div className="blind__hem" />
+                            <button
+                                type="button"
+                                className="blind__cord"
+                                onClick={() => setMode(blindDown ? "up" : "down")}
+                                aria-expanded={blindDown}
+                                aria-label={blindDown ? "Raise the blind" : "Lower the blind to read the intro"}
+                            >
+                                <span className="blind__string" />
+                                <span className="blind__tassel" />
+                            </button>
                         </div>
+
+                        <div className="window__roller" aria-hidden="true" />
                     </div>
-
-                    <DeskScene hotspots={hotspots} meowing={meowing} onMeow={meow} />
                 </div>
-            </section>
 
-            <div className="shade" ref={shadeRef} data-down={shadeDown}>
-                <div className="shade__fabric" ref={fabricRef}>
-                    <div className="shade__content">{children}</div>
-                </div>
-                <div className="shade__bar" />
-                <button
-                    type="button"
-                    className="shade__cord"
-                    onClick={toggleShade}
-                    aria-expanded={shadeDown}
-                    aria-label={shadeDown ? "Raise the shade" : "Pull down the shade to read the intro"}
-                >
-                    <span className="shade__string" />
-                    <span className="shade__pull" />
-                </button>
+                <DeskScene links={deskLinks} meowing={meowing} onMeow={meow} />
             </div>
-        </>
+        </section>
     );
 };

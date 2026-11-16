@@ -33,6 +33,7 @@
     display: block;
     aspect-ratio: 1 / 1;
     overflow: hidden;
+    border-radius: 8px;
     background-color: var(--color-surface);
     box-shadow: 0 0 0 2px var(--color-text);
 }
@@ -45,6 +46,7 @@
 
 .tile__tag {
     position: absolute;
+    border-radius: 4px;
     top: 6px;
     left: 6px;
     padding: 2px 6px;
@@ -66,6 +68,7 @@
     flex-direction: column;
     gap: 4px;
     padding: 10px 12px 12px;
+    border-radius: 0 0 8px 8px;
     background-color: var(--color-surface);
     box-shadow: 0 0 0 2px var(--color-text);
     opacity: 0;
@@ -109,6 +112,7 @@
 
 .tile__card:hover .tile__image,
 .tile__card:focus-visible .tile__image {
+    border-radius: 8px 8px 0 0;
     box-shadow:
         0 0 0 2px var(--color-text),
         6px 0 0 2px var(--color-accent);
@@ -116,6 +120,10 @@
 
 /* Touch screens have no hover: always show the title under the image */
 @media (hover: none) {
+    .tile__image {
+        border-radius: 8px 8px 0 0;
+    }
+
     .tile__caption {
         opacity: 1;
         padding: 6px 8px;

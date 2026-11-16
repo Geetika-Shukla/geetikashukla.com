@@ -1,40 +1,17 @@
-/* Sprites are sized in whole "pixels" so they stay crisp at every breakpoint */
-.window-hero,
-.shade {
-    --pixel: 4px;
-}
-
-.window-hero svg,
-.shade svg {
-    display: block;
-    height: calc(var(--rows) * var(--pixel));
-    width: auto;
-}
-
-/* Time-of-day palettes ======================================================= */
-.window-hero[data-phase="day"] {
-    --sky-1: #4A86C8; --sky-2: #6B9FD4; --sky-3: #8DB8DF; --sky-4: #B3D2EA; --sky-5: #D6E8F4;
-    --city: #7E93A8;
-}
-
-.window-hero[data-phase="dawn"] {
-    --sky-1: #3B4A7A; --sky-2: #6A6593; --sky-3: #B07F94; --sky-4: #E59C83; --sky-5: #F6C98E;
-    --city: #4A4660;
-}
-
-.window-hero[data-phase="dusk"] {
-    --sky-1: #2B2556; --sky-2: #54356E; --sky-3: #9A4A6E; --sky-4: #D7684F; --sky-5: #F0A04B;
-    --city: #2A2140;
-}
-
-.window-hero[data-phase="night"] {
-    --sky-1: #0B1026; --sky-2: #121A3A; --sky-3: #1A2550; --sky-4: #233062; --sky-5: #2E3C72;
-    --city: #070A18;
-}
-
-/* Hero: the window stays pinned while the shade rolls up, then scrolls away == */
+/*
+ * Hero: a window on a gridded wall with a desk in front of it. The stage stays
+ * pinned while the blind rolls up, then the page scrolls on to the timeline.
+ *
+ * Desk geometry (from the 640 × 176 drawing): its height is 27.5% of its width,
+ * and the window's bottom edge sits 40% of the way down it, behind the monitor.
+ */
 .window-hero {
-    height: 160svh;
+    --desk-scale : 1;      /* desk canvas width as a multiple of the viewport */
+    --desk-height: calc(100vw * var(--desk-scale) * 0.275);
+    --desk-overlap: calc(var(--desk-height) * 0.4);
+    --bp: 3px;             /* size of one pixel on the blind's print */
+
+    height: 170svh;
 }
 
 .window-hero__stage {
@@ -43,115 +20,170 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     height: calc(100svh - var(--header-height));
-    padding-inline: var(--page-gutter);
-}
-
-.window {
-    width: min(100%, 720px);
-    padding: calc(var(--pixel) * 3);
-    background-color: var(--color-surface);
-    /* Hard-edged frame outline, no blur, for the pixel look */
-    box-shadow:
-        0 0 0 var(--pixel) var(--color-text),
-        calc(var(--pixel) * 2) calc(var(--pixel) * 2) 0 var(--pixel) var(--color-border);
-}
-
-.window__view {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    max-height: 46svh;
-    width: 100%;
+    padding-top: 24px;
     overflow: hidden;
-    /* Stepped bands instead of a smooth gradient */
-    background: linear-gradient(
-        to bottom,
-        var(--sky-1) 0 22%,
-        var(--sky-2) 22% 42%,
-        var(--sky-3) 42% 60%,
-        var(--sky-4) 60% 76%,
-        var(--sky-5) 76% 100%
-    );
-    transition: background 0.6s steps(4);
 }
 
-/* Window mullions */
-.window__view::before,
-.window__view::after {
-    content: "";
+/* WINDOW ===================================================================== */
+.window {
+    position: relative;
+    width: min(calc(100% - var(--page-gutter) * 2), 880px);
+    padding: 10px;
+    border-radius: 12px;
+    background-color: #FBFAF6;
+    box-shadow:
+        0 0 0 2px #D5CCBE,
+        8px 8px 0 rgba(43, 45, 56, 0.06);
+}
+
+.window__pane {
+    position: relative;
+    height: clamp(240px, calc(100svh - var(--header-height) - 48px - var(--desk-height) + var(--desk-overlap)), 560px);
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.sky {
     position: absolute;
-    z-index: 2;
-    background-color: var(--color-surface);
+    inset: 0;
+    width: 100%;
+    height: 100%;
 }
 
-.window__view::before {
+.window__mullions {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        linear-gradient(to right, transparent calc(50% - 4px), #FBFAF6 calc(50% - 4px) calc(50% + 4px), transparent calc(50% + 4px)),
+        linear-gradient(to bottom, transparent calc(42% - 4px), #FBFAF6 calc(42% - 4px) calc(42% + 4px), transparent calc(42% + 4px));
+}
+
+/* Roller box the blind winds into */
+.window__roller {
+    position: absolute;
     top: 0;
-    bottom: 0;
-    left: calc(50% - var(--pixel));
-    width: calc(var(--pixel) * 2);
-}
-
-.window__view::after {
-    top: calc(45% - var(--pixel));
     left: 0;
     right: 0;
-    height: calc(var(--pixel) * 2);
+    z-index: 3;
+    height: 14px;
+    border-radius: 0 0 4px 4px;
+    background: linear-gradient(to bottom, #EFE8DA 0 9px, #D9CFBE 9px 100%);
 }
 
-.window-hero .window__celestial {
+/* BLIND ====================================================================== */
+/* Stops short of the sill so its cord and tassel hang in the gap */
+.blind {
+    --blind-up: 0;
     position: absolute;
-    top: 14%;
-    right: 16%;
-    --pixel: 6px;
-}
-
-.window-hero .window__skyline {
-    position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
-    width: 100%;
-    height: auto;
-    color: var(--city);
+    right: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 52px);
+    transform: translateY(calc(var(--blind-up) * -100%));
+    transition: transform 0.45s steps(10);
 }
 
-.window__stars span {
+.blind__fabric {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+    padding: 24px 16px 12px;
+    overflow: hidden;
+    background-color: #F4E9D6;
+    background-size: calc(16 * var(--bp)) calc(16 * var(--bp));
+    image-rendering: pixelated;
+}
+
+.blind__label {
+    max-width: 520px;
+    margin: 6px;
+    padding: 28px 32px;
+    border-radius: 10px;
+    background-color: #FCF7EE;
+    text-align: center;
+    /* Printed-label double border: indigo, cream, rust */
+    box-shadow:
+        0 0 0 2px #3E5A8A,
+        0 0 0 6px #FCF7EE,
+        0 0 0 8px #B4532A;
+}
+
+.blind__border {
+    flex-shrink: 0;
+    height: calc(7 * var(--bp));
+    background-color: #F4E9D6;
+    background-repeat: repeat-x;
+    background-size: calc(8 * var(--bp)) calc(7 * var(--bp));
+    image-rendering: pixelated;
+}
+
+.blind__hem {
+    flex-shrink: 0;
+    height: 9px;
+    border-radius: 5px;
+    background-color: #8E6D4C;
+    box-shadow: inset 0 -3px 0 #6E5236;
+}
+
+.blind__cord {
     position: absolute;
-    width: var(--pixel);
-    height: var(--pixel);
-    background-color: #EDEFF5;
-    animation: twinkle 3s steps(2) infinite;
+    top: 100%;
+    /* In the gap between the monitor and the shelf, so it is never hidden */
+    left: 56%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px 6px;
+    border: 0;
+    background: none;
+    cursor: pointer;
 }
 
-.window__stars span:nth-child(3n) { animation-delay: 1s; }
-.window__stars span:nth-child(3n + 1) { animation-delay: 2s; }
-.window__stars span:nth-child(1)  { top: 8%;  left: 6%; }
-.window__stars span:nth-child(2)  { top: 18%; left: 14%; }
-.window__stars span:nth-child(3)  { top: 6%;  left: 27%; }
-.window__stars span:nth-child(4)  { top: 30%; left: 22%; }
-.window__stars span:nth-child(5)  { top: 12%; left: 38%; }
-.window__stars span:nth-child(6)  { top: 26%; left: 44%; }
-.window__stars span:nth-child(7)  { top: 9%;  left: 56%; }
-.window__stars span:nth-child(8)  { top: 34%; left: 61%; }
-.window__stars span:nth-child(9)  { top: 20%; left: 68%; }
-.window__stars span:nth-child(10) { top: 5%;  left: 75%; }
-.window__stars span:nth-child(11) { top: 38%; left: 86%; }
-.window__stars span:nth-child(12) { top: 10%; left: 92%; }
-.window__stars span:nth-child(13) { top: 44%; left: 9%; }
-.window__stars span:nth-child(14) { top: 48%; left: 33%; }
-
-@keyframes twinkle {
-    50% { opacity: 0.3; }
+.blind__string {
+    width: 2px;
+    height: 30px;
+    background-color: #8E6D4C;
 }
 
-/* Desk ======================================================================= */
-/* Front elevation of the desk; overlaps the window so the monitor stands in front of it */
+/* Tassel: mustard cap and a rust fringe */
+.blind__tassel {
+    width: 16px;
+    height: 24px;
+    border-radius: 4px 4px 2px 2px;
+    background:
+        repeating-linear-gradient(to right, transparent 0 2px, rgba(0, 0, 0, 0.12) 2px 3px),
+        linear-gradient(to bottom, #E3B94C 0 7px, #B4532A 7px 100%);
+    transition: transform 0.2s steps(2);
+}
+
+.blind__cord:hover .blind__tassel,
+.blind__cord:focus-visible .blind__tassel {
+    transform: translateY(3px);
+}
+
+/* DESK ======================================================================= */
 .desk {
     position: relative;
-    z-index: 1;
-    width: min(100%, 1100px);
-    aspect-ratio: 200 / 64;
-    margin-top: calc(min(100%, 1100px) * -0.14);
+    z-index: 4;
+    flex-shrink: 0;
+    width: 100%;
+    margin-top: calc(var(--desk-overlap) * -1);
+}
+
+.desk__canvas {
+    position: relative;
+    width: calc(100% * var(--desk-scale));
+    margin-left: calc((100% * var(--desk-scale) - 100%) / -2);
+    aspect-ratio: 640 / 176;
 }
 
 .desk__drawing {
@@ -164,6 +196,7 @@
     position: absolute;
     padding: 0;
     border: 0;
+    border-radius: 8px;
     background: none;
     color: inherit;
     cursor: pointer;
@@ -183,7 +216,8 @@
     position: absolute;
     bottom: calc(100% + 8px);
     left: 50%;
-    padding: 2px 8px;
+    padding: 3px 10px;
+    border-radius: 6px;
     font-size: 0.8rem;
     font-weight: 600;
     white-space: nowrap;
@@ -213,115 +247,23 @@
     display: none;
 }
 
-/* Shade ====================================================================== */
-.shade {
-    --shade-up: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 30;
-    height: 100svh;
-    transform: translateY(calc(var(--shade-up) * -100%));
-    transition: transform 0.4s steps(8);
-}
-
-.shade__fabric {
-    height: calc(100% - var(--pixel) * 4);
-    overflow-y: auto;
-    background-color: var(--color-surface);
-    /* Faint horizontal slats */
-    background-image: repeating-linear-gradient(
-        to bottom,
-        transparent 0 calc(var(--pixel) * 23),
-        color-mix(in srgb, var(--color-border) 45%, transparent) calc(var(--pixel) * 23) calc(var(--pixel) * 24)
-    );
-}
-
-.shade__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100%;
-    max-width: 640px;
-    margin-inline: auto;
-    padding: 48px var(--page-gutter);
-    text-align: center;
-}
-
-.shade__bar {
-    height: calc(var(--pixel) * 4);
-    background-color: var(--color-text);
-}
-
-/* Cord hangs below the shade, so it peeks from the top edge when the shade is up */
-.shade__cord {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 12px 8px;
-    border: 0;
-    background: none;
-    cursor: pointer;
-    transform: translateX(-50%);
-}
-
-.shade__string {
-    width: 2px;
-    height: 40px;
-    background-color: var(--color-text);
-}
-
-.shade__pull {
-    width: calc(var(--pixel) * 3);
-    height: calc(var(--pixel) * 5);
-    background-color: var(--color-accent-2);
-    box-shadow: 0 0 0 2px var(--color-text);
-    transition: transform 0.2s steps(2);
-}
-
-.shade__cord:hover .shade__pull,
-.shade__cord:focus-visible .shade__pull {
-    transform: translateY(var(--pixel));
-}
-
-/* Responsive ================================================================= */
+/* RESPONSIVE ================================================================= */
 @media (max-width: 767px) {
-    .window-hero,
-    .shade {
-        --pixel: 3px;
+    /* Crop the plain ends of the desk so the objects stay a usable size */
+    .window-hero {
+        --desk-scale: 1.2;
+        --bp: 2px;
     }
 
-    /* Keep the cord clear of the nav links, between the logo and the nav */
-    .shade__cord {
-        left: 30%;
-    }
-
-    .window-hero .window__celestial {
-        --pixel: 4px;
-    }
-}
-
-@media (max-width: 420px) {
-    .window-hero,
-    .shade {
-        --pixel: 2px;
+    .blind__label {
+        padding: 20px 18px;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .shade,
-    .window__view,
-    .desk__hotspot,
-    .shade__pull {
+    .blind,
+    .blind__tassel,
+    .desk__hotspot {
         transition: none;
-    }
-
-    .window__stars span {
-        animation: none;
     }
 }

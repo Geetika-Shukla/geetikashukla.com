@@ -14,24 +14,24 @@ import "@/styles/home.css";
 
 // TYPES =======================================================================
 import type { CSSProperties } from "react";
-import type { Hotspot } from "@/components/WindowHero/DeskScene";
+import type { DeskLink } from "@/components/WindowHero/DeskScene";
 
 const RESUME_URL = "https://drive.google.com/uc?export=download&id=1UXkFA6hBj2m-KuHozLz3eFtyUJKckFoY";
 const LINKEDIN_URL = "https://www.linkedin.com/in/geetikashukla/";
 
-// Clickable objects on the desk, in desk-scene pixel coordinates
-const DESK_HOTSPOTS: Hotspot[] = [
-    { label: "Work", href: "#work", box: [22, 10, 70, 42] },
-    { label: "About me", href: "/more-about-me", box: [6, 35, 14, 17] },
-    { label: "Hobbies", href: "/hobbies", box: [140, 11, 48, 32] },
-    { label: "Résumé", href: RESUME_URL, box: [99, 45, 14, 7], external: true },
-    { label: "LinkedIn", href: LINKEDIN_URL, box: [114, 46, 14, 6], external: true },
+// Objects on the desk that link to parts of the site
+const DESK_LINKS: DeskLink[] = [
+    { object: "monitor", label: "Work", href: "#work" },
+    { object: "echo", label: "About me", href: "/more-about-me" },
+    { object: "shelf", label: "Hobbies", href: "/hobbies" },
+    { object: "journals", label: "Résumé", href: RESUME_URL, external: true },
+    { object: "phone", label: "LinkedIn", href: LINKEDIN_URL, external: true },
 ];
 
 export default function Home() {
     return (
         <article className="home">
-            <WindowHero hotspots={DESK_HOTSPOTS}>
+            <WindowHero deskLinks={DESK_LINKS}>
                 <h1 className="intro__name">Geetika Shukla</h1>
                 <p className="intro__role">Multi-disciplinary designer</p>
                 <p className="intro__bio">
@@ -46,7 +46,7 @@ export default function Home() {
                 <p className="intro__hint">Scroll to open the window</p>
             </WindowHero>
 
-            <ol id="work" className="timeline" aria-label="Work timeline">
+            <ol id="work" className="timeline pixel-grid" aria-label="Work timeline">
                 {timeline.map((period) => (
                     <li
                         key={period.org}

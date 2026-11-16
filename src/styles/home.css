@@ -3,7 +3,7 @@
     margin: 0;
     color: var(--color-text);
     font-family: var(--font-heading);
-    font-size: clamp(2.25rem, 1.8rem + 2vw, 3.5rem);
+    font-size: clamp(1.9rem, 1.4rem + 2vw, 3rem);
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.05;
@@ -45,7 +45,7 @@
 }
 
 .intro__hint {
-    margin: 48px 0 0;
+    margin: 24px 0 0;
     color: var(--color-text-muted);
     font-size: 0.85rem;
     letter-spacing: 0.08em;
@@ -59,7 +59,6 @@
  * timeline runs, and tiles are offset from the centre in whole units.
  */
 .timeline {
-    --unit: 24px;
     --step: 5;          /* rows between consecutive tiles */
     --period-head: 5;   /* rows reserved for the node and label */
     --scatter: 2;       /* how far tiles drift sideways, per jitter step */
@@ -69,13 +68,6 @@
     padding: calc(var(--unit) * 2) 0 calc(var(--unit) * 6);
     list-style: none;
     scroll-margin-top: var(--header-height);
-    background-image:
-        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-    background-size: var(--unit) var(--unit);
-    /* puts a vertical grid line exactly on the page centre */
-    background-position: calc(50% - var(--unit) / 2 - 0.5px) 0, 0 0;
-    --grid-line: color-mix(in srgb, var(--color-text) 7%, transparent);
 }
 
 /* Centre line */
@@ -108,6 +100,7 @@
     left: calc(50% - var(--unit) / 2);
     width: var(--unit);
     height: var(--unit);
+    border-radius: 5px;
     background-color: var(--color-accent-2);
     box-shadow: 0 0 0 3px var(--color-text);
 }
@@ -122,6 +115,7 @@
     align-items: center;
     max-width: calc(100% - var(--page-gutter) * 2);
     padding: 4px 12px;
+    border-radius: 6px;
     background-color: var(--color-bg);
     text-align: center;
     transform: translateX(-50%);
@@ -151,14 +145,12 @@
 /* RESPONSIVE =============================================================== */
 @media (max-width: 1023px) {
     .timeline {
-        --unit: 20px;
         --scatter: 1;
     }
 }
 
 @media (max-width: 599px) {
     .timeline {
-        --unit: 16px;
         --scatter: 0;
     }
 
