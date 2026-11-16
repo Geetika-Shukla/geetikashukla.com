@@ -3,20 +3,37 @@
     margin-bottom: calc(var(--header-height) * -1);
 }
 
-/* Snap scrolling between the room and the work floor (proximity, so it never traps) */
+/* Scrolling snaps between the room, the work floor (see .floor) and the footer */
 html:has(.d3-page) {
-    scroll-snap-type: y proximity;
+    scroll-snap-type: y mandatory;
+}
+
+.site:has(.d3-page) > .site-footer {
+    scroll-snap-align: end;
 }
 
 /* SCENE ==================================================================== */
 .d3__stage {
     position: relative;
-    scroll-snap-align: start;
     /* Taller than the screen so the rug in front of the desk shows in full;
        the room stays framed in the first screen (see CameraRig) */
     height: 130svh;
-    overflow: hidden;
+    /* clip rather than hidden: hidden makes a scroll container, which hides
+       the snap marker from the page */
+    overflow: clip;
     background: radial-gradient(ellipse at 50% 30%, #FBF8F2 0%, var(--color-bg) 70%);
+}
+
+/* The stage is taller than a screen, which browsers don't snap within;
+   snap to this screen-high marker at its top instead */
+.d3__snap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100svh;
+    pointer-events: none;
+    scroll-snap-align: start;
 }
 
 .d3__canvas {
