@@ -25,7 +25,7 @@ export const SiteHeader = () => {
                     {NAV_LINKS.map(({ href, label }) => (
                         <Link key={href} href={href} className="site-header__link">{label}</Link>
                     ))}
-                    <Link href="/hobbies" className="site-header__heart" aria-label="Hobbies" title="Hobbies">
+                    <Link href="/hobbies" className="site-header__heart" aria-label="Interests" title="Interests">
 <Heart aria-hidden="true" />
                     </Link>
                 </nav>

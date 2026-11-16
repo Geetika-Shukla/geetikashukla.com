@@ -19,7 +19,7 @@ const LINKEDIN_URL = "https://www.linkedin.com/in/geetikashukla/";
 const LABELS: (LabelAnchor & { label: string })[] = [
     { id: "monitor", label: "Work", position: [-3.9, 3.3, -0.69] },
     { id: "echo", label: "About me", position: [-4.45, 0.85, 0.15] },
-    { id: "shelf", label: "Hobbies", position: [2.6, 3, -0.37] },
+    { id: "shelf", label: "Interests", position: [2.6, 3, -0.37] },
     { id: "journals", label: "Résumé", position: [-0.05, 0.4, -0.15] },
     { id: "phone", label: "LinkedIn", position: [2.15, 1.15, 0] },
 ];
