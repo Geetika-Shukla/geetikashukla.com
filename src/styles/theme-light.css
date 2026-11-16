@@ -4,7 +4,7 @@
     --font-mono       : ui-monospace, monospace;
 
     --heading-font        : var(--font-heading);
-    --heading-font-weight : 600;
+    --heading-font-weight : 700;
 
     --heading-text-colour   : var(--color-text);
     --paragraph-text-colour : var(--color-text);

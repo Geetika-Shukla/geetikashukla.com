@@ -22,7 +22,14 @@
     font-display: swap;
 }
 
-/* Serif is only used for body copy set with fontStyle="serif" on project pages */
+@font-face {
+    font-family: "zilla-slab";
+    src: url("../assets/fonts/zilla-slab/ZillaSlab-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
 @font-face {
     font-family: "zilla-slab";
     src: url("../assets/fonts/zilla-slab/ZillaSlab-Regular.ttf") format("truetype");
@@ -35,6 +42,14 @@
     font-family: "zilla-slab";
     src: url("../assets/fonts/zilla-slab/ZillaSlab-Medium.ttf") format("truetype");
     font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "zilla-slab";
+    src: url("../assets/fonts/zilla-slab/ZillaSlab-Bold.ttf") format("truetype");
+    font-weight: 700;
     font-style: normal;
     font-display: swap;
 }

@@ -10,7 +10,7 @@
 /* DESIGN TOKENS //////////////////////////////////////////////////////////// */
 :root {
     --font-body    : "general-sans", system-ui, sans-serif;
-    --font-heading : "general-sans", system-ui, sans-serif;
+    --font-heading : "zilla-slab", serif;
 
     --color-bg         : #F7F6F3;
     --color-surface    : #FFFFFF;
