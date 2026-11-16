@@ -1,0 +1,327 @@
+/* Sprites are sized in whole "pixels" so they stay crisp at every breakpoint */
+.window-hero,
+.shade {
+    --pixel: 4px;
+}
+
+.window-hero svg,
+.shade svg {
+    display: block;
+    height: calc(var(--rows) * var(--pixel));
+    width: auto;
+}
+
+/* Time-of-day palettes ======================================================= */
+.window-hero[data-phase="day"] {
+    --sky-1: #4A86C8; --sky-2: #6B9FD4; --sky-3: #8DB8DF; --sky-4: #B3D2EA; --sky-5: #D6E8F4;
+    --city: #7E93A8;
+}
+
+.window-hero[data-phase="dawn"] {
+    --sky-1: #3B4A7A; --sky-2: #6A6593; --sky-3: #B07F94; --sky-4: #E59C83; --sky-5: #F6C98E;
+    --city: #4A4660;
+}
+
+.window-hero[data-phase="dusk"] {
+    --sky-1: #2B2556; --sky-2: #54356E; --sky-3: #9A4A6E; --sky-4: #D7684F; --sky-5: #F0A04B;
+    --city: #2A2140;
+}
+
+.window-hero[data-phase="night"] {
+    --sky-1: #0B1026; --sky-2: #121A3A; --sky-3: #1A2550; --sky-4: #233062; --sky-5: #2E3C72;
+    --city: #070A18;
+}
+
+/* Hero: the window stays pinned while the shade rolls up, then scrolls away == */
+.window-hero {
+    height: 160svh;
+}
+
+.window-hero__stage {
+    position: sticky;
+    top: var(--header-height);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100svh - var(--header-height));
+    padding-inline: var(--page-gutter);
+}
+
+.window {
+    width: min(100%, 720px);
+    padding: calc(var(--pixel) * 3);
+    background-color: var(--color-surface);
+    /* Hard-edged frame outline, no blur, for the pixel look */
+    box-shadow:
+        0 0 0 var(--pixel) var(--color-text),
+        calc(var(--pixel) * 2) calc(var(--pixel) * 2) 0 var(--pixel) var(--color-border);
+}
+
+.window__view {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    max-height: 46svh;
+    width: 100%;
+    overflow: hidden;
+    /* Stepped bands instead of a smooth gradient */
+    background: linear-gradient(
+        to bottom,
+        var(--sky-1) 0 22%,
+        var(--sky-2) 22% 42%,
+        var(--sky-3) 42% 60%,
+        var(--sky-4) 60% 76%,
+        var(--sky-5) 76% 100%
+    );
+    transition: background 0.6s steps(4);
+}
+
+/* Window mullions */
+.window__view::before,
+.window__view::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    background-color: var(--color-surface);
+}
+
+.window__view::before {
+    top: 0;
+    bottom: 0;
+    left: calc(50% - var(--pixel));
+    width: calc(var(--pixel) * 2);
+}
+
+.window__view::after {
+    top: calc(45% - var(--pixel));
+    left: 0;
+    right: 0;
+    height: calc(var(--pixel) * 2);
+}
+
+.window-hero .window__celestial {
+    position: absolute;
+    top: 14%;
+    right: 16%;
+    --pixel: 6px;
+}
+
+.window-hero .window__skyline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    color: var(--city);
+}
+
+.window__stars span {
+    position: absolute;
+    width: var(--pixel);
+    height: var(--pixel);
+    background-color: #EDEFF5;
+    animation: twinkle 3s steps(2) infinite;
+}
+
+.window__stars span:nth-child(3n) { animation-delay: 1s; }
+.window__stars span:nth-child(3n + 1) { animation-delay: 2s; }
+.window__stars span:nth-child(1)  { top: 8%;  left: 6%; }
+.window__stars span:nth-child(2)  { top: 18%; left: 14%; }
+.window__stars span:nth-child(3)  { top: 6%;  left: 27%; }
+.window__stars span:nth-child(4)  { top: 30%; left: 22%; }
+.window__stars span:nth-child(5)  { top: 12%; left: 38%; }
+.window__stars span:nth-child(6)  { top: 26%; left: 44%; }
+.window__stars span:nth-child(7)  { top: 9%;  left: 56%; }
+.window__stars span:nth-child(8)  { top: 34%; left: 61%; }
+.window__stars span:nth-child(9)  { top: 20%; left: 68%; }
+.window__stars span:nth-child(10) { top: 5%;  left: 75%; }
+.window__stars span:nth-child(11) { top: 38%; left: 86%; }
+.window__stars span:nth-child(12) { top: 10%; left: 92%; }
+.window__stars span:nth-child(13) { top: 44%; left: 9%; }
+.window__stars span:nth-child(14) { top: 48%; left: 33%; }
+
+@keyframes twinkle {
+    50% { opacity: 0.3; }
+}
+
+/* Desk ======================================================================= */
+/* Front elevation of the desk; overlaps the window so the monitor stands in front of it */
+.desk {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 1100px);
+    aspect-ratio: 200 / 64;
+    margin-top: calc(min(100%, 1100px) * -0.14);
+}
+
+.desk__drawing {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.desk__hotspot {
+    position: absolute;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    transition: outline-color 0.15s steps(2);
+}
+
+.desk__hotspot:hover,
+.desk__hotspot:focus-visible {
+    outline-color: var(--color-accent-2);
+}
+
+.desk__label,
+.desk__meow {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    padding: 2px 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    pointer-events: none;
+    transform: translateX(-50%);
+}
+
+.desk__label {
+    background-color: var(--color-text);
+    color: var(--color-surface);
+    opacity: 0;
+    transition: opacity 0.15s steps(2);
+}
+
+.desk__hotspot:hover .desk__label,
+.desk__hotspot:focus-visible .desk__label {
+    opacity: 1;
+}
+
+.desk__meow {
+    background-color: var(--color-surface);
+    box-shadow: 0 0 0 2px var(--color-text);
+    color: var(--color-text);
+}
+
+.desk__meow[data-visible="false"] {
+    display: none;
+}
+
+/* Shade ====================================================================== */
+.shade {
+    --shade-up: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 30;
+    height: 100svh;
+    transform: translateY(calc(var(--shade-up) * -100%));
+    transition: transform 0.4s steps(8);
+}
+
+.shade__fabric {
+    height: calc(100% - var(--pixel) * 4);
+    overflow-y: auto;
+    background-color: var(--color-surface);
+    /* Faint horizontal slats */
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0 calc(var(--pixel) * 23),
+        color-mix(in srgb, var(--color-border) 45%, transparent) calc(var(--pixel) * 23) calc(var(--pixel) * 24)
+    );
+}
+
+.shade__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    max-width: 640px;
+    margin-inline: auto;
+    padding: 48px var(--page-gutter);
+    text-align: center;
+}
+
+.shade__bar {
+    height: calc(var(--pixel) * 4);
+    background-color: var(--color-text);
+}
+
+/* Cord hangs below the shade, so it peeks from the top edge when the shade is up */
+.shade__cord {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 12px 8px;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    transform: translateX(-50%);
+}
+
+.shade__string {
+    width: 2px;
+    height: 40px;
+    background-color: var(--color-text);
+}
+
+.shade__pull {
+    width: calc(var(--pixel) * 3);
+    height: calc(var(--pixel) * 5);
+    background-color: var(--color-accent-2);
+    box-shadow: 0 0 0 2px var(--color-text);
+    transition: transform 0.2s steps(2);
+}
+
+.shade__cord:hover .shade__pull,
+.shade__cord:focus-visible .shade__pull {
+    transform: translateY(var(--pixel));
+}
+
+/* Responsive ================================================================= */
+@media (max-width: 767px) {
+    .window-hero,
+    .shade {
+        --pixel: 3px;
+    }
+
+    /* Keep the cord clear of the nav links, between the logo and the nav */
+    .shade__cord {
+        left: 30%;
+    }
+
+    .window-hero .window__celestial {
+        --pixel: 4px;
+    }
+}
+
+@media (max-width: 420px) {
+    .window-hero,
+    .shade {
+        --pixel: 2px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .shade,
+    .window__view,
+    .desk__hotspot,
+    .shade__pull {
+        transition: none;
+    }
+
+    .window__stars span {
+        animation: none;
+    }
+}
