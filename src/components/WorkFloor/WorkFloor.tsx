@@ -41,7 +41,7 @@ const BENTO: { href: string; size: Size; u: number; v: number; art?: number }[] 
     { href: "/visual/icon-system-for-setu", size: "1x1", u: 22, v: -9 },
     { href: "/experiences/hdfc-journeys", size: "1x1", u: -11, v: 2 },
     { href: "/experiences/assisted-product-discovery", size: "1x1", u: 0, v: 2 },
-    { href: "/type/inktober-2017", size: "2x1", u: 11, v: 2, art: 0.7 },
+    { href: "/type/inktober-2017", size: "2x1", u: 11, v: 2, art: 0.56 },
     { href: "/type/47-days-of-devanagari-type", size: "2x1", u: 0, v: 13 },
 ];
 
