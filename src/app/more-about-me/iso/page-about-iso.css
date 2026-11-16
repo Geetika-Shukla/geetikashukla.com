@@ -1,0 +1,140 @@
+/*
+ * Draft About me: the intro laid flat on an isometric floor filling the first
+ * screen, the rest of the page as usual below. Pieces sit at (--u, --v) cells
+ * from the plane's centre, --w × --d cells in size.
+ */
+
+/* The nav is laid over the top of the floor */
+.site:has(.about-iso) > .site-header {
+    margin-bottom: calc(var(--header-height) * -1);
+}
+
+/*
+ * The composition spans cells u − v from −39 to 24 and u + v from −35 to 22;
+ * the plane is moved so its middle sits in the middle of the screen
+ * (across: 7.5 × 0.7071 cells, down: 6.5 × 0.40825 cells).
+ */
+.about-iso__scene.iso {
+    --plane-shift: calc(5.3 * var(--c));
+}
+
+.about-iso__scene .floor {
+    /* The grid fades in under the nav and out into the page below */
+    mask-image: linear-gradient(to bottom, transparent 0, #000 160px, #000 calc(100% - 160px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 160px, #000 calc(100% - 160px), transparent 100%);
+}
+
+.about-iso__scene .floor__plane {
+    top: calc(50% + 2.65 * var(--c));
+}
+
+/* Anything placed on the plane */
+.about-iso__intro,
+.about-iso__photo,
+.about-iso__logo {
+    position: absolute;
+    top: calc((80 + var(--v)) * var(--c));
+    left: calc((80 + var(--u)) * var(--c));
+    width: calc(var(--w) * var(--c));
+}
+
+.about-iso__title {
+    margin: 0 0 calc(0.8 * var(--c));
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: calc(2.9 * var(--c));
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+.about-iso__text {
+    margin: 0 0 calc(0.5 * var(--c));
+    color: var(--color-text-muted);
+    font-family: var(--font-heading);
+    font-size: calc(1.1 * var(--c));
+    font-weight: 500;
+    line-height: 1.45;
+}
+
+.about-iso__photo {
+    height: calc(var(--d) * var(--c));
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 4px 4px 0 #E2E0DA;
+}
+
+.about-iso__photo svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.about-iso__logos {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.about-iso__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(var(--d) * var(--c));
+    padding: calc(0.8 * var(--c));
+    border-radius: 6px;
+    background-color: var(--color-surface);
+    box-shadow: 3px 3px 0 #E2E0DA;
+}
+
+.about-iso__logo svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* NARROW SCREENS =========================================================== */
+/* Laid out flat: intro, photo, then the logos in a row */
+@media (max-width: 899px) {
+    .about-iso__scene {
+        padding: calc(var(--header-height) + 24px) var(--page-gutter) 32px;
+    }
+
+    .about-iso__scene .floor__plane {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .about-iso__intro,
+    .about-iso__photo,
+    .about-iso__logo {
+        position: static;
+        width: auto;
+    }
+
+    .about-iso__title {
+        font-size: 2.2rem;
+    }
+
+    .about-iso__text {
+        font-size: 1.1rem;
+    }
+
+    .about-iso__photo {
+        width: min(100%, 360px);
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    .about-iso__logos {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px;
+    }
+
+    .about-iso__logo {
+        height: auto;
+        aspect-ratio: 1 / 1;
+        padding: 8px;
+    }
+}
