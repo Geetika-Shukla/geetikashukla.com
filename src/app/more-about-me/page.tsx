@@ -123,7 +123,7 @@ const MoreAboutMePage = () => {
                             </strong>
                             </Text>
                             <Text marginBottom="tiny" marginTop="nano">
-                                Reserve Bank Innovation Hub · Aug 2025 – present
+                                Reserve Bank Innovation Hub · Sep 2025 – present
                             </Text>
                             <Text marginBottom="nano">
                                 Currently working on rebranding initiatives and building a scalable design system that connects visual identity with product experience.
