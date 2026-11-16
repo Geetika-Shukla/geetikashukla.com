@@ -23,7 +23,7 @@
 /* LIST ===================================================================== */
 .work__list {
     position: absolute;
-    top: calc(var(--header-height) + 104px);
+    top: calc(var(--header-height) + 208px);
     left: max(var(--page-gutter), calc((100% - var(--page-max-width)) / 2 + var(--page-gutter)));
     z-index: 2;
 }
@@ -91,8 +91,8 @@
 /* FLOOR ==================================================================== */
 .floor {
     position: relative;
-    /* Runs on below the screen; the site footer's icons sit on this strip */
-    height: calc(100svh + var(--footer-overlap, 0px));
+    /* One screen; the site footer's icons sit over its bottom edge */
+    height: 100svh;
     min-height: 640px;
     overflow: clip;
     /* The grid fades in at the top so it blends in after the rug */
@@ -103,8 +103,7 @@
 /* A plane much larger than the screen, centred on the floor; cell (0, 0) is its centre */
 .floor__plane {
     position: absolute;
-    /* Centred on the floor's first screen; the strip below it is for the footer */
-    top: max(50svh, 320px);
+    top: 50%;
     left: 50%;
     width: calc(160 * var(--c));
     height: calc(160 * var(--c));

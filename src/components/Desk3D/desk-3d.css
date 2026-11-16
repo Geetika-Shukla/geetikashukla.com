@@ -2,7 +2,8 @@
    (matches FLOOR in Room.tsx) */
 .site:has(.d3-page) {
     --floor: #E4DCCD;
-    /* How far the footer overlaps the bottom of the work floor (wide screens) */
+    /* How far the footer overlaps the bottom of the work floor (wide screens):
+       its full height, so the icons sit on the floor's one screen */
     --footer-overlap: 124px;
 }
 
@@ -121,7 +122,7 @@
     padding-block: 24px 72px;
 }
 
-/* Wide screens: over the bottom of the floor, which runs taller to make room */
+/* Wide screens: over the bottom of the floor */
 @media (min-width: 900px) {
     .site:has(.d3-page) > .site-footer {
         margin-top: calc(var(--footer-overlap) * -1);
