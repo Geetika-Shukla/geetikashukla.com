@@ -18,7 +18,7 @@
 .site:has(.iso-page) {
     /* Floor colour, shared by the room's floor, the iso floor and the footer
        (matches FLOOR in Desk3D/Room.tsx) */
-    --floor: #E4DCCD;
+    --floor: #EFEAE1;
     /* How far the footer overlaps the bottom of the floor (wide screens): its
        full height, so the icons sit on the floor's one screen */
     --footer-overlap: 124px;

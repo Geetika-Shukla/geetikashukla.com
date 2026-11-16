@@ -23,7 +23,7 @@ const SKIRTING = "#FBFAF6";
 const WALL_GLOW = 0.22;
 const SIDE_WALL_GLOW = 0.5;
 // Must match --floor in desk-3d.css
-export const FLOOR = "#E4DCCD";
+export const FLOOR = "#EFEAE1";
 
 /*
  * The work section's isometric grid, carried onto the room's floor: lines in
