@@ -2,9 +2,6 @@
 import React from "react";
 import Script from "next/script";
 
-// INTERNAL DEPS ===============================================================
-import { ThemeProvider } from "fictoan-react";
-
 // COMPONENTS ==================================================================
 import { SiteHeader } from "@/components/SiteHeader/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter/SiteFooter";
@@ -29,17 +26,15 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const listOfThemes = ["theme-light"];
-
     return (
-        <html lang="en">
+        <html lang="en" className="theme-light">
             <body>
-                <ThemeProvider themeList={listOfThemes} currentTheme="theme-light">
+                <div className="site">
                     <SiteHeader />
 
                     {children}
                     <SiteFooter />
-                </ThemeProvider>
+                </div>
 
                 <Script
                     src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}

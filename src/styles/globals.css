@@ -36,7 +36,8 @@ body {
     background-color: var(--color-bg);
 }
 
-div[data-theme-provider] {
+/* Page wrapper: keeps the footer at the bottom on short pages */
+.site {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
