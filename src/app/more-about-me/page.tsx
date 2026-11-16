@@ -117,7 +117,7 @@ const MoreAboutMePage = () => {
                     <div className="timeline">
 
                         <div className="timeline-entry">
-                            <RBIHLogo className="college-logo"/>
+                            <RBIHLogo className="college-logo college-logo--rbih"/>
                             <Text marginTop="micro"><strong>
                                 Manager — Design
                             </strong>

@@ -12,6 +12,11 @@ body:has(#page-more-about-me),
         height: 50px;
     }
 
+    /* RBIH's mark reads large beside the others: 15% smaller */
+    .college-logo--rbih {
+        height: 42.5px;
+    }
+
     .display-pic {
         width: 80%;
         height: auto;
