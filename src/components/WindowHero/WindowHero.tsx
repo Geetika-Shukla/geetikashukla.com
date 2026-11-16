@@ -19,6 +19,7 @@ type BlindMode = "auto" | "down" | "up";
 
 interface WindowHeroProps {
     deskLinks : DeskLink[];
+    children  : React.ReactNode;   // intro, shown at the top left
 }
 
 const SLATS = 14;
@@ -32,8 +33,9 @@ const phaseForHour = (hour: number): Phase => {
     return "night";
 };
 
-export const WindowHero = ({ deskLinks }: WindowHeroProps) => {
+export const WindowHero = ({ deskLinks, children }: WindowHeroProps) => {
     const blindRef = useRef<HTMLDivElement>(null);
+    const stageRef = useRef<HTMLDivElement>(null);
     const modeRef = useRef<BlindMode>("auto");
     const toggleScrollY = useRef(0);
 
@@ -87,6 +89,15 @@ export const WindowHero = ({ deskLinks }: WindowHeroProps) => {
         return () => window.clearInterval(interval);
     }, []);
 
+    // Pointer position over the stage (-1..1) drives a gentle parallax between window and sky
+    const onPointerMove = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
+        const stage = stageRef.current;
+        if (!stage || event.pointerType !== "mouse") return;
+        const rect = stage.getBoundingClientRect();
+        stage.style.setProperty("--mx", (((event.clientX - rect.left) / rect.width) * 2 - 1).toFixed(3));
+        stage.style.setProperty("--my", (((event.clientY - rect.top) / rect.height) * 2 - 1).toFixed(3));
+    }, []);
+
     const meow = useCallback(() => {
         setMeowing(true);
         window.setTimeout(() => setMeowing(false), 1600);
@@ -100,7 +111,9 @@ export const WindowHero = ({ deskLinks }: WindowHeroProps) => {
 
     return (
         <section className="window-hero" aria-label="Window and desk">
-            <div className="window-hero__stage pixel-grid">
+            <div className="window-hero__stage pixel-grid" ref={stageRef} onPointerMove={onPointerMove}>
+                <header className="window-hero__intro">{children}</header>
+
                 <div className="window">
                     <div className="window__pane">
                         <Sky phase={phase} />

@@ -28,30 +28,90 @@
     background-position: calc(50% - var(--unit) / 2 - 0.5px) 100%, 0 calc(100% + 1px);
 }
 
+/* INTRO ====================================================================== */
+/* On the wall, top left, aligned with the header's content edge */
+.window-hero__intro {
+    position: absolute;
+    top: calc(var(--header-height) + 40px);
+    left: max(var(--page-gutter), calc((100% - var(--page-max-width)) / 2 + var(--page-gutter)));
+    z-index: 5;
+    width: min(320px, 23vw);
+}
+
+/* Not enough room beside the window: stack above it, still left-aligned.
+   The window then takes whatever height is left between intro and desk. */
+@media (max-width: 1199px) {
+    .window-hero__stage {
+        justify-content: flex-start;
+    }
+
+    .window-hero__intro {
+        position: static;
+        align-self: stretch;
+        width: auto;
+        max-width: 560px;
+        padding: 0 var(--page-gutter) 20px;
+    }
+
+    .window {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .window__pane {
+        flex: 1;
+        height: auto;
+        min-height: 140px;
+    }
+}
+
 /* WINDOW ===================================================================== */
 .window {
     position: relative;
-    width: min(calc(100% - var(--page-gutter) * 2), 880px);
+    width: min(calc(100% - var(--page-gutter) * 2), 640px);
     padding: 10px;
     border-radius: 4px;
     background-color: #FBFAF6;
-    box-shadow:
-        0 0 0 2px #D5CCBE,
-        8px 8px 0 rgba(43, 45, 56, 0.06);
+    box-shadow: 0 0 0 2px #D5CCBE;
+    /* Mid-ground: drifts slightly against the pointer */
+    transform: translate(calc(var(--mx, 0) * -6px), calc(var(--my, 0) * -4px));
+    transition: transform 0.4s ease-out;
+}
+
+/* Sill ledge in front of the window: depth from flat colour, no shadow */
+.window::after {
+    content: "";
+    position: absolute;
+    left: -14px;
+    right: -14px;
+    bottom: -12px;
+    height: 12px;
+    border-radius: 2px;
+    background: linear-gradient(to bottom, #FFFFFF 0 4px, #EFE9DE 4px 100%);
+    box-shadow: 0 0 0 2px #D5CCBE;
 }
 
 .window__pane {
     position: relative;
-    height: clamp(240px, calc(100svh - var(--header-height) - 48px - var(--desk-height) + var(--desk-overlap)), 560px);
+    height: clamp(180px, calc(100svh - var(--header-height) - 48px - var(--desk-height) + var(--desk-overlap)), 400px);
+    flex-shrink: 1;
     overflow: hidden;
     border-radius: 2px;
+    /* Reveal: the window's inner frame, a step darker than the face, reads as wall thickness */
+    border: 6px solid #E9E2D5;
+    border-top-color: #DDD4C4;
 }
 
+/* Far plane: the sky drifts further than the window, so it reads as distant */
 .sky {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    inset: -4%;
+    width: 108%;
+    height: 108%;
+    transform: translate(calc(var(--mx, 0) * -14px), calc(var(--my, 0) * -8px));
+    transition: transform 0.4s ease-out;
 }
 
 .window__mullions {
@@ -260,6 +320,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .window,
+    .sky {
+        transform: none;
+    }
+
     .blind__slat,
     .blind__ladder,
     .blind__cord,
