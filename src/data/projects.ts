@@ -23,6 +23,8 @@ export interface Project {
     year?       : string;
     // Projects without a page yet are shown as "Upcoming"
     href?       : string;
+    // Wide strip thumbnails get a 2×1 tile; square ones a 1×1 tile
+    shape?      : "square" | "wide";
 }
 
 export interface TimelinePeriod {
@@ -49,6 +51,7 @@ export const timeline: TimelinePeriod[] = [
                 year        : "2024",
                 href        : "/experiences/path-to-partnerships",
                 Thumbnail   : PartnershipsThumbnail,
+                shape       : "wide",
             },
             {
                 title       : "Assisted product discovery",
@@ -73,6 +76,7 @@ export const timeline: TimelinePeriod[] = [
                 year        : "2020 – 23",
                 href        : "/experiences/revamping-reports",
                 Thumbnail   : ReportsThumbnail,
+                shape       : "wide",
             },
             {
                 title       : "Icon system",
@@ -87,12 +91,14 @@ export const timeline: TimelinePeriod[] = [
                 category    : "Visual",
                 href        : "/visual/people-experience",
                 Thumbnail   : PeopleExperienceThumbnail,
+                shape       : "wide",
             },
             {
                 title       : "Bill Pay",
                 description : "Payment experience. Case study coming soon.",
                 category    : "Experience",
                 Thumbnail   : BillPayThumbnail,
+                shape       : "wide",
             },
         ],
     },
@@ -106,6 +112,7 @@ export const timeline: TimelinePeriod[] = [
                 category    : "Visual",
                 year        : "2019",
                 Thumbnail   : AtherThumbnail,
+                shape       : "wide",
             },
         ],
     },
@@ -124,6 +131,7 @@ export const timeline: TimelinePeriod[] = [
                 category    : "Visual",
                 href        : "/visual/kannauj-perfumery",
                 Thumbnail   : KannaujThumbnail,
+                shape       : "wide",
             },
         ],
     },
@@ -137,6 +145,7 @@ export const timeline: TimelinePeriod[] = [
                 category    : "Type",
                 href        : "/type/47-days-of-devanagari-type",
                 Thumbnail   : DevanagariThumbnail,
+                shape       : "wide",
             },
             {
                 title       : "26 days of Type",
@@ -144,6 +153,7 @@ export const timeline: TimelinePeriod[] = [
                 category    : "Visual",
                 href        : "/visual/26-days-of-type",
                 Thumbnail   : DaysOfTypeThumbnail,
+                shape       : "wide",
             },
             {
                 title       : "Inktober",
@@ -152,6 +162,7 @@ export const timeline: TimelinePeriod[] = [
                 year        : "2017",
                 href        : "/type/inktober-2017",
                 Thumbnail   : InktoberThumbnail,
+                shape       : "wide",
             },
         ],
     },
