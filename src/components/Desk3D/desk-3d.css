@@ -23,14 +23,50 @@
     pointer-events: none;
 }
 
+/* Ink with a flash of the room's colours (the rug's rust and gold, the mug's
+   teal) sweeping through every few seconds */
 .d3__title {
+    width: fit-content;
     margin: 0;
     color: var(--color-text);
     font-family: var(--font-heading);
     font-size: 3.4rem;
     font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1;
+    line-height: 1.05;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+    .d3__title {
+        background-image: linear-gradient(
+            100deg,
+            var(--color-text) 0%,
+            var(--color-text) 34%,
+            #C9683E 42%,
+            #E3B94C 50%,
+            #3F8F8A 58%,
+            var(--color-text) 66%,
+            var(--color-text) 100%
+        );
+        background-size: 300% 100%;
+        background-position: 100% 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: d3-title-flash 6s cubic-bezier(0.45, 0, 0.25, 1) 0.6s infinite;
+    }
+}
+
+/* The colour band crosses the headline, then rests off to the side */
+@keyframes d3-title-flash {
+    0% {
+        background-position: 100% 0;
+    }
+
+    35%,
+    100% {
+        background-position: 0% 0;
+    }
 }
 
 .d3__bio {
@@ -109,5 +145,11 @@
 @media (prefers-reduced-motion: reduce) {
     .d3-tag {
         transition: none;
+    }
+
+    /* No sweep: the colour band rests across the headline */
+    .d3__title {
+        animation: none;
+        background-position: 50% 0;
     }
 }
