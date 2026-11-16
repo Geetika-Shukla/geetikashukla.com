@@ -14,7 +14,7 @@
  * The cell size scales with the viewport so the arrangement always fills it.
  */
 .work {
-    --c: min(calc(100vw / 73), calc(100svh / 41));
+    --c: min(calc(100vw / 68), calc(100svh / 38));
     --line: color-mix(in srgb, var(--color-text) 6%, transparent);
 
     position: relative;
