@@ -1,0 +1,213 @@
+/* Scroll story: the canvas is pinned while the page scrolls through the steps */
+.d3 {
+    position: relative;
+}
+
+/* Header overlays the pinned scene */
+.site:has(.d3) > .site-header {
+    margin-bottom: calc(var(--header-height) * -1);
+}
+
+.d3__stage {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 30%, #FBF8F2 0%, var(--color-bg) 70%);
+}
+
+.d3__canvas {
+    position: absolute !important;
+    inset: 0;
+}
+
+/* INTRO HEADLINE =========================================================== */
+.d3__intro {
+    position: absolute;
+    top: calc(var(--header-height) + 24px);
+    left: 50%;
+    z-index: 2;
+    width: min(calc(100% - var(--page-gutter) * 2), 720px);
+    text-align: center;
+    pointer-events: none;
+    transform: translateX(-50%);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.d3__intro[data-visible="false"] {
+    opacity: 0;
+    transform: translate(-50%, -16px);
+}
+
+.d3__eyebrow {
+    margin: 0 0 8px;
+    color: var(--color-accent-2);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.d3__title {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: clamp(2.6rem, 1.6rem + 4.5vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+.d3__title span {
+    color: var(--color-accent);
+}
+
+.d3__bio {
+    max-width: 560px;
+    margin: 16px auto 0;
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    line-height: 1.55;
+}
+
+.d3__hint {
+    margin: 0;
+    position: absolute;
+    z-index: 2;
+    bottom: 24px;
+    left: 50%;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background-color: color-mix(in srgb, var(--color-surface) 70%, transparent);
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transform: translateX(-50%);
+    transition: opacity 0.3s ease;
+}
+
+.d3__hint[data-visible="false"] {
+    opacity: 0;
+}
+
+/* CAPTION CARD ============================================================= */
+.d3-card {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    z-index: 2;
+    width: min(calc(100% - var(--page-gutter) * 2), 560px);
+    padding: 16px 20px;
+    border-radius: 10px;
+    background-color: color-mix(in srgb, var(--color-surface) 92%, transparent);
+    box-shadow: 0 12px 32px rgba(43, 45, 56, 0.12);
+    transform: translateX(-50%);
+    animation: d3-card-in 0.35s ease both;
+}
+
+@keyframes d3-card-in {
+    from { opacity: 0; transform: translate(-50%, 12px); }
+}
+
+.d3-card__eyebrow {
+    margin: 0;
+    color: var(--color-accent-2);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.d3-card__title {
+    margin: 2px 0 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.d3-card__text {
+    margin: 4px 0 0;
+    color: var(--color-text);
+    font-size: 1.05rem;
+}
+
+.d3-card__projects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.95rem;
+}
+
+.d3-card__projects a,
+.d3-card__links a {
+    color: var(--color-accent);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+    text-underline-offset: 3px;
+}
+
+.d3-card__projects em {
+    color: var(--color-text-muted);
+    font-style: normal;
+}
+
+.d3-card__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin-top: 8px;
+}
+
+/* Pills pinned to objects in the scene */
+/* Positioned each frame from the 3D scene (see PillTracker) */
+.d3-pill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background-color: var(--color-surface);
+    box-shadow: 0 2px 8px rgba(43, 45, 56, 0.15);
+    color: var(--color-accent-2);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.d3-pill:hover,
+.d3-pill:focus-visible {
+    background-color: var(--color-accent-2);
+    color: var(--color-surface);
+}
+
+.d3__meow {
+    position: absolute;
+    top: 50%;
+    right: 12%;
+    z-index: 2;
+    margin: 0;
+    padding: 4px 12px;
+    border-radius: 8px;
+    background-color: var(--color-surface);
+    box-shadow: 0 0 0 2px var(--color-text);
+    font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .d3__intro,
+    .d3-card {
+        transition: none;
+        animation: none;
+    }
+}
