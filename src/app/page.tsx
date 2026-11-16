@@ -14,7 +14,7 @@ export default function Home() {
 
                 {/* Server-rendered so it shows before the 3D loads */}
                 <header className="d3__intro">
-                    <h1 className="d3__title">Geetika Shukla</h1>
+                    <h1 className="d3__title">Hello there!</h1>
                     <p className="d3__bio">
                         I’m Geetika, a multi-disciplinary designer with around 7 years of experience spanning brand,
                         exhibition, web, and product design.
