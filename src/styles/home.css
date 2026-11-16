@@ -1,4 +1,36 @@
-/* INTRO (printed on the shade) ============================================= */
+/* PAGE ===================================================================== */
+/*
+ * .home is the size container the pixel grid and the desk drawing are measured
+ * against. --desk-scale: desk drawing width as a multiple of the page width
+ * (phones crop its plain ends). --grid-px: desk pixels per grid cell.
+ */
+.home {
+    --desk-scale: 1;
+    --grid-px: 8;
+    container-type: inline-size;
+}
+
+@media (max-width: 1023px) {
+    .home {
+        --grid-px: 12;
+    }
+}
+
+@media (max-width: 767px) {
+    .home {
+        --desk-scale: 1.2;
+        --grid-px: 16;
+    }
+}
+
+/* INTRO ==================================================================== */
+.intro {
+    max-width: 640px;
+    margin-inline: auto;
+    padding: 56px var(--page-gutter) 24px;
+    text-align: center;
+}
+
 .intro__name {
     margin: 0;
     color: var(--color-text);
@@ -42,14 +74,6 @@
 .intro__link:hover,
 .intro__link:focus-visible {
     text-decoration-color: var(--color-accent);
-}
-
-.intro__hint {
-    margin: 24px 0 0;
-    color: var(--color-text-muted);
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
 }
 
 /* TIMELINE ================================================================= */

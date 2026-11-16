@@ -6,7 +6,6 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 // COMPONENTS ==================================================================
 import { DeskScene } from "./DeskScene";
 import { Sky } from "./Sky";
-import { fromRows, tileDataUri } from "@/components/Pixel/pixel";
 
 // STYLES ======================================================================
 import "./window-hero.css";
@@ -20,9 +19,9 @@ type BlindMode = "auto" | "down" | "up";
 
 interface WindowHeroProps {
     deskLinks : DeskLink[];
-    children  : React.ReactNode;
 }
 
+const SLATS = 14;
 const BLIND_SCROLL_DISTANCE = 0.6; // fraction of viewport height that fully raises the blind
 const MODE_RESET_SCROLL = 120;     // px of scrolling that hands the blind back to scroll control
 
@@ -33,37 +32,8 @@ const phaseForHour = (hour: number): Phase => {
     return "night";
 };
 
-// Block-print pattern for the blind: a small buti flower on a half-drop repeat,
-// in indigo and rust with mustard leaves, as on Bagru / Sanganeri prints.
-const BUTI = [
-    "...I...",
-    "..IGI..",
-    ".I.R.I.",
-    "IGRRRGI",
-    ".I.R.I.",
-    "..IGI..",
-    "...I...",
-];
-const BUTI_COLOURS = { I: "#3E5A8A", R: "#B4532A", G: "#C9A24A" };
-const BLIND_PATTERN = tileDataUri([
-    ...fromRows(BUTI, BUTI_COLOURS, 1, 1),
-    ...fromRows(BUTI, BUTI_COLOURS, 9, 9),
-], 16, 16);
-
-// Border of hanging triangles above the hem
-const BLIND_BORDER = tileDataUri(fromRows([
-    "RRRRRRRR",
-    "IIIIIIII",
-    ".RRRRRR.",
-    "..RRRR..",
-    "...RR...",
-    "........",
-    "...I....",
-], { R: "#B4532A", I: "#3E5A8A" }), 8, 7);
-
-export const WindowHero = ({ deskLinks, children }: WindowHeroProps) => {
+export const WindowHero = ({ deskLinks }: WindowHeroProps) => {
     const blindRef = useRef<HTMLDivElement>(null);
-    const labelRef = useRef<HTMLDivElement>(null);
     const modeRef = useRef<BlindMode>("auto");
     const toggleScrollY = useRef(0);
 
@@ -83,7 +53,6 @@ export const WindowHero = ({ deskLinks, children }: WindowHeroProps) => {
         const up = modeRef.current === "down" ? 0 : modeRef.current === "up" ? 1 : scrolled;
 
         blind.style.setProperty("--blind-up", up.toFixed(3));
-        labelRef.current?.toggleAttribute("inert", up > 0.5);
         setBlindDown(up <= 0.5);
     }, []);
 
@@ -109,17 +78,8 @@ export const WindowHero = ({ deskLinks, children }: WindowHeroProps) => {
         updateBlind();
     }, [updateBlind]);
 
-    // Escape raises the blind
-    useEffect(() => {
-        const onKey = (event: KeyboardEvent) => {
-            if (event.key === "Escape" && blindDown) setMode("up");
-        };
-        window.addEventListener("keydown", onKey);
-        return () => window.removeEventListener("keydown", onKey);
-    }, [blindDown, setMode]);
-
     // Sky follows the visitor's local time. Starts as "day" on the server; the
-    // blind covers the window on first paint, so the switch is not visible.
+    // blind covers most of the window on first paint, so the switch is barely visible.
     useEffect(() => {
         const update = () => setPhase(phaseForHour(new Date().getHours()));
         update();
@@ -139,32 +99,32 @@ export const WindowHero = ({ deskLinks, children }: WindowHeroProps) => {
     }, [meow]);
 
     return (
-        <section className="window-hero pixel-grid" aria-label="Introduction">
-            <div className="window-hero__stage">
+        <section className="window-hero" aria-label="Window and desk">
+            <div className="window-hero__stage pixel-grid">
                 <div className="window">
                     <div className="window__pane">
                         <Sky phase={phase} />
                         <div className="window__mullions" aria-hidden="true" />
 
-                        <div className="blind" ref={blindRef}>
-                            <div className="blind__fabric" style={{ backgroundImage: BLIND_PATTERN }}>
-                                <div className="blind__label" ref={labelRef}>{children}</div>
-                            </div>
-                            <div className="blind__border" style={{ backgroundImage: BLIND_BORDER }} />
-                            <div className="blind__hem" />
+                        {/* Wooden venetian blind: slats stack up under the rail as it rises */}
+                        <div className="blind" ref={blindRef} style={{ "--slats": SLATS } as React.CSSProperties}>
+                            <span className="blind__ladder blind__ladder--left" aria-hidden="true" />
+                            <span className="blind__ladder blind__ladder--right" aria-hidden="true" />
+                            {Array.from({ length: SLATS }, (_, i) => (
+                                <span key={i} className="blind__slat" style={{ "--i": i } as React.CSSProperties} aria-hidden="true" />
+                            ))}
+                            <span className="blind__rail" aria-hidden="true" />
                             <button
                                 type="button"
                                 className="blind__cord"
                                 onClick={() => setMode(blindDown ? "up" : "down")}
-                                aria-expanded={blindDown}
-                                aria-label={blindDown ? "Raise the blind" : "Lower the blind to read the intro"}
+                                aria-pressed={!blindDown}
+                                aria-label={blindDown ? "Raise the blind" : "Lower the blind"}
                             >
                                 <span className="blind__string" />
-                                <span className="blind__tassel" />
+                                <span className="blind__pull" />
                             </button>
                         </div>
-
-                        <div className="window__roller" aria-hidden="true" />
                     </div>
                 </div>
 

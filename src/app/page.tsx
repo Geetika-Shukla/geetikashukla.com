@@ -31,7 +31,9 @@ const DESK_LINKS: DeskLink[] = [
 export default function Home() {
     return (
         <article className="home">
-            <WindowHero deskLinks={DESK_LINKS}>
+            <WindowHero deskLinks={DESK_LINKS} />
+
+            <header className="intro">
                 <h1 className="intro__name">Geetika Shukla</h1>
                 <p className="intro__role">Multi-disciplinary designer</p>
                 <p className="intro__bio">
@@ -43,8 +45,7 @@ export default function Home() {
                     <a href={RESUME_URL} className="intro__link" target="_blank" rel="noopener noreferrer">Résumé</a>
                     <a href={LINKEDIN_URL} className="intro__link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 </div>
-                <p className="intro__hint">Scroll to open the window</p>
-            </WindowHero>
+            </header>
 
             <ol id="work" className="timeline pixel-grid" aria-label="Work timeline">
                 {timeline.map((period) => (

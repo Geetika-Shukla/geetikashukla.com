@@ -66,28 +66,19 @@ p {
     padding-inline: var(--page-gutter);
 }
 
-/* Square pixel grid drawn behind the hero and the timeline. A grid line runs
-   exactly through the page centre, so things centred on the page sit on it. */
+/* Square pixel grid drawn behind the hero and the timeline. One cell is
+   --grid-px pixels of the desk illustration (640 px across --desk-scale × the
+   container width), so the grid lines fall on the drawing's pixel grid. A grid
+   line also runs exactly through the page centre. Needs a size container
+   (.home) and --desk-scale / --grid-px from it. */
 .pixel-grid {
-    --unit: 24px;
+    --unit: calc(100cqw * var(--desk-scale) / 640 * var(--grid-px));
     --grid-line: color-mix(in srgb, var(--color-text) 7%, transparent);
     background-image:
         linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
         linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
     background-size: var(--unit) var(--unit);
     background-position: calc(50% - var(--unit) / 2 - 0.5px) 0, 0 0;
-}
-
-@media (max-width: 1023px) {
-    .pixel-grid {
-        --unit: 20px;
-    }
-}
-
-@media (max-width: 599px) {
-    .pixel-grid {
-        --unit: 16px;
-    }
 }
 
 .row-hide {

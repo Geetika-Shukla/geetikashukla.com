@@ -9,11 +9,11 @@ import type { CSSProperties } from "react";
 import type { Rect } from "@/components/Pixel/pixel";
 
 // Front elevation of the desk, drawn from geometric shapes rasterised onto a
-// 640 × 176 grid of small pixels: pixel texture without hard, blocky edges.
+// 640 × 156 grid of small pixels: pixel texture without hard, blocky edges.
 // The desk runs the full width; objects sit in the middle so narrow screens
 // can crop the plain ends.
 const WIDTH = 640;
-const HEIGHT = 176;
+const HEIGHT = 156;
 const DESK_TOP = 140;
 
 const C = {
@@ -23,9 +23,6 @@ const C = {
     bambooMid  : "#CDA873",
     bambooEdge : "#BB925E",
     bambooSeam : "#A98250",
-    under      : "#8E8172",
-    leg        : "#ECE7DF",
-    legShade   : "#CEC5B8",
     bezel      : "#2B2E38",
     bezelHi    : "#3D414D",
     stand      : "#3B3F4A",
@@ -77,10 +74,6 @@ const desk = (): Rect[] => {
         rect(0, DESK_TOP + 4, WIDTH, 4, C.bamboo),
         rect(0, DESK_TOP + 8, WIDTH, 8, C.bambooEdge),
         rect(0, DESK_TOP + 8, WIDTH, 1, C.bambooMid),
-        rect(0, DESK_TOP + 16, WIDTH, 2, C.under),
-        // Legs
-        ...roundRect(44, DESK_TOP + 18, 10, HEIGHT - DESK_TOP - 18, 2, C.leg), rect(51, DESK_TOP + 18, 3, HEIGHT - DESK_TOP - 18, C.legShade),
-        ...roundRect(586, DESK_TOP + 18, 10, HEIGHT - DESK_TOP - 18, 2, C.leg), rect(593, DESK_TOP + 18, 3, HEIGHT - DESK_TOP - 18, C.legShade),
     ];
     // Bamboo laminate strips on the front edge, and a little grain on top
     for (let x = 14; x < WIDTH; x += 22) rects.push(rect(x, DESK_TOP + 10, 1, 6, C.bambooSeam));
@@ -121,26 +114,44 @@ const echoDot = (): Rect[] => {
 
 // MONITOR =====================================================================
 const monitor = (): Rect[] => [
-    ...contact(256, 40),
-    // Stand
-    ...roundRect(220, 132, 72, 8, 3, C.stand), rect(224, 132, 64, 1, C.standHi),
-    rect(248, 116, 16, 16, C.stand), rect(248, 116, 2, 16, C.standHi), rect(260, 116, 4, 16, C.standDark),
+    ...contact(216, 40),
+    // Stand, centred under the screen
+    ...roundRect(180, 132, 72, 8, 3, C.stand), rect(184, 132, 64, 1, C.standHi),
+    rect(208, 116, 16, 16, C.stand), rect(208, 116, 2, 16, C.standHi), rect(220, 116, 4, 16, C.standDark),
     // Bezel and screen
-    ...roundRect(136, 20, 160, 98, 6, C.bezel), rect(142, 20, 148, 1, C.bezelHi),
-    ...roundRect(142, 26, 148, 84, 2, C.screenTop),
-    ...raster(142, 26, 290, 110, (x, y) => y > 60 + (x - 142) * 0.05, C.screenLow),
-    ...roundRect(252, 112, 8, 2, 1, "#4A4F5C"),
-    // Window chrome on screen
-    ...roundRect(142, 26, 148, 7, 2, "#1A2550"),
-    ...ellipse(148, 29.5, 1.5, 1.5, C.rust), ...ellipse(153, 29.5, 1.5, 1.5, C.mustard), ...ellipse(158, 29.5, 1.5, 1.5, C.mint),
-    // A tiny version of the timeline
-    rect(215, 38, 2, 66, "#7586BE"),
-    ...roundRect(211, 42, 10, 8, 2, C.rust), ...roundRect(211, 76, 10, 8, 2, C.rust),
-    ...roundRect(160, 46, 42, 34, 3, C.cream), ...roundRect(164, 50, 34, 18, 2, C.mint),
-    ...roundRect(164, 71, 26, 2, 1, C.line), ...roundRect(164, 75, 18, 2, 1, C.line),
-    ...roundRect(230, 66, 42, 34, 3, C.cream), ...roundRect(234, 70, 34, 18, 2, C.rustLight),
-    ...roundRect(234, 91, 26, 2, 1, C.line), ...roundRect(234, 95, 18, 2, 1, C.line),
-    ...ellipse(181, 59, 5, 5, "#BFE7DA"), ...ellipse(251, 79, 5, 5, "#F2C3A4"),
+    ...roundRect(136, 20, 160, 98, 2, C.bezel), rect(142, 20, 148, 1, C.bezelHi),
+    ...roundRect(212, 112, 8, 2, 1, "#4A4F5C"),
+
+    // Screen, left: a design tool — toolbar, layers, canvas with two frames, properties
+    ...roundRect(142, 26, 102, 84, 1, "#2C2C2E"),
+    rect(142, 26, 102, 6, "#1E1E20"),
+    ...ellipse(147, 29, 1.2, 1.2, C.rust), ...ellipse(151, 29, 1.2, 1.2, C.mustard), ...ellipse(155, 29, 1.2, 1.2, C.mint),
+    ...[166, 172, 178, 184].flatMap((x) => roundRect(x, 28, 4, 2, 1, "#5A5A60")),
+    ...[38, 43, 48, 53, 58, 63].flatMap((y, i) => roundRect(145, y, i % 2 ? 10 : 13, 2, 1, i === 1 ? "#6C8CF5" : "#56565C")),
+    rect(162, 32, 64, 78, "#E6E6E6"),
+    ...roundRect(167, 38, 26, 34, 2, "#FFFFFF"), ...roundRect(169, 40, 22, 12, 1, C.mint),
+    ...roundRect(169, 55, 16, 2, 1, "#C8C8C8"), ...roundRect(169, 59, 11, 2, 1, "#C8C8C8"), ...roundRect(169, 65, 10, 4, 1, C.rust),
+    ...roundRect(197, 46, 25, 30, 2, "#FFFFFF"), ...roundRect(199, 48, 21, 10, 1, C.rustLight),
+    ...roundRect(199, 61, 15, 2, 1, "#C8C8C8"), ...roundRect(199, 65, 10, 2, 1, "#C8C8C8"),
+    // Selection outline and handles on the second frame
+    rect(196, 45, 27, 1, "#4C7DF0"), rect(196, 76, 27, 1, "#4C7DF0"), rect(196, 45, 1, 32, "#4C7DF0"), rect(222, 45, 1, 32, "#4C7DF0"),
+    ...[[195, 44], [221, 44], [195, 75], [221, 75]].map(([x, y]) => rect(x, y, 3, 3, "#FFFFFF")),
+    ...roundRect(167, 84, 55, 20, 2, "#FFFFFF"), ...roundRect(170, 87, 49, 3, 1, "#D9D9D9"), ...roundRect(170, 93, 30, 3, 1, "#D9D9D9"),
+    ...[38, 46, 54, 72, 78].flatMap((y) => roundRect(229, y, y > 60 ? 9 : 12, 2, 1, "#56565C")),
+    ...roundRect(229, 62, 4, 4, 1, C.rust), ...roundRect(234, 62, 4, 4, 1, C.mint), ...roundRect(239, 62, 4, 4, 1, "#6C8CF5"),
+
+    // Screen, right: an AI chat panel
+    rect(244, 26, 2, 84, C.bezel),
+    ...roundRect(246, 26, 44, 84, 1, "#F6F1E8"),
+    ...line(253, 31, 253, 37, 1, "#D97757"), ...line(250, 34, 256, 34, 1, "#D97757"),
+    ...line(251, 32, 255, 36, 1, "#D97757"), ...line(255, 32, 251, 36, 1, "#D97757"),
+    ...roundRect(259, 33, 18, 2, 1, "#CFC5B4"),
+    ...roundRect(262, 42, 24, 9, 3, "#E7DFD1"), ...roundRect(265, 45, 16, 2, 1, "#A89F90"),
+    ...roundRect(250, 55, 32, 2, 1, "#8E8678"), ...roundRect(250, 59, 28, 2, 1, "#8E8678"), ...roundRect(250, 63, 20, 2, 1, "#8E8678"),
+    ...roundRect(266, 70, 20, 8, 3, "#E7DFD1"), ...roundRect(269, 73, 12, 2, 1, "#A89F90"),
+    ...roundRect(250, 82, 30, 2, 1, "#8E8678"), ...roundRect(250, 86, 24, 2, 1, "#8E8678"),
+    ...roundRect(249, 97, 38, 10, 4, "#FFFFFF"), ...roundRect(252, 101, 16, 2, 1, "#CFC5B4"), ...roundRect(279, 99, 6, 6, 2, "#D97757"),
+
     // Diagonal glare
     ...raster(142, 26, 290, 110, (x, y) => {
         const band = x + y * 0.8;
@@ -178,41 +189,48 @@ const shelf = (): Rect[] => [
     ...roundRect(398, 112, 122, 9, 4, C.shelf), rect(402, 118, 114, 2, C.shelfDark),
     ...roundRect(410, 114, 12, 2, 1, C.shelfShade), ...roundRect(496, 114, 12, 2, 1, C.shelfShade),
 
-    // Top tier: snow globe, bottle diorama, tall green box, figure on a stand
-    ...roundRect(412, 70, 22, 10, 3, C.wood), rect(414, 70, 18, 2, C.woodHi), ...roundRect(416, 74, 14, 2, 1, "#D9C3A4"),
-    ...ellipse(423, 60, 10, 10, C.glass),
-    ...raster(413, 60, 433, 70, (x, y) => (x - 423) ** 2 + (y - 60) ** 2 <= 100 && y > 61, C.water),
-    ...roundRect(418, 60, 9, 4, 2, C.rust), rect(421, 55, 2, 5, C.cream),
-    ...ellipse(418, 55, 2, 3, "#FFFFFF"), ...ellipse(423, 49, 1.5, 1.5, C.mustard),
+    // Top tier: snow globe, bottle diorama, green box
+    ...roundRect(411, 69, 30, 11, 3, "#D8C4A2"), rect(413, 69, 26, 2, "#E8D9BE"), rect(411, 75, 30, 2, "#C2AB86"),
+    ...roundRect(419, 72, 14, 2, 1, "#8E7552"),
+    ...ellipse(426, 56, 13, 13, C.glass),
+    ...raster(413, 56, 439, 69, (x, y) => (x - 426) ** 2 + (y - 56) ** 2 <= 169 && y > 59, C.water),
+    ...raster(413, 56, 439, 69, (x, y) => (x - 426) ** 2 + (y - 56) ** 2 <= 169 && y > 65, "#6AA8CC"),
+    ...raster(418, 58, 434, 63, (x, y) => y > 58 && x > 418 + (y - 58) * 0.6 && x < 434 - (y - 58) * 0.6, "#F2C64B"),
+    ...roundRect(424, 52, 4, 6, 1, "#D2483C"), ...ellipse(430, 54, 2.5, 3, "#FFFFFF"),
+    ...raster(413, 43, 439, 69, (x, y) => {
+        const d = Math.hypot(x - 426, y - 56);
+        return d > 9.5 && d < 11.5 && x < 423 && y < 54;
+    }, "#FFFFFF"),
 
-    ...roundRect(438, 64, 30, 16, 7, C.glass), ...roundRect(440, 75, 26, 3, 1, C.glassShade),
-    ...ellipse(450, 74, 10, 3, "#80A85D"), ...roundRect(450, 66, 4, 7, 2, "#D2483C"), ...ellipse(452, 65, 2, 2, C.ink),
-    ...roundRect(442, 67, 3, 4, 1, "#FFFFFF"),
-    ...roundRect(468, 66, 6, 12, 2, "#C79C6D"),
+    ...roundRect(446, 74, 34, 6, 2, C.wood), rect(448, 74, 30, 1, C.woodHi),
+    ...roundRect(448, 59, 27, 15, 7, C.glass), ...roundRect(473, 62, 7, 9, 2, C.glass), ...roundRect(479, 62, 4, 9, 1, "#C79C6D"),
+    ...ellipse(460, 71, 11, 3, "#7FA65A"), ...ellipse(455, 69, 3, 2, "#5E8C47"),
+    ...roundRect(462, 63, 4, 7, 2, "#D2483C"), ...ellipse(464, 62, 2, 2, C.ink),
+    ...roundRect(451, 61, 10, 2, 1, "#FFFFFF"),
 
-    ...roundRect(476, 46, 18, 34, 3, "#8ECF6D"), rect(490, 48, 3, 30, "#6EAE50"),
-    ...ellipse(481, 52, 1, 1, C.cream), ...ellipse(487, 58, 1, 1, C.cream), ...ellipse(481, 64, 1, 1, C.cream),
-    ...roundRect(479, 68, 10, 8, 3, "#E86A8E"), ...ellipse(482, 71, 1, 1, C.ink), ...ellipse(486, 71, 1, 1, C.ink),
-    ...roundRect(481, 41, 6, 5, 2, "#B9BEC6"),
+    ...roundRect(486, 45, 19, 35, 3, "#8ECF6D"), ...roundRect(486, 45, 19, 4, 2, "#B3E297"), rect(500, 49, 5, 29, "#6EAE50"),
+    ...[[490, 52], [496, 57], [490, 61], [497, 50]].flatMap(([x, y]) => ellipse(x, y, 1.2, 1.2, C.cream)),
+    ...ellipse(493, 70, 5.5, 5, "#E8708F"), ...ellipse(491, 69, 1, 1, C.ink), ...ellipse(495, 69, 1, 1, C.ink),
+    ...line(491, 72, 495, 72, 1, "#9C3550"),
+    ...line(495, 45, 497, 38, 1, "#9AA0A8"), ...raster(494, 32, 502, 40, (x, y) => {
+        const d = Math.hypot(x - 498, y - 36);
+        return d > 2 && d < 3.5;
+    }, "#9AA0A8"),
 
-    ...ellipse(497, 77, 9, 3, "#C9CED6"),
-    ...roundRect(490, 58, 14, 18, 5, "#5D4F9C"),
-    ...ellipse(497, 52, 7, 6, "#9ACD6B"), ...ellipse(494, 52, 1, 1, C.ink), ...ellipse(500, 52, 1, 1, C.ink),
-    ...roundRect(491, 44, 12, 4, 2, "#F3F3F3"),
+    // Bottom tier: lying ceramic dog, pen jar (the cat is drawn separately)
+    ...ellipse(436, 105, 18, 7, C.ceramic),
+    ...raster(418, 105, 454, 112, (x, y) => ((x - 436) / 18) ** 2 + ((y - 105) / 7) ** 2 <= 1 && y > 108, C.ceramicSh),
+    ...line(452, 104, 457, 99, 3, C.ceramic),
+    ...ellipse(419, 98, 8, 7, C.ceramic), ...ellipse(412, 101, 5, 3.5, C.ceramic),
+    ...ellipse(423, 93, 3, 4.5, C.ceramicSh),
+    ...ellipse(417, 96, 1.2, 1.2, C.ink), ...ellipse(408, 100, 1.4, 1.2, C.ink),
+    ...line(409, 103, 414, 103, 1.5, "#E9909F"),
+    ...ellipse(413, 110, 4, 2, C.ceramic), ...ellipse(423, 110, 4, 2, C.ceramic),
+    ...ellipse(411, 111, 1, 0.8, C.ceramicSh), ...ellipse(421, 111, 1, 0.8, C.ceramicSh),
 
-    // Bottom tier: lying ceramic dog, block-built scene, pen jar
-    ...ellipse(430, 106, 15, 6, C.ceramic), ...raster(415, 106, 445, 112, (x, y) => ((x - 430) / 15) ** 2 + ((y - 106) / 6) ** 2 <= 1 && y > 109, C.ceramicSh),
-    ...ellipse(416, 101, 7, 6, C.ceramic), ...ellipse(419, 96, 2.5, 3, C.ceramicSh),
-    ...ellipse(413, 100, 1, 1, C.ink), ...ellipse(410, 103, 1, 1, C.ink),
-    ...ellipse(447, 105, 3, 1.5, C.ceramic), ...ellipse(419, 111, 2, 1, C.ink), ...ellipse(426, 111, 2, 1, C.ink),
-
-    ...roundRect(448, 106, 28, 6, 1, "#3F8A4A"), ...[451, 457, 463, 469].map((x) => roundRect(x, 104, 4, 2, 1, "#58A565")).flat(),
-    ...roundRect(451, 94, 8, 10, 1, "#9EA4AC"), rect(451, 97, 8, 1, "#868C95"), rect(451, 100, 8, 1, "#868C95"),
-    ...roundRect(461, 90, 14, 3, 1, "#C8402F"), rect(463, 93, 2, 11, "#C8402F"), rect(471, 93, 2, 11, "#C8402F"),
-    ...ellipse(452, 89, 5, 4, "#F2A7C3"), ...ellipse(456, 86, 3, 3, "#F7C3D6"),
-
-    ...roundRect(494, 92, 14, 20, 3, C.glass), rect(496, 95, 2, 14, "#FFFFFF"),
-    ...line(498, 84, 498, 94, 2, "#5AA9E6"), ...line(502, 82, 502, 94, 2, C.mustard), ...line(505, 86, 505, 94, 2, "#E06A8C"),
+    ...line(493, 93, 493, 106, 2.5, "#5AA9E6"), ...line(497, 91, 497, 106, 2.5, C.mustard),
+    ...line(500, 94, 500, 106, 2.5, "#E06A8C"), ...line(495, 95, 495, 106, 2, "#6DBE8C"),
+    ...roundRect(489, 98, 15, 14, 4, C.glass), rect(491, 100, 2, 9, "#FFFFFF"), rect(489, 108, 15, 2, C.glassShade),
 ];
 
 // The cat figurine is the one that meows
@@ -261,8 +279,12 @@ const plant = (): Rect[] => {
     return rects;
 };
 
+const shift = (rects: Rect[], dx: number): Rect[] => rects.map(([x, y, w, h, c]) => [x + dx, y, w, h, c]);
+
 const SCENE: Rect[] = [
-    ...desk(), ...cup(), ...echoDot(), ...monitor(), ...journals(), ...phone(), ...shelf(), ...cat(), ...plant(),
+    ...desk(), ...cup(), ...echoDot(), ...monitor(), ...journals(), ...phone(), ...shelf(), ...shift(cat(), -10),
+    // Sits just right of the shelf, as on the real desk
+    ...shift(plant(), 30),
 ];
 
 // Clickable areas, in canvas pixels
@@ -274,7 +296,7 @@ const HOTSPOT_BOXES = {
     phone    : [360, 96, 34, 44],
 } as const;
 
-const CAT_BOX = [474, 82, 26, 32] as const;
+const CAT_BOX = [464, 82, 26, 32] as const;
 
 export type DeskObject = keyof typeof HOTSPOT_BOXES;
 

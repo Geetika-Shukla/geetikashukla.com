@@ -1,15 +1,14 @@
 /*
  * Hero: a window on a gridded wall with a desk in front of it. The stage stays
- * pinned while the blind rolls up, then the page scrolls on to the timeline.
+ * pinned while the blind rises, then the page scrolls on to the timeline.
  *
- * Desk geometry (from the 640 × 176 drawing): its height is 27.5% of its width,
- * and the window's bottom edge sits 40% of the way down it, behind the monitor.
+ * Desk geometry (from the 640 × 156 drawing): its height is 24.375% of its
+ * width, and the window's bottom edge sits 45% of the way down it, behind the
+ * monitor. --desk-scale and the pixel grid are set on .home (see home.css).
  */
 .window-hero {
-    --desk-scale : 1;      /* desk canvas width as a multiple of the viewport */
-    --desk-height: calc(100vw * var(--desk-scale) * 0.275);
-    --desk-overlap: calc(var(--desk-height) * 0.4);
-    --bp: 3px;             /* size of one pixel on the blind's print */
+    --desk-height: calc(100cqw * var(--desk-scale) * 0.24375);
+    --desk-overlap: calc(var(--desk-height) * 0.45);
 
     height: 170svh;
 }
@@ -24,6 +23,8 @@
     height: calc(100svh - var(--header-height));
     padding-top: 24px;
     overflow: hidden;
+    /* Anchor the grid to the bottom edge of the desk drawing */
+    background-position: calc(50% - var(--unit) / 2 - 0.5px) 100%, 0 calc(100% + 1px);
 }
 
 /* WINDOW ===================================================================== */
@@ -31,7 +32,7 @@
     position: relative;
     width: min(calc(100% - var(--page-gutter) * 2), 880px);
     padding: 10px;
-    border-radius: 12px;
+    border-radius: 4px;
     background-color: #FBFAF6;
     box-shadow:
         0 0 0 2px #D5CCBE,
@@ -42,7 +43,7 @@
     position: relative;
     height: clamp(240px, calc(100svh - var(--header-height) - 48px - var(--desk-height) + var(--desk-overlap)), 560px);
     overflow: hidden;
-    border-radius: 6px;
+    border-radius: 2px;
 }
 
 .sky {
@@ -62,111 +63,113 @@
         linear-gradient(to bottom, transparent calc(42% - 4px), #FBFAF6 calc(42% - 4px) calc(42% + 4px), transparent calc(42% + 4px));
 }
 
-/* Roller box the blind winds into */
-.window__roller {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 3;
-    height: 14px;
-    border-radius: 0 0 4px 4px;
-    background: linear-gradient(to bottom, #EFE8DA 0 9px, #D9CFBE 9px 100%);
-}
-
-/* BLIND ====================================================================== */
-/* Stops short of the sill so its cord and tassel hang in the gap */
+/* WOODEN VENETIAN BLIND ====================================================== */
+/*
+ * Down: slats spread evenly over the pane with gaps of sky between them.
+ * Up:   slats stack tightly under the head rail.
+ */
 .blind {
-    --blind-up: 0;
+    --blind-up: 0;     /* set from scroll / the pull cord */
+    --hover-up: 0;     /* half open while hovered */
+    --up: max(var(--blind-up), var(--hover-up));
+    --rail: 16px;
+    --slat: 14px;
+    --stack: 5px;
+    --drop: calc(100% - var(--rail) - var(--slat) - 36px);   /* rail to bottom slat when down */
+    --pitch: calc(var(--drop) / (var(--slats) - 1));
+
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+.blind__rail {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    height: calc(100% - 52px);
-    transform: translateY(calc(var(--blind-up) * -100%));
-    transition: transform 0.45s steps(10);
+    height: var(--rail);
+    border-radius: 0 0 4px 4px;
+    background: linear-gradient(to bottom, #C99A5E 0 3px, #B5844A 3px calc(100% - 3px), #946A39 calc(100% - 3px));
 }
 
-.blind__fabric {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    min-height: 0;
-    padding: 24px 16px 12px;
-    overflow: hidden;
-    background-color: #F4E9D6;
-    background-size: calc(16 * var(--bp)) calc(16 * var(--bp));
-    image-rendering: pixelated;
+.blind__slat {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    top: calc(var(--rail) + var(--i) * (var(--pitch) * (1 - var(--up)) + var(--stack) * var(--up)));
+    height: var(--slat);
+    border-radius: 4px;
+    /* Pixel-style wood: hard-edged highlight, body and shadow */
+    background: linear-gradient(to bottom, #EBC791 0 3px, #DDAE6D 3px calc(100% - 4px), #C08A4C calc(100% - 4px) calc(100% - 2px), #A87640 calc(100% - 2px));
+    box-shadow: 0 3px 0 rgba(43, 45, 56, 0.08);
+    transition: top 0.4s steps(8);
 }
 
-.blind__label {
-    max-width: 520px;
-    margin: 6px;
-    padding: 28px 32px;
-    border-radius: 10px;
-    background-color: #FCF7EE;
-    text-align: center;
-    /* Printed-label double border: indigo, cream, rust */
-    box-shadow:
-        0 0 0 2px #3E5A8A,
-        0 0 0 6px #FCF7EE,
-        0 0 0 8px #B4532A;
+@media (hover: hover) {
+    .window__pane:hover .blind {
+        --hover-up: 0.5;
+    }
 }
 
-.blind__border {
-    flex-shrink: 0;
-    height: calc(7 * var(--bp));
-    background-color: #F4E9D6;
-    background-repeat: repeat-x;
-    background-size: calc(8 * var(--bp)) calc(7 * var(--bp));
-    image-rendering: pixelated;
+/* Bottom slat is the heavier bottom rail */
+.blind__slat:last-of-type {
+    background: linear-gradient(to bottom, #D5A465 0 3px, #B98346 3px calc(100% - 3px), #946A39 calc(100% - 3px));
 }
 
-.blind__hem {
-    flex-shrink: 0;
-    height: 9px;
-    border-radius: 5px;
-    background-color: #8E6D4C;
-    box-shadow: inset 0 -3px 0 #6E5236;
+/* Ladder tapes that hold the slats */
+.blind__ladder {
+    position: absolute;
+    top: var(--rail);
+    width: 3px;
+    height: calc(var(--drop) * (1 - var(--up)) + (var(--slats) - 1) * var(--stack) * var(--up));
+    background-color: #F1E6D2;
+    transition: height 0.4s steps(8);
 }
 
+.blind__ladder--left {
+    left: 18%;
+}
+
+.blind__ladder--right {
+    right: 18%;
+}
+
+/* Pull cord with a wooden end, in the gap between the monitor and the shelf */
+/* Sized against the blind (percentages resolve against it), shortening as it rises */
 .blind__cord {
     position: absolute;
-    top: 100%;
-    /* In the gap between the monitor and the shelf, so it is never hidden */
+    top: calc(var(--rail) - 2px);
     left: 56%;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: calc(var(--drop) * 0.7 * (1 - var(--up)) + 72px);
     padding: 0 10px 6px;
     border: 0;
     background: none;
     cursor: pointer;
+    transition: height 0.4s steps(8);
 }
 
 .blind__string {
+    flex: 1;
     width: 2px;
-    height: 30px;
-    background-color: #8E6D4C;
+    background-color: #F1E6D2;
+    box-shadow: 1px 0 0 rgba(43, 45, 56, 0.15);
 }
 
-/* Tassel: mustard cap and a rust fringe */
-.blind__tassel {
-    width: 16px;
-    height: 24px;
-    border-radius: 4px 4px 2px 2px;
-    background:
-        repeating-linear-gradient(to right, transparent 0 2px, rgba(0, 0, 0, 0.12) 2px 3px),
-        linear-gradient(to bottom, #E3B94C 0 7px, #B4532A 7px 100%);
+.blind__pull {
+    width: 10px;
+    height: 22px;
+    border-radius: 5px 5px 4px 4px;
+    background: linear-gradient(to right, #DDAE6D 0 3px, #C08A4C 3px 7px, #A87640 7px);
     transition: transform 0.2s steps(2);
 }
 
-.blind__cord:hover .blind__tassel,
-.blind__cord:focus-visible .blind__tassel {
+.blind__cord:hover .blind__pull,
+.blind__cord:focus-visible .blind__pull {
     transform: translateY(3px);
 }
 
@@ -183,7 +186,7 @@
     position: relative;
     width: calc(100% * var(--desk-scale));
     margin-left: calc((100% * var(--desk-scale) - 100%) / -2);
-    aspect-ratio: 640 / 176;
+    aspect-ratio: 640 / 156;
 }
 
 .desk__drawing {
@@ -249,20 +252,17 @@
 
 /* RESPONSIVE ================================================================= */
 @media (max-width: 767px) {
-    /* Crop the plain ends of the desk so the objects stay a usable size */
-    .window-hero {
-        --desk-scale: 1.2;
-        --bp: 2px;
-    }
-
-    .blind__label {
-        padding: 20px 18px;
+    .blind {
+        --slat: 10px;
+        --stack: 4px;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .blind,
-    .blind__tassel,
+    .blind__slat,
+    .blind__ladder,
+    .blind__cord,
+    .blind__pull,
     .desk__hotspot {
         transition: none;
     }
