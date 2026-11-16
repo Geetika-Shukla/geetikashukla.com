@@ -1,7 +1,6 @@
 /*
- * No solid background. A subtle teal gradient over a blur that fades out
- * towards the bottom edge: content scrolling underneath softens instead of
- * meeting a hard line.
+ * No background colour. Content scrolling underneath is softened by a blur
+ * that fades out towards the bottom edge, instead of meeting a hard line.
  */
 .site-header {
     position: sticky;
@@ -9,42 +8,22 @@
     z-index: 10;
 }
 
-/* Background layers: the blur (::before) and the teal glow (::after). They are
-   separate layers so they can fade in and out together (see the home page). */
-.site-header::before,
-.site-header::after {
+.site-header::before {
     content: "";
     position: absolute;
+    inset: 0 0 -16px;
     z-index: -1;
     pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-.site-header::before {
-    inset: 0 0 -16px;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+    transition: opacity 0.3s ease;
 }
 
-/* Teal glow from the top-left corner, over a faint veil */
-.site-header::after {
-    inset: 0;
-    background:
-        radial-gradient(
-            ellipse 70% 260% at 0% 0%,
-            color-mix(in srgb, #2F8F8A 32%, transparent) 0%,
-            color-mix(in srgb, #2F8F8A 12%, transparent) 45%,
-            transparent 80%
-        ),
-        color-mix(in srgb, var(--color-bg) 50%, transparent);
-}
-
-/* At the top of the home page the nav sits clear over the scene; the background
+/* At the top of the home page the nav sits clear over the scene; the blur
    comes in once the page scrolls */
-html.is-page-top .site-header::before,
-html.is-page-top .site-header::after {
+html.is-page-top .site-header::before {
     opacity: 0;
 }
 

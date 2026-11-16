@@ -9,7 +9,9 @@ import Heart from "@/assets/images/heart.svg";
 import "./site-header.css";
 
 const NAV_LINKS = [
-    { href: "/#work", label: "Work" },
+    { href: "/#experiences", label: "Experiences" },
+    { href: "/#visual", label: "Visual" },
+    { href: "/#type", label: "Type" },
     { href: "/more-about-me", label: "About me" },
 ];
 

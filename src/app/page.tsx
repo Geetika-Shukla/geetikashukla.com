@@ -24,7 +24,6 @@ export default function Home() {
             </section>
 
             <section id="work" className="d3-work" aria-labelledby="work-title">
-                <h2 id="work-title" className="d3-work__title container">Work</h2>
                 <WorkFloor />
             </section>
         </article>
