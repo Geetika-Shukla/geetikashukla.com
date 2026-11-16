@@ -165,7 +165,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-family: "zilla-slab", serif;
+        font-family: var(--font-heading);
         color: #333333;
         font-size: 1rem;
         font-weight: 600;

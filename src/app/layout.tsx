@@ -26,7 +26,7 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const listOfThemes = ["theme-light", "theme-dark"];
+    const listOfThemes = ["theme-light"];
 
     return (
         <html lang="en">

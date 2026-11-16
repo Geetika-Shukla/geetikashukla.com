@@ -33,7 +33,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-family: "zilla-slab", serif;
+        font-family: var(--font-heading);
         color: #333333;
         font-size: 1rem;
         font-weight: 600;
@@ -61,7 +61,7 @@
         background-color: #B18758;
         font-size: 0.8rem;
         font-weight: 600;
-        font-family: "zilla-slab", sans-serif;
+        font-family: var(--font-heading);
         text-transform: uppercase;
         padding: 4px 10px;
         border-bottom-left-radius: 6px;

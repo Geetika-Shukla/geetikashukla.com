@@ -11,7 +11,7 @@
     
     .hobby-heading {
         color: #242424;
-        font-family: "zilla-slab", serif;
+        font-family: var(--font-heading);
         text-align: center;
     }
 

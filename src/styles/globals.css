@@ -6,14 +6,42 @@
 
 /* THEMES =================================================================== */
 @import "./theme-light.css";
-@import "./theme-dark.css";
+
+/* DESIGN TOKENS //////////////////////////////////////////////////////////// */
+:root {
+    --font-body    : "general-sans", system-ui, sans-serif;
+    --font-heading : "general-sans", system-ui, sans-serif;
+
+    --color-bg         : #F7F6F3;
+    --color-surface    : #FFFFFF;
+    --color-text       : #1C1C1E;
+    --color-text-muted : #5E6066;
+    --color-border     : #E3E1DC;
+
+    /* Two accents: ink blue for links and actions, rust for labels and tags */
+    --color-accent   : #1F3B5C;
+    --color-accent-2 : #B4532A;
+
+    --page-max-width : 1440px;
+    --page-gutter    : clamp(16px, 4vw, 48px);
+    --header-height  : 72px;
+}
 
 /* GLOBAL RULES ///////////////////////////////////////////////////////////// */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-bg);
+}
+
 div[data-theme-provider] {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #F1F1F1;
+    background-color: var(--color-bg);
+    font-family: var(--font-body);
 }
 
 article {
@@ -29,40 +57,30 @@ p {
     font-weight: 400;
 }
 
+/* Centred, padded content column shared by header, home and footer */
+.container {
+    width: 100%;
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-gutter);
+}
+
 .row-hide {
     overflow: hidden;
 }
 
-.links-container {
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
-    gap: 40px;
-}
-
 .hero-heading {
-    color: #242424;
-    font-family: "zilla-slab", serif;
-}
-
-.overflow-left {
-    display: flex;
-    position: relative;
-    left: -17vw;
-}
-
-.overflow-right {
-    display: flex;
-    position: relative;
-    right: -18vw;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.02em;
 }
 
 .semi-bold {
     font-weight: 600;
 }
 
-@media (max-width : 768px) {
-
+@media (max-width: 768px) {
     .hero-heading {
         margin-top: 0;
         margin-bottom: -20px;

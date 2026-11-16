@@ -1,21 +1,20 @@
 .theme-light {
-  --font-sans-serif: "general-sans", sans-serif;
-  --font-serif: "zilla-slab", serif;
-  --font-mono: "IBM Plex Mono", monospace;
+    --font-sans-serif : var(--font-body);
+    --font-serif      : "zilla-slab", serif;
+    --font-mono       : ui-monospace, monospace;
 
-  --heading-font: "zilla-slab", serif;
-  --heading-font-weight: 700;
+    --heading-font        : var(--font-heading);
+    --heading-font-weight : 600;
 
-  --heading-text-colour: #343537;
-  --paragraph-text-colour: #343537;
-  --card-border: none;
+    --heading-text-colour   : var(--color-text);
+    --paragraph-text-colour : var(--color-text);
+    --card-border           : none;
 
-  --tabs-bg                : var(--transparent);
-  --tab-label-default      : #838383;
-  --tab-label-hover        : #014C92;
-  --tab-label-active       : #014C92;
-  --tab-label-disabled     : #838383;
-  --tab-border-active      : #014C92;
-  --tab-font-family        : "Zilla Slab", serif;
-
-  }
+    --tabs-bg            : var(--transparent);
+    --tab-label-default  : var(--color-text-muted);
+    --tab-label-hover    : var(--color-accent);
+    --tab-label-active   : var(--color-accent);
+    --tab-label-disabled : var(--color-text-muted);
+    --tab-border-active  : var(--color-accent);
+    --tab-font-family    : var(--font-heading);
+}
