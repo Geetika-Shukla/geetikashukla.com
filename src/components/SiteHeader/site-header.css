@@ -14,7 +14,7 @@
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    background-color: color-mix(in srgb, var(--floor, var(--color-bg)) 90%, transparent);
+    background-color: color-mix(in srgb, var(--floor, var(--color-bg)) 60%, transparent);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     transition: opacity 0.3s ease;
