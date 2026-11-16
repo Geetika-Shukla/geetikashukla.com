@@ -20,7 +20,6 @@ import "../experiences-projects.css";
 import "../page-experiences.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
 import ReportsHero from "@/assets/images/reports/reports-hero.svg";
 import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
 import HDFCThumbnail from "@/assets/images/thumbnail-for-hdfc.svg";
@@ -67,9 +66,7 @@ export default function RevampingReportsPage() {
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height="32px"/>
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">

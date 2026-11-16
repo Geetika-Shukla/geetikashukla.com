@@ -17,7 +17,6 @@ import {
 import "../type-projects.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
 import process from "@/assets/images/devanagari/47days.gif";
 import One from "@/assets/images/devanagari/1.svg";
 import Two from "@/assets/images/devanagari/2.svg";
@@ -81,9 +80,7 @@ export default function DevanagariPage() {
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height="32px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">

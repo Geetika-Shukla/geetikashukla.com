@@ -19,9 +19,6 @@ import {
 import "./page-type.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
-import GreenStar from "@/assets/images/green-star.svg";
-import PurpleStar from "@/assets/images/purple-star.svg";
 import InktoberThumbnail from "@/assets/images/thumbnail-for-inktober.svg";
 import DevanagariThumbnail from "@/assets/images/thumbnail-for-47-days-of-devanagari-type.svg";
 
@@ -31,17 +28,13 @@ const TypePage = () => {
         <article id="page-type">
 
             <Row layoutAsGrid  className="row-hide" horizontalPadding="huge" marginTop="medium" marginBottom="none">
-                <Portion desktopSpan="2" marginTop="large" className="overflow-left" hideOnMobile>
-                    <GreenStar className="star" alt="star" height="56px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
                 <Portion desktopSpan="8">
                     <Heading1 className="hero-heading">
                         All things type
                     </Heading1>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar className="star" alt="star" height="32px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
                 <Portion desktopSpan="10" marginBottom="small">
                     <Div marginTop="small">
                         <Text marginBottom="tiny">I love experimenting with typography, especially with pen and ink. Calligraphy holds a special place in my heart.</Text>
@@ -51,9 +44,7 @@ const TypePage = () => {
                         </Text>
                     </Div>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" className="overflow-right" hideOnMobile>
-                    <PurpleStar className="star" alt="star" height="56px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
             </Row >
 
             <Row layoutAsGrid horizontalPadding="huge" marginTop="none" marginBottom="small">

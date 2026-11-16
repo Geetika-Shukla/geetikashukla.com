@@ -17,7 +17,6 @@ import "../visual-projects.css";
 
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
 import KannaujHero from "@/assets/images/kannauj-hero.svg";
 import Pic1 from "@/assets/images/pic1.svg";
 import Pic2 from "@/assets/images/pic2.svg";
@@ -40,9 +39,7 @@ const KannaujPage = () => {
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height="32px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">

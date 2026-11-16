@@ -21,7 +21,6 @@ import "../experiences-projects.css";
 import "../page-experiences.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
 import HDFCHero from "@/assets/images/hdfc-journeys/hdfc-cover.svg";
 import Portals from "@/assets/images/hdfc-journeys/hdfc-portals.svg";
 import StickyNeo from "@/assets/images/hdfc-journeys/sticky-neobank.svg";
@@ -91,9 +90,7 @@ export default function HdfcJourneysPage() {
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height="32px"/>
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">

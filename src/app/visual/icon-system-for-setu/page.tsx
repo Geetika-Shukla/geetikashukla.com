@@ -20,7 +20,6 @@ import {
 import "../visual-projects.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
 import IconsHero from "@/assets/images/icons.svg";
 import DesignStyles from "@/assets/images/design-styles.svg";
 import IconTenacity from "@/assets/images/Tenacity.svg";
@@ -68,9 +67,7 @@ const IconSystemPage = () => {
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height="32px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">

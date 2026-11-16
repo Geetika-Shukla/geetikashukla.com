@@ -19,9 +19,6 @@ import {
 import "./page-experiences.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
-import GreenStar from "@/assets/images/green-star.svg";
-import PurpleStar from "@/assets/images/purple-star.svg";
 import HDFCThumbnail from "@/assets/images/thumbnail-for-hdfc.svg";
 import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
 import PartnershipsThumbnail from "@/assets/images/thumbnail-for-partner-onboarding.svg";
@@ -36,17 +33,13 @@ const ExperiencePage = () => {
         <article id="page-experiences">
 
             <Row layoutAsGrid  className="row-hide" horizontalPadding="huge" marginTop="medium" marginBottom="none">
-                <Portion desktopSpan="2" marginTop="large" className="overflow-left" hideOnMobile>
-                    <GreenStar className="star" alt="star" height="56px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
                 <Portion desktopSpan="8">
                     <Heading1 className="hero-heading">
                         All things experience
                     </Heading1>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar className="star" alt="star" height="32px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
                 <Portion desktopSpan="10" marginBottom="small">
                     <Div marginTop="small">
                         <Text marginBottom="tiny">
@@ -57,9 +50,7 @@ const ExperiencePage = () => {
                         </Text>
                     </Div>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" className="overflow-right" hideOnMobile>
-                    <PurpleStar className="star" alt="star" height="56px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
             </Row >
 
             <Row layoutAsGrid horizontalPadding="huge" marginTop="none" marginBottom="small">

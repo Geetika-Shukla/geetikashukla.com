@@ -17,8 +17,6 @@ import {
 import "./page-hobbies.css";
 
 // ASSETS ======================================================================
-import GreenStar from "@/assets/images/green-star.svg";
-import PurpleStar from "@/assets/images/purple-star.svg";
 import calliOne from "@/assets/images/calli-1.png";
 import calliTwo from "@/assets/images/calli-2.png";
 import ghibli from "@/assets/images/ghibli-image.jpg";
@@ -36,9 +34,7 @@ const HobbiesPage = () => {
         <article id="page-hobbies">
 
             <Row layoutAsGrid className="row-hide" horizontalPadding="huge" marginTop="medium" marginBottom="none">
-                <Portion desktopSpan="2" marginTop="large" className="overflow-left" hideOnMobile>
-                    <GreenStar  className="star"  alt="star" height="56px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
                 <Portion desktopSpan="20" >
                     <Heading1 className="hobby-heading">
                         My go-to sources of joy ✨
@@ -49,9 +45,7 @@ const HobbiesPage = () => {
                         <Text align="center" marginBottom="tiny">I cherish the beauty of everyday moments—the quiet, unassuming ones—which explains my love for slice-of-life anime and Japanese fiction.</Text>
                     </Div>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" className="overflow-right" hideOnMobile>
-                    <PurpleStar className="star" alt="star" height="56px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
             </Row >
 
             <Row layoutAsGrid horizontalPadding="huge" marginTop="none" marginBottom="medium">

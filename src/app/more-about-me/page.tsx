@@ -18,9 +18,6 @@ import {
 import "./page-more-about-me.css";
 
 // ASSETS ======================================================================
-import GreenStar from "@/assets/images/green-star.svg";
-import PurpleStar from "@/assets/images/purple-star.svg";
-import YellowStar from "@/assets/images/yellow-star.svg";
 import MyPhoto from "@/assets/images/me.svg";
 import NIDLogo from "@/assets/images/nid-logo.svg";
 import FOALogo from "@/assets/images/foa-logo.svg";
@@ -40,17 +37,13 @@ const MoreAboutMePage = () => {
         <article id="page-more-about-me">
 
             <Row layoutAsGrid className="row-hide" horizontalPadding="huge" marginTop="medium" marginBottom="none">
-                <Portion desktopSpan="2" marginTop="large" className="overflow-left" showOnlyOnDesktop>
-                    <GreenStar className="star" alt="stars" height="56px" />
-                </Portion>
+                <Portion desktopSpan="2" showOnlyOnDesktop />
                 <Portion desktopSpan="7">
                     <Heading1 className="hero-heading">
                         The story so far
                     </Heading1>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar className="star"  alt="star" height="32px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
                 <Portion desktopSpan="11" marginBottom="small">
                     <Div marginTop="small" className="intro-text">
                         <MyPhoto className="display-pic"/>
@@ -61,9 +54,7 @@ const MoreAboutMePage = () => {
                         </Text>
                     </Div>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" className="overflow-right" showOnlyOnDesktop>
-                    <PurpleStar className="star" alt="star" height="56px" />
-                </Portion>
+                <Portion desktopSpan="2" showOnlyOnDesktop />
             </Row >
 
 

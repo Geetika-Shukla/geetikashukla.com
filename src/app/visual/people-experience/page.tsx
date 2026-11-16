@@ -17,7 +17,6 @@ import {
 import "../visual-projects.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
 import PeopleOpsHero from "@/assets/images/people-ops-hero.webp";
 import Hiring1 from "@/assets/images/hiring-1.svg";
 import Hiring2 from "@/assets/images/hiring-2.svg";
@@ -43,9 +42,7 @@ export default function PeopleExpPage() {
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height={32} width={32} />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small" marginTop="nano">
                     <Div marginTop="small">

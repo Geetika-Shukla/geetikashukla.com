@@ -17,7 +17,6 @@ import {
 import "../visual-projects.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
 import Steel from "@/assets/images/steel.svg";
 import Glass from "@/assets/images/glass.svg";
 import Brick from "@/assets/images/brick.svg";
@@ -61,9 +60,7 @@ import T from "@/assets/images/26days/t.svg";
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height="32px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">

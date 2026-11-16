@@ -21,7 +21,6 @@ import "../experiences-projects.css";
 import "../page-experiences.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
 import AssistedHero from "@/assets/images/product-discovery/assisted-components.svg";
 import Brief from "@/assets/images/product-discovery/project-brief.svg";
 import FullFlow from "@/assets/images/product-discovery/full-flow.svg";
@@ -55,9 +54,7 @@ export default function ProductDiscoveryPage() {
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height="32px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">
