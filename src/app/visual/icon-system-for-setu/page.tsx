@@ -49,7 +49,7 @@ import Platform10 from "@/assets/images/platform-10.svg";
 import Platform11 from "@/assets/images/platform-11.svg";
 import Platform12 from "@/assets/images/platform-12.svg";
 import Tools from "@/assets/images/Tools.svg";
-import crucible from "@/assets/images/crucible.gif";
+import crucible from "@/assets/images/crucible.webp";
 import PeopleExperienceThumbnail from "@/assets/images/thumbnail-for-people-experience.svg";
 import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
 
