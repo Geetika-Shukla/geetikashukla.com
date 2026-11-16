@@ -22,8 +22,8 @@
     transition: opacity 0.3s ease;
 }
 
-/* On the home page the nav sits clear at the top over the scene and once the
-   page settles on the work floor; the glass shows while scrolling between */
+/* The nav sits clear at the top of a page (and, on the home page, once it
+   settles on the work floor); the glass shows once the page scrolls */
 html.is-page-top .site-header::before,
 html.is-at-work .site-header::before {
     opacity: 0;

@@ -32,20 +32,14 @@ export default function Desk3D() {
     const hoveredRef = useRef<DeskObjectId | null>(null);
     const labelRefs = useRef<Record<string, HTMLElement | null>>({});
 
-    // Scrolling raises the blind. The top of the page is marked so the nav can
-    // stay clear over the scene there.
+    // Scrolling raises the blind
     useEffect(() => {
-        const root = document.documentElement;
         const onScroll = () => {
             progressRef.current = Math.min(window.scrollY / (window.innerHeight * 0.6), 1);
-            root.classList.toggle("is-page-top", window.scrollY <= 0);
         };
         onScroll();
         window.addEventListener("scroll", onScroll, { passive: true });
-        return () => {
-            window.removeEventListener("scroll", onScroll);
-            root.classList.remove("is-page-top");
-        };
+        return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
     const select = useCallback((id: DeskObjectId) => {

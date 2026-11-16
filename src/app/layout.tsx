@@ -5,6 +5,7 @@ import Script from "next/script";
 // COMPONENTS ==================================================================
 import { SiteHeader } from "@/components/SiteHeader/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter/SiteFooter";
+import { ScrollMarker } from "@/components/SiteHeader/ScrollMarker";
 
 // STYLES ======================================================================
 import "@/styles/globals.css";
@@ -27,7 +28,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className="theme-light">
+        <html lang="en" className="theme-light is-page-top">
             <body>
                 <div className="site">
                     <SiteHeader />
@@ -35,6 +36,7 @@ export default function RootLayout({
                     {children}
                     <SiteFooter />
                 </div>
+                <ScrollMarker />
 
                 <Script
                     src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
