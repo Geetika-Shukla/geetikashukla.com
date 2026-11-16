@@ -450,3 +450,8 @@
     }
 
 }
+/* Bullet lists inside the phase cards (lists can't live inside <Text>, which renders a <p>) */
+.phase-list {
+    margin: 0;
+    padding: var(--nano) 0 0 1.25em;
+}

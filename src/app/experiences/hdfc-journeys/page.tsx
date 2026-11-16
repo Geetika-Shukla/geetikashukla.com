@@ -250,11 +250,11 @@ export default function HdfcJourneysPage() {
                     <Text paddingTop="nano">
                         Start with essential journeys—
                     </Text>
-                    <Text paddingTop="nano">
+                    <ul className="phase-list">
                         <li>Savings Accounts</li>
                         <li>Current Accounts</li>
                         <li>Fixed Deposits</li>
-                    </Text>
+                    </ul>
                 </Card>
 
                 <Card className="pointer-card" padding="small">
@@ -269,12 +269,12 @@ export default function HdfcJourneysPage() {
                     <Text paddingTop="nano">
                         Work on the next set of journeys—
                     </Text>
-                    <Text paddingTop="nano">
+                    <ul className="phase-list">
                         <li>Credit Card</li>
                         <li>Recurring Deposits</li>
                         <li>Joint Savings Account</li>
                         <li>Personal and business loans</li>
-                    </Text>
+                    </ul>
                 </Card>
             </Row>
 
