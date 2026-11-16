@@ -15,7 +15,7 @@
     inset: 0 0 -16px;
     z-index: -1;
     pointer-events: none;
-    background-color: color-mix(in srgb, var(--floor, var(--color-bg)) 72%, transparent);
+    background-color: color-mix(in srgb, var(--floor, var(--color-bg)) 90%, transparent);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
@@ -51,7 +51,7 @@ html.is-page-top .site-header::before {
 }
 
 .site-header__link {
-    color: var(--color-text-muted);
+    color: var(--color-text);
     font-size: 1rem;
     font-weight: 500;
     text-decoration: none;
