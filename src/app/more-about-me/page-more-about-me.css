@@ -1,14 +1,5 @@
 #page-more-about-me {
 
-    .star {
-        display: inline-block;
-        transition: transform 4s ease-in-out;
-    }
-
-    .star:hover {
-        transform: rotate(360deg);
-    }
-
     .college-logo {
         display: inline-block;
         height: 50px;
@@ -43,7 +34,6 @@
         width: 68vw;
         margin: 0 auto;
     }
-
 
     .modules-card {
         position: relative;
@@ -160,8 +150,6 @@
         box-shadow: 1px 1px 10px 0px #d1d1d1;
     }
 
-
-
     @media (min-width: 1200px) and (max-width: 1440px) {
 
         .ways-of-working {
@@ -185,12 +173,8 @@
             font-size: 0.9rem;
         }
 
-        .card-back .text-medium {
-            font-size: 0.9rem;
-        }
 
     }
-
 
         @media (min-width: 1025px) and (max-width: 1200px) {
         .ways-of-working {
@@ -214,9 +198,6 @@
             font-size: 1rem;
         }
 
-        .card-back .text-medium {
-            font-size: 0.9rem;
-        }
     }
 
         @media (min-width: 901px) and (max-width: 1025px) {
@@ -242,9 +223,6 @@
             font-size: 1rem;
         }
 
-        .card-back .text-medium {
-            font-size: 0.9rem;
-        }
 
     }
 
@@ -283,9 +261,6 @@
             font-size: 0.9rem;
         }
 
-        .card-back .text-medium {
-            font-size: 0.8rem;
-        }
 
     }
 

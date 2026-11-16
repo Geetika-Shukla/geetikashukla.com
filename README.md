@@ -1,22 +1,25 @@
-## Fictoan boilerplate for React
+# geetikashukla.com
 
-### Getting Started
+Portfolio site for Geetika Shukla, built with Next.js and [fictoan-react](https://fictoan.io/). Deployed on Netlify from `main`.
 
-First, run the development server:
+## Development
+
 ```bash
-pnpm i && pnpm dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Both `dev` and `build` run with `--webpack` (not Turbopack): SVGs are imported as React components through `@svgr/webpack`, and Turbopack has trouble parsing fictoan-react's CSS.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `src/app/page.tsx` — home page timeline
+- `src/data/projects.ts` — timeline periods and projects; edit this to add, reorder or date work
+- `src/app/<category>/<project>/page.tsx` — project case studies
+- `src/styles/globals.css` — design tokens (colours, fonts, spacing)
 
----
+## Images
 
-### Learn More
-
-- [Fictoan Docs](https://fictoan.io/) - Everything you need to know about Fictoan
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+SVGs imported as components are inlined into the page HTML and JS, so keep raster images embedded in them small (around 2× their display size).

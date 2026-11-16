@@ -1,11 +1,5 @@
 .project-page {
 
-    .full-width {
-        justify-content: center;
-        width: 100%;
-        align-items: center;
-    }
-
     .center-align-svg {
         display: flex;
         justify-content: center;
@@ -87,10 +81,6 @@
 
     .violet-text {
         color: #612DD7;
-    }
-
-    .blue-text {
-        color: #014C92;
     }
 
     .pointer-card {
@@ -188,11 +178,6 @@
         flex-direction: column;
         text-align: right;
         gap: 16px;
-    }
-
-    .pointer {
-        display: flex;
-        flex-direction: row;
     }
 
     .content-row {
@@ -311,7 +296,6 @@
         border: #D8D8D8 solid 1px;
     }
 
-
     .modules-card {
         position: relative;
         width: 16vw;
@@ -367,7 +351,6 @@
 }
 
 @media (max-width: 600px) {
-
 
     .horizontal-pointer-card {
         width: 88vw !important;

@@ -76,10 +76,6 @@ p {
     letter-spacing: -0.02em;
 }
 
-.semi-bold {
-    font-weight: 600;
-}
-
 @media (max-width: 768px) {
     .hero-heading {
         margin-top: 0;
