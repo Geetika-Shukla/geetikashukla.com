@@ -40,15 +40,18 @@ const Walls = () => (
     </group>
 );
 
-// Striped dhurrie-style rug under the desk
+// Striped dhurrie-style rug under the desk, reaching the same distance past
+// both ends of the desk (12.3 wide, centred at x 0.25), back edge at the wall
+const RUG_WIDTH = 13.9;
+const RUG_DEPTH = 5.4;
 const Rug = () => (
-    <group position={[0.25, -2.99, 1]}>
-        <RoundedBox args={[10.6, 0.03, 5.4]} radius={0.01} receiveShadow><Mat color="#34507F" /></RoundedBox>
-        <mesh position={[0, 0.02, 0]} receiveShadow><boxGeometry args={[9.8, 0.01, 4.6]} /><Mat color="#F4ECDD" /></mesh>
-        <mesh position={[0, 0.025, 0]} receiveShadow><boxGeometry args={[9.2, 0.01, 4]} /><Mat color="#C9683E" /></mesh>
-        <mesh position={[0, 0.03, 0]} receiveShadow><boxGeometry args={[8.6, 0.01, 3.4]} /><Mat color="#34507F" /></mesh>
+    <group position={[0.25, -2.99, RUG_DEPTH / 2 - 1.7]}>
+        <RoundedBox args={[RUG_WIDTH, 0.03, RUG_DEPTH]} radius={0.01} receiveShadow><Mat color="#34507F" /></RoundedBox>
+        <mesh position={[0, 0.02, 0]} receiveShadow><boxGeometry args={[RUG_WIDTH - 0.8, 0.01, RUG_DEPTH - 0.8]} /><Mat color="#F4ECDD" /></mesh>
+        <mesh position={[0, 0.025, 0]} receiveShadow><boxGeometry args={[RUG_WIDTH - 1.4, 0.01, RUG_DEPTH - 1.4]} /><Mat color="#C9683E" /></mesh>
+        <mesh position={[0, 0.03, 0]} receiveShadow><boxGeometry args={[RUG_WIDTH - 2, 0.01, RUG_DEPTH - 2]} /><Mat color="#34507F" /></mesh>
         {[-1, 0, 1].map((i) => (
-            <mesh key={i} position={[0, 0.035, i * 0.9]} receiveShadow><boxGeometry args={[8, 0.01, 0.16]} /><Mat color="#E3B94C" /></mesh>
+            <mesh key={i} position={[0, 0.035, i * (RUG_DEPTH - 2) / 4]} receiveShadow><boxGeometry args={[RUG_WIDTH - 2.6, 0.01, 0.16]} /><Mat color="#E3B94C" /></mesh>
         ))}
     </group>
 );
