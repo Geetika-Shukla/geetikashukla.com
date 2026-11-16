@@ -24,11 +24,11 @@ const FILTERS: { id: string; label: string; category: Category }[] = [
 
 /*
  * Bento tiles on a regular lattice spread over the visible floor. The lattice
- * pitch is 11 grid cells (a 7-cell tile + a 4-cell gutter), so tiles in the same
+ * pitch is 11 grid cells (a 9-cell tile + a 2-cell gutter), so tiles in the same
  * row share a top edge and columns line up. Positions are the top-left corner
  * in cells (u across, v down the plane) from the floor's centre, chosen to spread
  * the tiles over the viewport and keep the list's column clear.
- * Sizes: 1×1 is 7 × 7 cells, 2×1 is 18 × 7.
+ * Sizes: 1×1 is 9 × 9 cells, 2×1 is 20 × 9.
  */
 type Size = "1x1" | "2x1";
 const BENTO: { href: string; size: Size; u: number; v: number }[] = [
@@ -44,10 +44,11 @@ const BENTO: { href: string; size: Size; u: number; v: number }[] = [
     { href: "/type/47-days-of-devanagari-type", size: "2x1", u: 0, v: 13 },
 ];
 
-const WIDTH: Record<Size, number> = { "1x1": 7, "2x1": 18 };
-// How far a card grows at the bottom when open, and how far same-row neighbours ease aside (cells)
-const EXPAND = 5;
+const WIDTH: Record<Size, number> = { "1x1": 9, "2x1": 20 };
+// How far same-row neighbours ease aside while a card is open (cells)
 const NUDGE = 1;
+// Space kept between an open card's new bottom edge and the card below it (px)
+const CLEARANCE = 16;
 
 const BY_HREF = new Map(timeline.flatMap((period) => period.projects).map((project) => [project.href, project]));
 const TILES = BENTO.flatMap(({ href, size, u, v }) => {
@@ -59,14 +60,15 @@ type Tile = (typeof TILES)[number];
 
 /*
  * Where a tile moves while another is open: tiles below it in overlapping
- * columns slide down to clear the expanded card; tiles in the same row ease a
- * step away to either side.
+ * columns slide down (by the px the open card grew) to clear it; tiles in the
+ * same row ease a step away to either side. Returns [cells across, px down].
  */
-const offsetFor = (tile: Tile, open: Tile | undefined): [number, number] => {
-    if (!open || open === tile) return [0, 0];
-    const overlaps = tile.u < open.u + WIDTH[open.size] && open.u < tile.u + WIDTH[tile.size];
-    if (overlaps && tile.v > open.v) return [0, EXPAND];
-    if (tile.v === open.v) return [tile.u > open.u ? NUDGE : -NUDGE, 0];
+const offsetFor = (tile: Tile, open: { tile: Tile; grow: number } | null): [number, number] => {
+    if (!open || open.tile === tile) return [0, 0];
+    const { tile: o, grow } = open;
+    const overlaps = tile.u < o.u + WIDTH[o.size] && o.u < tile.u + WIDTH[tile.size];
+    if (overlaps && tile.v > o.v) return [0, grow + CLEARANCE];
+    if (tile.v === o.v) return [tile.u > o.u ? NUDGE : -NUDGE, 0];
     return [0, 0];
 };
 
@@ -75,8 +77,12 @@ const filterFromHash = (hash: string): Category | null =>
 
 export const WorkFloor = () => {
     const [filter, setFilter] = useState<Category | null>(null);
-    const [openHref, setOpenHref] = useState<string | null>(null);
-    const open = TILES.find((tile) => tile.href === openHref);
+    // The open card, and how far it grows: the measured height of its title and description
+    const [open, setOpen] = useState<{ tile: Tile; grow: number } | null>(null);
+    const openTile = (tile: Tile, element: HTMLElement) => {
+        const info = element.querySelector<HTMLElement>(".tile3d__info");
+        setOpen({ tile, grow: info?.scrollHeight ?? 0 });
+    };
 
     // Nav links point at /#experiences etc.: pick up the filter from the address
     useEffect(() => {
@@ -115,18 +121,19 @@ export const WorkFloor = () => {
                     <ul className="floor__tiles">
                         {TILES.map((tile) => {
                             const { title, description, href, Thumbnail, size, category, u, v } = tile;
-                            const [du, dv] = offsetFor(tile, open);
+                            const [du, dy] = offsetFor(tile, open);
+                            const isOpen = open?.tile === tile;
                             return (
                                 <li
                                     key={title}
                                     className={`tile3d tile3d--${size}`}
-                                    style={{ "--u": u, "--v": v, "--du": du, "--dv": dv } as React.CSSProperties}
-                                    data-open={open === tile}
+                                    style={{ "--u": u, "--v": v, "--du": du, "--dy": `${dy}px`, "--grow": `${isOpen ? open.grow : 0}px` } as React.CSSProperties}
+                                    data-open={isOpen}
                                     data-dimmed={filter !== null && category !== filter}
-                                    onMouseEnter={() => setOpenHref(href!)}
-                                    onMouseLeave={() => setOpenHref(null)}
-                                    onFocus={() => setOpenHref(href!)}
-                                    onBlur={() => setOpenHref(null)}
+                                    onMouseEnter={(event) => openTile(tile, event.currentTarget)}
+                                    onMouseLeave={() => setOpen(null)}
+                                    onFocus={(event) => openTile(tile, event.currentTarget)}
+                                    onBlur={() => setOpen(null)}
                                 >
                                     <Link href={href!} className="tile3d__card">
                                         <span className="tile3d__face">
