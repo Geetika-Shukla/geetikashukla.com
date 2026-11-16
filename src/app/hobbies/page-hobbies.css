@@ -1,84 +1,71 @@
-#page-hobbies {
+/*
+ * Interests: an intro on the left, beside photos on an isometric floor
+ * (IsoFloor, which also sets up the floor-coloured page shell).
+ */
+.interests {
+    background-color: var(--floor);
+}
 
-    
-    .hobby-heading {
-        color: #242424;
-        font-family: var(--font-heading);
-        text-align: center;
+/*
+ * Larger cells than the home page: the band of photos (62 cells deep, 62
+ * across on screen: 25.3 × 43.8 cells) fills the height below the nav and may
+ * run off the right edge.
+ */
+.interests__scene.iso {
+    --c: min(calc((100svh - 130px) / 25.3), calc(100vw / 55));
+    --intro-left: max(var(--page-gutter), calc((100vw - var(--page-max-width)) / 2 + var(--page-gutter)));
+    --intro-width: 360px;
+}
+
+/* Cell (0, 0) is the band's top corner: just below the nav, and right of the
+   intro by the band's left reach (42 × 0.7071 cells) plus a gap */
+.interests__scene .floor__plane {
+    top: calc(var(--header-height) + 32px);
+    left: calc(var(--intro-left) + var(--intro-width) + 48px + 29.7 * var(--c));
+    transform: translate(-50%, -50%) rotateX(54.7356deg) rotateZ(45deg);
+}
+
+/* Level with the band's top corner, less the title's leading */
+.interests__intro {
+    position: absolute;
+    top: calc(var(--header-height) + 26px);
+    left: var(--intro-left);
+    z-index: 2;
+    width: var(--intro-width);
+}
+
+.interests__title {
+    margin: 0 0 20px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.interests__text {
+    margin: 0 0 14px;
+    color: var(--color-text-muted);
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.55;
+}
+
+/* NARROW SCREENS =========================================================== */
+/* Intro on top of the flat photos */
+@media (max-width: 899px) {
+    .interests__scene {
+        padding: calc(var(--header-height) + 24px) var(--page-gutter) 48px;
     }
 
-    .bento-grid {
-        display: grid;
-        grid-template-columns: repeat(9, 1fr);
-        grid-template-rows: auto;
-        gap: 24px;
-        padding: 16px;
+    .interests__intro {
+        position: static;
+        width: auto;
+        margin-bottom: 24px;
     }
 
-    .bento-item {
-        border-radius: 20px;
-        overflow: hidden;
+    .interests__title {
+        font-size: 1.8rem;
     }
-
-    .bento-item img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-    }
-
-    .item-1 {
-        grid-column: span 3;
-    }
-
-    .item-2 {
-        grid-column: span 6;
-    }
-
-    .item-3 {
-        grid-column: span 3;
-    }
-
-    .item-4 {
-        grid-column: span 3;
-    }
-
-    .item-5 {
-        grid-column: span 3;
-    }
-
-    .item-6 {
-        grid-column: span 2;
-    }
-
-    .item-7 {
-        grid-column: span 5;
-    }
-
-    .item-8 {
-        grid-column: span 2;
-    }
-
-    @media (max-width: 600px) {
-        .bento-grid {
-            grid-template-columns: 1fr;
-            /* Stacks items into one column */
-        }
-
-        .item-1 {
-            grid-column: span 6;
-        }
-
-        .item-6 {
-            grid-column: span 6;
-        }
-
-        .item-7 {
-            grid-column: span 6;
-        }
-
-        .item-8 {
-            grid-column: span 6;
-        }
-    }
-
 }
