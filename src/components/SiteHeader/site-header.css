@@ -23,8 +23,9 @@
 .site-header__nav {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: flex-end;
-    gap: 8px 32px;
+    gap: 8px 48px;
 }
 
 .site-header__link {
@@ -40,6 +41,21 @@
     color: var(--color-accent);
 }
 
+.site-header__heart {
+    display: flex;
+    transition: transform 0.2s steps(2);
+}
+
+.site-header__heart svg {
+    width: 27px;
+    height: 24px;
+}
+
+.site-header__heart:hover,
+.site-header__heart:focus-visible {
+    transform: scale(1.15);
+}
+
 @media (max-width: 640px) {
     :root {
         --header-height: 60px;
@@ -50,7 +66,7 @@
     }
 
     .site-header__nav {
-        gap: 4px 16px;
+        gap: 4px 24px;
     }
 
     .site-header__link {

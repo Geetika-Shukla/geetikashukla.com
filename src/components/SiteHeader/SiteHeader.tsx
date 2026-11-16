@@ -3,6 +3,7 @@ import Link from "next/link";
 
 // COMPONENTS ==================================================================
 import PersonalLogo from "@/assets/images/logo.svg";
+import { Pixels, fromRows } from "@/components/Pixel/pixel";
 
 // STYLES ======================================================================
 import "./site-header.css";
@@ -10,8 +11,18 @@ import "./site-header.css";
 const NAV_LINKS = [
     { href: "/", label: "Work" },
     { href: "/more-about-me", label: "About me" },
-    { href: "/hobbies", label: "Hobbies" },
 ];
+
+const HEART = fromRows([
+    ".OO...OO.",
+    "OHHO.ORRO",
+    "OHRROORRO",
+    "ORRRRRRRO",
+    ".ORRRRRO.",
+    "..ORRRO..",
+    "...ORO...",
+    "....O....",
+], { O: "#7A2320", R: "#D2483C", H: "#F08A7E" });
 
 export const SiteHeader = () => {
     return (
@@ -25,6 +36,11 @@ export const SiteHeader = () => {
                     {NAV_LINKS.map(({ href, label }) => (
                         <Link key={href} href={href} className="site-header__link">{label}</Link>
                     ))}
+                    <Link href="/hobbies" className="site-header__heart" aria-label="Hobbies" title="Hobbies">
+                        <svg viewBox="0 0 9 8" shapeRendering="crispEdges" aria-hidden="true">
+                            <Pixels rects={HEART} />
+                        </svg>
+                    </Link>
                 </nav>
             </div>
         </header>
