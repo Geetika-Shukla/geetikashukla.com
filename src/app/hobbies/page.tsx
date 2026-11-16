@@ -14,7 +14,8 @@ import calliTwo from "@/assets/images/calli-2.png";
 import ghibli from "@/assets/images/ghibli-image.jpg";
 import sleeve from "@/assets/images/laptop-sleeve.jpg";
 import japanFic from "@/assets/images/japan-books.jpg";
-import lego from "@/assets/images/japan-lego.jpg";
+// Widened to the 2×1 card's shape, its sides extended from the photo's own edges
+import lego from "@/assets/images/japan-lego-wide.jpg";
 import plants from "@/assets/images/plants.webp";
 import spirited from "@/assets/images/spirited-away.jpg";
 
@@ -41,7 +42,7 @@ const PHOTOS: { title: string; alt: string; image: StaticImageData; size: IsoSiz
     { title: "Vinyls", alt: "Spirited Away-inspired artwork", image: spirited, size: "1x1", u: -11, v: 22 },
     { title: "Gardening", alt: "Animation of house plants", image: plants, size: "1x1", u: 0, v: 22, focus: "50% 100%" },
     { title: "Studio Ghibli", alt: "Studio Ghibli-inspired artwork", image: ghibli, size: "2x1", u: 11, v: 22 },
-    { title: "Lego", alt: "Japan-themed Lego build", image: lego, size: "2x1", u: 0, v: 33, focus: "50% 70%" },
+    { title: "Lego", alt: "Japan-themed Lego build", image: lego, size: "2x1", u: 0, v: 33 },
 ];
 
 const TILES: IsoTile[] = PHOTOS.map(({ title, alt, image, size, u, v, focus }) => ({
