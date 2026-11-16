@@ -4,8 +4,7 @@
 import Link from "next/link";
 
 // INTERNAL DEPS ===============================================================
-import { Element, Button, Text, Header, Div, Row, Portion } from "fictoan-react";
-import { useTheme } from "fictoan-react";
+import { Text, Header, Div, Row, Portion } from "fictoan-react";
 
 // COMPONENTS ==================================================================
 import PersonalLogo from "@/assets/images/logo.svg";
@@ -15,16 +14,6 @@ import Heart from "@/assets/images/heart.svg";
 import "./site-header.css";
 
 export const SiteHeader = () => {
-    const [theme, setTheme] = useTheme();
-
-    const toggleTheme = () => {
-        if (theme === "theme-light") {
-            setTheme("theme-dark");
-        } else {
-            setTheme("theme-light");
-        }
-    };
-
     return (
         <Header id="site-header">
             <Row className="nav-mobile" horizontalPadding="large">

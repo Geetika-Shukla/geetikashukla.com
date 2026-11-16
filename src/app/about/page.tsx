@@ -5,15 +5,10 @@ import React from "react";
 
 // INTERNAL DEPS ===============================================================
 import {
-  Badge,
-  Button,
-  Card,
   Element,
   Heading1,
-  InputField,
   Portion,
   Row,
-  Text,
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================

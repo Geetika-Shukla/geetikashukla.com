@@ -4,8 +4,7 @@
 import Link from "next/link";
 
 // INTERNAL DEPS ===============================================================
-import { Text, Div, Footer, Row, Portion } from "fictoan-react";
-import { useTheme } from "fictoan-react";
+import { Div, Footer, Row, Portion } from "fictoan-react";
 
 // COMPONENTS ==================================================================
 import GitHub from "@/assets/images/github.svg";
@@ -18,16 +17,6 @@ import Fable from "@/assets/images/fable.svg";
 import "./site-footer.css";
 
 export const SiteFooter = () => {
-    const [theme, setTheme] = useTheme();
-
-    const toggleTheme = () => {
-        if (theme === "theme-light") {
-            setTheme("theme-dark");
-        } else {
-            setTheme("theme-light");
-        }
-    };
-
     return (
         <Footer id="site-footer">
             <Row>

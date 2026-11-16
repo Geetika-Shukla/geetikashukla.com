@@ -5,17 +5,13 @@ import Image from 'next/image';
 
 // INTERNAL DEPS ===============================================================
 import {
-    Button,
-    Header,
     Card,
-    Element,
     Heading1,
     Portion,
     Row,
     Div,
     Text,
-    Footer,
-    CodeBlock, Heading6
+    Heading6
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
@@ -56,9 +52,7 @@ import Platform12 from "@/assets/images/platform-12.svg";
 import Tools from "@/assets/images/Tools.svg";
 import crucible from "@/assets/images/crucible.gif";
 import PeopleExperienceThumbnail from "@/assets/images/thumbnail-for-people-experience.svg";
-import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
 import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
-import process from "@/assets/images/devanagari/47days.gif";
 
 
 

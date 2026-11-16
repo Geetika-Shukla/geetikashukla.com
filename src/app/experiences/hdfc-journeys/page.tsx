@@ -1,22 +1,17 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
 import Link from "next/link";
-import Image from 'next/image';
 
 // INTERNAL DEPS ===============================================================
 import {
-    Button,
-    Header,
     Card,
     Tabs,
-    Element,
     Heading1,
     Portion,
     Row,
     Div,
     Text,
-    Footer,
-    CodeBlock, Heading6
+    Heading6
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
@@ -77,10 +72,6 @@ import TestingOne from "@/assets/images/hdfc-journeys/testing-1.svg";
 import TestingTwo from "@/assets/images/hdfc-journeys/testing-2.svg";
 import TestingThree from "@/assets/images/hdfc-journeys/testing-3.svg";
 import TestingFour from "@/assets/images/hdfc-journeys/testing-4.svg";
-import AssistedHero from "@/assets/images/product-discovery/assisted-components.svg";
-import IconMobilewithCursor from "@/assets/images/MobilewithCursor.svg";
-import IconPersonWithSettings from "@/assets/images/PersonWithSettings.svg";
-import IconChatBubbles from "@/assets/images/ChatBubbles.svg";
 
 
 

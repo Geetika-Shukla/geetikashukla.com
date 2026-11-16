@@ -4,18 +4,13 @@ import Link from "next/link";
 
 // INTERNAL DEPS ===============================================================
 import {
-    Button,
-    Header,
     Card,
-    Element,
     Heading1,
     Heading6,
     Portion,
     Row,
     Div,
     Text,
-    Footer,
-    CodeBlock
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
@@ -30,7 +25,6 @@ import ExpCover from "@/assets/images/exp-cover.svg";
 import ReportsThumbnail from "@/assets/images/thumbnail-for-reports.svg";
 import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
 import HDFCThumbnail from "@/assets/images/thumbnail-for-hdfc.svg";
-import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
 
 
 export default function Home() {

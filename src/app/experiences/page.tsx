@@ -1,7 +1,6 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
 import Link from "next/link";
-import Image from 'next/image';
 
 // INTERNAL DEPS ===============================================================
 import {
@@ -11,7 +10,7 @@ import {
     Portion,
     Row,
     Div,
-    Text, Heading3
+    Text
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================

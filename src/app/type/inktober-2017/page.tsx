@@ -1,7 +1,5 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
-import Link from "next/link";
-import Image from 'next/image';
 
 // INTERNAL DEPS ===============================================================
 import {
@@ -13,7 +11,6 @@ import {
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
-import ImageGrid from "@/components/ImageGrid";
 
 // STYLES ======================================================================
 import "../type-projects.css";
