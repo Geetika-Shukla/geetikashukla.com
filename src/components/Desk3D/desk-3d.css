@@ -81,11 +81,18 @@
 }
 
 /* WORK ===================================================================== */
-/* Continues the room's floor down the page; --floor matches FLOOR in Room.tsx */
+/*
+ * Continues the room's floor down the page (--floor matches FLOOR in Room.tsx).
+ * It slides up over the bottom of the scene to bring the work closer; its top
+ * edge is transparent, so the rug still shows through, fading into the floor.
+ */
 .d3-work {
     --floor: #E4DCCD;
-    padding-top: 56px;
-    background-color: var(--floor);
+    position: relative;
+    z-index: 1;
+    margin-top: -22svh;
+    padding-top: 12svh;
+    background: linear-gradient(to bottom, transparent 0, var(--floor) 22svh);
     scroll-margin-top: var(--header-height);
 }
 

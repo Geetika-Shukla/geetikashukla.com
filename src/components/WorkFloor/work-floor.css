@@ -1,60 +1,69 @@
 /*
- * Work tiles laid on an isometric floor. The plane is rotated with CSS 3D to a
- * true isometric angle (edges at 30°), matching the isometric grid behind it.
- * Each type of work is a zone on the floor; hovering a tile lifts it.
+ * Work tiles on an isometric floor.
+ *
+ * One plane carries both the grid and the tiles, rotated with CSS 3D to a true
+ * isometric angle (edges at 30°), oriented like the room above. Everything on
+ * the plane is sized in whole grid cells (--c), so every tile edge lands on a
+ * grid line:
+ *   1×1 tile: 8 × 8 cells · 2×1 tile: 17 × 8 · column gap: 1
+ *   row pitch: 10 (tile + caption) · group title: 2 · group width: 35
+ * Groups sit on the plane's diagonal (--offset cells along both axes, set in
+ * WorkFloor.tsx), which stacks them straight down the page.
+ *
+ * Plane size: 115 × 92 cells (last group's offset + its size + a 6-cell margin).
+ * Projected height = (115 + 92) × 0.40825 cells. The plane is nudged right by
+ * 5 × 0.7071 cells so the groups, not the empty plane, are centred.
  */
 .floor {
-    --iso-line: color-mix(in srgb, var(--color-text) 5%, transparent);
-    --iso-step: 28px;
-    --tile: 120px;     /* one grid cell; 1×1 tiles are tile × tile, 2×1 tiles twice as wide */
+    --c: 30px;
+    --line: color-mix(in srgb, var(--color-text) 6%, transparent);
 
     position: relative;
-    display: flex;
-    justify-content: center;
-    padding: 40px 0 120px;
+    height: calc(207 * 0.40825 * var(--c));
     overflow: hidden;
+    /* The grid fades in at the top so it blends in after the rug */
+    mask-image: linear-gradient(to bottom, transparent 0, #000 200px);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 200px);
 }
 
-/* Isometric grid (lines at 30° and 150°), fading in from the top edge so it
-   blends in after the rug */
-.floor::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-        repeating-linear-gradient(30deg, transparent 0 calc(var(--iso-step) - 1px), var(--iso-line) calc(var(--iso-step) - 1px) var(--iso-step)),
-        repeating-linear-gradient(150deg, transparent 0 calc(var(--iso-step) - 1px), var(--iso-line) calc(var(--iso-step) - 1px) var(--iso-step));
-    mask-image: linear-gradient(to bottom, transparent 0, #000 220px);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 220px);
-}
-
-/* Isometric projection of the floor, oriented like the room above: rows run down to the right */
 .floor__plane {
-    display: flex;
-    gap: 48px;
-    margin-block: 24px;
-    transform: rotateX(54.7356deg) rotateZ(45deg);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(115 * var(--c));
+    height: calc(92 * var(--c));
+    background-image:
+        linear-gradient(to right, var(--line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: var(--c) var(--c);
+    transform: translate(-50%, -50%) translateX(calc(5 * 0.7071 * var(--c))) rotateX(54.7356deg) rotateZ(45deg);
     transform-style: preserve-3d;
 }
 
 .floor__zone {
+    position: absolute;
+    top: calc(var(--offset) * var(--c));
+    left: calc(var(--offset) * var(--c));
     transform-style: preserve-3d;
 }
 
 .floor__zone-title {
-    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    height: calc(2 * var(--c));
+    margin: 0;
     color: var(--color-accent-2);
     font-family: var(--font-heading);
-    font-size: 1.6rem;
+    font-size: 1.9rem;
     font-weight: 700;
 }
 
 .floor__tiles {
     display: grid;
-    grid-template-columns: repeat(3, var(--tile));
+    grid-template-columns: repeat(4, calc(8 * var(--c)));
+    grid-auto-rows: calc(10 * var(--c));
     grid-auto-flow: row dense;
-    gap: 22px;
+    column-gap: var(--c);
     margin: 0;
     padding: 0;
     list-style: none;
@@ -78,8 +87,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: var(--tile);
-    border-radius: 10px;
+    height: calc(8 * var(--c));
+    border-radius: 3px;
     background-color: rgba(43, 45, 56, 0.16);
     opacity: 0;
     transition: opacity 0.25s ease;
@@ -99,13 +108,11 @@
     position: relative;
     display: block;
     width: 100%;
-    height: var(--tile);
+    height: calc(8 * var(--c));
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 3px;
     background-color: var(--color-surface);
-    box-shadow:
-        0 0 0 1px var(--color-border),
-        4px 4px 0 #D9D2C5;
+    box-shadow: 4px 4px 0 #D9D2C5;
 }
 
 .tile3d__face svg {
@@ -114,38 +121,24 @@
     height: 100%;
 }
 
-.tile3d__tag {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    padding: 2px 6px;
-    border-radius: 4px;
-    background-color: var(--color-accent-2);
-    color: var(--color-surface);
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-}
-
 .tile3d__caption {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    margin-top: 8px;
+    margin-top: 10px;
 }
 
 .tile3d__title {
     color: var(--color-text);
     font-family: var(--font-heading);
-    font-size: 0.95rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    line-height: 1.25;
+    line-height: 1.2;
 }
 
 .tile3d__year {
     color: var(--color-text-muted);
-    font-size: 0.75rem;
+    font-size: 0.9rem;
 }
 
 .tile3d:hover::before,
@@ -158,23 +151,33 @@
     transform: translateZ(18px);
 }
 
-/* Narrow screens: the floor would be too small, so lay the tiles out flat */
+/* Narrow screens: the floor would be too small, so lay the groups out flat */
 @media (max-width: 899px) {
     .floor {
-        padding: 8px 0 48px;
+        height: auto;
+        padding: 8px var(--page-gutter) 48px;
+        mask-image: none;
+        -webkit-mask-image: none;
     }
 
     .floor__plane {
+        position: static;
+        display: flex;
         flex-direction: column;
         gap: 32px;
-        width: 100%;
-        margin: 0;
-        padding-inline: var(--page-gutter);
+        width: auto;
+        height: auto;
+        background: none;
         transform: none;
+    }
+
+    .floor__zone {
+        position: static;
     }
 
     .floor__tiles {
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        grid-auto-rows: auto;
         gap: 16px;
     }
 
