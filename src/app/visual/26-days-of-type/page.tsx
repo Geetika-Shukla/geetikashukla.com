@@ -25,7 +25,7 @@ import Louvre from "@/assets/images/le-grand-louvre.svg";
 import Museum from "@/assets/images/everson-museum.svg";
 import Tower from "@/assets/images/bank-of-china-tower.svg";
 import TypeGrid from "@/assets/images/type-grid.svg";
-import process from "@/assets/images/i-m-pei.gif";
+import process from "@/assets/images/i-m-pei.webp";
 import A from "@/assets/images/26days/a.svg";
 import B from "@/assets/images/26days/b.svg";
 import C from "@/assets/images/26days/c.svg";

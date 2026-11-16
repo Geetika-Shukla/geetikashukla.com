@@ -17,7 +17,7 @@ import {
 import "../type-projects.css";
 
 // ASSETS ======================================================================
-import process from "@/assets/images/devanagari/47days.gif";
+import process from "@/assets/images/devanagari/47days.webp";
 import One from "@/assets/images/devanagari/1.svg";
 import Two from "@/assets/images/devanagari/2.svg";
 import Three from "@/assets/images/devanagari/3.svg";

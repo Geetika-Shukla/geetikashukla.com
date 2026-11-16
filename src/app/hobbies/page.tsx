@@ -23,7 +23,7 @@ import ghibli from "@/assets/images/ghibli-image.jpg";
 import sleeve from "@/assets/images/laptop-sleeve.jpg";
 import japanFic from "@/assets/images/japan-books.jpg";
 import lego from "@/assets/images/japan-lego.jpg";
-import plants from "@/assets/images/plants.gif";
+import plants from "@/assets/images/plants.webp";
 import spirited from "@/assets/images/spirited-away.jpg";
 
 
