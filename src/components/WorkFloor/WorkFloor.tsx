@@ -37,7 +37,7 @@ const BENTO: { href: string; size: Size; u: number; v: number }[] = [
     { href: "/experiences/path-to-partnerships", size: "2x1", u: 11, v: -20 },
     { href: "/experiences/revamping-reports", size: "2x1", u: -22, v: -9 },
     { href: "/visual/people-experience", size: "2x1", u: 0, v: -9 },
-    { href: "/visual/icon-system-for-setu", size: "1x1", u: 33, v: -9 },
+    { href: "/visual/icon-system-for-setu", size: "1x1", u: 22, v: -9 },
     { href: "/experiences/hdfc-journeys", size: "1x1", u: -11, v: 2 },
     { href: "/experiences/assisted-product-discovery", size: "1x1", u: 0, v: 2 },
     { href: "/type/inktober-2017", size: "2x1", u: 11, v: 2 },
