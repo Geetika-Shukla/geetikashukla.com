@@ -1,5 +1,6 @@
 // COMPONENTS ==================================================================
 import { Desk3DLoader } from "@/components/Desk3D/Desk3DLoader";
+import { ProjectChips } from "@/components/ProjectChips/ProjectChips";
 
 // TYPES =======================================================================
 import type { Metadata } from "next";
@@ -12,8 +13,13 @@ export const metadata: Metadata = {
 
 export default function Desk3DPage() {
     return (
-        <article>
+        <article className="d3-page">
             <Desk3DLoader />
+
+            <section id="work" className="d3-work container" aria-labelledby="work-title">
+                <h2 id="work-title" className="d3-work__title">Work</h2>
+                <ProjectChips />
+            </section>
         </article>
     );
 }

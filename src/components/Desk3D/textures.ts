@@ -81,6 +81,38 @@ export const skyTexture = (phase: Phase) => {
     return toTexture(canvas, true);
 };
 
+// Phone screen: a simple profile card
+export const phoneTexture = () => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 120;
+    canvas.height = 240;
+    const ctx = canvas.getContext("2d")!;
+    ctx.fillStyle = "#3F72B8"; ctx.fillRect(0, 0, 120, 240);
+    roundRect(ctx, 0, 0, 120, 70, 0, "#2F5C99");
+    ctx.fillStyle = "#F5EEE1"; ctx.beginPath(); ctx.arc(60, 70, 22, 0, Math.PI * 2); ctx.fill();
+    roundRect(ctx, 24, 106, 72, 10, 5, "#F5EEE1");
+    roundRect(ctx, 34, 124, 52, 8, 4, "#9DB8E0");
+    [150, 172, 194].forEach((y) => roundRect(ctx, 16, y, 88, 14, 6, "#5585C6"));
+    return toTexture(canvas);
+};
+
+// Generic abstract print for the wall: hills, a sun and a river in the site palette
+export const printTexture = () => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 240;
+    canvas.height = 300;
+    const ctx = canvas.getContext("2d")!;
+    ctx.fillStyle = "#F4ECDD"; ctx.fillRect(0, 0, 240, 300);
+    ctx.fillStyle = "#E3B94C"; ctx.beginPath(); ctx.arc(160, 90, 34, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#5E9E98";
+    ctx.beginPath(); ctx.moveTo(0, 200); ctx.quadraticCurveTo(70, 120, 140, 190); ctx.quadraticCurveTo(190, 150, 240, 180); ctx.lineTo(240, 300); ctx.lineTo(0, 300); ctx.fill();
+    ctx.fillStyle = "#34507F";
+    ctx.beginPath(); ctx.moveTo(0, 240); ctx.quadraticCurveTo(100, 190, 240, 230); ctx.lineTo(240, 300); ctx.lineTo(0, 300); ctx.fill();
+    ctx.strokeStyle = "#C9683E"; ctx.lineWidth = 6;
+    ctx.beginPath(); ctx.moveTo(30, 300); ctx.bezierCurveTo(80, 260, 120, 280, 170, 250); ctx.stroke();
+    return toTexture(canvas);
+};
+
 // Monitor screen: a design tool on the left, an AI chat panel on the right
 export const screenTexture = () => {
     const canvas = document.createElement("canvas");
