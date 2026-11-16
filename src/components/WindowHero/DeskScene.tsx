@@ -159,6 +159,31 @@ const monitor = (): Rect[] => [
     }, C.glare),
 ];
 
+// KEYBOARD AND MOUSE ==========================================================
+// Keychron-style: aluminium frame, dark keycaps, grey modifiers, an orange Esc
+const keyboard = (): Rect[] => {
+    const rects: Rect[] = [
+        ...contact(216, 52),
+        ...roundRect(164, 129, 104, 11, 3, "#9A9EA6"), rect(166, 129, 100, 1, "#B9BCC3"), rect(164, 137, 104, 3, "#7E828B"),
+    ];
+    // Two visible rows of keycaps
+    for (let row = 0; row < 2; row++) {
+        const y = 130 + row * 3;
+        for (let x = 168 + row * 2, i = 0; x < 262; x += 6, i++) {
+            const isEsc = row === 0 && i === 0;
+            const isModifier = (row === 1 && (i === 0 || i > 13)) || (row === 0 && i > 14);
+            rects.push(...roundRect(x, y, 5, 3, 1, isEsc ? "#E07A3F" : isModifier ? "#7C8089" : "#3A3D46"));
+        }
+    }
+    return rects;
+};
+
+const mouse = (): Rect[] => [
+    ...contact(285, 10),
+    ...ellipse(285, 137, 9, 4, "#3A3D46"), ...ellipse(285, 135.5, 7, 2.5, "#50545E"),
+    rect(285, 133, 1, 3, "#2A2D34"),
+];
+
 // BOOKS AND PHONE =============================================================
 const journals = (): Rect[] => [
     ...contact(334, 22),
@@ -282,7 +307,7 @@ const plant = (): Rect[] => {
 const shift = (rects: Rect[], dx: number): Rect[] => rects.map(([x, y, w, h, c]) => [x + dx, y, w, h, c]);
 
 const SCENE: Rect[] = [
-    ...desk(), ...cup(), ...echoDot(), ...monitor(), ...journals(), ...phone(), ...shelf(), ...shift(cat(), -10),
+    ...desk(), ...cup(), ...echoDot(), ...monitor(), ...keyboard(), ...mouse(), ...journals(), ...phone(), ...shelf(), ...shift(cat(), -10),
     // Sits just right of the shelf, as on the real desk
     ...shift(plant(), 30),
 ];
