@@ -1,4 +1,4 @@
-/* Header overlays the scene */
+/* On the home page the header overlays the 3D scene */
 .site:has(.d3-page) > .site-header {
     margin-bottom: calc(var(--header-height) * -1);
 }

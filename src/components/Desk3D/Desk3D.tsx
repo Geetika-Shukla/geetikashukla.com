@@ -27,8 +27,8 @@ const OBJECTS: (PillAnchor & { label: string })[] = [
     { id: "phone", label: "LinkedIn", position: [3.1, 1.75, -0.3] },
 ];
 
-// One screen: the desk scene. Scrolling past it raises the blind; hovering an
-// object leans the camera towards it; clicking opens it.
+// The desk scene, rendered inside the page's .d3__stage. Scrolling past it raises
+// the blind; hovering an object leans the camera towards it; clicking opens it.
 export default function Desk3D() {
     const router = useRouter();
     const progressRef = useRef(0);
@@ -62,7 +62,7 @@ export default function Desk3D() {
     }, []);
 
     return (
-        <section className="d3__stage" aria-label="Desk">
+        <>
             <Canvas className="d3__canvas" shadows orthographic dpr={[1, 2]} camera={{ position: [12, 11.6, 14], zoom: 60, near: -100, far: 200 }}>
                 <DeskScene3D
                     progressRef={progressRef}
@@ -90,17 +90,7 @@ export default function Desk3D() {
                 </button>
             ))}
 
-            <header className="d3__intro">
-                <p className="d3__eyebrow">Multi-disciplinary designer</p>
-                <h1 className="d3__title">Geetika <span>Shukla</span></h1>
-                <p className="d3__bio">
-                    I’m Geetika, a multi-disciplinary designer with around 7 years of experience spanning brand,
-                    exhibition, web, and product design.
-                </p>
-            </header>
-            <p className="d3__hint">Hover the desk to look closer</p>
-
             {meowing && <p className="d3__meow" aria-live="polite">Meow!</p>}
-        </section>
+        </>
     );
 }

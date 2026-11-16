@@ -58,27 +58,12 @@ p {
     font-weight: 400;
 }
 
-/* Centred, padded content column shared by header, home and footer */
+/* Centred, padded content column shared by header, pages and footer */
 .container {
     width: 100%;
     max-width: var(--page-max-width);
     margin-inline: auto;
     padding-inline: var(--page-gutter);
-}
-
-/* Square pixel grid drawn behind the hero and the timeline. One cell is
-   --grid-px pixels of the desk illustration (640 px across --desk-scale × the
-   container width), so the grid lines fall on the drawing's pixel grid. A grid
-   line also runs exactly through the page centre. Needs a size container
-   (.home) and --desk-scale / --grid-px from it. */
-.pixel-grid {
-    --unit: calc(100cqw * var(--desk-scale) / 640 * var(--grid-px));
-    --grid-line: color-mix(in srgb, var(--color-text) 7%, transparent);
-    background-image:
-        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-    background-size: var(--unit) var(--unit);
-    background-position: calc(50% - var(--unit) / 2 - 0.5px) 0, 0 0;
 }
 
 .row-hide {

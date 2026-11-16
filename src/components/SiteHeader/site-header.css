@@ -1,7 +1,7 @@
 /*
  * No solid background. A subtle teal gradient over a blur that fades out
- * towards the bottom edge: the page's grid shows through, and content
- * scrolling underneath softens instead of meeting a hard line.
+ * towards the bottom edge: content scrolling underneath softens instead of
+ * meeting a hard line.
  */
 .site-header {
     position: sticky;
@@ -28,11 +28,6 @@
     mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
     pointer-events: none;
-}
-
-/* On the home page the header overlaps the hero, so the hero's grid runs up behind the nav */
-.site:has(.home) > .site-header {
-    margin-bottom: calc(var(--header-height) * -1);
 }
 
 .site-header__inner {

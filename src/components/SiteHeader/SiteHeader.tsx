@@ -9,7 +9,7 @@ import { Pixels, fromRows } from "@/components/Pixel/pixel";
 import "./site-header.css";
 
 const NAV_LINKS = [
-    { href: "/", label: "Work" },
+    { href: "/#work", label: "Work" },
     { href: "/more-about-me", label: "About me" },
 ];
 
