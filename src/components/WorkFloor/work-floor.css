@@ -23,7 +23,7 @@
 /* LIST ===================================================================== */
 .work__list {
     position: absolute;
-    top: calc(var(--header-height) + 64px);
+    top: calc(var(--header-height) + 104px);
     left: max(var(--page-gutter), calc((100% - var(--page-max-width)) / 2 + var(--page-gutter)));
     z-index: 2;
 }
@@ -107,14 +107,14 @@
 }
 
 /* TILES ==================================================================== */
-/* Tiles move by --du cells across and --dy px down while a neighbour is open */
+/* Tiles move by (--du, --dv) cells while a neighbour is open */
 .tile3d {
     position: absolute;
     top: calc((80 + var(--v)) * var(--c));
     left: calc((80 + var(--u)) * var(--c));
     width: calc(9 * var(--c));
     height: calc(9 * var(--c));
-    transform: translate(calc(var(--du, 0) * var(--c)), var(--dy, 0px));
+    transform: translate(calc(var(--du, 0) * var(--c)), calc(var(--dv, 0) * var(--c)));
     transform-style: preserve-3d;
     pointer-events: auto;
     transition:
@@ -152,8 +152,8 @@
 }
 
 .tile3d[data-open="true"] .tile3d__card {
-    /* Grows by the measured height of its title and description (--grow) */
-    height: calc(100% + var(--grow, 0px));
+    /* Grows by the measured height of its title and description (--grow, cells) */
+    height: calc(100% + var(--grow, 0) * var(--c));
     box-shadow: 6px 6px 0 #CFC7B8;
 }
 

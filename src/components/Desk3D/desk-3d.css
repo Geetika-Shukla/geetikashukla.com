@@ -3,7 +3,7 @@
 .site:has(.d3-page) {
     --floor: #E4DCCD;
     /* How far the footer overlaps the bottom of the work floor (wide screens) */
-    --footer-overlap: 96px;
+    --footer-overlap: 124px;
 }
 
 /* On the home page the header overlays the 3D scene */
@@ -115,8 +115,10 @@
     background-color: var(--floor);
 }
 
+/* Raised off the bottom edge */
 .site:has(.d3-page) .site-footer__inner {
     justify-content: flex-start;
+    padding-block: 24px 72px;
 }
 
 /* Wide screens: over the bottom of the floor, which runs taller to make room */
