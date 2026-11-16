@@ -2,138 +2,61 @@
 import React from "react";
 import Link from "next/link";
 
-// INTERNAL DEPS ===============================================================
-import {
-    Card,
-    Heading1,
-    Heading6,
-    Portion,
-    Row,
-    Div,
-    Text,
-} from "fictoan-react";
-
 // COMPONENTS ==================================================================
+import { TimelineRow } from "@/components/TimelineRow/TimelineRow";
+
+// DATA ========================================================================
+import { timeline } from "@/data/projects";
 
 // STYLES ======================================================================
 import "@/styles/home.css";
 
-// ASSETS ======================================================================
-import VDCover from "@/assets/images/vd-cover.svg";
-import TypeCover from "@/assets/images/type-cover.svg";
-import ExpCover from "@/assets/images/exp-cover.svg";
-import ReportsThumbnail from "@/assets/images/thumbnail-for-reports.svg";
-import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
-import HDFCThumbnail from "@/assets/images/thumbnail-for-hdfc.svg";
-
+const RESUME_URL = "https://drive.google.com/uc?export=download&id=1UXkFA6hBj2m-KuHozLz3eFtyUJKckFoY";
+const LINKEDIN_URL = "https://www.linkedin.com/in/geetikashukla/";
 
 export default function Home() {
-
     return (
-        <article id="page-home">
+        <article className="home container">
+            <aside className="home__intro">
+                <h1 className="home__name">Geetika Shukla</h1>
+                <p className="home__role">Multi-disciplinary designer</p>
 
-            <div className="page-grid-lines" aria-hidden="true">
-                <span/><span/><span/><span/>
-            </div>
+                <p className="home__bio">
+                    I’m Geetika, a multi-disciplinary designer with around 7 years of experience spanning
+                    brand, exhibition, web, and product design.
+                </p>
+                <p className="home__bio">
+                    I’ve spent the last 5 years designing 0-1 fintech B2B SaaS products—applying systems
+                    thinking with purposeful visual design to turn complex ideas into intuitive user journeys.
+                </p>
 
-            <Row layoutAsGrid horizontalPadding="huge" marginTop="medium" marginBottom="none">
-                <Portion desktopSpan="8">
-                    <Heading1 className="hero-heading">
-                        Hello there!
-                    </Heading1>
-                </Portion>
-                <Portion desktopSpan="8" />
-                <Portion desktopSpan="8" marginBottom="small">
-                    <Div marginTop="small" className="intro-text">
-                        <Text>I’m Geetika, a multi-disciplinary designer with around 7 years of experience spanning
-                            brand, exhibition, web, and product design.
-                        </Text>
-                        <br/>
-                        <Text>I’ve spent the last 5 years designing 0-1 fintech B2B SaaS products—applying systems
-                            thinking with purposeful visual design to turn complex ideas into intuitive user journeys.
-                        </Text>
-                    </Div>
-                </Portion>
-            </Row>
+                <div className="home__links">
+                    <Link href="/more-about-me" className="home__link">More about me</Link>
+                    <a href={RESUME_URL} className="home__link" target="_blank" rel="noopener noreferrer">Résumé</a>
+                    <a href={LINKEDIN_URL} className="home__link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+            </aside>
 
-            {/*CATEGORIES FOR MOBILE */}
+            <ol className="timeline" aria-label="Work timeline">
+                {timeline.map((period) => (
+                    <li key={period.org} className="timeline__period">
+                        <div className="timeline__header">
+                            <span className="timeline__dates">{period.dates}</span>
+                            <h2 className="timeline__org">{period.org}</h2>
+                            <p className="timeline__role">{period.role}</p>
+                            {period.summary && <p className="timeline__summary">{period.summary}</p>}
+                        </div>
 
-            <Row className="category-row" layoutAsFlexbox horizontalPadding="huge" marginTop="none" marginBottom="small" horizontallyCenterThis showOnlyOnMobile>
-
-                <Link href="/experiences">
-                    <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
-                        <ExpCover />
-                        <Heading6 className="category-thumbnail-text" >Experiences</Heading6>
-                    </Card>
-                </Link>
-
-                <Link href="/visual">
-                    <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
-                        <VDCover />
-                        <Heading6 className="category-thumbnail-text" >Visual</Heading6>
-                    </Card>
-                </Link>
-
-                <Link href="/type">
-                    <Card className="category-thumbnail" shape="rounded" horizontalMargin="micro">
-                        <TypeCover />
-                        <Heading6 className="category-thumbnail-text" >Type</Heading6>
-                    </Card>
-                </Link>
-            </Row>
-
-            {/* KEY PROJECTS */}
-
-            <div className="key-projects-wrapper">
-                <h3 className="key-projects-label">Key projects</h3>
-                <Row layoutAsGrid horizontalPadding="huge" className="key-projects-section" marginBottom="none" marginTop="none" paddingTop="small" paddingBottom="small" hideOnMobile>
-
-                    {/* Column 1 — stacked thumbnails for projects 1 & 2 */}
-                    <Portion desktopSpan="8">
-                    <Link href="/experiences/revamping-reports" className="project-link" style={{ display: "block", width: "100%" }}>
-                        <Card className="project-thumbnail project-thumbnail--half">
-                            <ReportsThumbnail alt="revamping-reports"/>
-                        </Card>
-                    </Link>
-
-                    <div style={{ height: "32px" }} />
-
-                    <Link href="/experiences/hdfc-journeys" className="project-link" style={{ display: "block", width: "100%" }}>
-                        <Card className="project-thumbnail project-thumbnail--tall">
-                            <HDFCThumbnail alt="hdfc" />
-                        </Card>
-                    </Link>
-                </Portion>
-
-                    {/* Column 2 — stacked descriptions for projects 1 & 2 */}
-                    <Portion desktopSpan="8" style={{ paddingLeft: "24px", paddingRight: "24px" }}>
-                        <Link href="/experiences/revamping-reports" className="project-link">
-                            <p className="project-thumbnail-heading">Revamping reports on Bridge</p>
-                            <p className="project-thumbnail-description">Scheduling, smarter filters, and enhanced flexibility for better performance.</p>
-                        </Link>
-
-                        <div style={{ height: "128px" }} />
-
-                        <Link href="/experiences/hdfc-journeys" className="project-link">
-                            <p className="project-thumbnail-heading">Digital journeys for HDFC Bank</p>
-                            <p className="project-thumbnail-description">Simplified account opening flows for customers and bank agents alike.</p>
-                        </Link>
-                    </Portion>
-
-                    {/* Column 3 — tall thumbnail + description for project 3 */}
-                    <Portion desktopSpan="8">
-                        <Link href="/visual/icon-system-for-setu" className="project-link">
-                            <Card className="project-thumbnail project-thumbnail--tall">
-                                <IconSystemThumbnail alt="icon-system" />
-                            </Card>
-                            <p className="project-thumbnail-heading">Icon system for Setu</p>
-                            <p className="project-thumbnail-description">A versatile set of ~150 icons across products, decks, print, and Slack.</p>
-                        </Link>
-                    </Portion>
-
-                </Row>
-            </div>
-
-        </article >
+                        {period.projects.length > 0 && (
+                            <ul className="timeline__projects">
+                                {period.projects.map((project) => (
+                                    <TimelineRow key={project.title} {...project} />
+                                ))}
+                            </ul>
+                        )}
+                    </li>
+                ))}
+            </ol>
+        </article>
     );
 }

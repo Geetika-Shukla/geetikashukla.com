@@ -1,0 +1,146 @@
+.timeline-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 88px 1fr auto;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding: 18px 0;
+    border-top: 1px solid var(--color-border);
+    color: inherit;
+    text-decoration: none;
+}
+
+.timeline-row__year {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.timeline-row__main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 16px;
+    min-width: 0;
+}
+
+.timeline-row__title {
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.3rem);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.timeline-row__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}
+
+.timeline-row__tag {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background-color: var(--color-accent-2);
+    color: var(--color-surface);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.timeline-row__arrow {
+    color: var(--color-accent);
+    font-size: 1.2rem;
+    transition: transform 0.2s ease;
+}
+
+.timeline-row--link:hover .timeline-row__title,
+.timeline-row--link:focus-visible .timeline-row__title {
+    color: var(--color-accent);
+}
+
+.timeline-row--link:hover .timeline-row__arrow,
+.timeline-row--link:focus-visible .timeline-row__arrow {
+    transform: translateX(4px);
+}
+
+/* Thumbnail preview: pops up beside the row on hover / keyboard focus */
+.timeline-row__preview {
+    position: absolute;
+    top: 50%;
+    right: 48px;
+    z-index: 5;
+    width: clamp(200px, 22vw, 300px);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background-color: var(--color-surface);
+    box-shadow: 0 16px 40px rgba(28, 28, 30, 0.12);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-50%) scale(0.96);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Preview follows each thumbnail's own aspect ratio (square or wide strip) */
+.timeline-row__preview svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.timeline-row:hover .timeline-row__preview,
+.timeline-row:focus-visible .timeline-row__preview {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+}
+
+/* No hover on touch screens and no room on narrow ones: show a small inline thumbnail instead */
+@media (hover: none), (max-width: 767px) {
+    .timeline-row {
+        grid-template-columns: 64px 1fr auto;
+        grid-template-areas:
+            "preview main arrow"
+            "preview year arrow";
+        row-gap: 2px;
+    }
+
+    .timeline-row__preview {
+        position: static;
+        grid-area: preview;
+        width: 64px;
+        aspect-ratio: 1 / 1;
+        border-radius: 8px;
+        box-shadow: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .timeline-row__preview svg {
+        height: 100%;
+    }
+
+    .timeline-row:hover .timeline-row__preview,
+    .timeline-row:focus-visible .timeline-row__preview {
+        transform: none;
+    }
+
+    .timeline-row__main {
+        grid-area: main;
+        align-self: end;
+    }
+
+    .timeline-row__year {
+        grid-area: year;
+        align-self: start;
+        font-size: 0.8rem;
+    }
+
+    .timeline-row__arrow {
+        grid-area: arrow;
+    }
+}
