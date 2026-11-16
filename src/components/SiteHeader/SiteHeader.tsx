@@ -1,43 +1,32 @@
-"use client";
-
 // EXTERNAL DEPS ===============================================================
 import Link from "next/link";
 
-// INTERNAL DEPS ===============================================================
-import { Text, Header, Div, Row, Portion } from "fictoan-react";
-
 // COMPONENTS ==================================================================
 import PersonalLogo from "@/assets/images/logo.svg";
-import Heart from "@/assets/images/heart.svg";
 
 // STYLES ======================================================================
 import "./site-header.css";
 
+const NAV_LINKS = [
+    { href: "/", label: "Work" },
+    { href: "/more-about-me", label: "About me" },
+    { href: "/hobbies", label: "Hobbies" },
+];
+
 export const SiteHeader = () => {
     return (
-        <Header id="site-header">
-            <Row className="nav-mobile" horizontalPadding="large">
-                <Portion>
-                    <Div verticallyCenterItems pushItemsToEnds>
-                        <Link href="/">
-                            <PersonalLogo width="40px" height="40px" />
-                        </Link>
+        <header className="site-header">
+            <div className="container site-header__inner">
+                <Link href="/" className="site-header__logo" aria-label="Geetika Shukla — home">
+                    <PersonalLogo width="36" height="36" aria-hidden="true" />
+                </Link>
 
-                        <Div className="links-container">
-
-                            <Link href="/experiences"><Text className="nav-links" hideOnMobile>Experiences</Text></Link>
-
-                            <Link href="/visual"><Text className="nav-links" hideOnMobile>Visual</Text></Link>
-
-                            <Link href="/type"><Text className="nav-links" hideOnMobile>Type</Text></Link>
-
-                            <Link href="/more-about-me"><Text className="nav-links" hideOnMobile>About me</Text></Link>
-
-                            <Link href="/hobbies"><Heart className="nav-icon" width="24px" height="24px" /></Link>
-                        </Div>
-                    </Div>
-                </Portion>
-            </Row>
-        </Header >
+                <nav className="site-header__nav" aria-label="Main">
+                    {NAV_LINKS.map(({ href, label }) => (
+                        <Link key={href} href={href} className="site-header__link">{label}</Link>
+                    ))}
+                </nav>
+            </div>
+        </header>
     );
 };
