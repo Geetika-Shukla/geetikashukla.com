@@ -207,7 +207,7 @@ export const Mouse = () => (
 
 // BOOKS AND PHONE =============================================================
 export const Journals = ({ handlers }: { handlers: ObjectHandlers }) => (
-    <Interactive object="journals" handlers={handlers} position={[1.15, 0, -0.65]}>
+    <Interactive object="journals" handlers={handlers} position={[0.65, 0, -0.65]}>
         <RoundedBox args={[1.4, 0.18, 1]} radius={0.03} position={[0, 0.09, 0]} castShadow><Mat color="#34507F" /></RoundedBox>
         <mesh position={[0.04, 0.09, 0.505]}><boxGeometry args={[1.28, 0.12, 0.01]} /><Mat color="#F4ECDD" /></mesh>
         <RoundedBox args={[1.2, 0.15, 0.85]} radius={0.03} position={[0.05, 0.255, 0]} castShadow><Mat color="#C9683E" /></RoundedBox>
