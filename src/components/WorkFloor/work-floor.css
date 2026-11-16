@@ -23,7 +23,10 @@
 /* LIST ===================================================================== */
 .work__list {
     position: absolute;
-    top: calc(var(--header-height) + 208px);
+    /* Level with the top corner of the top-left card (Revamping reports, cell
+       (-22, -9)): the floor's centre, less (u + v) × 0.40825 cells on screen,
+       less the title's leading so its capitals line up */
+    top: calc(max(50svh, 320px) - 12.66 * var(--c) - 6px);
     left: max(var(--page-gutter), calc((100% - var(--page-max-width)) / 2 + var(--page-gutter)));
     z-index: 2;
 }
