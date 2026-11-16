@@ -1,7 +1,6 @@
 /*
- * Once the page scrolls, content underneath is softened by a translucent,
- * blurred wash of the page colour (the floor colour on the home page) that
- * fades out towards the bottom edge, instead of meeting a hard line.
+ * Once the page scrolls, the nav sits on a solid band: a translucent, blurred
+ * wash of the page colour (the floor colour on the home page).
  */
 .site-header {
     position: sticky;
@@ -12,14 +11,12 @@
 .site-header::before {
     content: "";
     position: absolute;
-    inset: 0 0 -16px;
+    inset: 0;
     z-index: -1;
     pointer-events: none;
     background-color: color-mix(in srgb, var(--floor, var(--color-bg)) 90%, transparent);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
     transition: opacity 0.3s ease;
 }
 
