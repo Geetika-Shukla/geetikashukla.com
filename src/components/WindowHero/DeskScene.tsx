@@ -214,7 +214,7 @@ const shelf = (): Rect[] => [
     ...roundRect(398, 112, 122, 9, 4, C.shelf), rect(402, 118, 114, 2, C.shelfDark),
     ...roundRect(410, 114, 12, 2, 1, C.shelfShade), ...roundRect(496, 114, 12, 2, 1, C.shelfShade),
 
-    // Top tier: snow globe, bottle diorama, green box
+    // Top tier: snow globe, bottle diorama
     ...roundRect(411, 69, 30, 11, 3, "#D8C4A2"), rect(413, 69, 26, 2, "#E8D9BE"), rect(411, 75, 30, 2, "#C2AB86"),
     ...roundRect(419, 72, 14, 2, 1, "#8E7552"),
     ...ellipse(426, 56, 13, 13, C.glass),
@@ -233,26 +233,7 @@ const shelf = (): Rect[] => [
     ...roundRect(462, 63, 4, 7, 2, "#D2483C"), ...ellipse(464, 62, 2, 2, C.ink),
     ...roundRect(451, 61, 10, 2, 1, "#FFFFFF"),
 
-    ...roundRect(486, 45, 19, 35, 3, "#8ECF6D"), ...roundRect(486, 45, 19, 4, 2, "#B3E297"), rect(500, 49, 5, 29, "#6EAE50"),
-    ...[[490, 52], [496, 57], [490, 61], [497, 50]].flatMap(([x, y]) => ellipse(x, y, 1.2, 1.2, C.cream)),
-    ...ellipse(493, 70, 5.5, 5, "#E8708F"), ...ellipse(491, 69, 1, 1, C.ink), ...ellipse(495, 69, 1, 1, C.ink),
-    ...line(491, 72, 495, 72, 1, "#9C3550"),
-    ...line(495, 45, 497, 38, 1, "#9AA0A8"), ...raster(494, 32, 502, 40, (x, y) => {
-        const d = Math.hypot(x - 498, y - 36);
-        return d > 2 && d < 3.5;
-    }, "#9AA0A8"),
-
-    // Bottom tier: lying ceramic dog, pen jar (the cat is drawn separately)
-    ...ellipse(436, 105, 18, 7, C.ceramic),
-    ...raster(418, 105, 454, 112, (x, y) => ((x - 436) / 18) ** 2 + ((y - 105) / 7) ** 2 <= 1 && y > 108, C.ceramicSh),
-    ...line(452, 104, 457, 99, 3, C.ceramic),
-    ...ellipse(419, 98, 8, 7, C.ceramic), ...ellipse(412, 101, 5, 3.5, C.ceramic),
-    ...ellipse(423, 93, 3, 4.5, C.ceramicSh),
-    ...ellipse(417, 96, 1.2, 1.2, C.ink), ...ellipse(408, 100, 1.4, 1.2, C.ink),
-    ...line(409, 103, 414, 103, 1.5, "#E9909F"),
-    ...ellipse(413, 110, 4, 2, C.ceramic), ...ellipse(423, 110, 4, 2, C.ceramic),
-    ...ellipse(411, 111, 1, 0.8, C.ceramicSh), ...ellipse(421, 111, 1, 0.8, C.ceramicSh),
-
+    // Bottom tier: pen jar (the cat is drawn separately)
     ...line(493, 93, 493, 106, 2.5, "#5AA9E6"), ...line(497, 91, 497, 106, 2.5, C.mustard),
     ...line(500, 94, 500, 106, 2.5, "#E06A8C"), ...line(495, 95, 495, 106, 2, "#6DBE8C"),
     ...roundRect(489, 98, 15, 14, 4, C.glass), rect(491, 100, 2, 9, "#FFFFFF"), rect(489, 108, 15, 2, C.glassShade),
