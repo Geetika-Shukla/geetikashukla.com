@@ -13,15 +13,16 @@
     height: 170svh;
 }
 
+/* Full viewport height: the header overlays its top, so the grid runs up behind the nav */
 .window-hero__stage {
     position: sticky;
-    top: var(--header-height);
+    top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    height: calc(100svh - var(--header-height));
-    padding-top: 24px;
+    height: 100svh;
+    padding-top: calc(var(--header-height) + 24px);
     overflow: hidden;
     /* Anchor the grid to the bottom edge of the desk drawing */
     background-position: calc(50% - var(--unit) / 2 - 0.5px) 100%, 0 calc(100% + 1px);

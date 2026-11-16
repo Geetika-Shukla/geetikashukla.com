@@ -13,16 +13,19 @@ const NAV_LINKS = [
     { href: "/more-about-me", label: "About me" },
 ];
 
+// Two-tone heart: darker right edge, with a small shine at top left
 const HEART = fromRows([
-    ".OO...OO.",
-    "OHHO.ORRO",
-    "OHRROORRO",
-    "ORRRRRRRO",
-    ".ORRRRRO.",
-    "..ORRRO..",
-    "...ORO...",
-    "....O....",
-], { O: "#7A2320", R: "#D2483C", H: "#F08A7E" });
+    "..RR...DD..",
+    ".RRRR.RRDD.",
+    "RRDRRRRRRDD",
+    "RRDRRRRRRDD",
+    "RRRDRRRRRDD",
+    ".RRRRRRRD..",
+    "..RRRRRD...",
+    "...RRRD....",
+    "....RD.....",
+    ".....D.....",
+], { R: "#DB4535", D: "#A62E22" });
 
 export const SiteHeader = () => {
     return (
@@ -37,7 +40,7 @@ export const SiteHeader = () => {
                         <Link key={href} href={href} className="site-header__link">{label}</Link>
                     ))}
                     <Link href="/hobbies" className="site-header__heart" aria-label="Hobbies" title="Hobbies">
-                        <svg viewBox="0 0 9 8" shapeRendering="crispEdges" aria-hidden="true">
+                        <svg viewBox="0 0 11 10" shapeRendering="crispEdges" aria-hidden="true">
                             <Pixels rects={HEART} />
                         </svg>
                     </Link>
