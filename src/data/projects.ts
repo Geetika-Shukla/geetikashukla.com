@@ -10,7 +10,7 @@ import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
 import DaysOfTypeThumbnail from "@/assets/images/thumbnail-for-26-days-of-type.svg";
 import KannaujThumbnail from "@/assets/images/thumbnail-for-kannauj-perfumery.svg";
 import DevanagariThumbnail from "@/assets/images/thumbnail-for-47-days-of-devanagari-type.svg";
-import InktoberThumbnail from "@/assets/images/thumbnail-for-inktober.svg";
+import InktoberThumbnail from "@/assets/images/thumbnail-for-inktober-logo.svg";
 
 // TYPES =======================================================================
 import type { ComponentType, SVGProps } from "react";
