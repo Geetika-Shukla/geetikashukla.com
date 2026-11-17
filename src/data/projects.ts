@@ -162,7 +162,7 @@ export const timeline: TimelinePeriod[] = [
                 description : "A personal take on the alphabet, one letter a day.",
                 category    : "Visual",
                 href        : "/visual/26-days-of-type",
-                tags        : ["Lettering", "3D", "Personal"],
+                tags        : ["Vector illustrations", "Personal"],
                 Thumbnail   : DaysOfTypeThumbnail,
                 shape       : "wide",
             },
