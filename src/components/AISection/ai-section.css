@@ -1,4 +1,4 @@
-/* AI: projects built entirely with AI, three across on a gridded panel */
+/* AI: projects built entirely with AI, three across on a panel */
 .ai__inner {
     padding: 0 var(--section-margin) 120px;
 }
@@ -20,8 +20,6 @@
 }
 
 .ai__cards {
-    --line: color-mix(in srgb, var(--color-text) 6%, transparent);
-
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 24px;
@@ -29,10 +27,6 @@
     padding: 32px;
     border-radius: var(--radius);
     background-color: #EFEDE7;
-    background-image:
-        linear-gradient(to right, var(--line) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--line) 1px, transparent 1px);
-    background-size: 24px 24px;
     list-style: none;
 }
 
