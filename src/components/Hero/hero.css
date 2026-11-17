@@ -188,16 +188,14 @@
     height: auto;
 }
 
-/* Photos: plain prints */
+/* Photos: plain prints, square-cornered */
 .hero__item--photo .hero__thing {
     overflow: hidden;
-    border-radius: 4px;
 }
 
-/* Project thumbnails: cards */
+/* Project thumbnails: square-cornered cards */
 .hero__item--work .hero__thing {
     overflow: hidden;
-    border-radius: 8px;
     background-color: var(--color-surface);
 }
 
