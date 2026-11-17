@@ -54,18 +54,17 @@
     line-height: 1.05;
 }
 
-/* Ink with a flash of colour (rust, gold, teal) sweeping through every few seconds */
+/* Ink with a flash of colour (yellow into purple) sweeping through every few seconds */
 @supports (background-clip: text) or (-webkit-background-clip: text) {
     .hero__title {
         width: fit-content;
         background-image: linear-gradient(
             100deg,
             var(--color-text) 0%,
-            var(--color-text) 34%,
-            #C9683E 42%,
-            #E3B94C 50%,
-            #3F8F8A 58%,
-            var(--color-text) 66%,
+            var(--color-text) 36%,
+            #E8B931 45%,
+            #7A5AD6 55%,
+            var(--color-text) 64%,
             var(--color-text) 100%
         );
         background-size: 300% 100%;
