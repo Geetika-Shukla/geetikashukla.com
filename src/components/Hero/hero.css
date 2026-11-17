@@ -104,28 +104,24 @@
     list-style: none;
 }
 
-/* Each spans two of the grid's cells (each 14% wide); the cell is clear of the
-   grid's lines, with only its outline */
+/* A cut-out of the board's grid, placed by Hero.tsx on whole squares: the
+   lines inside it are cleared, the ones round it remain as its edge */
 .hero__phrase {
     position: absolute;
-    top: var(--y);
-    left: var(--x);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 27%;
-    height: 17%;
     padding: 0 12px;
-    border: 1px solid color-mix(in srgb, var(--color-text) 14%, transparent);
     background-color: var(--paper);
     color: var(--color-text);
     font-family: var(--font-heading);
-    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    /* Sized to the grid: a line is one square, the middle of the cut-out's three */
+    font-size: 22px;
     font-weight: 500;
-    line-height: 1.15;
+    line-height: 24px;
+    white-space: nowrap;
     text-align: center;
     opacity: clamp(0, calc(1 - var(--p) * 2.5), 1);
-    transform: translate(-50%, calc(-50% - var(--p) * 16px));
 }
 
 /* THINGS =================================================================== */

@@ -81,10 +81,24 @@ const PHRASES: { text: string; at: [number, number] }[] = [
     { text: "Always a student,", at: [29, 18] },
     { text: "from buildings to brands,", at: [57, 38] },
     { text: "exhibitions to products,", at: [29, 58] },
-    { text: "and whatever comes next.", at: [71, 78] },
+    { text: "and whatever comes next…", at: [71, 78] },
 ];
 
 type Offsets = Record<string, { x: number; y: number }>;
+
+// The board's grid: squares of BLOCK px, drawn from its top-left corner (hero.css).
+// Each phrase is a cut-out of whole squares, PHRASE_ROWS tall and about two of
+// the board's cells (29% of its width) wide, around its place.
+const BLOCK = 24;
+const PHRASE_ROWS = 3;
+
+const cutOut = ([x, y]: [number, number], board: { w: number; h: number }): CSSProperties => {
+    const columns = Math.floor((board.w * 0.29) / BLOCK);
+    const left = Math.round(((x / 100) * board.w - (columns * BLOCK) / 2) / BLOCK) * BLOCK;
+    const top = Math.round(((y / 100) * board.h - (PHRASE_ROWS * BLOCK) / 2) / BLOCK) * BLOCK;
+    // Inside the grid lines that bound it, so those lines stay as its edge
+    return { left: left + 1, top: top + 1, width: columns * BLOCK - 1, height: PHRASE_ROWS * BLOCK - 1 };
+};
 
 /*
  * Hero: a board of things, opening as a tidy grid with a line set in its
@@ -94,6 +108,19 @@ type Offsets = Record<string, { x: number; y: number }>;
  */
 export const Hero = () => {
     const sectionRef = useRef<HTMLElement>(null);
+    const boardRef = useRef<HTMLDivElement>(null);
+    // The board's size, to fit the phrases' cut-outs to its grid
+    const [board, setBoard] = useState<{ w: number; h: number } | null>(null);
+
+    useEffect(() => {
+        const element = boardRef.current;
+        if (!element) return;
+        const observer = new ResizeObserver(([entry]) => {
+            setBoard({ w: entry.contentRect.width, h: entry.contentRect.height });
+        });
+        observer.observe(element);
+        return () => observer.disconnect();
+    }, []);
     // How far each thing has been dragged from its place (px)
     const [offsets, setOffsets] = useState<Offsets>({});
     const drag = useRef<{ id: string; x: number; y: number; from: { x: number; y: number }; moved: boolean } | null>(null);
@@ -149,7 +176,7 @@ export const Hero = () => {
 
     return (
         <section ref={sectionRef} className="hero" aria-label="Introduction">
-            <div className="hero__board">
+            <div className="hero__board" ref={boardRef}>
                 <header className="hero__intro">
                     <h1 className="hero__title">Geetika Shukla</h1>
                     <p className="hero__role">
@@ -158,8 +185,8 @@ export const Hero = () => {
                 </header>
 
                 <ul className="hero__phrases" aria-hidden="true">
-                    {PHRASES.map(({ text, at: [x, y] }) => (
-                        <li key={text} className="hero__phrase" style={{ "--x": `${x}%`, "--y": `${y}%` } as CSSProperties}>
+                    {board && PHRASES.map(({ text, at }) => (
+                        <li key={text} className="hero__phrase" style={cutOut(at, board)}>
                             {text}
                         </li>
                     ))}
