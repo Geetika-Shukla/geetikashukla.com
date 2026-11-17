@@ -58,8 +58,9 @@ const filterFromHash = (hash: string): Category | null =>
  * between them, the page glides on to the floor (scrolling down) or back to
  * the room (scrolling up). Below the floor's top, scrolling is free. Done in
  * script because CSS snapping pulls a short wheel scroll back to the room.
- * Marks the page (html.is-at-work) while it rests on the floor, so the nav
- * can drop its background there.
+ * Marks the page (html.is-at-work) while it rests at the floor's top, so the
+ * nav can drop its background there; scrolled on past it, the nav's glass
+ * returns over the cards.
  */
 const useSnapToFloor = (floorRef: React.RefObject<HTMLElement | null>) => {
     useEffect(() => {
@@ -82,7 +83,7 @@ const useSnapToFloor = (floorRef: React.RefObject<HTMLElement | null>) => {
 
         const onScroll = () => {
             const y = window.scrollY;
-            root.classList.toggle("is-at-work", y >= floorTop() - 1);
+            root.classList.toggle("is-at-work", Math.abs(y - floorTop()) <= 1);
             if (y !== lastY) direction = Math.sign(y - lastY);
             lastY = y;
             window.clearTimeout(timer);

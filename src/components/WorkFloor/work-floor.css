@@ -23,9 +23,16 @@
     --plane-shift: 0px;
 }
 
-/* Cell (0, 0) is the middle of the cards: 32 cells in from their left edge */
+/* The floor runs a quarter-screen past the snapped view, so a card in the
+   bottom row has room to open when the page scrolls on a little */
+.work .floor {
+    height: 125svh;
+}
+
+/* Cell (0, 0) is the middle of the cards (32 cells in from their left edge),
+   centred in the first screen below the nav */
 .work .floor__plane {
-    top: calc(50% + var(--header-height) / 2);
+    top: calc(50svh + var(--header-height) / 2);
     left: calc(var(--edge) + var(--list-column) + 32 * var(--c));
 }
 
