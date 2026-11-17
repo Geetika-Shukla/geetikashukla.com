@@ -124,6 +124,21 @@
     opacity: clamp(0, calc(1 - var(--p) * 2.5), 1);
 }
 
+/* CUT-OUTS ================================================================= */
+/* Where each thing sits in the grid, a cut-out like the phrases' (placed by
+   Hero.tsx); they go as the board scatters */
+.hero__cuts {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.hero__cut {
+    position: absolute;
+    background-color: var(--paper);
+    opacity: clamp(0, calc(1 - var(--p) * 2.5), 1);
+}
+
 /* THINGS =================================================================== */
 .hero__items {
     margin: 0;
@@ -173,11 +188,10 @@
     height: auto;
 }
 
-/* Photos: plain prints, no border, with a soft shadow */
+/* Photos: plain prints */
 .hero__item--photo .hero__thing {
     overflow: hidden;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(43, 45, 56, 0.08), 0 10px 24px rgba(43, 45, 56, 0.1);
 }
 
 /* Project thumbnails: cards */
@@ -185,17 +199,11 @@
     overflow: hidden;
     border-radius: 8px;
     background-color: var(--color-surface);
-    box-shadow: 0 2px 4px rgba(43, 45, 56, 0.08), 0 10px 24px rgba(43, 45, 56, 0.1);
 }
 
 .hero__item--work svg {
     aspect-ratio: 16 / 10;
     height: auto;
-}
-
-/* Illustrations: stickers, with a soft drop shadow */
-.hero__item--art .hero__thing {
-    filter: drop-shadow(0 4px 8px rgba(43, 45, 56, 0.12));
 }
 
 /* VINYL ==================================================================== */
@@ -266,7 +274,8 @@
         font-size: 2.4rem;
     }
 
-    .hero__phrases {
+    .hero__phrases,
+    .hero__cuts {
         display: none;
     }
 

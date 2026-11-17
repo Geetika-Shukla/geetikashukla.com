@@ -86,19 +86,31 @@ const PHRASES: { text: string; at: [number, number] }[] = [
 
 type Offsets = Record<string, { x: number; y: number }>;
 
+type Size = { w: number; h: number };
+
 // The board's grid: squares of BLOCK px, drawn from its top-left corner (hero.css).
-// Each phrase is a cut-out of whole squares, PHRASE_ROWS tall and about two of
-// the board's cells (29% of its width) wide, around its place.
+// Phrases and things sit in cut-outs of whole squares, centred on their place.
+// A phrase's is PHRASE_ROWS tall and about two of the board's cells (29% of
+// its width) wide; a thing's is the thing plus about half a square all round.
 const BLOCK = 24;
 const PHRASE_ROWS = 3;
 
-const cutOut = ([x, y]: [number, number], board: { w: number; h: number }): CSSProperties => {
-    const columns = Math.floor((board.w * 0.29) / BLOCK);
-    const left = Math.round(((x / 100) * board.w - (columns * BLOCK) / 2) / BLOCK) * BLOCK;
-    const top = Math.round(((y / 100) * board.h - (PHRASE_ROWS * BLOCK) / 2) / BLOCK) * BLOCK;
-    // Inside the grid lines that bound it, so those lines stay as its edge
-    return { left: left + 1, top: top + 1, width: columns * BLOCK - 1, height: PHRASE_ROWS * BLOCK - 1 };
-};
+type Cut = { left: number; top: number; width: number; height: number };
+
+const cutOut = ([x, y]: [number, number], columns: number, rows: number, board: Size): Cut => ({
+    left   : Math.round(((x / 100) * board.w - (columns * BLOCK) / 2) / BLOCK) * BLOCK,
+    top    : Math.round(((y / 100) * board.h - (rows * BLOCK) / 2) / BLOCK) * BLOCK,
+    width  : columns * BLOCK,
+    height : rows * BLOCK,
+});
+
+// Drawn just inside the grid lines that bound it, so those lines stay as its edge
+const cutStyle = ({ left, top, width, height }: Cut): CSSProperties =>
+    ({ left: left + 1, top: top + 1, width: width - 1, height: height - 1 });
+
+const phraseCut = (at: [number, number], board: Size) => cutOut(at, Math.floor((board.w * 0.29) / BLOCK), PHRASE_ROWS, board);
+const thingCut = (at: [number, number], size: Size, board: Size) =>
+    cutOut(at, Math.ceil((size.w + BLOCK) / BLOCK), Math.ceil((size.h + BLOCK) / BLOCK), board);
 
 /*
  * Hero: a board of things, opening as a tidy grid with a line set in its
@@ -109,16 +121,23 @@ const cutOut = ([x, y]: [number, number], board: { w: number; h: number }): CSSP
 export const Hero = () => {
     const sectionRef = useRef<HTMLElement>(null);
     const boardRef = useRef<HTMLDivElement>(null);
-    // The board's size, to fit the phrases' cut-outs to its grid
-    const [board, setBoard] = useState<{ w: number; h: number } | null>(null);
+    // The board's and the things' sizes, to fit their cut-outs to the grid
+    const [board, setBoard] = useState<Size | null>(null);
+    const [sizes, setSizes] = useState<Record<string, Size>>({});
+    const thingRefs = useRef<Record<string, HTMLElement | null>>({});
 
     useEffect(() => {
         const element = boardRef.current;
         if (!element) return;
-        const observer = new ResizeObserver(([entry]) => {
-            setBoard({ w: entry.contentRect.width, h: entry.contentRect.height });
-        });
+        const measure = () => {
+            setBoard({ w: element.clientWidth, h: element.clientHeight });
+            setSizes(Object.fromEntries(Object.entries(thingRefs.current).flatMap(([id, thing]) =>
+                thing ? [[id, { w: thing.offsetWidth, h: thing.offsetHeight }]] : [])));
+        };
+        // Photos change size as they load, so watch the things as well as the board
+        const observer = new ResizeObserver(measure);
         observer.observe(element);
+        Object.values(thingRefs.current).forEach((thing) => thing && observer.observe(thing));
         return () => observer.disconnect();
     }, []);
     // How far each thing has been dragged from its place (px)
@@ -186,17 +205,28 @@ export const Hero = () => {
 
                 <ul className="hero__phrases" aria-hidden="true">
                     {board && PHRASES.map(({ text, at }) => (
-                        <li key={text} className="hero__phrase" style={cutOut(at, board)}>
+                        <li key={text} className="hero__phrase" style={cutStyle(phraseCut(at, board))}>
                             {text}
                         </li>
+                    ))}
+                </ul>
+
+                {/* Each thing's cut-out, where it sits in the grid */}
+                <ul className="hero__cuts" aria-hidden="true">
+                    {board && ITEMS.map(({ id, grid }) => sizes[id] && (
+                        <li key={id} className="hero__cut" style={cutStyle(thingCut(grid, sizes[id], board))} />
                     ))}
                 </ul>
 
                 <ul className="hero__items">
                     {ITEMS.map(({ id, kind, content, label, href, w, scatter: [sx, sy, tilt], grid: [gx, gy] }) => {
                         const offset = offsets[id] ?? { x: 0, y: 0 };
+                        // In the grid, centred in its cut-out once measured
+                        const cut = board && sizes[id] ? thingCut([gx, gy], sizes[id], board) : null;
                         const style = {
-                            "--sx": `${sx}%`, "--sy": `${sy}%`, "--gx": `${gx}%`, "--gy": `${gy}%`,
+                            "--sx": `${sx}%`, "--sy": `${sy}%`,
+                            "--gx": cut ? `${cut.left + cut.width / 2}px` : `${gx}%`,
+                            "--gy": cut ? `${cut.top + cut.height / 2}px` : `${gy}%`,
                             "--tilt": `${tilt}deg`, "--w": w,
                             "--dx": `${offset.x}px`, "--dy": `${offset.y}px`,
                         } as CSSProperties;
@@ -204,8 +234,8 @@ export const Hero = () => {
                         return (
                             <li key={id} className={`hero__item hero__item--${kind}`} style={style} title={label}>
                                 {href
-                                    ? <Link href={href} className="hero__thing" draggable={false} aria-label={label} {...handlers}>{content}</Link>
-                                    : <span className="hero__thing" {...handlers}>{content}</span>}
+                                    ? <Link href={href} ref={(node) => { thingRefs.current[id] = node; }} className="hero__thing" draggable={false} aria-label={label} {...handlers}>{content}</Link>
+                                    : <span ref={(node) => { thingRefs.current[id] = node; }} className="hero__thing" {...handlers}>{content}</span>}
                             </li>
                         );
                     })}
