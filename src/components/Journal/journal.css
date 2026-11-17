@@ -48,95 +48,248 @@
 }
 
 /* PAGES ==================================================================== */
+/* Plain paper with a faint dot grid, like a bullet journal */
 .journal__page {
     position: absolute;
     top: 0;
     width: 50%;
     height: 100%;
-    overflow: auto;
-    padding: 36px 40px;
+    overflow: hidden;
+    padding: 28px 32px;
     background-color: var(--page);
-    /* Ruled every 24px, the height of a line of text */
-    background-image: linear-gradient(to bottom, transparent 23px, var(--rule) 23px, var(--rule) 24px);
-    background-size: 100% 24px;
-    background-position: 0 36px;
+    background-image: radial-gradient(circle, color-mix(in srgb, #1F3B5C 16%, transparent) 1px, transparent 1.2px);
+    background-size: 20px 20px;
+    background-position: 10px 10px;
     color: var(--color-text);
-    font-size: 0.95rem;
-    line-height: 24px;
+    font-size: 0.9rem;
+    line-height: 1.4;
 }
 
 .journal__page--right {
     left: 50%;
+    display: flex;
+    flex-direction: column;
     border-radius: 2px var(--radius) var(--radius) 2px;
     box-shadow: inset 12px 0 18px -14px rgba(43, 45, 56, 0.25), 0 18px 40px rgba(43, 45, 56, 0.12);
 }
 
+/* A handwritten-feeling page heading */
 .journal__label {
-    margin: 0 0 10px;
+    margin: 0 0 12px;
     color: var(--color-accent-2);
     font-family: var(--font-heading);
-    font-size: 1.15rem;
-    font-weight: 700;
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 500;
 }
 
-.journal__list,
-.journal__timeline {
+/* SCRAPBOOK PIECES ========================================================= */
+/* Washi tape: a translucent striped strip across the top of whatever it holds */
+.journal__tape {
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    width: 64px;
+    height: 18px;
+    background-color: color-mix(in srgb, var(--tape, #E3B94C) 55%, transparent);
+    background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.35) 0 4px, transparent 4px 9px);
+    transform: translateX(-50%) rotate(-3deg);
+}
+
+/* Sticky notes, a little askew, in four soft colours */
+.journal__stop,
+.journal__note {
+    --note: #F7E08A;
+    --tape: #7FB7B2;
+
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin: 0 0 22px;
+    gap: 2px;
+    padding: 16px 14px 14px;
+    background-color: var(--note);
+    box-shadow: 0 1px 2px rgba(43, 45, 56, 0.12), 0 4px 10px rgba(43, 45, 56, 0.06);
+    transform: rotate(var(--tilt, -1.5deg));
+}
+
+.journal__stop:nth-child(4n + 2),
+.journal__note:nth-child(4n + 2) {
+    --note: #F6CFC9;
+    --tape: #E3B94C;
+    --tilt: 1.5deg;
+}
+
+.journal__stop:nth-child(4n + 3),
+.journal__note:nth-child(4n + 3) {
+    --note: #CFE7D9;
+    --tape: #C9683E;
+    --tilt: -1deg;
+}
+
+.journal__stop:nth-child(4n + 4),
+.journal__note:nth-child(4n + 4) {
+    --note: #D3E1F2;
+    --tape: #E3B94C;
+    --tilt: 2deg;
+}
+
+.journal__stop strong,
+.journal__note strong {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    line-height: 1.2;
+}
+
+/* THE ROUTE ================================================================ */
+/* Six notes in a snake (left to right, back, then across again), with a
+   hand-drawn line running through them in order */
+.journal__route {
+    position: relative;
+    height: calc(100% - 96px);
+}
+
+.journal__path {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--color-text);
+    stroke-opacity: 0.55;
+    stroke-width: 1.6;
+    stroke-dasharray: 5 6;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+}
+
+.journal__path .journal__path-head {
+    stroke-dasharray: none;
+}
+
+.journal__path path {
+    vector-effect: non-scaling-stroke;
+}
+
+.journal__stops {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(3, 1fr);
+    gap: 18px 44px;
+    height: 100%;
+    margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.journal__muted {
-    display: block;
-    color: var(--color-text-muted);
+/* The snake: the second row runs right to left */
+.journal__stop:nth-child(3) {
+    grid-area: 2 / 2;
 }
 
-.journal__muted--inline {
-    display: inline;
+.journal__stop:nth-child(4) {
+    grid-area: 2 / 1;
 }
 
-.journal__timeline li {
-    padding-left: 16px;
-    border-left: 2px solid color-mix(in srgb, var(--color-accent-2) 35%, transparent);
+.journal__stop {
+    align-self: center;
+    padding-left: 54px;
 }
 
-.journal__dates {
-    display: block;
-    color: var(--color-text-muted);
-    font-size: 0.78rem;
+/* The place's logo as a round sticker on the note's corner */
+.journal__badge {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(43, 45, 56, 0.2);
+}
+
+.journal__badge svg {
+    width: 100%;
+    height: 100%;
+}
+
+.journal__years {
+    color: var(--color-accent-2);
+    font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
 }
 
-.journal__resume,
-.journal__close {
-    display: inline-block;
-    padding: 9px 16px;
-    border: 0;
+.journal__place {
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+}
+
+/* IN PRACTICE ============================================================== */
+.journal__notes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 18px;
+    margin: 6px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.journal__note span:not(.journal__tape) {
+    color: var(--color-text);
+    font-size: 0.78rem;
+    line-height: 1.45;
+    opacity: 0.8;
+}
+
+/* The résumé, as a paper ticket taped to the page */
+.journal__ticket {
+    --tape: #7FB7B2;
+
+    position: relative;
+    align-self: center;
+    margin-top: auto;
+    padding: 12px 22px;
     border-radius: var(--radius-small);
-    background-color: var(--color-text);
+    background-color: var(--color-accent-2);
     color: #FFFFFF;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transform: rotate(-2deg);
+    transition: transform 0.25s ease, background-color 0.2s ease;
+    /* Notched ends, like a ticket */
+    mask: radial-gradient(circle 7px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat,
+          radial-gradient(circle 7px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat;
+}
+
+.journal__ticket:hover,
+.journal__ticket:focus-visible {
+    background-color: #9C4A2A;
+    transform: rotate(0deg) scale(1.03);
+}
+
+.journal__close {
+    position: absolute;
+    right: 24px;
+    bottom: 18px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--color-text-muted);
     cursor: pointer;
     font: inherit;
+    font-family: var(--font-heading);
     font-size: 0.9rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
-}
-
-.journal__close {
-    border: 1px solid color-mix(in srgb, var(--color-text) 20%, transparent);
-    background-color: transparent;
-    color: var(--color-text);
-}
-
-.journal__resume:hover,
-.journal__resume:focus-visible {
-    background-color: #404040;
+    font-style: italic;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 /* COVER ==================================================================== */
@@ -328,6 +481,36 @@
         position: static;
         backface-visibility: visible;
         -webkit-backface-visibility: visible;
+    }
+
+    /* The scrapbook in one column; the drawn route only suits the two-column snake */
+    .journal__page {
+        overflow: visible;
+    }
+
+    .journal__route {
+        height: auto;
+    }
+
+    .journal__path {
+        display: none;
+    }
+
+    .journal__stops,
+    .journal__notes {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        gap: 24px;
+        height: auto;
+    }
+
+    .journal__stop:nth-child(3),
+    .journal__stop:nth-child(4) {
+        grid-area: auto;
+    }
+
+    .journal__ticket {
+        margin-top: 28px;
     }
 }
 
