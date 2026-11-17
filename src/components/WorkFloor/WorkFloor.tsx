@@ -26,21 +26,22 @@ const FILTERS: { id: string; label: string; category: Category }[] = [
 ];
 
 /*
- * Project cards on the floor's lattice (see IsoFloor), spread over the viewport
- * and clear of the list's column. `art` scales a thumbnail down inside its card
- * where it reads too large.
+ * Project cards on the floor's lattice (see IsoFloor), laid flat in three rows
+ * beside the list. Positions are the top-left corner in cells from the plane's
+ * centre; the arrangement spans u −32 to 32 and v −16 to 15. `art` scales a
+ * thumbnail down inside its card where it reads too large.
  */
 const BENTO: { href: string; size: IsoSize; u: number; v: number; art?: number }[] = [
-    { href: "/visual/26-days-of-type", size: "2x1", u: 0, v: -31 },
-    { href: "/visual/kannauj-perfumery", size: "2x1", u: -11, v: -20 },
-    { href: "/experiences/path-to-partnerships", size: "2x1", u: 11, v: -20 },
-    { href: "/experiences/revamping-reports", size: "2x1", u: -22, v: -9 },
-    { href: "/visual/people-experience", size: "2x1", u: 0, v: -9 },
-    { href: "/visual/icon-system-for-setu", size: "1x1", u: 22, v: -9 },
-    { href: "/experiences/hdfc-journeys", size: "1x1", u: -11, v: 2 },
-    { href: "/experiences/assisted-product-discovery", size: "1x1", u: 0, v: 2 },
-    { href: "/type/inktober-2017", size: "2x1", u: 11, v: 2, art: 0.56 },
-    { href: "/type/47-days-of-devanagari-type", size: "2x1", u: 0, v: 13 },
+    { href: "/experiences/revamping-reports", size: "2x1", u: -32, v: -16 },
+    { href: "/visual/kannauj-perfumery", size: "2x1", u: -10, v: -16 },
+    { href: "/visual/26-days-of-type", size: "2x1", u: 12, v: -16 },
+    { href: "/experiences/hdfc-journeys", size: "1x1", u: -32, v: -5 },
+    { href: "/experiences/assisted-product-discovery", size: "1x1", u: -21, v: -5 },
+    { href: "/visual/people-experience", size: "2x1", u: -10, v: -5 },
+    { href: "/experiences/path-to-partnerships", size: "2x1", u: 12, v: -5 },
+    { href: "/type/47-days-of-devanagari-type", size: "2x1", u: -32, v: 6 },
+    { href: "/type/inktober-2017", size: "2x1", u: -10, v: 6, art: 0.56 },
+    { href: "/visual/icon-system-for-setu", size: "1x1", u: 12, v: 6 },
 ];
 
 const BY_HREF = new Map(timeline.flatMap((period) => period.projects).map((project) => [project.href, project]));
@@ -148,7 +149,7 @@ export const WorkFloor = () => {
                 </ul>
             </nav>
 
-            <IsoFloor tiles={tiles} floorRef={floorRef} />
+            <IsoFloor tiles={tiles} floorRef={floorRef} view="flat" />
         </div>
     );
 };

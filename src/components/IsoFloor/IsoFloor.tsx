@@ -74,6 +74,9 @@ const layoutFor = (tiles: IsoTile[], open: Open | null): Map<IsoTile, [number, n
 interface IsoFloorProps {
     tiles     : IsoTile[];
     floorRef? : RefObject<HTMLDivElement>;
+    /* "iso": the floor tilted to an isometric angle. "flat": the same grid and
+       cards laid flat, u across and v down the screen. */
+    view?     : "iso" | "flat";
     /* "reveal": hovering or focusing a card opens it, growing at the bottom to
        show its title (and description) while the cards around it make room.
        "overlay": titles always show over the imagery, and cards stay still.
@@ -81,7 +84,7 @@ interface IsoFloorProps {
     captions? : "reveal" | "overlay" | "none";
 }
 
-export const IsoFloor = ({ tiles, floorRef, captions = "reveal" }: IsoFloorProps) => {
+export const IsoFloor = ({ tiles, floorRef, captions = "reveal", view = "iso" }: IsoFloorProps) => {
     const reveal = captions === "reveal";
     const [open, setOpen] = useState<Open | null>(null);
     const openTile = (tile: IsoTile, element: HTMLElement) => {
@@ -92,7 +95,7 @@ export const IsoFloor = ({ tiles, floorRef, captions = "reveal" }: IsoFloorProps
     const offsets = layoutFor(tiles, open);
 
     return (
-        <div className={`floor floor--${captions}`} ref={floorRef}>
+        <div className={`floor floor--${captions} floor--${view}`} ref={floorRef}>
             <div className="floor__plane">
                 <ul className="floor__tiles">
                     {tiles.map((tile) => {

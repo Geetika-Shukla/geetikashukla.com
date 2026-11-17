@@ -1,19 +1,32 @@
 /*
- * Work: a filter list on the left, beside project cards on an isometric floor
- * (IsoFloor, which carries the floor and card styles). Clicking the title
- * clears the filter.
+ * Work: a filter list on the left, beside project cards laid flat on the
+ * floor's grid (IsoFloor, which carries the floor and card styles). Clicking
+ * the title clears the filter.
  */
 .work {
     position: relative;
 }
 
+/*
+ * Cells sized so the three rows (64 × 31 cells) fit beside the list and below
+ * the nav; the plane sits right of centre by half the list's column, and down
+ * by half the nav.
+ */
+.work.iso {
+    --c: min(calc((100vw - 400px) / 64), calc((100svh - 220px) / 31));
+    --plane-shift: 170px;
+}
+
+.work .floor__plane {
+    top: calc(50% + var(--header-height) / 2);
+}
+
 /* LIST ===================================================================== */
 .work__list {
     position: absolute;
-    /* Level with the top corner of the top-left card (Revamping reports, cell
-       (-22, -9)): the floor's centre, less (u + v) × 0.40825 cells on screen,
-       less the title's leading so its capitals line up */
-    top: calc(max(50svh, 320px) - 12.66 * var(--c) - 6px);
+    /* Level with the top of the first row (v −16), less the title's leading so
+       its capitals line up */
+    top: calc(max(50svh, 320px) + var(--header-height) / 2 - 16 * var(--c) - 6px);
     left: max(var(--page-gutter), calc((100% - var(--page-max-width)) / 2 + var(--page-gutter)));
     z-index: 2;
 }

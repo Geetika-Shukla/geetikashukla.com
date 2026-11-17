@@ -92,6 +92,11 @@
     pointer-events: none;
 }
 
+/* Flat view: the same plane, untilted */
+.floor--flat .floor__plane {
+    transform: translate(calc(-50% + var(--plane-shift)), -50%);
+}
+
 .floor__tiles {
     margin: 0;
     padding: 0;
