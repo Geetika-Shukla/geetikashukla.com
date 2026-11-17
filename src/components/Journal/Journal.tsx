@@ -8,6 +8,7 @@ import { EDUCATION, PRACTICE, RESUME_URL, ROLES } from "@/data/about";
 
 // INTERNAL DEPS ===============================================================
 import { InkBottle, PixelHeart, Spool } from "@/components/Hero/Illustrations";
+import { ClaudeSpark, ContributionStrip, FigmaMark, Hanko } from "./CoverPieces";
 
 // STYLES ======================================================================
 import "./journal.css";
@@ -23,6 +24,7 @@ import RBIHLogo from "@/assets/images/rbih-logo.svg";
 // TYPES =======================================================================
 import type { ComponentType, SVGProps } from "react";
 import type { Degree, Role } from "@/data/about";
+import type { Contributions } from "@/data/github";
 
 interface Stop {
     years : string;
@@ -63,9 +65,11 @@ const logoProps = (Logo: Stop["Logo"]): SVGProps<SVGSVGElement> =>
  * swings open on its left edge; its inside becomes the left page, the route so
  * far (sticky notes taped down, each with its place's logo as a sticker, joined
  * by a hand-drawn line), and the right page underneath holds the ways of
- * working, as notes, and the résumé, as a ticket.
+ * working, as notes, and the résumé, as a ticket. The front of the cover is
+ * a scrapbook too: a sticky note, a name seal, stickers and a torn strip of
+ * the last year's GitHub contributions.
  */
-export const Journal = () => {
+export const Journal = ({ contributions }: { contributions: Contributions | null }) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -105,14 +109,24 @@ export const Journal = () => {
                     >
                         <span className="journal__strap" aria-hidden="true" />
                         <span className="journal__plate">
-                            <span className="journal__plate-title">Notes on a practice</span>
-                            <span className="journal__plate-name">Geetika Shukla</span>
+                            <span className="journal__plate-tag">Notes on a practice</span>
+                            <span className="journal__plate-title">Always a student, from buildings to brands, exhibitions to products.</span>
+                            <span className="journal__hanko" aria-hidden="true"><Hanko /></span>
                         </span>
                         <span className="journal__stickers" aria-hidden="true">
+                            <span className="journal__sticker journal__sticker--claude"><ClaudeSpark /></span>
+                            <span className="journal__sticker journal__sticker--figma"><FigmaMark /></span>
                             <span className="journal__sticker journal__sticker--heart"><PixelHeart /></span>
                             <span className="journal__sticker journal__sticker--ink"><InkBottle /></span>
                             <span className="journal__sticker journal__sticker--spool"><Spool /></span>
                         </span>
+                        {contributions && contributions.days.length > 0 && (
+                            <span className="journal__contrib" aria-hidden="true">
+                                <span className="journal__tape journal__tape--left" />
+                                <ContributionStrip {...contributions} />
+                                <span className="journal__tape journal__tape--right" />
+                            </span>
+                        )}
                         <span className="journal__hint">Open</span>
                     </button>
 
