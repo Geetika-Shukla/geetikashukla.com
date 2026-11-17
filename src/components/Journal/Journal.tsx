@@ -2,165 +2,120 @@
 
 // EXTERNAL DEPS ===============================================================
 import React, { useState } from "react";
-
-// DATA ========================================================================
-import { EDUCATION, PRACTICE, RESUME_URL, ROLES } from "@/data/about";
+import { Caveat } from "next/font/google";
 
 // INTERNAL DEPS ===============================================================
 import { InkBottle, PixelHeart, Spool } from "@/components/Hero/Illustrations";
 import { ClaudeSpark, ContributionStrip, FigmaMark, Hanko } from "./CoverPieces";
+import { SPREADS } from "./Spreads";
 
 // STYLES ======================================================================
 import "./journal.css";
 
-// ASSETS ======================================================================
-import FOALogo from "@/assets/images/foa-logo.svg";
-import NIDLogo from "@/assets/images/nid-logo.svg";
-import NSLogo from "@/assets/images/ns-logo.svg";
-import AtherLogo from "@/assets/images/ather-logo.svg";
-import SetuLogo from "@/assets/images/setu-logo.svg";
-import RBIHLogo from "@/assets/images/rbih-logo.svg";
-
 // TYPES =======================================================================
-import type { ComponentType, SVGProps } from "react";
-import type { Degree, Role } from "@/data/about";
+import type { CSSProperties } from "react";
 import type { Contributions } from "@/data/github";
 
-interface Stop {
-    years : string;
-    title : string;
-    place : string;
-    Logo  : ComponentType<SVGProps<SVGSVGElement>>;
-}
+// Handwriting, for the notes in the margins
+const hand = Caveat({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-hand" });
 
-// "M.Des. (2017–19)" → the degree and its years
-const fromDegree = ({ degree, school }: Degree, Logo: Stop["Logo"]): Stop => {
-    const [, title = degree, years = ""] = degree.match(/^(.*?)\s*\((.*)\)$/) ?? [];
-    return { years, title, place: school.split(",")[0], Logo };
-};
-
-const fromRole = ({ title, company, dates }: Role, Logo: Stop["Logo"]): Stop =>
-    ({ years: dates, title, place: company, Logo });
-
-const [nid, foa] = EDUCATION;
-const [rbih, setu, ather, nonesuch] = ROLES;
-
-// The route so far, oldest first
-const STOPS: Stop[] = [
-    fromDegree(foa, FOALogo),
-    fromDegree(nid, NIDLogo),
-    fromRole(nonesuch, NSLogo),
-    fromRole(ather, AtherLogo),
-    fromRole(setu, SetuLogo),
-    fromRole(rbih, RBIHLogo),
-];
-
-// The round badge logos (51 × 51) lose their viewBox in the SVG build; giving it
-// back lets them scale to their sticker. RBIH's wordmark keeps its own.
-const logoProps = (Logo: Stop["Logo"]): SVGProps<SVGSVGElement> =>
-    Logo === RBIHLogo ? {} : { viewBox: "0 0 51 51" };
+// The cover, then each spread
+const CLOSED = -1;
 
 /*
- * Journal: a closed notebook that opens into a scrapbook spread. The cover
- * swings open on its left edge; its inside becomes the left page, the route so
- * far (sticky notes taped down, each with its place's logo as a sticker, joined
- * by a hand-drawn line), and the right page underneath holds the ways of
- * working, as notes, and the résumé, as a ticket. The front of the cover is
- * a scrapbook too: a sticky note, a name seal, stickers and a torn strip of
- * the last year's GitHub contributions.
+ * Journal: a closed notebook whose cover is a scrapbook (a sticky note, a name
+ * seal, stickers and a torn strip of the last year's GitHub contributions).
+ * The cover swings open on its left edge; its inside becomes the left page of
+ * each spread, and the right page sits underneath. Arrows and dots turn from
+ * the cover through the spreads.
  */
 export const Journal = ({ contributions }: { contributions: Contributions | null }) => {
-    const [open, setOpen] = useState(false);
+    const [page, setPage] = useState(CLOSED);
+    const open = page !== CLOSED;
+    const last = SPREADS.length - 1;
 
     return (
-        <section id="journal" className="journal" aria-labelledby="journal-title">
+        <section id="journal" className={`journal ${hand.variable}`} aria-labelledby="journal-title">
             <h2 id="journal-title" className="journal__heading">The story so far</h2>
             <p className="journal__lede">{open ? "Detours, drafts, and dots that eventually connect." : "Open the journal."}</p>
 
-            <div className="journal__book" data-open={open}>
-                {/* Right page, under the cover */}
-                <div className="journal__page journal__page--right">
-                    <h3 className="journal__label">In practice</h3>
-                    <ul className="journal__notes">
-                        {PRACTICE.map(({ title, text }) => (
-                            <li key={title} className="journal__note">
-                                <span className="journal__tape" aria-hidden="true" />
-                                <strong>{title}</strong>
-                                <span>{text}</span>
-                            </li>
-                        ))}
-                    </ul>
-
-                    <a className="journal__ticket" href={RESUME_URL} target="_blank" rel="noopener noreferrer" download>
-                        <span className="journal__tape" aria-hidden="true" />
-                        Download résumé <span aria-hidden="true">↓</span>
-                    </a>
-                </div>
-
-                {/* The cover: its front is the notebook; its back, once open, is the left page */}
-                <div className="journal__cover">
-                    <button
-                        type="button"
-                        className="journal__face journal__face--front"
-                        onClick={() => setOpen(true)}
-                        aria-expanded={open}
-                        aria-label="Open the journal"
-                        tabIndex={open ? -1 : 0}
-                    >
-                        <span className="journal__strap" aria-hidden="true" />
-                        <span className="journal__plate">
-                            <span className="journal__plate-tag">Notes on a practice</span>
-                            <span className="journal__plate-title">Always a student, from buildings to brands, exhibitions to products.</span>
-                            <span className="journal__hanko" aria-hidden="true"><Hanko /></span>
-                        </span>
-                        <span className="journal__stickers" aria-hidden="true">
-                            <span className="journal__sticker journal__sticker--claude"><ClaudeSpark /></span>
-                            <span className="journal__sticker journal__sticker--figma"><FigmaMark /></span>
-                            <span className="journal__sticker journal__sticker--heart"><PixelHeart /></span>
-                            <span className="journal__sticker journal__sticker--ink"><InkBottle /></span>
-                            <span className="journal__sticker journal__sticker--spool"><Spool /></span>
-                        </span>
-                        {contributions && contributions.days.length > 0 && (
-                            <span className="journal__contrib" aria-hidden="true">
-                                <span className="journal__tape journal__tape--left" />
-                                <ContributionStrip {...contributions} />
-                                <span className="journal__tape journal__tape--right" />
-                            </span>
-                        )}
-                        <span className="journal__hint">Open</span>
+            <div className="journal__stage">
+                {open && (
+                    <button type="button" className="journal__turn journal__turn--back" onClick={() => setPage(page - 1)} aria-label={page === 0 ? "Close the journal" : "Previous page"}>
+                        <svg viewBox="0 0 48 24" aria-hidden="true"><path d="M46 13 C 34 10, 18 14, 3 12 M11 4 C 8 7, 5 10, 3 12 C 6 14, 9 17, 12 20" /></svg>
                     </button>
+                )}
 
-                    <div className="journal__face journal__face--back journal__page" aria-hidden={!open}>
-                        <h3 className="journal__label">The route so far</h3>
-
-                        <div className="journal__route">
-                            {/* A hand-drawn line snaking through the stops, in order */}
-                            <svg className="journal__path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                                <path d="M24 16 C 42 8, 58 24, 76 16 C 96 22, 94 44, 76 50 C 58 56, 42 44, 24 50 C 4 56, 6 78, 24 84 C 42 90, 58 76, 74 84" />
-                                <path className="journal__path-head" d="M70 80 L 76 84 L 70 88" />
-                            </svg>
-
-                            <ol className="journal__stops">
-                                {STOPS.map(({ years, title, place, Logo }) => (
-                                    <li key={place} className="journal__stop">
-                                        <span className="journal__tape" aria-hidden="true" />
-                                        <span className="journal__badge" aria-hidden="true"><Logo {...logoProps(Logo)} /></span>
-                                        <span className="journal__years">{years}</span>
-                                        <strong>{title}</strong>
-                                        <span className="journal__place">{place}</span>
-                                    </li>
-                                ))}
-                            </ol>
-                        </div>
-
-                        <button type="button" className="journal__close" onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
-                            Close the journal
-                        </button>
+                <div className="journal__book" data-open={open}>
+                    {/* Right pages, under the cover */}
+                    <div className="journal__page journal__page--right">
+                        {SPREADS.map(({ name, right }, i) => (
+                            <div key={name} className="journal__leaf" data-active={i === page} style={{ "--order": i * 2 + 1 } as CSSProperties}>
+                                {right}
+                            </div>
+                        ))}
                     </div>
+
+                    {/* The cover: its front is the notebook; its back, once open, is the left page */}
+                    <div className="journal__cover">
+                        <button
+                            type="button"
+                            className="journal__face journal__face--front"
+                            onClick={() => setPage(0)}
+                            aria-expanded={open}
+                            aria-label="Open the journal"
+                            tabIndex={open ? -1 : 0}
+                        >
+                            <span className="journal__strap" aria-hidden="true" />
+                            <span className="journal__plate">
+                                <span className="journal__plate-tag">Notes on a practice</span>
+                                <span className="journal__plate-title">Always a student, from buildings to brands, exhibitions to products.</span>
+                                <span className="journal__hanko" aria-hidden="true"><Hanko /></span>
+                            </span>
+                            <span className="journal__stickers" aria-hidden="true">
+                                <span className="journal__sticker journal__sticker--claude"><ClaudeSpark /></span>
+                                <span className="journal__sticker journal__sticker--figma"><FigmaMark /></span>
+                                <span className="journal__sticker journal__sticker--heart"><PixelHeart /></span>
+                                <span className="journal__sticker journal__sticker--ink"><InkBottle /></span>
+                                <span className="journal__sticker journal__sticker--spool"><Spool /></span>
+                            </span>
+                            {contributions && contributions.days.length > 0 && (
+                                <span className="journal__contrib" aria-hidden="true">
+                                    <span className="journal__tape journal__tape--left" />
+                                    <ContributionStrip {...contributions} />
+                                    <span className="journal__tape journal__tape--right" />
+                                </span>
+                            )}
+                            <span className="journal__hint">Open</span>
+                        </button>
+
+                        <div className="journal__face journal__face--back journal__page">
+                            {SPREADS.map(({ name, left }, i) => (
+                                <div key={name} className="journal__leaf" data-active={i === page} style={{ "--order": i * 2 } as CSSProperties}>
+                                    {left}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <span className="journal__ribbon" aria-hidden="true" />
                 </div>
 
-                <span className="journal__ribbon" aria-hidden="true" />
+                {page < last && (
+                    <button type="button" className="journal__turn journal__turn--next" onClick={() => setPage(page + 1)} aria-label={open ? "Next page" : "Open the journal"}>
+                        <svg viewBox="0 0 48 24" aria-hidden="true"><path d="M2 13 C 14 10, 30 14, 45 12 M37 4 C 40 7, 43 10, 45 12 C 42 14, 39 17, 36 20" /></svg>
+                    </button>
+                )}
             </div>
+
+            {/* Where you are: the cover, then each spread */}
+            <ol className="journal__dots">
+                {[{ name: "Cover" }, ...SPREADS].map(({ name }, i) => (
+                    <li key={name}>
+                        <button type="button" aria-label={name} aria-current={i - 1 === page ? "page" : undefined} onClick={() => setPage(i - 1)} />
+                    </li>
+                ))}
+            </ol>
         </section>
     );
 };

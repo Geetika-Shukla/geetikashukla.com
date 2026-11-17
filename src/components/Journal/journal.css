@@ -55,7 +55,7 @@
     width: 50%;
     height: 100%;
     overflow: hidden;
-    padding: 28px 32px;
+    padding: 0;
     background-color: var(--page);
     background-image: radial-gradient(circle, color-mix(in srgb, #1F3B5C 16%, transparent) 1px, transparent 1.2px);
     background-size: 20px 20px;
@@ -71,6 +71,37 @@
     flex-direction: column;
     border-radius: 2px var(--radius) var(--radius) 2px;
     box-shadow: inset 12px 0 18px -14px rgba(43, 45, 56, 0.25), 0 18px 40px rgba(43, 45, 56, 0.12);
+}
+
+/* Each spread's half of the page; only the open spread's shows */
+.journal__leaf {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 32px;
+}
+
+.journal__leaf[data-active="false"] {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.journal__leaf[data-active="true"] {
+    animation: journal-leaf 0.5s var(--ease);
+}
+
+@keyframes journal-leaf {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+}
+
+/* Closed, the pages are hidden (once the cover has swung shut) */
+.journal__book[data-open="false"] .journal__page {
+    visibility: hidden;
+    transition: visibility 0s 1.1s;
 }
 
 /* A handwritten-feeling page heading */
@@ -145,7 +176,9 @@
    hand-drawn line running through them in order */
 .journal__route {
     position: relative;
-    height: calc(100% - 96px);
+    flex: 1;
+    min-height: 0;
+    margin-bottom: 12px;
 }
 
 .journal__path {
@@ -275,22 +308,6 @@
     transform: rotate(0deg) scale(1.03);
 }
 
-.journal__close {
-    position: absolute;
-    right: 24px;
-    bottom: 18px;
-    padding: 0;
-    border: 0;
-    background: none;
-    color: var(--color-text-muted);
-    cursor: pointer;
-    font: inherit;
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    font-style: italic;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
 
 /* COVER ==================================================================== */
 /* Hinged on its left edge, over the right page */
@@ -566,6 +583,245 @@
     clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
 }
 
+/* TURNING PAGES ============================================================ */
+/* Hand-drawn arrows either side of the book, and a dot for each spread below */
+.journal__stage {
+    position: relative;
+}
+
+.journal__turn {
+    position: absolute;
+    top: 50%;
+    z-index: 4;
+    width: 52px;
+    padding: 8px;
+    border: 0;
+    background: none;
+    color: var(--color-text);
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: transform 0.25s var(--ease);
+}
+
+.journal__turn svg {
+    display: block;
+    width: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.journal__turn--back {
+    left: max(-72px, calc(var(--section-margin) * -0.8));
+}
+
+.journal__turn--next {
+    right: max(-72px, calc(var(--section-margin) * -0.8));
+}
+
+.journal__turn--back:hover {
+    transform: translate(-4px, -50%);
+}
+
+.journal__turn--next:hover {
+    transform: translate(4px, -50%);
+}
+
+.journal__dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 64px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.journal__dots button {
+    display: block;
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: 1.5px solid var(--color-text);
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+}
+
+.journal__dots button[aria-current="page"] {
+    background-color: var(--color-text);
+}
+
+/* HELLO ==================================================================== */
+.journal__hand {
+    font-family: var(--font-hand), cursive;
+}
+
+/* A polaroid, taped on and a little askew */
+.journal__polaroid {
+    position: relative;
+    align-self: center;
+    width: min(74%, 330px);
+    margin: 12px 0 0;
+    padding: 12px 12px 0;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(43, 45, 56, 0.12), 0 12px 24px rgba(43, 45, 56, 0.12);
+    transform: rotate(-3deg);
+}
+
+.journal__polaroid img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.journal__polaroid figcaption {
+    padding: 10px 0 14px;
+    color: var(--color-text);
+    font-family: var(--font-hand), cursive;
+    font-size: 1.75rem;
+    text-align: center;
+}
+
+.journal__polaroid-heart {
+    position: absolute;
+    right: -14px;
+    bottom: 36px;
+    width: 40px;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+    transform: rotate(14deg);
+}
+
+.journal__polaroid-heart svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.journal__now {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto 0 0;
+    color: var(--color-text);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.journal__now .journal__hand {
+    color: var(--color-accent-2);
+    font-size: 1.2rem;
+}
+
+/* Always a student: the headline, a margin note, and the path as hand-drawn steps */
+.journal__big {
+    position: relative;
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.journal__circled {
+    position: relative;
+    display: inline-block;
+}
+
+.journal__circled svg {
+    position: absolute;
+    inset: -8px -12px -6px -10px;
+    width: calc(100% + 22px);
+    height: calc(100% + 14px);
+    fill: none;
+    stroke: var(--color-accent-2);
+    stroke-width: 2;
+    stroke-linecap: round;
+    overflow: visible;
+}
+
+.journal__circled svg path {
+    vector-effect: non-scaling-stroke;
+}
+
+.journal__aside {
+    display: block;
+    margin: 4px 0 0 46%;
+    color: var(--color-accent-2);
+    font-size: 1.3rem;
+    font-weight: 500;
+    transform: rotate(-4deg);
+}
+
+.journal__intro {
+    margin: 18px 0 14px;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+.journal__path-steps {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.journal__path-steps li {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 6px 0;
+}
+
+/* A little hand-drawn arrow down to the next step */
+.journal__path-steps li + li::before {
+    content: "↓";
+    position: absolute;
+    top: 0;
+    left: 8px;
+    color: var(--color-accent-2);
+    font-family: var(--font-hand), cursive;
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+.journal__path-steps li {
+    position: relative;
+    padding-top: 30px;
+}
+
+.journal__path-steps li:first-child {
+    padding-top: 4px;
+}
+
+.journal__path-steps strong {
+    flex-shrink: 0;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+}
+
+.journal__path-steps .journal__hand {
+    color: var(--color-text-muted);
+    font-size: 1.35rem;
+    line-height: 1.1;
+}
+
+.journal__proof {
+    margin: auto 0 0;
+    font-size: 0.9rem;
+}
+
+.journal__proof a {
+    color: var(--color-text);
+    font-weight: 600;
+    text-underline-offset: 3px;
+}
+
 /* NARROW SCREENS =========================================================== */
 /* No flipping: the pages one after the other */
 @media (max-width: 899px) {
@@ -580,7 +836,7 @@
     .journal__book,
     .journal__book[data-open="true"] {
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
         gap: 16px;
         aspect-ratio: auto;
         margin-top: 24px;
@@ -601,7 +857,6 @@
     }
 
     .journal__face--front,
-    .journal__close,
     .journal__ribbon {
         display: none;
     }
@@ -610,6 +865,37 @@
         position: static;
         backface-visibility: visible;
         -webkit-backface-visibility: visible;
+    }
+
+    /* Every spread, page after page, in order; no arrows or dots */
+    .journal__page--right,
+    .journal__cover,
+    .journal__face--back {
+        display: contents;
+    }
+
+    .journal__leaf,
+    .journal__leaf[data-active="false"] {
+        position: relative;
+        order: var(--order);
+        overflow: visible;
+        border-radius: var(--radius);
+        background-color: var(--page);
+        background-image: radial-gradient(circle, color-mix(in srgb, #1F3B5C 16%, transparent) 1px, transparent 1.2px);
+        background-size: 20px 20px;
+        visibility: visible;
+        opacity: 1;
+        animation: none;
+    }
+
+    .journal__now,
+    .journal__proof {
+        margin-top: 24px;
+    }
+
+    .journal__turn,
+    .journal__dots {
+        display: none;
     }
 
     /* The scrapbook in one column; the drawn route only suits the two-column snake */
