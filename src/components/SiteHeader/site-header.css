@@ -21,10 +21,8 @@
         -webkit-backdrop-filter 0.3s ease;
 }
 
-/* The nav sits clear at the top of a page (and, on the home page, once it
-   settles on the work floor); the glass shows once the page scrolls */
-html.is-page-top .site-header,
-html.is-at-work .site-header {
+/* The nav sits clear at the top of a page; the glass shows once it scrolls */
+html.is-page-top .site-header {
     border-bottom-color: transparent;
     background-color: transparent;
     box-shadow: none;

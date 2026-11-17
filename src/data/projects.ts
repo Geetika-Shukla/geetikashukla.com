@@ -23,7 +23,7 @@ export interface Project {
     year?       : string;
     // Projects without a page yet are shown as "Upcoming"
     href?       : string;
-    // Wide strip thumbnails get a 2×1 tile; square ones a 1×1 tile
+    // Wide strip thumbnails fill their card; square ones sit whole within it
     shape?      : "square" | "wide";
 }
 

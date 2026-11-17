@@ -1,31 +1,24 @@
 // COMPONENTS ==================================================================
-import { Desk3DLoader } from "@/components/Desk3D/Desk3DLoader";
-import { WorkFloor } from "@/components/WorkFloor/WorkFloor";
+import { Hero } from "@/components/Hero/Hero";
+import { WorkSection } from "@/components/WorkSection/WorkSection";
+import { AISection } from "@/components/AISection/AISection";
+import { Journal } from "@/components/Journal/Journal";
+import { Testimonials } from "@/components/Testimonials/Testimonials";
 
-// STYLES ======================================================================
-// The page renders the stage, headline and arrow itself, so it owns the styles
-import "@/components/Desk3D/desk-3d.css";
-
+// The home page: a board of things around the intro, then the work, projects
+// built with AI, the journal (the story so far, and the résumé) and kind words
 export default function Home() {
     return (
-        <article className="d3-page iso-page">
-            <section className="d3__stage" aria-label="Desk">
-                <Desk3DLoader />
+        <article className="home">
+            <Hero />
 
-                {/* Server-rendered so it shows before the 3D loads */}
-                <header className="d3__intro">
-                    <h1 className="d3__title">Hello there!</h1>
-                    <p className="d3__bio">
-                        I’m Geetika, a multi-disciplinary designer with around 7 years of experience spanning brand,
-                        exhibition, web, and product design.
-                    </p>
-                </header>
-
+            <section id="work" aria-labelledby="work-title">
+                <WorkSection />
             </section>
 
-            <section id="work" className="d3-work" aria-labelledby="work-title">
-                <WorkFloor />
-            </section>
+            <AISection />
+            <Journal />
+            <Testimonials />
         </article>
     );
 }
