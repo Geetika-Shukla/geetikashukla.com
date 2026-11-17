@@ -32,6 +32,15 @@ import IconProcess from "@/assets/images/SignPost.svg";
 
 
 
+// From architecture to products, and on
+const PATH: { step: string; question?: string }[] = [
+    { step: "Architecture", question: "How do spaces feel?" },
+    { step: "Retail & exhibitions", question: "How do people move through a story?" },
+    { step: "Brand", question: "How does an idea look and sound?" },
+    { step: "Product", question: "How does it work at scale?" },
+    { step: "And next?" },
+];
+
 const MoreAboutMePage = () => {
     return (
         <article id="page-more-about-me">
@@ -52,6 +61,19 @@ const MoreAboutMePage = () => {
                         <Text>
                             Here’s a look at what’s shaped me, and how I now shape experiences in turn.
                         </Text>
+
+                        {/* Always learning: the path so far, each step with the question it asked */}
+                        <p className="path-line">
+                            Seven years of learning by doing — from buildings and exhibitions to brands and products.
+                        </p>
+                        <ol className="path">
+                            {PATH.map(({ step, question }) => (
+                                <li key={step}>
+                                    <strong>{step}</strong>
+                                    {question && <span>{question}</span>}
+                                </li>
+                            ))}
+                        </ol>
                     </Div>
                 </Portion>
                 <Portion desktopSpan="2" showOnlyOnDesktop />
