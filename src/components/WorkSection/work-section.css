@@ -199,10 +199,18 @@
     transform: scale(calc(var(--art, 1) * 1.04));
 }
 
+/* A thin line arrow, the height of the title's lowercase */
 .wcard__go {
     display: inline-block;
+    width: 0.9em;
+    height: 0.9em;
     margin-left: 8px;
-    color: var(--color-accent-2);
+    vertical-align: -0.08em;
+    fill: none;
+    stroke: var(--color-accent-2);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
     opacity: 0;
     transform: translateX(-8px);
     transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);

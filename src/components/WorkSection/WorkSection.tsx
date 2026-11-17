@@ -110,7 +110,7 @@ export const WorkSection = () => {
                             <span className="wcard__title">
                                 {title}
                                 {/* Slides in on hover */}
-                                <span className="wcard__go" aria-hidden="true">→</span>
+                                <svg className="wcard__go" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
                             </span>
                             <span className="wcard__description">{description}</span>
                             <span className="wcard__tags">
