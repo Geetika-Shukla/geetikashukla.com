@@ -110,25 +110,29 @@ const STOPS: Stop[] = [
 const logoProps = (Logo: Stop["Logo"]): SVGProps<SVGSVGElement> =>
     Logo === RBIHLogo ? {} : { viewBox: "0 0 51 51" };
 
-// Sticky notes taped down, each with its place's logo as a sticker, joined by a hand-drawn line
+// A hand-drawn line down the page, each place a logo sticker on it, the years
+// in the margin, ending where things are now
 const Route = () => (
     <>
         <h3 className="journal__label">The route so far</h3>
 
         <div className="journal__route">
-            <svg className="journal__path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M24 16 C 42 8, 58 24, 76 16 C 96 22, 94 44, 76 50 C 58 56, 42 44, 24 50 C 4 56, 6 78, 24 84 C 42 90, 58 76, 74 84" />
-                <path className="journal__path-head" d="M70 80 L 76 84 L 70 88" />
+            <svg className="journal__line" viewBox="0 0 20 100" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M10 2 C 13 12, 7 20, 10 30 C 13 40, 7 48, 10 58 C 13 68, 7 76, 10 86 C 12 92, 9 96, 10 98" />
             </svg>
 
             <ol className="journal__stops">
-                {STOPS.map(({ years, title, place, Logo }) => (
+                {STOPS.map(({ years, title, place, Logo }, i) => (
                     <li key={place} className="journal__stop">
-                        <span className="journal__tape" aria-hidden="true" />
                         <span className="journal__badge" aria-hidden="true"><Logo {...logoProps(Logo)} /></span>
-                        <span className="journal__years">{years}</span>
-                        <strong>{title}</strong>
-                        <span className="journal__place">{place}</span>
+                        <span className="journal__stop-text">
+                            <span className="journal__years journal__hand">{years}</span>
+                            <strong>{title}</strong>
+                            <span className="journal__place">
+                                {place}
+                                {i === STOPS.length - 1 && <span className="journal__here journal__hand"> ← you are here</span>}
+                            </span>
+                        </span>
                     </li>
                 ))}
             </ol>
@@ -136,19 +140,21 @@ const Route = () => (
     </>
 );
 
-// The ways of working as notes, and the résumé as a ticket
+// The ways of working on one lined index card, and the résumé as a ticket
 const Practice = () => (
     <>
         <h3 className="journal__label">In practice</h3>
-        <ul className="journal__notes">
-            {PRACTICE.map(({ title, text }) => (
-                <li key={title} className="journal__note">
-                    <span className="journal__tape" aria-hidden="true" />
-                    <strong>{title}</strong>
-                    <span>{text}</span>
-                </li>
-            ))}
-        </ul>
+        <div className="journal__card">
+            <span className="journal__tape" aria-hidden="true" />
+            <ol className="journal__principles">
+                {PRACTICE.map(({ title, text }) => (
+                    <li key={title}>
+                        <strong>{title}</strong>
+                        <span>{text}</span>
+                    </li>
+                ))}
+            </ol>
+        </div>
 
         <a className="journal__ticket" href={RESUME_URL} target="_blank" rel="noopener noreferrer" download>
             <span className="journal__tape" aria-hidden="true" />

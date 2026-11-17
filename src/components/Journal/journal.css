@@ -127,122 +127,62 @@
     transform: translateX(-50%) rotate(-3deg);
 }
 
-/* Sticky notes, a little askew, in four soft colours */
-.journal__stop,
-.journal__note {
-    --note: #F7E08A;
-    --tape: #7FB7B2;
-
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 16px 14px 14px;
-    background-color: var(--note);
-    box-shadow: 0 1px 2px rgba(43, 45, 56, 0.12), 0 4px 10px rgba(43, 45, 56, 0.06);
-    transform: rotate(var(--tilt, -1.5deg));
-}
-
-.journal__stop:nth-child(4n + 2),
-.journal__note:nth-child(4n + 2) {
-    --note: #F6CFC9;
-    --tape: #E3B94C;
-    --tilt: 1.5deg;
-}
-
-.journal__stop:nth-child(4n + 3),
-.journal__note:nth-child(4n + 3) {
-    --note: #CFE7D9;
-    --tape: #C9683E;
-    --tilt: -1deg;
-}
-
-.journal__stop:nth-child(4n + 4),
-.journal__note:nth-child(4n + 4) {
-    --note: #D3E1F2;
-    --tape: #E3B94C;
-    --tilt: 2deg;
-}
-
-.journal__stop strong,
-.journal__note strong {
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    line-height: 1.2;
-}
-
 /* THE ROUTE ================================================================ */
-/* Six notes in a snake (left to right, back, then across again), with a
-   hand-drawn line running through them in order */
+/* A wobbly hand-drawn line down the left, a logo sticker for each stop on it */
 .journal__route {
+    --marker: 40px;
+
     position: relative;
     flex: 1;
     min-height: 0;
-    margin-bottom: 12px;
 }
 
-.journal__path {
+.journal__line {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    top: calc(var(--marker) / 2);
+    bottom: calc(var(--marker) / 2);
+    left: calc(var(--marker) / 2 - 10px);
+    width: 20px;
+    height: calc(100% - var(--marker));
     fill: none;
-    stroke: var(--color-text);
-    stroke-opacity: 0.55;
-    stroke-width: 1.6;
+    stroke: var(--color-accent-2);
+    stroke-width: 1.8;
     stroke-dasharray: 5 6;
     stroke-linecap: round;
-    vector-effect: non-scaling-stroke;
 }
 
-.journal__path .journal__path-head {
-    stroke-dasharray: none;
-}
-
-.journal__path path {
+.journal__line path {
     vector-effect: non-scaling-stroke;
 }
 
 .journal__stops {
     position: relative;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: repeat(3, 1fr);
-    gap: 18px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 100%;
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-/* The snake: the second row runs right to left */
-.journal__stop:nth-child(3) {
-    grid-area: 2 / 2;
-}
-
-.journal__stop:nth-child(4) {
-    grid-area: 2 / 1;
-}
-
 .journal__stop {
-    align-self: center;
-    padding-left: 54px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
-/* The place's logo as a round sticker on the note's corner */
+/* The place's logo as a round sticker */
 .journal__badge {
-    position: absolute;
-    top: 12px;
-    left: 10px;
     display: grid;
+    flex-shrink: 0;
     place-items: center;
-    width: 36px;
-    height: 36px;
-    padding: 4px;
-    border: 2px solid #FFFFFF;
+    width: var(--marker);
+    height: var(--marker);
+    padding: 5px;
     border-radius: 50%;
     background-color: #FFFFFF;
-    box-shadow: 0 1px 3px rgba(43, 45, 56, 0.2);
+    box-shadow: 0 0 0 2px #FFFFFF, 0 2px 5px rgba(43, 45, 56, 0.22);
 }
 
 .journal__badge svg {
@@ -250,12 +190,21 @@
     height: 100%;
 }
 
+.journal__stop-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+}
+
+.journal__stop strong {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+}
+
 .journal__years {
     color: var(--color-accent-2);
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: 1.1rem;
+    line-height: 1;
 }
 
 .journal__place {
@@ -263,21 +212,74 @@
     font-size: 0.82rem;
 }
 
-/* IN PRACTICE ============================================================== */
-.journal__notes {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 22px 18px;
-    margin: 6px 0 0;
-    padding: 0;
-    list-style: none;
+.journal__here {
+    color: var(--color-accent-2);
+    font-size: 1.1rem;
+    white-space: nowrap;
 }
 
-.journal__note span:not(.journal__tape) {
-    color: var(--color-text);
-    font-size: 0.78rem;
-    line-height: 1.45;
-    opacity: 0.8;
+/* IN PRACTICE ============================================================== */
+/* One index card: blue rules, a red margin line, taped to the page */
+.journal__card {
+    --line: 26px;
+    --tape: #7FB7B2;
+
+    position: relative;
+    margin-top: 10px;
+    padding: 26px 22px 26px 52px;
+    background-color: #FFFFFF;
+    background-image:
+        linear-gradient(to right, transparent 38px, rgba(214, 85, 85, 0.45) 38px 39.5px, transparent 39.5px),
+        repeating-linear-gradient(to bottom, transparent 0 calc(var(--line) - 1px), rgba(80, 130, 190, 0.25) calc(var(--line) - 1px) var(--line));
+    box-shadow: 0 2px 4px rgba(43, 45, 56, 0.1), 0 10px 22px rgba(43, 45, 56, 0.1);
+    transform: rotate(0.8deg);
+}
+
+.journal__principles {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: principle;
+}
+
+.journal__principles li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    counter-increment: principle;
+}
+
+/* A hand-circled number in the margin */
+.journal__principles li::before {
+    content: counter(principle);
+    position: absolute;
+    top: 1px;
+    left: -42px;
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 24px;
+    border: 1.5px solid var(--color-accent-2);
+    border-radius: 52% 48% 55% 45% / 50% 55% 45% 50%;
+    color: var(--color-accent-2);
+    font-family: var(--font-hand), cursive;
+    font-size: 1.1rem;
+    line-height: 1;
+    transform: rotate(-6deg);
+}
+
+.journal__principles strong {
+    font-family: var(--font-heading);
+    font-size: 0.98rem;
+    line-height: var(--line);
+}
+
+.journal__principles span {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    line-height: var(--line);
 }
 
 /* The résumé, as a paper ticket taped to the page */
@@ -898,30 +900,13 @@
         display: none;
     }
 
-    /* The scrapbook in one column; the drawn route only suits the two-column snake */
+    /* The pages grow to fit */
     .journal__page {
         overflow: visible;
     }
 
-    .journal__route {
-        height: auto;
-    }
-
-    .journal__path {
-        display: none;
-    }
-
-    .journal__stops,
-    .journal__notes {
-        grid-template-columns: 1fr;
-        grid-template-rows: none;
-        gap: 24px;
-        height: auto;
-    }
-
-    .journal__stop:nth-child(3),
-    .journal__stop:nth-child(4) {
-        grid-area: auto;
+    .journal__stops {
+        gap: 20px;
     }
 
     .journal__ticket {
