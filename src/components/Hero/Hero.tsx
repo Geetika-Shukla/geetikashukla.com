@@ -2,11 +2,9 @@
 
 // EXTERNAL DEPS ===============================================================
 import Image from "next/image";
-import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
 // INTERNAL DEPS ===============================================================
-import { timeline } from "@/data/projects";
 import { FilterCoffee, InkBottle, PixelHeart, Soap, Spool, StickyNote, Vinyl } from "./Illustrations";
 
 // STYLES ======================================================================
@@ -14,27 +12,26 @@ import "./hero.css";
 
 // ASSETS ======================================================================
 import calliOne from "@/assets/images/calli-1.png";
-import ghibli from "@/assets/images/ghibli-image.jpg";
-import sleeve from "@/assets/images/laptop-sleeve.jpg";
-import japanFic from "@/assets/images/japan-books.jpg";
-import lego from "@/assets/images/japan-lego.jpg";
-import plants from "@/assets/images/plants.webp";
 
 // TYPES =======================================================================
 import type { CSSProperties, PointerEvent, ReactNode } from "react";
 import type { StaticImageData } from "next/image";
 
-const PROJECTS = new Map(timeline.flatMap((period) => period.projects).map((project) => [project.href, project]));
+// A photo, optionally zoomed in within its frame
+const photo = (image: StaticImageData, alt: string, zoom = 1) => (
+    <Image src={image} alt={alt} sizes="16vw" draggable={false} style={zoom !== 1 ? { transform: `scale(${zoom})` } : undefined} />
+);
 
-const photo = (image: StaticImageData, alt: string) => <Image src={image} alt={alt} sizes="16vw" draggable={false} />;
-// Thumbnails fill their card, or sit whole where cropping would cut the artwork
-const work = (href: string, whole = false) => {
-    const project = PROJECTS.get(href);
-    return project ? <project.Thumbnail aria-hidden="true" preserveAspectRatio={whole ? "xMidYMid meet" : "xMidYMid slice"} /> : null;
-};
+// A space for an image still to come, in the shape it will take (width / height)
+const placeholder = (ratio: number) => (
+    <span className="hero__placeholder" style={{ aspectRatio: ratio }}>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM4 16l5-5 4 4 3-3 4 4M15 9.5a1.5 1.5 0 1 0 0-.01" /></svg>
+    </span>
+);
 
 /*
- * Things on the board: photos, project thumbnails and illustrations. Each has
+ * Things on the board: photos, illustrations and placeholders for images still
+ * to come (kept in the shape they'll take, so the layout holds). Each has
  * two places, as percentages of the board (its centre):
  *   scatter: [x, y, tilt] round the edges, leaving the middle for the intro
  *   grid:    [x, y] in a cell of a 7 × 4 grid. Columns are centred at 8, 22,
@@ -44,34 +41,33 @@ const work = (href: string, whole = false) => {
  */
 interface Item {
     id      : string;
-    kind    : "photo" | "work" | "art";
+    kind    : "photo" | "art" | "placeholder";
     content : ReactNode;
     label   : string;
-    href?   : string;
     w       : string;
     scatter : [number, number, number];
     grid    : [number, number];
 }
 
 const ITEMS: Item[] = [
-    { id: "calli", kind: "photo", content: photo(calliOne, "Calligraphy"), label: "Calligraphy", w: "clamp(90px, 8.5vw, 140px)", scatter: [8, 52, 4], grid: [8, 18] },
-    { id: "type", kind: "work", content: work("/visual/26-days-of-type"), label: "26 days of Type", href: "/visual/26-days-of-type", w: "clamp(130px, 12vw, 190px)", scatter: [50, 11, -3], grid: [50, 18] },
+    { id: "calli", kind: "photo", content: photo(calliOne, "Calligraphy", 1.25), label: "Calligraphy", w: "clamp(90px, 8.5vw, 140px)", scatter: [8, 52, 4], grid: [8, 18] },
+    { id: "image-1", kind: "placeholder", content: placeholder(16 / 10), label: "Image to come", w: "clamp(130px, 12vw, 190px)", scatter: [50, 11, -3], grid: [50, 18] },
     { id: "coffee", kind: "art", content: <FilterCoffee />, label: "Filter coffee", w: "clamp(64px, 5.5vw, 90px)", scatter: [70, 17, 5], grid: [64, 18] },
     { id: "heart", kind: "art", content: <PixelHeart />, label: "A pixel heart", w: "clamp(44px, 3.6vw, 60px)", scatter: [24, 43, -8], grid: [78, 18] },
-    { id: "books", kind: "photo", content: photo(japanFic, "Japanese fiction"), label: "Japanese fiction", w: "clamp(90px, 8.5vw, 140px)", scatter: [86, 22, 6], grid: [92, 18] },
+    { id: "image-2", kind: "placeholder", content: placeholder(0.72), label: "Image to come", w: "clamp(90px, 8.5vw, 140px)", scatter: [86, 22, 6], grid: [92, 18] },
 
     { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(64px, 5.5vw, 90px)", scatter: [30, 87, -4], grid: [8, 38] },
-    { id: "ghibli", kind: "photo", content: photo(ghibli, "Studio Ghibli figurines"), label: "Studio Ghibli", w: "clamp(150px, 15vw, 240px)", scatter: [14, 20, -6], grid: [22, 38] },
+    { id: "image-3", kind: "placeholder", content: placeholder(2), label: "Image to come", w: "clamp(150px, 15vw, 240px)", scatter: [14, 20, -6], grid: [22, 38] },
     { id: "vinyl", kind: "art", content: <Vinyl />, label: "Vinyls", w: "clamp(84px, 7.5vw, 120px)", scatter: [31, 16, 7], grid: [78, 38] },
     { id: "spool", kind: "art", content: <Spool />, label: "Sewing", w: "clamp(54px, 4.5vw, 76px)", scatter: [93, 45, 10], grid: [92, 38] },
 
-    { id: "lego", kind: "photo", content: photo(lego, "Japan in Lego"), label: "Lego", w: "clamp(120px, 12vw, 190px)", scatter: [16, 80, 5], grid: [8, 58] },
-    { id: "plants", kind: "photo", content: photo(plants, "House plants"), label: "Gardening", w: "clamp(80px, 7.5vw, 120px)", scatter: [77, 50, -5], grid: [50, 58] },
-    { id: "inktober", kind: "work", content: work("/type/inktober-2017", true), label: "Inktober", href: "/type/inktober-2017", w: "clamp(130px, 12vw, 190px)", scatter: [87, 76, 4], grid: [64, 58] },
-    { id: "sleeve", kind: "photo", content: photo(sleeve, "A handmade laptop sleeve"), label: "Sewing", w: "clamp(80px, 7.5vw, 120px)", scatter: [72, 82, -7], grid: [92, 58] },
+    { id: "image-4", kind: "placeholder", content: placeholder(1.43), label: "Image to come", w: "clamp(120px, 12vw, 190px)", scatter: [16, 80, 5], grid: [8, 58] },
+    { id: "image-5", kind: "placeholder", content: placeholder(0.56), label: "Image to come", w: "clamp(80px, 7.5vw, 120px)", scatter: [77, 50, -5], grid: [50, 58] },
+    { id: "image-6", kind: "placeholder", content: placeholder(16 / 10), label: "Image to come", w: "clamp(130px, 12vw, 190px)", scatter: [87, 76, 4], grid: [64, 58] },
+    { id: "image-7", kind: "placeholder", content: placeholder(0.71), label: "Image to come", w: "clamp(80px, 7.5vw, 120px)", scatter: [72, 82, -7], grid: [92, 58] },
 
     { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(80px, 7vw, 110px)", scatter: [39, 86, 3], grid: [8, 78] },
-    { id: "icons", kind: "work", content: work("/visual/icon-system-for-setu"), label: "Icon system", href: "/visual/icon-system-for-setu", w: "clamp(84px, 7.5vw, 120px)", scatter: [59, 88, -5], grid: [22, 78] },
+    { id: "image-8", kind: "placeholder", content: placeholder(16 / 10), label: "Image to come", w: "clamp(84px, 7.5vw, 120px)", scatter: [59, 88, -5], grid: [22, 78] },
     { id: "soap", kind: "art", content: <Soap />, label: "Soaps", w: "clamp(60px, 5vw, 84px)", scatter: [93, 90, -6], grid: [92, 78] },
 ];
 
@@ -184,13 +180,7 @@ export const Hero = () => {
     };
 
     const onPointerUp = () => {
-        // Leave the flag until the click that follows a drag has been ignored
-        window.setTimeout(() => { drag.current = null; }, 0);
-    };
-
-    // A drag shouldn't also follow the link it started on
-    const onClick = (event: React.MouseEvent) => {
-        if (drag.current?.moved) event.preventDefault();
+        drag.current = null;
     };
 
     return (
@@ -219,7 +209,7 @@ export const Hero = () => {
                 </ul>
 
                 <ul className="hero__items">
-                    {ITEMS.map(({ id, kind, content, label, href, w, scatter: [sx, sy, tilt], grid: [gx, gy] }) => {
+                    {ITEMS.map(({ id, kind, content, label, w, scatter: [sx, sy, tilt], grid: [gx, gy] }) => {
                         const offset = offsets[id] ?? { x: 0, y: 0 };
                         // In the grid, centred in its cut-out once measured
                         const cut = board && sizes[id] ? thingCut([gx, gy], sizes[id], board) : null;
@@ -230,12 +220,10 @@ export const Hero = () => {
                             "--tilt": `${tilt}deg`, "--w": w,
                             "--dx": `${offset.x}px`, "--dy": `${offset.y}px`,
                         } as CSSProperties;
-                        const handlers = { onPointerDown: onPointerDown(id), onPointerMove, onPointerUp, onClick };
+                        const handlers = { onPointerDown: onPointerDown(id), onPointerMove, onPointerUp };
                         return (
                             <li key={id} className={`hero__item hero__item--${kind}`} style={style} title={label}>
-                                {href
-                                    ? <Link href={href} ref={(node) => { thingRefs.current[id] = node; }} className="hero__thing" draggable={false} aria-label={label} {...handlers}>{content}</Link>
-                                    : <span ref={(node) => { thingRefs.current[id] = node; }} className="hero__thing" {...handlers}>{content}</span>}
+                                <span ref={(node) => { thingRefs.current[id] = node; }} className="hero__thing" {...handlers}>{content}</span>
                             </li>
                         );
                     })}

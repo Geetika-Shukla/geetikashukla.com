@@ -8,7 +8,6 @@ import spiritedAwayCover from "@/assets/images/vinyl-cover-spirited-away.jpg";
 const INK = "#1C1C1E";
 const RUST = "#C9683E";
 const GOLD = "#E3B94C";
-const TEAL = "#3F8F8A";
 const PAPER = "#FBFAF6";
 
 // The nav's heart, in pixels
