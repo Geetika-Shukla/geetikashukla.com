@@ -111,7 +111,7 @@ export const StickyNote = () => (
         <text x="24" y="40" fontFamily="serif" fontStyle="italic" fontSize="11" fill={INK}>to-do</text>
         <text x="24" y="58" fontFamily="serif" fontSize="9.5" fill={INK}>☑ kern it</text>
         <text x="24" y="74" fontFamily="serif" fontSize="9.5" fill={INK}>☐ ship it</text>
-        <text x="24" y="90" fontFamily="serif" fontSize="9.5" fill={INK}>☐ tea</text>
+        <text x="24" y="90" fontFamily="serif" fontSize="9.5" fill={INK}>☐ dosa</text>
     </svg>
 );
 
