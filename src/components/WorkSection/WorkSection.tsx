@@ -100,17 +100,20 @@ export const WorkSection = () => {
                     <li key={href} className={`wcard wcard--${category.toLowerCase()}`}>
                         <Link href={href!} className="wcard__link">
                             <span className="wcard__media" style={{ "--art": art } as CSSProperties}>
-                                {/* Wide strips fill the panel; square artwork sits whole within it */}
+                                {/* The artwork sits whole within the panel, with room round it */}
                                 <Thumbnail
-                                    className={`wcard__art wcard__art--${shape === "wide" ? "fill" : "fit"}`}
+                                    className={`wcard__art wcard__art--${shape === "wide" ? "wide" : "square"}`}
                                     aria-hidden="true"
-                                    preserveAspectRatio={shape === "wide" ? "xMidYMid slice" : "xMidYMid meet"}
+                                    preserveAspectRatio="xMidYMid meet"
                                 />
                             </span>
                             <span className="wcard__title">
-                                {title}
-                                {/* Slides in on hover */}
-                                <svg className="wcard__go" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
+                                {title.slice(0, title.lastIndexOf(" ") + 1)}
+                                {/* The last word and the arrow (which slides in on hover) stay together */}
+                                <span className="wcard__last">
+                                    {title.slice(title.lastIndexOf(" ") + 1)}
+                                    <svg className="wcard__go" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
+                                </span>
                             </span>
                             <span className="wcard__description">{description}</span>
                             <span className="wcard__tags">

@@ -2,14 +2,12 @@
  * Work: the title and filters in a column on the left that stays in view,
  * beside three columns of project cards.
  */
-/* Within the page's margins like every other page */
+/* Within the section margins, as on the project pages */
 .work {
     display: grid;
-    grid-template-columns: 220px minmax(0, 1fr);
-    gap: 56px;
-    max-width: var(--page-max-width);
-    margin: 0 auto;
-    padding: 96px var(--page-gutter) 120px;
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 48px;
+    padding: 96px var(--section-margin) 120px;
 }
 
 /* LIST ===================================================================== */
@@ -83,7 +81,7 @@
 .work__cards {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 64px 56px;
+    gap: 56px 40px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -143,11 +141,18 @@
     transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Square artwork sits whole, with room around it */
-.wcard__art--fit {
-    inset: 12%;
-    width: 76%;
-    height: 76%;
+/* Artwork sits whole within the panel: wide strips with a margin of tint,
+   square artwork with more */
+.wcard__art--wide {
+    inset: 10%;
+    width: 80%;
+    height: 80%;
+}
+
+.wcard__art--square {
+    inset: 16%;
+    width: 68%;
+    height: 68%;
 }
 
 /* The title, with an arrow that slides in after it on hover */
@@ -199,6 +204,10 @@
 }
 
 /* A thin line arrow, the height of the title's lowercase */
+.wcard__last {
+    white-space: nowrap;
+}
+
 .wcard__go {
     display: inline-block;
     width: 0.9em;
@@ -233,7 +242,7 @@
     .work {
         grid-template-columns: 1fr;
         gap: 24px;
-        padding: 56px var(--page-gutter) 72px;
+        padding: 56px var(--section-margin) 72px;
     }
 
     .work__list {
