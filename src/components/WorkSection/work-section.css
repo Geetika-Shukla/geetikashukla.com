@@ -2,10 +2,10 @@
  * Work: the title and filters in a column on the left that stays in view,
  * beside three columns of project cards.
  */
-/* Within the section margins, as on the project pages */
+/* Within the section margins */
 .work {
     display: grid;
-    grid-template-columns: 180px minmax(0, 1fr);
+    grid-template-columns: 200px minmax(0, 1fr);
     gap: 48px;
     padding: 96px var(--section-margin) 120px;
 }
