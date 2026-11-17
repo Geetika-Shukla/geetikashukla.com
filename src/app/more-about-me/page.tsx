@@ -17,6 +17,9 @@ import {
 // STYLES ======================================================================
 import "./page-more-about-me.css";
 
+// DATA ========================================================================
+import { PATH } from "@/data/about";
+
 // ASSETS ======================================================================
 import MyPhoto from "@/assets/images/me.svg";
 import NIDLogo from "@/assets/images/nid-logo.svg";
@@ -32,14 +35,6 @@ import IconProcess from "@/assets/images/SignPost.svg";
 
 
 
-// From architecture to products, and on
-const PATH: { step: string; question?: string }[] = [
-    { step: "Architecture", question: "How do spaces feel?" },
-    { step: "Retail & exhibitions", question: "How do people move through a story?" },
-    { step: "Brand", question: "How does an idea look and sound?" },
-    { step: "Product", question: "How does it work at scale?" },
-    { step: "And next?" },
-];
 
 const MoreAboutMePage = () => {
     return (
