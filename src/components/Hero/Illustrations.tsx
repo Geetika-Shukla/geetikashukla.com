@@ -1,3 +1,7 @@
+import Image from "next/image";
+
+import spiritedAwayCover from "@/assets/images/vinyl-cover-spirited-away.jpg";
+
 // Small illustrations for the hero board, drawn in the site's colours: things
 // from the desk and from the interests (ink and nibs, sewing, soaps).
 
@@ -126,14 +130,7 @@ export const Vinyl = () => (
                 <circle cx="60" cy="60" r="2.5" fill={PAPER} />
             </svg>
         </span>
-        <svg className="vinyl__sleeve" viewBox="0 0 120 120">
-            <rect width="120" height="120" rx="3" fill="#2F6F6B" />
-            <circle cx="78" cy="44" r="22" fill={RUST} />
-            <path d="M0 78 Q15 70 30 78 T60 78 T90 78 T120 78 V120 H0 Z" fill="#E8DCC4" />
-            <path d="M0 92 Q15 84 30 92 T60 92 T90 92 T120 92" stroke="#2F6F6B" strokeWidth="2" fill="none" />
-            <path d="M0 104 Q15 96 30 104 T60 104 T90 104 T120 104" stroke="#2F6F6B" strokeWidth="2" fill="none" />
-            <text x="12" y="24" fontFamily="serif" fontStyle="italic" fontSize="11" fill={PAPER}>side A</text>
-            <rect x="0.5" y="0.5" width="119" height="119" rx="3" fill="none" stroke="#000000" strokeOpacity="0.1" />
-        </svg>
+        {/* The sleeve: a photo of the Spirited Away soundtrack */}
+        <Image className="vinyl__sleeve" src={spiritedAwayCover} alt="" sizes="120px" draggable={false} />
     </span>
 );
