@@ -23,24 +23,26 @@ const FILTERS: { id: string; label: string; category: Category }[] = [
     { id: "type", label: "Type", category: "Type" },
 ];
 
-// The order the projects are shown in; `art` scales a thumbnail down where it reads too large
-const ORDER: { href: string; art?: number }[] = [
-    { href: "/experiences/revamping-reports" },
-    { href: "/visual/kannauj-perfumery" },
-    { href: "/experiences/path-to-partnerships" },
-    { href: "/visual/26-days-of-type" },
-    { href: "/visual/people-experience" },
-    { href: "/type/47-days-of-devanagari-type" },
-    { href: "/experiences/hdfc-journeys" },
-    { href: "/visual/icon-system-for-setu" },
-    { href: "/experiences/assisted-product-discovery" },
-    { href: "/type/inktober-2017", art: 0.6 },
+// The order the projects are shown in. `bg` is the thumbnail's own background,
+// which fills its panel so the artwork sits in it seamlessly; `art` scales a
+// thumbnail down where it reads too large.
+const ORDER: { href: string; bg: string; art?: number }[] = [
+    { href: "/experiences/revamping-reports", bg: "#FFFFFF" },
+    { href: "/visual/kannauj-perfumery", bg: "#FFFFFF" },
+    { href: "/experiences/path-to-partnerships", bg: "#56CFD2" },
+    { href: "/visual/26-days-of-type", bg: "#FFFFFF" },
+    { href: "/visual/people-experience", bg: "#CCF6F7" },
+    { href: "/type/47-days-of-devanagari-type", bg: "#FFFFFF" },
+    { href: "/experiences/hdfc-journeys", bg: "#E5F2FF" },
+    { href: "/visual/icon-system-for-setu", bg: "#F2FDFD" },
+    { href: "/experiences/assisted-product-discovery", bg: "#C7EFF0" },
+    { href: "/type/inktober-2017", bg: "#FFFFFF", art: 0.7 },
 ];
 
 const BY_HREF = new Map(timeline.flatMap((period) => period.projects).map((project) => [project.href, project]));
-const PROJECTS = ORDER.flatMap(({ href, art = 1 }) => {
+const PROJECTS = ORDER.flatMap(({ href, bg, art = 1 }) => {
     const project = BY_HREF.get(href);
-    return project ? [{ ...project, art }] : [];
+    return project ? [{ ...project, bg, art }] : [];
 });
 
 // A type's name as the filters show it (Experiences, Visual, Type)
@@ -96,11 +98,11 @@ export const WorkSection = () => {
             </nav>
 
             <ul className="work__cards">
-                {PROJECTS.filter(({ category }) => filter === null || category === filter).map(({ title, description, category, year, href, Thumbnail, shape, art }) => (
+                {PROJECTS.filter(({ category }) => filter === null || category === filter).map(({ title, description, category, year, href, Thumbnail, shape, bg, art }) => (
                     <li key={href} className={`wcard wcard--${category.toLowerCase()}`}>
                         <Link href={href!} className="wcard__link">
-                            <span className="wcard__media" style={{ "--art": art } as CSSProperties}>
-                                {/* The artwork sits whole within the panel, with room round it */}
+                            <span className="wcard__media" style={{ "--art": art, "--bg": bg } as CSSProperties}>
+                                {/* Strips span the panel's width; squares sit whole in its middle */}
                                 <Thumbnail
                                     className={`wcard__art wcard__art--${shape === "wide" ? "wide" : "square"}`}
                                     aria-hidden="true"
