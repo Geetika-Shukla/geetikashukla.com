@@ -1,6 +1,6 @@
 /*
  * Work: the title and filters in a column on the left that stays in view,
- * beside two columns of project cards.
+ * beside three columns of project cards.
  */
 .work {
     display: grid;
@@ -81,18 +81,25 @@
 /* CARDS ==================================================================== */
 .work__cards {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 56px 32px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 48px 28px;
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-/* Each type of work has its own tint */
+/* Each type of work has its own tint; cards ease in when a filter changes */
 .wcard {
     --tint: #ECEAE4;
 
-    transition: filter 0.3s ease, opacity 0.3s ease;
+    animation: wcard-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes wcard-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
 }
 
 .wcard--experience {
@@ -107,12 +114,6 @@
     --tint: #ECEAE4;
 }
 
-/* Filtered out: greyscale and faded */
-.wcard[data-dimmed="true"] {
-    filter: grayscale(1);
-    opacity: 0.45;
-}
-
 .wcard__link {
     display: flex;
     flex-direction: column;
@@ -123,7 +124,7 @@
 
 /* The tinted panel; its bottom-right corner is notched out for the arrow */
 .wcard__media {
-    --notch: 64px;
+    --notch: 56px;
 
     position: relative;
     display: block;
@@ -188,18 +189,18 @@
 }
 
 .wcard__title {
-    margin-top: 20px;
+    margin-top: 18px;
     color: var(--color-text);
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
     line-height: 1.2;
 }
 
 .wcard__description {
-    margin-top: 8px;
+    margin-top: 6px;
     color: var(--color-text-muted);
-    font-size: 1.05rem;
+    font-size: 1rem;
     line-height: 1.5;
 }
 
@@ -240,6 +241,13 @@
     transform: rotate(45deg);
 }
 
+/* Medium screens: two columns */
+@media (min-width: 900px) and (max-width: 1199px) {
+    .work__cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
 /* NARROW SCREENS =========================================================== */
 @media (max-width: 899px) {
     .work {
@@ -273,7 +281,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .wcard,
+    .wcard {
+        animation: none;
+    }
+
     .wcard__media,
     .wcard__art,
     .wcard__arrow {

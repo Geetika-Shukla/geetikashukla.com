@@ -47,11 +47,11 @@ const filterFromHash = (hash: string): Category | null =>
     FILTERS.find(({ id }) => `#${id}` === hash)?.category ?? null;
 
 /*
- * Work: the title and filters on the left, staying in view, beside two columns
- * of project cards. A card is a tinted panel holding the thumbnail, with an
- * arrow set into its corner, then the title, a line of description and tags.
- * Filtering keeps the chosen type in colour and greys out the rest; clicking
- * the title clears it.
+ * Work: the title and filters on the left, staying in view, beside three
+ * columns of project cards. A card is a tinted panel holding the thumbnail,
+ * with an arrow set into its corner, then the title, a line of description and
+ * tags. A filter shows only that type of work; clicking the title, or the
+ * filter again, shows everything.
  */
 export const WorkSection = () => {
     const [filter, setFilter] = useState<Category | null>(null);
@@ -93,12 +93,8 @@ export const WorkSection = () => {
             </nav>
 
             <ul className="work__cards">
-                {PROJECTS.map(({ title, description, category, year, href, Thumbnail, shape, art }) => (
-                    <li
-                        key={href}
-                        className={`wcard wcard--${category.toLowerCase()}`}
-                        data-dimmed={filter !== null && category !== filter}
-                    >
+                {PROJECTS.filter(({ category }) => filter === null || category === filter).map(({ title, description, category, year, href, Thumbnail, shape, art }) => (
+                    <li key={href} className={`wcard wcard--${category.toLowerCase()}`}>
                         <Link href={href!} className="wcard__link">
                             <span className="wcard__media" style={{ "--art": art } as CSSProperties}>
                                 {/* Wide strips fill the panel; square artwork sits whole within it */}
