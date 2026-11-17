@@ -87,3 +87,9 @@ p {
         margin-bottom: -20px;
     }
 }
+
+/* Project pages sit on white */
+body:has(.project-page),
+.site:has(.project-page) {
+    background-color: #FFFFFF;
+}
