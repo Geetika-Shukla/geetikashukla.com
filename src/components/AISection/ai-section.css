@@ -1,4 +1,5 @@
-/* AI: projects built entirely with AI, three across on a panel */
+/* AI: projects built entirely with AI, three across: a thumbnail with its
+   title, a line and the tools used, straight on the page like the work */
 .ai__inner {
     padding: 0 var(--section-margin) 120px;
 }
@@ -22,11 +23,9 @@
 .ai__cards {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
+    gap: 56px 40px;
     margin: 0;
-    padding: 32px;
-    border-radius: var(--radius);
-    background-color: #EFEDE7;
+    padding: 0;
     list-style: none;
 }
 
@@ -34,17 +33,13 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 16px 16px 20px;
-    border-radius: var(--radius);
-    background-color: var(--color-surface);
     color: inherit;
     text-decoration: none;
-    box-shadow: 0 2px 4px rgba(43, 45, 56, 0.04);
-    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
 }
 
-a.ai__link:hover,
-a.ai__link:focus-visible {
+/* Hover (once a project links somewhere): the thumbnail lifts */
+a.ai__link:hover .ai__media,
+a.ai__link:focus-visible .ai__media {
     box-shadow: 0 14px 30px rgba(43, 45, 56, 0.1);
     transform: translateY(-4px);
 }
@@ -57,6 +52,7 @@ a.ai__link:focus-visible {
     border-radius: var(--radius);
     background-color: #F4F1EA;
     color: var(--color-accent-2);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
 }
 
 .ai__media svg {
@@ -90,13 +86,15 @@ a.ai__link:focus-visible {
     margin-top: 16px;
     color: var(--color-text);
     font-family: var(--font-heading);
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     font-weight: 700;
 }
 
 .ai__description {
     margin-top: 6px;
     color: var(--color-text-muted);
+    font-size: 0.92rem;
+    font-weight: 400;
     line-height: 1.5;
 }
 
@@ -124,12 +122,12 @@ a.ai__link:focus-visible {
 
     .ai__cards {
         grid-template-columns: 1fr;
-        padding: 16px;
+        gap: 40px;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .ai__link {
+    .ai__media {
         transition: none;
     }
 }
