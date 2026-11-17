@@ -3,7 +3,6 @@ import Link from "next/link";
 
 // COMPONENTS ==================================================================
 import PersonalLogo from "@/assets/images/logo.svg";
-import Heart from "@/assets/images/heart.svg";
 
 // STYLES ======================================================================
 import "./site-header.css";
@@ -25,9 +24,6 @@ export const SiteHeader = () => {
                     {NAV_LINKS.map(({ href, label }) => (
                         <Link key={href} href={href} className="site-header__link">{label}</Link>
                     ))}
-                    <Link href="/hobbies" className="site-header__heart" aria-label="Interests" title="Interests">
-<Heart aria-hidden="true" />
-                    </Link>
                 </nav>
             </div>
         </header>

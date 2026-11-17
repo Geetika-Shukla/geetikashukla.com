@@ -64,21 +64,6 @@ html.is-page-top .site-header {
     color: var(--color-accent);
 }
 
-.site-header__heart {
-    display: flex;
-    transition: transform 0.2s ease;
-}
-
-.site-header__heart svg {
-    width: 20px;
-    height: 20px;
-}
-
-.site-header__heart:hover,
-.site-header__heart:focus-visible {
-    transform: scale(1.15);
-}
-
 @media (max-width: 640px) {
     :root {
         --header-height: 60px;
