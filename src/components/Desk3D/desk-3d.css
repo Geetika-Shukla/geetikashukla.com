@@ -13,6 +13,11 @@
     inset: 0;
 }
 
+/* The low-resolution render is scaled up with hard pixel edges */
+.d3__canvas canvas {
+    image-rendering: pixelated;
+}
+
 /* Headline: flat, top left, in the space the right-shifted room leaves free */
 .d3__intro {
     position: absolute;

@@ -24,6 +24,11 @@ const LABELS: (LabelAnchor & { label: string })[] = [
     { id: "phone", label: "LinkedIn", position: [2.15, 1.15, 0] },
 ];
 
+// The room is rendered at a fraction of the screen's resolution and scaled up
+// without smoothing (see .d3__canvas), so it reads as pixel art: each rendered
+// pixel covers about 1 / PIXEL_SCALE CSS pixels
+const PIXEL_SCALE = 0.33;
+
 // The desk scene, rendered inside the page's .d3__stage. Hovering an object
 // shows its title; clicking opens it.
 export default function Desk3D() {
@@ -65,7 +70,7 @@ export default function Desk3D() {
 
     return (
         <>
-            <Canvas className="d3__canvas" shadows orthographic dpr={[1, 2]} camera={{ position: [12, 11.6, 14], zoom: 60, near: -100, far: 200 }}>
+            <Canvas className="d3__canvas" shadows orthographic dpr={PIXEL_SCALE} gl={{ antialias: false }} camera={{ position: [12, 11.6, 14], zoom: 60, near: -100, far: 200 }}>
                 <DeskScene3D
                     progressRef={progressRef}
                     hoveredRef={hoveredRef}
