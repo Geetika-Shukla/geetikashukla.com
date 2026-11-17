@@ -245,13 +245,13 @@ export default function RevampingReportsPage() {
                     </Card>
                 </Portion>
                 <Portion desktopSpan="16">
-                    <ReportsV1 height="334px" className="please-respond" style={{ borderRadius: "20px" }}/>
+                    <ReportsV1 height="334px" className="please-respond" style={{ borderRadius: "var(--radius)" }}/>
                 </Portion>
             </Row>
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="small">
                 <Portion desktopSpan="16">
-                    <ReportsV2 height="346px" className="please-respond" style={{ borderRadius: "20px" }}/>
+                    <ReportsV2 height="346px" className="please-respond" style={{ borderRadius: "var(--radius)" }}/>
                 </Portion>
                 <Portion desktopSpan="8">
                     <Card className="bridge-cyan-card" isFullHeight>
@@ -289,7 +289,7 @@ export default function RevampingReportsPage() {
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
                 <Portion desktopSpan="whole">
-                    <Reports1SS style={{ borderRadius: "20px" }}/>
+                    <Reports1SS style={{ borderRadius: "var(--radius)" }}/>
                 </Portion>
             </Row>
 

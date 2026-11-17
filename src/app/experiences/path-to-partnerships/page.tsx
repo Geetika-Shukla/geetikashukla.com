@@ -93,7 +93,7 @@ export default function RevampingReportsPage() {
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
             <Portion desktopSpan="whole">
-                <MappingTouchPoints className="please-respond" style={{ borderRadius: "20px" }}/>
+                <MappingTouchPoints className="please-respond" style={{ borderRadius: "var(--radius)" }}/>
             </Portion>
             </Row>
 
@@ -245,7 +245,7 @@ export default function RevampingReportsPage() {
                     </Card>
                 </Portion>
                 <Portion desktopSpan="16">
-                    <ExistingLogos className="please-respond" style={{ borderRadius: "20px" }}/>
+                    <ExistingLogos className="please-respond" style={{ borderRadius: "var(--radius)" }}/>
                 </Portion>
             </Row>
 
@@ -310,7 +310,7 @@ export default function RevampingReportsPage() {
                     <Text marginTop="nano" marginBottom="tiny">
                         We placed CTAs on homepage, primary navigation and footer—
                     </Text>
-                    <TestimonialPlacement style={{ borderRadius: "20px" }}/>
+                    <TestimonialPlacement style={{ borderRadius: "var(--radius)" }}/>
                 </Portion>
             </Row>
 
@@ -343,7 +343,7 @@ export default function RevampingReportsPage() {
                     </Card>
                 </Portion>
                 <Portion desktopSpan="16">
-                    <ExistingBlog className="please-respond" style={{ borderRadius: "20px" }}/>
+                    <ExistingBlog className="please-respond" style={{ borderRadius: "var(--radius)" }}/>
                 </Portion>
 
 
@@ -404,7 +404,7 @@ export default function RevampingReportsPage() {
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
                 <Portion desktopSpan="whole">
-                    <Mailers className="please-respond" style={{ borderRadius: "20px" }}/>
+                    <Mailers className="please-respond" style={{ borderRadius: "var(--radius)" }}/>
                 </Portion>
             </Row>
 

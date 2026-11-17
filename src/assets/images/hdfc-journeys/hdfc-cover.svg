@@ -3,7 +3,7 @@
 <rect width="1512" height="489" fill="url(#paint0_linear_965_24948)"/>
 <g clip-path="url(#clip1_965_24948)">
 <g filter="url(#filter0_d_965_24948)">
-<rect x="343" y="32" width="201.067" height="413.076" rx="12" fill="url(#pattern0_965_24948)" shape-rendering="crispEdges"/>
+<rect x="343" y="32" width="201.067" height="413.076" rx="9.07" fill="url(#pattern0_965_24948)" shape-rendering="crispEdges"/>
 </g>
 <rect x="373.874" y="107.284" width="24.4865" height="15.7413" fill="url(#pattern1_965_24948)"/>
 <rect x="363.38" y="151.01" width="43.7259" height="15.7413" fill="url(#pattern2_965_24948)"/>
@@ -11,12 +11,12 @@
 <rect x="457.828" y="248.956" width="33.2317" height="13.9923" fill="url(#pattern4_965_24948)"/>
 </g>
 <g filter="url(#filter1_d_965_24948)">
-<rect x="113" y="-169" width="202" height="403" rx="12" fill="url(#pattern5_965_24948)" shape-rendering="crispEdges"/>
+<rect x="113" y="-169" width="202" height="403" rx="9.07" fill="url(#pattern5_965_24948)" shape-rendering="crispEdges"/>
 </g>
 <rect x="130.943" y="26.6523" width="71.7104" height="22.7375" fill="url(#pattern6_965_24948)"/>
 <rect x="120.448" y="2.16577" width="60.6781" height="10.4942" fill="url(#pattern7_965_24948)"/>
 <g filter="url(#filter2_d_965_24948)">
-<rect x="113" y="256.479" width="201.139" height="412.772" rx="12" fill="url(#pattern8_965_24948)" shape-rendering="crispEdges"/>
+<rect x="113" y="256.479" width="201.139" height="412.772" rx="9.07" fill="url(#pattern8_965_24948)" shape-rendering="crispEdges"/>
 </g>
 <rect x="153" y="349" width="44" height="6" fill="url(#pattern9_965_24948)"/>
 <rect x="149" y="339" width="69" height="6" fill="url(#pattern10_965_24948)"/>
