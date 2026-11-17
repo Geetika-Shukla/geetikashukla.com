@@ -71,7 +71,7 @@
 
 .interests__photo {
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: var(--radius);
     background-color: var(--color-surface);
     box-shadow: 4px 4px 0 #E8E8E6;
 }

@@ -24,6 +24,10 @@
 
     --page-max-width : 1440px;
     --page-gutter    : clamp(16px, 4vw, 48px);
+    /* Corners, the same throughout: cards, panels and images; and small
+       things like tags, labels and buttons */
+    --radius         : 6px;
+    --radius-small   : 3px;
     --header-height  : 72px;
 }
 

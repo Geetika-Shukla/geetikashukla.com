@@ -84,7 +84,7 @@
 .work__cards {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 44px 24px;
+    gap: 44px 40px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -124,15 +124,13 @@
     text-decoration: none;
 }
 
-/* The tinted panel; its bottom-right corner is notched out for the arrow */
+/* The tinted panel holding the thumbnail */
 .wcard__media {
-    --notch: 48px;
-
     position: relative;
     display: block;
     aspect-ratio: 3 / 2;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: var(--radius);
     background-color: var(--tint);
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
 }
@@ -153,43 +151,7 @@
     height: 76%;
 }
 
-/* The notch: a page-coloured corner with a rounded inner edge, holding the arrow */
-.wcard__media::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: var(--notch);
-    height: var(--notch);
-    border-top-left-radius: 16px;
-    background-color: var(--color-bg);
-}
-
-.wcard__arrow {
-    position: absolute;
-    right: 8px;
-    bottom: 8px;
-    z-index: 1;
-    display: grid;
-    place-items: center;
-    width: calc(var(--notch) - 16px);
-    height: calc(var(--notch) - 16px);
-    border-radius: 50%;
-    background-color: var(--tint);
-    color: var(--color-text);
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.25s ease, color 0.25s ease;
-}
-
-.wcard__arrow svg {
-    width: 18px;
-    height: 18px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
+/* The title, with an arrow that slides in after it on hover */
 .wcard__title {
     margin-top: 16px;
     color: var(--color-text);
@@ -216,7 +178,7 @@
 
 .wcard__tag {
     padding: 3px 8px;
-    border-radius: 4px;
+    border-radius: var(--radius-small);
     background-color: var(--tint);
     color: var(--color-text-muted);
     font-size: 0.68rem;
@@ -225,7 +187,7 @@
     text-transform: uppercase;
 }
 
-/* Hover: the panel lifts, the artwork leans in, the arrow turns */
+/* Hover: the panel lifts, the artwork leans in, the arrow slides in */
 .wcard__link:hover .wcard__media,
 .wcard__link:focus-visible .wcard__media {
     box-shadow: 0 14px 30px rgba(43, 45, 56, 0.1);
@@ -237,11 +199,19 @@
     transform: scale(calc(var(--art, 1) * 1.04));
 }
 
-.wcard__link:hover .wcard__arrow,
-.wcard__link:focus-visible .wcard__arrow {
-    background-color: var(--color-text);
-    color: #FFFFFF;
-    transform: rotate(45deg);
+.wcard__go {
+    display: inline-block;
+    margin-left: 8px;
+    color: var(--color-accent-2);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wcard__link:hover .wcard__go,
+.wcard__link:focus-visible .wcard__go {
+    opacity: 1;
+    transform: none;
 }
 
 /* Medium screens: two columns */
@@ -290,7 +260,7 @@
 
     .wcard__media,
     .wcard__art,
-    .wcard__arrow {
+    .wcard__go {
         transition: none;
     }
 }

@@ -54,7 +54,7 @@
         width: clamp(140px, 14vw, 176px);
         height: auto;
         min-height: 220px;
-        border-radius: 16px;
+        border-radius: var(--radius);
         background-color: #F8FAFC;
     }
 
@@ -113,7 +113,7 @@
     }
 
     .scroll-item {
-        border-radius: 16px;
+        border-radius: var(--radius);
         scroll-snap-align: start;
         min-width: min(900px, 90vw);
         aspect-ratio: 1508 / 712;
