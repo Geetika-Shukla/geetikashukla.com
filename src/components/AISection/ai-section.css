@@ -1,8 +1,6 @@
 /* AI: projects built entirely with AI, three across on a gridded panel */
 .ai__inner {
-    max-width: var(--page-max-width);
-    margin: 0 auto;
-    padding: 0 var(--page-gutter) 120px;
+    padding: 0 var(--section-margin) 120px;
 }
 
 .ai__title {

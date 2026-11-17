@@ -9,9 +9,7 @@
     --cover: #9C4A2A;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
-    max-width: var(--page-max-width);
-    margin: 0 auto;
-    padding: 40px var(--page-gutter) 120px;
+    padding: 40px var(--section-margin) 120px;
     text-align: center;
     /* Links to #journal (the nav's About me) land clear of the nav */
     scroll-margin-top: var(--header-height);
@@ -290,7 +288,7 @@
 /* No flipping: the pages one after the other */
 @media (max-width: 899px) {
     .journal {
-        padding: 24px var(--page-gutter) 72px;
+        padding: 24px var(--section-margin) 72px;
     }
 
     .journal__lede {

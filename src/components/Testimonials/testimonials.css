@@ -1,8 +1,6 @@
 /* Testimonials: three quote cards across; on narrow screens a row to swipe */
 .testimonials {
-    max-width: var(--page-max-width);
-    margin: 0 auto;
-    padding: 40px var(--page-gutter) 120px;
+    padding: 40px var(--section-margin) 120px;
 }
 
 .testimonials__title {

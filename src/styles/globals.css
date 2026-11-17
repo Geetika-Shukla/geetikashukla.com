@@ -24,6 +24,9 @@
 
     --page-max-width : 1440px;
     --page-gutter    : clamp(16px, 4vw, 48px);
+    /* Side margins for the home page's sections, as on the project pages (16%) */
+    --section-margin : max(var(--page-gutter), 16vw);
+
     /* Corners, the same throughout: cards, panels and images; and small
        things like tags, labels and buttons */
     --radius         : 6px;
@@ -92,4 +95,18 @@ p {
 body:has(.project-page),
 .site:has(.project-page) {
     background-color: #FFFFFF;
+}
+
+/* Medium screens: narrower section margins */
+@media (max-width: 1199px) {
+    :root {
+        --section-margin: max(var(--page-gutter), 8vw);
+    }
+}
+
+/* Phones: the usual gutter */
+@media (max-width: 899px) {
+    :root {
+        --section-margin: var(--page-gutter);
+    }
 }
