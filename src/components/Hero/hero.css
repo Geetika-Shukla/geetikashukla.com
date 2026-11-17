@@ -173,16 +173,11 @@
     height: auto;
 }
 
-/* Photos: prints with a white border */
+/* Photos: plain prints, no border, with a soft shadow */
 .hero__item--photo .hero__thing {
-    padding: 6px;
+    overflow: hidden;
     border-radius: 4px;
-    background-color: var(--color-surface);
     box-shadow: 0 2px 4px rgba(43, 45, 56, 0.08), 0 10px 24px rgba(43, 45, 56, 0.1);
-}
-
-.hero__item--photo img {
-    border-radius: 2px;
 }
 
 /* Project thumbnails: cards */
