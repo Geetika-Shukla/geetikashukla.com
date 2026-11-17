@@ -38,9 +38,9 @@ const work = (href: string, whole = false) => {
  * two places, as percentages of the board (its centre):
  *   scatter: [x, y, tilt] round the edges, leaving the middle for the intro
  *   grid:    [x, y] in a cell of a 7 × 4 grid. Columns are centred at 8, 22,
- *            36, 50, 64, 78 and 92%; rows at 14, 35, 56 and 77%. Phrases take
- *            some cells and two are left empty.
- * Scrolling through the hero moves everything from one to the other.
+ *            36, 50, 64, 78 and 92%; rows at 18, 38, 58 and 78%. Phrases take
+ *            some cells and others are left empty.
+ * The hero opens on the grid; scrolling through it scatters everything.
  */
 interface Item {
     id      : string;
@@ -54,44 +54,43 @@ interface Item {
 }
 
 const ITEMS: Item[] = [
-    { id: "calli", kind: "photo", content: photo(calliOne, "Calligraphy"), label: "Calligraphy", w: "clamp(90px, 8.5vw, 140px)", scatter: [8, 52, 4], grid: [8, 14] },
-    { id: "type", kind: "work", content: work("/visual/26-days-of-type"), label: "26 days of Type", href: "/visual/26-days-of-type", w: "clamp(130px, 12vw, 190px)", scatter: [50, 11, -3], grid: [50, 14] },
-    { id: "mug", kind: "art", content: <Mug />, label: "Tea", w: "clamp(60px, 5vw, 84px)", scatter: [70, 17, 5], grid: [64, 14] },
-    { id: "heart", kind: "art", content: <PixelHeart />, label: "A pixel heart", w: "clamp(44px, 3.6vw, 60px)", scatter: [24, 43, -8], grid: [78, 14] },
-    { id: "books", kind: "photo", content: photo(japanFic, "Japanese fiction"), label: "Japanese fiction", w: "clamp(90px, 8.5vw, 140px)", scatter: [86, 22, 6], grid: [92, 14] },
+    { id: "calli", kind: "photo", content: photo(calliOne, "Calligraphy"), label: "Calligraphy", w: "clamp(90px, 8.5vw, 140px)", scatter: [8, 52, 4], grid: [8, 18] },
+    { id: "type", kind: "work", content: work("/visual/26-days-of-type"), label: "26 days of Type", href: "/visual/26-days-of-type", w: "clamp(130px, 12vw, 190px)", scatter: [50, 11, -3], grid: [50, 18] },
+    { id: "mug", kind: "art", content: <Mug />, label: "Tea", w: "clamp(60px, 5vw, 84px)", scatter: [70, 17, 5], grid: [64, 18] },
+    { id: "heart", kind: "art", content: <PixelHeart />, label: "A pixel heart", w: "clamp(44px, 3.6vw, 60px)", scatter: [24, 43, -8], grid: [78, 18] },
+    { id: "books", kind: "photo", content: photo(japanFic, "Japanese fiction"), label: "Japanese fiction", w: "clamp(90px, 8.5vw, 140px)", scatter: [86, 22, 6], grid: [92, 18] },
 
-    { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(64px, 5.5vw, 90px)", scatter: [30, 87, -4], grid: [8, 35] },
-    { id: "ghibli", kind: "photo", content: photo(ghibli, "Studio Ghibli figurines"), label: "Studio Ghibli", w: "clamp(150px, 15vw, 240px)", scatter: [14, 20, -6], grid: [22, 35] },
-    { id: "vinyl", kind: "art", content: <Vinyl />, label: "Vinyls", w: "clamp(84px, 7.5vw, 120px)", scatter: [31, 16, 7], grid: [78, 35] },
-    { id: "spool", kind: "art", content: <Spool />, label: "Sewing", w: "clamp(54px, 4.5vw, 76px)", scatter: [93, 45, 10], grid: [92, 35] },
+    { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(64px, 5.5vw, 90px)", scatter: [30, 87, -4], grid: [8, 38] },
+    { id: "ghibli", kind: "photo", content: photo(ghibli, "Studio Ghibli figurines"), label: "Studio Ghibli", w: "clamp(150px, 15vw, 240px)", scatter: [14, 20, -6], grid: [22, 38] },
+    { id: "vinyl", kind: "art", content: <Vinyl />, label: "Vinyls", w: "clamp(84px, 7.5vw, 120px)", scatter: [31, 16, 7], grid: [78, 38] },
+    { id: "spool", kind: "art", content: <Spool />, label: "Sewing", w: "clamp(54px, 4.5vw, 76px)", scatter: [93, 45, 10], grid: [92, 38] },
 
-    { id: "lego", kind: "photo", content: photo(lego, "Japan in Lego"), label: "Lego", w: "clamp(120px, 12vw, 190px)", scatter: [16, 80, 5], grid: [8, 56] },
-    { id: "plants", kind: "photo", content: photo(plants, "House plants"), label: "Gardening", w: "clamp(80px, 7.5vw, 120px)", scatter: [77, 50, -5], grid: [50, 56] },
-    { id: "inktober", kind: "work", content: work("/type/inktober-2017", true), label: "Inktober", href: "/type/inktober-2017", w: "clamp(130px, 12vw, 190px)", scatter: [87, 76, 4], grid: [64, 56] },
-    { id: "sleeve", kind: "photo", content: photo(sleeve, "A handmade laptop sleeve"), label: "Sewing", w: "clamp(80px, 7.5vw, 120px)", scatter: [72, 82, -7], grid: [92, 56] },
+    { id: "lego", kind: "photo", content: photo(lego, "Japan in Lego"), label: "Lego", w: "clamp(120px, 12vw, 190px)", scatter: [16, 80, 5], grid: [8, 58] },
+    { id: "plants", kind: "photo", content: photo(plants, "House plants"), label: "Gardening", w: "clamp(80px, 7.5vw, 120px)", scatter: [77, 50, -5], grid: [50, 58] },
+    { id: "inktober", kind: "work", content: work("/type/inktober-2017", true), label: "Inktober", href: "/type/inktober-2017", w: "clamp(130px, 12vw, 190px)", scatter: [87, 76, 4], grid: [64, 58] },
+    { id: "sleeve", kind: "photo", content: photo(sleeve, "A handmade laptop sleeve"), label: "Sewing", w: "clamp(80px, 7.5vw, 120px)", scatter: [72, 82, -7], grid: [92, 58] },
 
-    { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(80px, 7vw, 110px)", scatter: [39, 86, 3], grid: [8, 77] },
-    { id: "icons", kind: "work", content: work("/visual/icon-system-for-setu"), label: "Icon system", href: "/visual/icon-system-for-setu", w: "clamp(84px, 7.5vw, 120px)", scatter: [59, 88, -5], grid: [22, 77] },
-    { id: "soap", kind: "art", content: <Soap />, label: "Soaps", w: "clamp(60px, 5vw, 84px)", scatter: [93, 90, -6], grid: [92, 77] },
+    { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(80px, 7vw, 110px)", scatter: [39, 86, 3], grid: [8, 78] },
+    { id: "icons", kind: "work", content: work("/visual/icon-system-for-setu"), label: "Icon system", href: "/visual/icon-system-for-setu", w: "clamp(84px, 7.5vw, 120px)", scatter: [59, 88, -5], grid: [22, 78] },
+    { id: "soap", kind: "art", content: <Soap />, label: "Soaps", w: "clamp(60px, 5vw, 84px)", scatter: [93, 90, -6], grid: [92, 78] },
 ];
 
 // A line set across the grid, a phrase to a pair of cells, read left to right,
-// top to bottom; and the disciplines, as a label
-const PHRASES: { text: string; at: [number, number]; label?: boolean }[] = [
-    { text: "Always a student,", at: [29, 14] },
-    { text: "from buildings to brands,", at: [57, 35] },
-    { text: "exhibitions to products,", at: [29, 56] },
-    { text: "brand · exhibition · web · product", at: [43, 77], label: true },
-    { text: "and whatever comes next.", at: [71, 77] },
+// top to bottom
+const PHRASES: { text: string; at: [number, number] }[] = [
+    { text: "Always a student,", at: [29, 18] },
+    { text: "from buildings to brands,", at: [57, 38] },
+    { text: "exhibitions to products,", at: [29, 58] },
+    { text: "and whatever comes next.", at: [71, 78] },
 ];
 
 type Offsets = Record<string, { x: number; y: number }>;
 
 /*
- * Hero: a board of things round the intro. The section is taller than the
- * screen and its board stays put while it scrolls past; the scroll (0 → 1,
- * as --p) moves everything from the scatter into the grid, the intro giving
- * way to the line across the grid. Things can also be dragged about.
+ * Hero: a board of things, opening as a tidy grid with a line set in its
+ * cells. The section is taller than the screen and its board stays put while
+ * it scrolls past; the scroll (0 → 1, as --p) scatters everything to the
+ * edges and brings in the intro. Things can also be dragged about.
  */
 export const Hero = () => {
     const sectionRef = useRef<HTMLElement>(null);
@@ -99,14 +98,15 @@ export const Hero = () => {
     const [offsets, setOffsets] = useState<Offsets>({});
     const drag = useRef<{ id: string; x: number; y: number; from: { x: number; y: number }; moved: boolean } | null>(null);
 
-    // Scroll progress through the hero, as --p (0 at the top, 1 once fully arranged)
+    // Scroll progress through the hero, as --p (0 at the top, 1 once fully scattered)
     useEffect(() => {
         const section = sectionRef.current;
         if (!section) return;
         let frame = 0;
         const update = () => {
             frame = 0;
-            const travel = section.offsetHeight - window.innerHeight;
+            // The scatter takes the first 100svh of the hero's scroll; the rest is a pause
+            const travel = Math.min(window.innerHeight, section.offsetHeight - window.innerHeight);
             const scrolled = -section.getBoundingClientRect().top;
             const progress = travel > 0 ? Math.min(Math.max(scrolled / travel, 0), 1) : 0;
             section.style.setProperty("--p", progress.toFixed(3));
@@ -151,22 +151,15 @@ export const Hero = () => {
         <section ref={sectionRef} className="hero" aria-label="Introduction">
             <div className="hero__board">
                 <header className="hero__intro">
-                    <h1 className="hero__title">Hello there!</h1>
+                    <h1 className="hero__title">Geetika Shukla</h1>
                     <p className="hero__role">
                         Manager — Design @ Reserve Bank Innovation Hub <span aria-hidden="true">·</span> Ex-Setu
-                    </p>
-                    <p className="hero__line">
-                        Seven years of learning by doing — from buildings and exhibitions to brands and products.
                     </p>
                 </header>
 
                 <ul className="hero__phrases" aria-hidden="true">
-                    {PHRASES.map(({ text, at: [x, y], label }) => (
-                        <li
-                            key={text}
-                            className={`hero__phrase${label ? " hero__phrase--label" : ""}`}
-                            style={{ "--x": `${x}%`, "--y": `${y}%` } as CSSProperties}
-                        >
+                    {PHRASES.map(({ text, at: [x, y] }) => (
+                        <li key={text} className="hero__phrase" style={{ "--x": `${x}%`, "--y": `${y}%` } as CSSProperties}>
                             {text}
                         </li>
                     ))}

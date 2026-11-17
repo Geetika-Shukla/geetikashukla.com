@@ -1,19 +1,21 @@
 /*
- * Hero: a board on the page's faint grid, with the intro in the middle and
- * things scattered round the edges. The section runs taller than the screen
- * while the board stays put; scrolling through it (--p, 0 → 1, set by
- * Hero.tsx) moves each thing from its scatter place (--sx, --sy, tilted) to
- * its grid cell (--gx, --gy), and the intro gives way to a line set in the
- * grid's empty cells. Things can be dragged (--dx, --dy).
+ * Hero: a board on the page's off-white with a faint grid. It opens as a tidy grid, each
+ * thing in its cell (--gx, --gy) and a line set in cells of its own. The
+ * section runs taller than the screen while the board stays put; scrolling
+ * through it (--p, 0 → 1, set by Hero.tsx) scatters each thing to its place
+ * round the edges (--sx, --sy, tilted), and the line gives way to the intro
+ * in the middle. Things can be dragged (--dx, --dy).
  */
 .hero {
     --p: 0;
+    --paper: var(--color-bg);
     --line: color-mix(in srgb, var(--color-text) 6%, transparent);
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
     position: relative;
-    /* The board's screen, plus the scroll it takes to arrange it */
-    height: calc(100svh - var(--header-height) + 90svh);
+    /* The board's screen, plus the scroll it takes to scatter it (100svh)
+       and a pause once scattered (60svh) before the page moves on */
+    height: calc(100svh - var(--header-height) + 160svh);
 }
 
 .hero__board {
@@ -22,6 +24,7 @@
     height: calc(100svh - var(--header-height));
     min-height: 620px;
     overflow: clip;
+    background-color: var(--paper);
     background-image:
         linear-gradient(to right, var(--line) 1px, transparent 1px),
         linear-gradient(to bottom, var(--line) 1px, transparent 1px);
@@ -29,7 +32,7 @@
 }
 
 /* INTRO ==================================================================== */
-/* Fades and settles away over the first part of the scroll */
+/* Comes in over the last part of the scroll, once the board has scattered */
 .hero__intro {
     position: absolute;
     top: 50%;
@@ -37,8 +40,8 @@
     z-index: 1;
     width: min(520px, 44%);
     text-align: center;
-    opacity: clamp(0, calc(1 - var(--p) * 2.5), 1);
-    transform: translate(-50%, calc(-50% - var(--p) * 40px));
+    opacity: clamp(0, calc((var(--p) - 0.55) * 2.5), 1);
+    transform: translate(-50%, calc(-50% + (1 - var(--p)) * 24px));
 }
 
 .hero__title {
@@ -93,48 +96,36 @@
     font-weight: 500;
 }
 
-.hero__line {
-    margin: 10px 0 0;
-    color: var(--color-text-muted);
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    font-weight: 400;
-    font-style: italic;
-    line-height: 1.5;
-}
-
 /* PHRASES ================================================================== */
-/* A line set straight into the grid's empty cells; comes in at the end */
+/* A line set in cells of its own, which go once the board starts to scatter */
 .hero__phrases {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-/* Each spans two of the grid's cells (each 14% wide) */
+/* Each spans two of the grid's cells (each 14% wide); the cell is clear of the
+   grid's lines, with only its outline */
 .hero__phrase {
     position: absolute;
     top: var(--y);
     left: var(--x);
-    width: 26%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 27%;
+    height: 17%;
+    padding: 0 12px;
+    border: 1px solid color-mix(in srgb, var(--color-text) 14%, transparent);
+    background-color: var(--paper);
     color: var(--color-text);
     font-family: var(--font-heading);
     font-size: clamp(1.2rem, 2vw, 1.8rem);
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1.15;
     text-align: center;
-    opacity: clamp(0, calc((var(--p) - 0.55) * 2.5), 1);
-    transform: translate(-50%, calc(-50% + (1 - var(--p)) * 16px));
-}
-
-/* The disciplines, as a quiet label */
-.hero__phrase--label {
-    color: var(--color-text-muted);
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    opacity: clamp(0, calc(1 - var(--p) * 2.5), 1);
+    transform: translate(-50%, calc(-50% - var(--p) * 16px));
 }
 
 /* THINGS =================================================================== */
@@ -144,17 +135,17 @@
     list-style: none;
 }
 
-/* Between its scatter place and its grid cell by --p, untilting as it goes,
+/* Between its grid cell and its scatter place by --p, tilting as it goes,
    and moved by however far it was dragged */
 .hero__item {
     position: absolute;
-    top: calc(var(--sy) + (var(--gy) - var(--sy)) * var(--p));
-    left: calc(var(--sx) + (var(--gx) - var(--sx)) * var(--p));
+    top: calc(var(--gy) + (var(--sy) - var(--gy)) * var(--p));
+    left: calc(var(--gx) + (var(--sx) - var(--gx)) * var(--p));
     z-index: 2;
     width: var(--w);
     transform:
         translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px)))
-        rotate(calc(var(--tilt, 0deg) * (1 - var(--p))));
+        rotate(calc(var(--tilt, 0deg) * var(--p)));
 }
 
 .hero__item:has(.hero__thing:active) {
