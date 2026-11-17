@@ -1,0 +1,307 @@
+/*
+ * Hero: a board on the page's faint grid. The intro sits in the middle with
+ * things scattered round the edges; switched to the board layout, the things
+ * settle into a 6 × 4 grid of cells around the intro, set as phrases. Things
+ * can be dragged; switching layout tidies them back.
+ */
+.hero {
+    --line: color-mix(in srgb, var(--color-text) 6%, transparent);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    position: relative;
+    height: calc(100svh - var(--header-height));
+    min-height: 620px;
+    overflow: clip;
+    background-image:
+        linear-gradient(to right, var(--line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+/* INTRO ==================================================================== */
+.hero__intro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    width: min(460px, 40%);
+    text-align: center;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.4s ease, transform 0.6s var(--ease);
+}
+
+.hero__title {
+    margin: 0 auto;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: clamp(2.6rem, 4.4vw, 3.6rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+}
+
+/* Ink with a flash of colour (rust, gold, teal) sweeping through every few seconds */
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+    .hero__title {
+        width: fit-content;
+        background-image: linear-gradient(
+            100deg,
+            var(--color-text) 0%,
+            var(--color-text) 34%,
+            #C9683E 42%,
+            #E3B94C 50%,
+            #3F8F8A 58%,
+            var(--color-text) 66%,
+            var(--color-text) 100%
+        );
+        background-size: 300% 100%;
+        background-position: 100% 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: hero-title-flash 6s cubic-bezier(0.45, 0, 0.25, 1) 0.6s infinite;
+    }
+}
+
+@keyframes hero-title-flash {
+    0% {
+        background-position: 100% 0;
+    }
+
+    35%,
+    100% {
+        background-position: 0% 0;
+    }
+}
+
+.hero__bio {
+    margin: 16px 0 0;
+    color: var(--color-text-muted);
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.55;
+}
+
+/* In the board layout the intro gives way to its phrases */
+.hero[data-layout="board"] .hero__intro {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+    pointer-events: none;
+}
+
+/* PHRASES ================================================================== */
+.hero__phrases {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Each spans two of the board's cells (each 16% wide, 21% tall) */
+.hero__phrase {
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 31%;
+    height: 18%;
+    padding: 0 16px;
+    border: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+    border-radius: 8px;
+    background-color: color-mix(in srgb, var(--color-surface) 70%, transparent);
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: clamp(1.1rem, 1.9vw, 1.7rem);
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+    transition: opacity 0.4s ease, transform 0.6s var(--ease);
+}
+
+.hero[data-layout="board"] .hero__phrase {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    transition-delay: 0.15s;
+}
+
+/* THINGS =================================================================== */
+.hero__items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Centred on (--x, --y), tilted, and moved by however far it was dragged */
+.hero__item {
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    z-index: 2;
+    width: var(--w);
+    transform:
+        translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px)))
+        rotate(var(--tilt, 0deg));
+    transition: top 0.8s var(--ease), left 0.8s var(--ease), transform 0.8s var(--ease);
+}
+
+/* While dragged, it follows the pointer exactly */
+.hero__item:has(.hero__thing:active) {
+    z-index: 3;
+    transition: top 0.8s var(--ease), left 0.8s var(--ease);
+}
+
+.hero__thing {
+    display: block;
+    color: inherit;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    transition: transform 0.25s var(--ease), filter 0.25s ease;
+}
+
+.hero__thing:active {
+    cursor: grabbing;
+}
+
+.hero__thing:hover {
+    transform: scale(1.05);
+}
+
+.hero__thing img,
+.hero__thing svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Photos: prints with a white border */
+.hero__item--photo .hero__thing {
+    padding: 6px;
+    border-radius: 4px;
+    background-color: var(--color-surface);
+    box-shadow: 0 2px 4px rgba(43, 45, 56, 0.08), 0 10px 24px rgba(43, 45, 56, 0.1);
+}
+
+.hero__item--photo img {
+    border-radius: 2px;
+}
+
+/* Project thumbnails: cards */
+.hero__item--work .hero__thing {
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: var(--color-surface);
+    box-shadow: 0 2px 4px rgba(43, 45, 56, 0.08), 0 10px 24px rgba(43, 45, 56, 0.1);
+}
+
+.hero__item--work svg {
+    aspect-ratio: 16 / 10;
+    height: auto;
+}
+
+/* Illustrations: stickers, with a soft drop shadow */
+.hero__item--art .hero__thing {
+    filter: drop-shadow(0 4px 8px rgba(43, 45, 56, 0.12));
+}
+
+/* LAYOUT SWITCH ============================================================ */
+.hero__layouts {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    z-index: 4;
+    display: flex;
+    gap: 10px;
+    transform: translateX(-50%);
+}
+
+.hero__layout {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
+    border-radius: 50%;
+    background-color: var(--color-surface);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(43, 45, 56, 0.08);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.hero__layout svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+.hero__layout:hover,
+.hero__layout:focus-visible {
+    color: var(--color-text);
+}
+
+.hero__layout[aria-pressed="true"] {
+    border-color: var(--color-accent-2);
+    background-color: var(--color-accent-2);
+    color: #FFFFFF;
+}
+
+/* NARROW SCREENS =========================================================== */
+/* The intro on top, then the things as a loose, tilted collage; no board */
+@media (max-width: 899px) {
+    .hero {
+        height: auto;
+        min-height: 0;
+        padding: 32px var(--page-gutter) 40px;
+    }
+
+    .hero__intro {
+        position: static;
+        width: auto;
+        margin-bottom: 28px;
+        transform: none;
+    }
+
+    .hero__title {
+        font-size: 2.4rem;
+    }
+
+    .hero__phrases,
+    .hero__layouts {
+        display: none;
+    }
+
+    .hero__items {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .hero__item {
+        position: static;
+        width: calc(var(--w) * 0.75);
+        transform: rotate(var(--tilt, 0deg));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero__title {
+        animation: none;
+        background-position: 50% 0;
+    }
+
+    .hero__intro,
+    .hero__phrase,
+    .hero__item,
+    .hero__thing {
+        transition: none;
+    }
+}
