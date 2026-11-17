@@ -1,0 +1,282 @@
+/*
+ * Work: the title and filters in a column on the left that stays in view,
+ * beside two columns of project cards.
+ */
+.work {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 48px;
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    padding: 96px var(--page-gutter) 120px;
+}
+
+/* LIST ===================================================================== */
+.work__list {
+    position: sticky;
+    top: calc(var(--header-height) + 32px);
+    align-self: start;
+}
+
+.work__title {
+    margin: 0 0 28px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.work__reset {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+/* Nothing to reset: plain title */
+.work__reset:disabled {
+    cursor: default;
+}
+
+.work__reset:not(:disabled):hover,
+.work__reset:focus-visible {
+    color: var(--color-accent-2);
+}
+
+.work__list ul {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.work__filter {
+    padding: 4px 0;
+    border: 0;
+    background: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 400;
+    scroll-margin-top: calc(var(--header-height) + 100px);
+    transition: color 0.2s ease;
+}
+
+.work__filter:hover,
+.work__filter:focus-visible {
+    color: var(--color-text);
+}
+
+/* Selected filter: shown by colour */
+.work__filter[aria-pressed="true"] {
+    color: var(--color-accent-2);
+}
+
+/* CARDS ==================================================================== */
+.work__cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 56px 32px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Each type of work has its own tint */
+.wcard {
+    --tint: #ECEAE4;
+
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.wcard--experience {
+    --tint: #E5ECF1;
+}
+
+.wcard--visual {
+    --tint: #F3E7DC;
+}
+
+.wcard--type {
+    --tint: #ECEAE4;
+}
+
+/* Filtered out: greyscale and faded */
+.wcard[data-dimmed="true"] {
+    filter: grayscale(1);
+    opacity: 0.45;
+}
+
+.wcard__link {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* The tinted panel; its bottom-right corner is notched out for the arrow */
+.wcard__media {
+    --notch: 64px;
+
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: var(--tint);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+
+.wcard__art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale(var(--art, 1));
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Square artwork sits whole, with room around it */
+.wcard__art--fit {
+    inset: 12%;
+    width: 76%;
+    height: 76%;
+}
+
+/* The notch: a page-coloured corner with a rounded inner edge, holding the arrow */
+.wcard__media::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: var(--notch);
+    height: var(--notch);
+    border-top-left-radius: 16px;
+    background-color: var(--color-bg);
+}
+
+.wcard__arrow {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: calc(var(--notch) - 16px);
+    height: calc(var(--notch) - 16px);
+    border-radius: 50%;
+    background-color: var(--tint);
+    color: var(--color-text);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.25s ease, color 0.25s ease;
+}
+
+.wcard__arrow svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.wcard__title {
+    margin-top: 20px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.wcard__description {
+    margin-top: 8px;
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+.wcard__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.wcard__tag {
+    padding: 4px 10px;
+    border-radius: 4px;
+    background-color: var(--tint);
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Hover: the panel lifts, the artwork leans in, the arrow turns */
+.wcard__link:hover .wcard__media,
+.wcard__link:focus-visible .wcard__media {
+    box-shadow: 0 14px 30px rgba(43, 45, 56, 0.1);
+    transform: translateY(-4px);
+}
+
+.wcard__link:hover .wcard__art,
+.wcard__link:focus-visible .wcard__art {
+    transform: scale(calc(var(--art, 1) * 1.04));
+}
+
+.wcard__link:hover .wcard__arrow,
+.wcard__link:focus-visible .wcard__arrow {
+    background-color: var(--color-text);
+    color: #FFFFFF;
+    transform: rotate(45deg);
+}
+
+/* NARROW SCREENS =========================================================== */
+@media (max-width: 899px) {
+    .work {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 56px var(--page-gutter) 72px;
+    }
+
+    .work__list {
+        position: static;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 8px 24px;
+    }
+
+    .work__title {
+        margin: 0;
+    }
+
+    .work__list ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px 20px;
+    }
+
+    .work__cards {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wcard,
+    .wcard__media,
+    .wcard__art,
+    .wcard__arrow {
+        transition: none;
+    }
+}
