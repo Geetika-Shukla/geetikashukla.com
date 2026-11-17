@@ -17,7 +17,9 @@ import type { DeskObjectId, ObjectHandlers } from "./objects";
 // The fixed view of the room: what the camera looks at, and how close
 const LOOK_AT = new THREE.Vector3(0.5, 2.3, 0);
 const ZOOM = 0.8;
-const CAMERA_OFFSET = new THREE.Vector3(12, 10, 14);
+// Straight on, like a 2D pixel-art scene, tilted down just enough to show the
+// desk top, the floor and the rug as thin bands
+const CAMERA_OFFSET = new THREE.Vector3(0, 3, 20);
 // On wide screens the room sits right of centre, leaving room for the headline
 const SHIFT_RIGHT = 0.12;
 
@@ -108,7 +110,7 @@ export const DeskScene3D = ({ progressRef, hoveredRef, handlers, labels, labelRe
         <ambientLight intensity={0.8} />
         <hemisphereLight args={["#FFF6E8", "#C9BBA6", 0.55]} />
         <directionalLight
-            position={[6, 12, 8]}
+            position={[3, 10, 16]}
             intensity={1.5}
             color="#FFF4E2"
             castShadow

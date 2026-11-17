@@ -16,13 +16,11 @@ import type { MutableRefObject } from "react";
 // Room geometry (units ≈ decimetres): floor at y = -3, back wall face at z = -1.7,
 // window opening x -3.6..3.6, y 1.2..5.6. Walls are wide enough never to end on screen.
 const WALL = "#F2EEE6";
-const SIDE_WALL = "#ECE6DB";
 const SKIRTING = "#FBFAF6";
-// Walls glow a little in their own colour, so they read lighter under the scene's
-// lighting; the back (right-hand) wall a touch less, so it sits slightly darker
+// The wall glows a little in its own colour, so it reads lighter under the
+// scene's lighting
 const WALL_GLOW = 0.22;
-const SIDE_WALL_GLOW = 0.5;
-// Must match --floor in desk-3d.css
+// Must match --floor in IsoFloor/iso-floor.css
 export const FLOOR = "#EFEAE1";
 
 /*
@@ -94,15 +92,13 @@ const Walls = () => (
         <mesh position={[11.8, 12, -1.8]} receiveShadow><boxGeometry args={[16.4, 30, 0.2]} /><Mat color={WALL} emissive={WALL} emissiveIntensity={WALL_GLOW} /></mesh>
         <mesh position={[0, -0.9, -1.8]} receiveShadow><boxGeometry args={[7.2, 4.2, 0.2]} /><Mat color={WALL} emissive={WALL} emissiveIntensity={WALL_GLOW} /></mesh>
         <mesh position={[0, 16.3, -1.8]} receiveShadow><boxGeometry args={[7.2, 21.4, 0.2]} /><Mat color={WALL} emissive={WALL} emissiveIntensity={WALL_GLOW} /></mesh>
-        {/* Side wall, floor and skirting */}
-        <mesh position={[-8.6, 12, 8]} receiveShadow><boxGeometry args={[0.2, 30, 19.6]} /><Mat color={SIDE_WALL} emissive={SIDE_WALL} emissiveIntensity={SIDE_WALL_GLOW} /></mesh>
+        {/* Floor and skirting (seen straight on, the room has no side wall) */}
         {/* Floor: flat, unlit colour shared with the work section below, so the two meet seamlessly.
             Shadows are drawn on a transparent layer just above it. */}
         <mesh position={[4, -3.1, 8]}><boxGeometry args={[40, 0.2, 20]} /><meshBasicMaterial color={FLOOR} toneMapped={false} /></mesh>
         <FloorGrid />
         <mesh position={[4, -2.995, 8]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow><planeGeometry args={[40, 20]} /><shadowMaterial opacity={0.18} /></mesh>
         <mesh position={[4, -2.84, -1.66]}><boxGeometry args={[40, 0.32, 0.08]} /><Mat color={SKIRTING} /></mesh>
-        <mesh position={[-8.46, -2.84, 8]}><boxGeometry args={[0.08, 0.32, 19.6]} /><Mat color={SKIRTING} /></mesh>
     </group>
 );
 
