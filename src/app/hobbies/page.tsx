@@ -2,9 +2,6 @@
 import React from "react";
 import Image from "next/image";
 
-// COMPONENTS ==================================================================
-import { IsoFloor } from "@/components/IsoFloor/IsoFloor";
-
 // STYLES ======================================================================
 import "./page-hobbies.css";
 
@@ -14,47 +11,33 @@ import calliTwo from "@/assets/images/calli-2.png";
 import ghibli from "@/assets/images/ghibli-image.jpg";
 import sleeve from "@/assets/images/laptop-sleeve.jpg";
 import japanFic from "@/assets/images/japan-books.jpg";
-// Widened to the 2×1 card's shape, its sides extended from the photo's own edges
-import lego from "@/assets/images/japan-lego-wide.jpg";
+import lego from "@/assets/images/japan-lego.jpg";
 import plants from "@/assets/images/plants.webp";
 import spirited from "@/assets/images/spirited-away.jpg";
 
 // TYPES =======================================================================
 import type { StaticImageData } from "next/image";
-import type { IsoSize, IsoTile } from "@/components/IsoFloor/IsoFloor";
 
 /*
- * Photos laid on the floor's lattice (see IsoFloor), filling the screen beside
- * the intro and running off its right edge. At this size the screen holds a
- * diamond grid of card slots, four diagonal columns by five rows:
- *   column k = (u − v) / 11, from −3 at the intro to 0 at the right edge
- *   row    r = (u + v) / 11, from 0 under the nav to 4 at the bottom
- * Wide imagery takes a 2×1 card (two slots, stepping down to the right).
- * Free slots for more photos, along the right edge (partly cropped):
- * (u 11, v 0) and (22, 11).
- * `focus` picks which part of a cropped photo stays in view.
+ * Photos in a flat grid, five columns by two rows, beside the intro. Wide
+ * imagery spans two columns; the cells are taller than wide, which suits the
+ * mostly portrait photos.
  */
-const PHOTOS: { title: string; alt: string; image: StaticImageData; size: IsoSize; u: number; v: number; focus?: string }[] = [
-    { title: "Calligraphy", alt: "Calligraphy piece", image: calliTwo, size: "1x1", u: 0, v: 0 },
-    { title: "Calligraphy", alt: "Calligraphy piece", image: calliOne, size: "1x1", u: -11, v: 11 },
-    { title: "Japanese fiction", alt: "Japanese fiction books", image: japanFic, size: "1x1", u: 0, v: 11 },
-    { title: "Sewing", alt: "Handmade laptop sleeve", image: sleeve, size: "1x1", u: 11, v: 11 },
-    { title: "Vinyls", alt: "Spirited Away-inspired artwork", image: spirited, size: "1x1", u: -11, v: 22 },
-    { title: "Gardening", alt: "Animation of house plants", image: plants, size: "1x1", u: 0, v: 22, focus: "50% 100%" },
-    { title: "Studio Ghibli", alt: "Studio Ghibli-inspired artwork", image: ghibli, size: "2x1", u: 11, v: 22 },
-    { title: "Lego", alt: "Japan-themed Lego build", image: lego, size: "2x1", u: 0, v: 33 },
+const PHOTOS: { alt: string; image: StaticImageData; wide?: boolean }[] = [
+    { alt: "Calligraphy piece", image: calliOne },
+    { alt: "Studio Ghibli-inspired artwork", image: ghibli, wide: true },
+    { alt: "Japanese fiction books", image: japanFic },
+    { alt: "Spirited Away-inspired artwork", image: spirited },
+    { alt: "Animation of house plants", image: plants },
+    { alt: "Handmade laptop sleeve", image: sleeve },
+    { alt: "Japan-themed Lego build", image: lego, wide: true },
+    { alt: "Calligraphy piece", image: calliTwo },
 ];
-
-const TILES: IsoTile[] = PHOTOS.map(({ title, alt, image, size, u, v, focus }) => ({
-    id   : image.src,
-    title, size, u, v, focus,
-    face : <Image src={image} alt={alt} sizes="(min-width: 900px) 30vw, 50vw" />,
-}));
 
 const HobbiesPage = () => {
     return (
-        <article className="interests iso-page">
-            <div className="interests__scene iso">
+        <article className="interests">
+            <div className="interests__layout">
                 <header className="interests__intro">
                     <h1 className="interests__title">My go-to sources of joy</h1>
                     <p className="interests__text">
@@ -67,7 +50,13 @@ const HobbiesPage = () => {
                     </p>
                 </header>
 
-                <IsoFloor tiles={TILES} captions="none" />
+                <ul className="interests__grid">
+                    {PHOTOS.map(({ alt, image, wide }) => (
+                        <li key={image.src} className={`interests__photo${wide ? " interests__photo--wide" : ""}`}>
+                            <Image src={image} alt={alt} sizes="(min-width: 900px) 20vw, 50vw" />
+                        </li>
+                    ))}
+                </ul>
             </div>
         </article>
     );
