@@ -2,10 +2,12 @@
  * Work: the title and filters in a column on the left that stays in view,
  * beside three columns of project cards.
  */
+/* Within the page's margins like every other page; the list's column is wide
+   enough to keep the three columns of cards a modest size */
 .work {
     display: grid;
-    grid-template-columns: 220px minmax(0, 1fr);
-    gap: 48px;
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: 64px;
     max-width: var(--page-max-width);
     margin: 0 auto;
     padding: 96px var(--page-gutter) 120px;
@@ -82,7 +84,7 @@
 .work__cards {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 48px 28px;
+    gap: 44px 24px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -124,11 +126,11 @@
 
 /* The tinted panel; its bottom-right corner is notched out for the arrow */
 .wcard__media {
-    --notch: 56px;
+    --notch: 48px;
 
     position: relative;
     display: block;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 3 / 2;
     overflow: hidden;
     border-radius: 12px;
     background-color: var(--tint);
@@ -179,8 +181,8 @@
 }
 
 .wcard__arrow svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     fill: none;
     stroke: currentColor;
     stroke-width: 1.8;
@@ -189,10 +191,10 @@
 }
 
 .wcard__title {
-    margin-top: 18px;
+    margin-top: 16px;
     color: var(--color-text);
     font-family: var(--font-heading);
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     font-weight: 700;
     line-height: 1.2;
 }
@@ -200,23 +202,24 @@
 .wcard__description {
     margin-top: 6px;
     color: var(--color-text-muted);
-    font-size: 1rem;
+    font-size: 0.92rem;
+    font-weight: 400;
     line-height: 1.5;
 }
 
 .wcard__tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 16px;
+    gap: 6px;
+    margin-top: 12px;
 }
 
 .wcard__tag {
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 4px;
     background-color: var(--tint);
     color: var(--color-text-muted);
-    font-size: 0.75rem;
+    font-size: 0.68rem;
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;

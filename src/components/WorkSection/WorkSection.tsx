@@ -43,6 +43,9 @@ const PROJECTS = ORDER.flatMap(({ href, art = 1 }) => {
     return project ? [{ ...project, art }] : [];
 });
 
+// A type's name as the filters show it (Experiences, Visual, Type)
+const LABELS = new Map(FILTERS.map(({ label, category }) => [category, label]));
+
 const filterFromHash = (hash: string): Category | null =>
     FILTERS.find(({ id }) => `#${id}` === hash)?.category ?? null;
 
@@ -110,7 +113,7 @@ export const WorkSection = () => {
                             <span className="wcard__title">{title}</span>
                             <span className="wcard__description">{description}</span>
                             <span className="wcard__tags">
-                                <span className="wcard__tag">{category}</span>
+                                <span className="wcard__tag">{LABELS.get(category)}</span>
                                 {year && <span className="wcard__tag">{year}</span>}
                             </span>
                         </Link>
