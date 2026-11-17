@@ -13,6 +13,8 @@
     margin: 0 auto;
     padding: 40px var(--page-gutter) 120px;
     text-align: center;
+    /* Links to #journal (the nav's About me) land clear of the nav */
+    scroll-margin-top: var(--header-height);
 }
 
 .journal__heading {

@@ -9,7 +9,7 @@ import "./site-header.css";
 
 const NAV_LINKS = [
     { href: "/#work", label: "Work" },
-    { href: "/more-about-me", label: "About me" },
+    { href: "/#journal", label: "About me" },
 ];
 
 export const SiteHeader = () => {
