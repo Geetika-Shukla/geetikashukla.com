@@ -52,8 +52,8 @@ const filterFromHash = (hash: string): Category | null =>
 /*
  * Work: the title and filters on the left, staying in view, beside three
  * columns of project cards. A card is a tinted panel holding the thumbnail,
- * with an arrow set into its corner, then the title, a line of description and
- * tags. A filter shows only that type of work; clicking the title, or the
+ * then the title (an arrow slides in after it on hover), a line of description
+ * and tags. A filter shows only that type of work; clicking the title, or the
  * filter again, shows everything.
  */
 export const WorkSection = () => {
@@ -106,11 +106,12 @@ export const WorkSection = () => {
                                     aria-hidden="true"
                                     preserveAspectRatio={shape === "wide" ? "xMidYMid slice" : "xMidYMid meet"}
                                 />
-                                <span className="wcard__arrow" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8" /></svg>
-                                </span>
                             </span>
-                            <span className="wcard__title">{title}</span>
+                            <span className="wcard__title">
+                                {title}
+                                {/* Slides in on hover */}
+                                <span className="wcard__go" aria-hidden="true">→</span>
+                            </span>
                             <span className="wcard__description">{description}</span>
                             <span className="wcard__tags">
                                 <span className="wcard__tag">{LABELS.get(category)}</span>
