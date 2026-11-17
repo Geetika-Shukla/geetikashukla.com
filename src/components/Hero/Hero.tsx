@@ -82,6 +82,10 @@ const PHRASES: { text: string; at: [number, number] }[] = [
 
 type Offsets = Record<string, { x: number; y: number }>;
 
+// A tiny heart floating up from the pixel heart when it's clicked
+type Particle = { id: number; x: number; y: number; dx: number; rise: number; spin: number; delay: number; size: number };
+const BURST = 10;
+
 type Size = { w: number; h: number };
 
 // The board's grid: squares of BLOCK px, drawn from its top-left corner (hero.css).
@@ -179,7 +183,33 @@ export const Hero = () => {
         if (current.moved) setOffsets((previous) => ({ ...previous, [current.id]: { x: current.from.x + dx, y: current.from.y + dy } }));
     };
 
-    const onPointerUp = () => {
+    // Clicking the pixel heart (without dragging it) sends up a burst of tiny hearts
+    const [particles, setParticles] = useState<Particle[]>([]);
+    const nextParticle = useRef(0);
+
+    const burst = (from: HTMLElement) => {
+        const board = boardRef.current;
+        if (!board) return;
+        const origin = board.getBoundingClientRect();
+        const heart = from.getBoundingClientRect();
+        const x = heart.left + heart.width / 2 - origin.left;
+        const y = heart.top + heart.height / 2 - origin.top;
+        const fresh = Array.from({ length: BURST }, (): Particle => ({
+            id    : nextParticle.current++,
+            x, y,
+            dx    : (Math.random() - 0.5) * 140,
+            rise  : 90 + Math.random() * 90,
+            spin  : (Math.random() - 0.5) * 60,
+            delay : Math.random() * 120,
+            size  : 12 + Math.random() * 12,
+        }));
+        setParticles((current) => [...current, ...fresh]);
+        const ids = new Set(fresh.map(({ id }) => id));
+        window.setTimeout(() => setParticles((current) => current.filter(({ id }) => !ids.has(id))), 1400);
+    };
+
+    const onPointerUp = (event: PointerEvent<HTMLElement>) => {
+        if (drag.current?.id === "heart" && !drag.current.moved) burst(event.currentTarget);
         drag.current = null;
     };
 
@@ -207,6 +237,23 @@ export const Hero = () => {
                         <li key={id} className="hero__cut" style={cutStyle(thingCut(grid, sizes[id], board))} />
                     ))}
                 </ul>
+
+                {/* Tiny hearts from a click on the pixel heart */}
+                <div className="hero__burst" aria-hidden="true">
+                    {particles.map(({ id, x, y, dx, rise, spin, delay, size }) => (
+                        <span
+                            key={id}
+                            className="hero__spark"
+                            style={{
+                                left: x, top: y, width: size,
+                                "--dx": `${dx}px`, "--rise": `${-rise}px`, "--spin": `${spin}deg`,
+                                animationDelay: `${delay}ms`,
+                            } as CSSProperties}
+                        >
+                            <PixelHeart />
+                        </span>
+                    ))}
+                </div>
 
                 <ul className="hero__items">
                     {ITEMS.map(({ id, kind, content, label, w, scatter: [sx, sy, tilt], grid: [gx, gy] }) => {
