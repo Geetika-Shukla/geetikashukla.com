@@ -121,6 +121,8 @@
  */
 .d3-work {
     position: relative;
+    /* The work section measures its margins against its own width (cqw) */
+    container-type: inline-size;
     z-index: 1;
     margin-top: -10svh;
     padding-top: 12svh;
