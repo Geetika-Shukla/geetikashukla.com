@@ -45,17 +45,14 @@ const PROJECTS = ORDER.flatMap(({ href, bg, art = 1 }) => {
     return project ? [{ ...project, bg, art }] : [];
 });
 
-// A type's name as the filters show it (Experiences, Visual, Type)
-const LABELS = new Map(FILTERS.map(({ label, category }) => [category, label]));
-
 const filterFromHash = (hash: string): Category | null =>
     FILTERS.find(({ id }) => `#${id}` === hash)?.category ?? null;
 
 /*
  * Work: the title and filters on the left, staying in view, beside three
- * columns of project cards. A card is a tinted panel holding the thumbnail,
- * then the title (an arrow slides in after it on hover), a line of description
- * and tags. A filter shows only that type of work; clicking the title, or the
+ * columns of project cards. A card is a panel holding the thumbnail, then the
+ * title (an arrow slides in after it on hover), a line of description and tags
+ * for the kind of work it is. A filter shows only that type of work; clicking the title, or the
  * filter again, shows everything.
  */
 export const WorkSection = () => {
@@ -98,7 +95,7 @@ export const WorkSection = () => {
             </nav>
 
             <ul className="work__cards">
-                {PROJECTS.filter(({ category }) => filter === null || category === filter).map(({ title, description, category, year, href, Thumbnail, shape, bg, art }) => (
+                {PROJECTS.filter(({ category }) => filter === null || category === filter).map(({ title, description, category, tags = [], href, Thumbnail, shape, bg, art }) => (
                     <li key={href} className={`wcard wcard--${category.toLowerCase()}`}>
                         <Link href={href!} className="wcard__link">
                             <span className="wcard__media" style={{ "--art": art, "--bg": bg } as CSSProperties}>
@@ -118,9 +115,9 @@ export const WorkSection = () => {
                                 </span>
                             </span>
                             <span className="wcard__description">{description}</span>
+                            {/* What kind of work it is */}
                             <span className="wcard__tags">
-                                <span className="wcard__tag">{LABELS.get(category)}</span>
-                                {year && <span className="wcard__tag">{year}</span>}
+                                {tags.map((tag) => <span key={tag} className="wcard__tag">{tag}</span>)}
                             </span>
                         </Link>
                     </li>

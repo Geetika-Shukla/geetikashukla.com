@@ -23,6 +23,8 @@ export interface Project {
     year?       : string;
     // Projects without a page yet are shown as "Upcoming"
     href?       : string;
+    // What kind of work it is (shown on its card), e.g. B2B, Lettering, Pen and ink
+    tags?       : string[];
     // Wide strip thumbnails fill their card; square ones sit whole within it
     shape?      : "square" | "wide";
 }
@@ -50,6 +52,7 @@ export const timeline: TimelinePeriod[] = [
                 category    : "Experience",
                 year        : "2024",
                 href        : "/experiences/path-to-partnerships",
+                tags        : ["B2B", "Web", "Onboarding"],
                 Thumbnail   : PartnershipsThumbnail,
                 shape       : "wide",
             },
@@ -59,6 +62,7 @@ export const timeline: TimelinePeriod[] = [
                 category    : "Experience",
                 year        : "2024",
                 href        : "/experiences/assisted-product-discovery",
+                tags        : ["B2B", "Product", "Discovery"],
                 Thumbnail   : ProductDiscoveryThumbnail,
             },
             {
@@ -67,6 +71,7 @@ export const timeline: TimelinePeriod[] = [
                 category    : "Experience",
                 year        : "2023",
                 href        : "/experiences/hdfc-journeys",
+                tags        : ["Banking", "Mobile", "Onboarding"],
                 Thumbnail   : HDFCThumbnail,
             },
             {
@@ -75,6 +80,7 @@ export const timeline: TimelinePeriod[] = [
                 category    : "Experience",
                 year        : "2020 – 23",
                 href        : "/experiences/revamping-reports",
+                tags        : ["B2B", "Dashboard", "Data"],
                 Thumbnail   : ReportsThumbnail,
                 shape       : "wide",
             },
@@ -83,6 +89,7 @@ export const timeline: TimelinePeriod[] = [
                 description : "~150 icons across products, decks, print and Slack.",
                 category    : "Visual",
                 href        : "/visual/icon-system-for-setu",
+                tags        : ["Iconography", "Design system"],
                 Thumbnail   : IconSystemThumbnail,
             },
             {
@@ -90,6 +97,7 @@ export const timeline: TimelinePeriod[] = [
                 description : "Hiring, onboarding and engagement design.",
                 category    : "Visual",
                 href        : "/visual/people-experience",
+                tags        : ["Illustration", "Employer brand", "Print"],
                 Thumbnail   : PeopleExperienceThumbnail,
                 shape       : "wide",
             },
@@ -130,6 +138,7 @@ export const timeline: TimelinePeriod[] = [
                 description : "Retail communication, brand imagery and print.",
                 category    : "Visual",
                 href        : "/visual/kannauj-perfumery",
+                tags        : ["Branding", "Retail", "Print"],
                 Thumbnail   : KannaujThumbnail,
                 shape       : "wide",
             },
@@ -144,6 +153,7 @@ export const timeline: TimelinePeriod[] = [
                 description : "A Devanagari letterform a day, from different perspectives.",
                 category    : "Type",
                 href        : "/type/47-days-of-devanagari-type",
+                tags        : ["Lettering", "Devanagari", "Personal"],
                 Thumbnail   : DevanagariThumbnail,
                 shape       : "wide",
             },
@@ -152,6 +162,7 @@ export const timeline: TimelinePeriod[] = [
                 description : "A personal take on the alphabet, one letter a day.",
                 category    : "Visual",
                 href        : "/visual/26-days-of-type",
+                tags        : ["Lettering", "3D", "Personal"],
                 Thumbnail   : DaysOfTypeThumbnail,
                 shape       : "wide",
             },
@@ -161,6 +172,7 @@ export const timeline: TimelinePeriod[] = [
                 category    : "Type",
                 year        : "2017",
                 href        : "/type/inktober-2017",
+                tags        : ["Pen and ink", "Illustration", "Lettering"],
                 Thumbnail   : InktoberThumbnail,
                 shape       : "wide",
             },
