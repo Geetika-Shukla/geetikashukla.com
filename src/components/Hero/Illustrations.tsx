@@ -110,3 +110,30 @@ export const StickyNote = () => (
         <text x="24" y="90" fontFamily="serif" fontSize="9.5" fill={INK}>☐ tea</text>
     </svg>
 );
+
+// A record in its sleeve; on hover the record slides out and spins (see hero.css)
+export const Vinyl = () => (
+    <span className="vinyl" aria-hidden="true">
+        <span className="vinyl__disc">
+            <svg viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="58" fill="#1C1C1E" />
+                {[52, 46, 40, 34, 28].map((r) => (
+                    <circle key={r} cx="60" cy="60" r={r} fill="none" stroke="#2E2E33" strokeWidth="1.2" />
+                ))}
+                <path d="M24 34 A44 44 0 0 1 52 18" stroke="#FFFFFF" strokeOpacity="0.18" strokeWidth="3" fill="none" strokeLinecap="round" />
+                <circle cx="60" cy="60" r="18" fill={RUST} />
+                <circle cx="60" cy="60" r="12" fill="none" stroke={GOLD} strokeWidth="1.2" />
+                <circle cx="60" cy="60" r="2.5" fill={PAPER} />
+            </svg>
+        </span>
+        <svg className="vinyl__sleeve" viewBox="0 0 120 120">
+            <rect width="120" height="120" rx="3" fill="#2F6F6B" />
+            <circle cx="78" cy="44" r="22" fill={RUST} />
+            <path d="M0 78 Q15 70 30 78 T60 78 T90 78 T120 78 V120 H0 Z" fill="#E8DCC4" />
+            <path d="M0 92 Q15 84 30 92 T60 92 T90 92 T120 92" stroke="#2F6F6B" strokeWidth="2" fill="none" />
+            <path d="M0 104 Q15 96 30 104 T60 104 T90 104 T120 104" stroke="#2F6F6B" strokeWidth="2" fill="none" />
+            <text x="12" y="24" fontFamily="serif" fontStyle="italic" fontSize="11" fill={PAPER}>side A</text>
+            <rect x="0.5" y="0.5" width="119" height="119" rx="3" fill="none" stroke="#000000" strokeOpacity="0.1" />
+        </svg>
+    </span>
+);

@@ -3,11 +3,11 @@
 // EXTERNAL DEPS ===============================================================
 import Image from "next/image";
 import Link from "next/link";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // INTERNAL DEPS ===============================================================
 import { timeline } from "@/data/projects";
-import { InkBottle, Mug, PixelHeart, Soap, Spool, StickyNote } from "./Illustrations";
+import { InkBottle, Mug, PixelHeart, Soap, Spool, StickyNote, Vinyl } from "./Illustrations";
 
 // STYLES ======================================================================
 import "./hero.css";
@@ -19,13 +19,10 @@ import sleeve from "@/assets/images/laptop-sleeve.jpg";
 import japanFic from "@/assets/images/japan-books.jpg";
 import lego from "@/assets/images/japan-lego.jpg";
 import plants from "@/assets/images/plants.webp";
-import spirited from "@/assets/images/spirited-away.jpg";
 
 // TYPES =======================================================================
 import type { CSSProperties, PointerEvent, ReactNode } from "react";
 import type { StaticImageData } from "next/image";
-
-type Layout = "scatter" | "board";
 
 const PROJECTS = new Map(timeline.flatMap((period) => period.projects).map((project) => [project.href, project]));
 
@@ -37,13 +34,13 @@ const work = (href: string, whole = false) => {
 };
 
 /*
- * Things on the board: photos from the interests, project thumbnails and small
- * illustrations. Each has two places, as percentages of the board (its
- * centre), with a tilt:
- *   scatter: around the edges, leaving the middle for the intro
- *   board:   in the cells of a 6 × 4 grid (rows at 14, 35, 56 and 77%, clear
- *            of the layout switch below), around phrases from the intro
- * w is its width.
+ * Things on the board: photos, project thumbnails and illustrations. Each has
+ * two places, as percentages of the board (its centre):
+ *   scatter: [x, y, tilt] round the edges, leaving the middle for the intro
+ *   grid:    [x, y] in a cell of a 7 × 4 grid. Columns are centred at 8, 22,
+ *            36, 50, 64, 78 and 92%; rows at 14, 35, 56 and 77%. Phrases take
+ *            some cells and two are left empty.
+ * Scrolling through the hero moves everything from one to the other.
  */
 interface Item {
     id      : string;
@@ -53,48 +50,77 @@ interface Item {
     href?   : string;
     w       : string;
     scatter : [number, number, number];
-    board   : [number, number];
+    grid    : [number, number];
 }
 
 const ITEMS: Item[] = [
-    { id: "ghibli", kind: "photo", content: photo(ghibli, "Studio Ghibli figurines"), label: "Studio Ghibli", href: "/hobbies", w: "clamp(150px, 15vw, 240px)", scatter: [14, 20, -6], board: [26, 35] },
-    { id: "calli", kind: "photo", content: photo(calliOne, "Calligraphy"), label: "Calligraphy", href: "/hobbies", w: "clamp(90px, 8.5vw, 140px)", scatter: [8, 52, 4], board: [10, 14] },
-    { id: "heart", kind: "art", content: <PixelHeart />, label: "Interests", href: "/hobbies", w: "clamp(44px, 3.6vw, 60px)", scatter: [24, 43, -8], board: [10, 35] },
-    { id: "lego", kind: "photo", content: photo(lego, "Japan in Lego"), label: "Lego", href: "/hobbies", w: "clamp(120px, 12vw, 190px)", scatter: [16, 80, 5], board: [10, 56] },
-    { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(64px, 5.5vw, 90px)", scatter: [30, 87, -4], board: [10, 77] },
-    { id: "vinyl", kind: "photo", content: photo(spirited, "A Spirited Away vinyl"), label: "Vinyls", href: "/hobbies", w: "clamp(80px, 7.5vw, 120px)", scatter: [31, 15, 7], board: [42, 35] },
-    { id: "type", kind: "work", content: work("/visual/26-days-of-type"), label: "26 days of Type", href: "/visual/26-days-of-type", w: "clamp(130px, 12vw, 190px)", scatter: [50, 11, -3], board: [58, 14] },
-    { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(80px, 7vw, 110px)", scatter: [39, 86, 3], board: [26, 77] },
-    { id: "icons", kind: "work", content: work("/visual/icon-system-for-setu"), label: "Icon system", href: "/visual/icon-system-for-setu", w: "clamp(84px, 7.5vw, 120px)", scatter: [59, 88, -5], board: [42, 77] },
-    { id: "mug", kind: "art", content: <Mug />, label: "Tea", w: "clamp(60px, 5vw, 84px)", scatter: [70, 17, 5], board: [74, 14] },
-    { id: "books", kind: "photo", content: photo(japanFic, "Japanese fiction"), label: "Japanese fiction", href: "/hobbies", w: "clamp(90px, 8.5vw, 140px)", scatter: [86, 22, 6], board: [90, 14] },
-    { id: "plants", kind: "photo", content: photo(plants, "House plants"), label: "Gardening", href: "/hobbies", w: "clamp(80px, 7.5vw, 120px)", scatter: [77, 50, -5], board: [58, 56] },
-    { id: "spool", kind: "art", content: <Spool />, label: "Sewing", w: "clamp(54px, 4.5vw, 76px)", scatter: [93, 45, 10], board: [90, 35] },
-    { id: "inktober", kind: "work", content: work("/type/inktober-2017", true), label: "Inktober", href: "/type/inktober-2017", w: "clamp(130px, 12vw, 190px)", scatter: [87, 76, 4], board: [74, 56] },
-    { id: "sleeve", kind: "photo", content: photo(sleeve, "A handmade laptop sleeve"), label: "Sewing", href: "/hobbies", w: "clamp(80px, 7.5vw, 120px)", scatter: [72, 82, -7], board: [90, 56] },
-    { id: "soap", kind: "art", content: <Soap />, label: "Soaps", w: "clamp(60px, 5vw, 84px)", scatter: [93, 90, -6], board: [90, 77] },
+    { id: "calli", kind: "photo", content: photo(calliOne, "Calligraphy"), label: "Calligraphy", w: "clamp(90px, 8.5vw, 140px)", scatter: [8, 52, 4], grid: [8, 14] },
+    { id: "type", kind: "work", content: work("/visual/26-days-of-type"), label: "26 days of Type", href: "/visual/26-days-of-type", w: "clamp(130px, 12vw, 190px)", scatter: [50, 11, -3], grid: [50, 14] },
+    { id: "mug", kind: "art", content: <Mug />, label: "Tea", w: "clamp(60px, 5vw, 84px)", scatter: [70, 17, 5], grid: [64, 14] },
+    { id: "heart", kind: "art", content: <PixelHeart />, label: "A pixel heart", w: "clamp(44px, 3.6vw, 60px)", scatter: [24, 43, -8], grid: [78, 14] },
+    { id: "books", kind: "photo", content: photo(japanFic, "Japanese fiction"), label: "Japanese fiction", w: "clamp(90px, 8.5vw, 140px)", scatter: [86, 22, 6], grid: [92, 14] },
+
+    { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(64px, 5.5vw, 90px)", scatter: [30, 87, -4], grid: [8, 35] },
+    { id: "ghibli", kind: "photo", content: photo(ghibli, "Studio Ghibli figurines"), label: "Studio Ghibli", w: "clamp(150px, 15vw, 240px)", scatter: [14, 20, -6], grid: [22, 35] },
+    { id: "vinyl", kind: "art", content: <Vinyl />, label: "Vinyls", w: "clamp(84px, 7.5vw, 120px)", scatter: [31, 16, 7], grid: [78, 35] },
+    { id: "spool", kind: "art", content: <Spool />, label: "Sewing", w: "clamp(54px, 4.5vw, 76px)", scatter: [93, 45, 10], grid: [92, 35] },
+
+    { id: "lego", kind: "photo", content: photo(lego, "Japan in Lego"), label: "Lego", w: "clamp(120px, 12vw, 190px)", scatter: [16, 80, 5], grid: [8, 56] },
+    { id: "plants", kind: "photo", content: photo(plants, "House plants"), label: "Gardening", w: "clamp(80px, 7.5vw, 120px)", scatter: [77, 50, -5], grid: [50, 56] },
+    { id: "inktober", kind: "work", content: work("/type/inktober-2017", true), label: "Inktober", href: "/type/inktober-2017", w: "clamp(130px, 12vw, 190px)", scatter: [87, 76, 4], grid: [64, 56] },
+    { id: "sleeve", kind: "photo", content: photo(sleeve, "A handmade laptop sleeve"), label: "Sewing", w: "clamp(80px, 7.5vw, 120px)", scatter: [72, 82, -7], grid: [92, 56] },
+
+    { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(80px, 7vw, 110px)", scatter: [39, 86, 3], grid: [8, 77] },
+    { id: "icons", kind: "work", content: work("/visual/icon-system-for-setu"), label: "Icon system", href: "/visual/icon-system-for-setu", w: "clamp(84px, 7.5vw, 120px)", scatter: [59, 88, -5], grid: [22, 77] },
+    { id: "soap", kind: "art", content: <Soap />, label: "Soaps", w: "clamp(60px, 5vw, 84px)", scatter: [93, 90, -6], grid: [92, 77] },
 ];
 
-// The intro, set in the board's cells (centre x, y; each spans two cells)
-const PHRASES: { text: string; at: [number, number] }[] = [
-    { text: "Hello, I’m Geetika", at: [34, 14] },
-    { text: "a multi-disciplinary designer", at: [66, 35] },
-    { text: "brand · exhibition · web · product", at: [34, 56] },
-    { text: "around 7 years in", at: [66, 77] },
+// A line set across the grid, a phrase to a pair of cells, read left to right,
+// top to bottom; and the disciplines, as a label
+const PHRASES: { text: string; at: [number, number]; label?: boolean }[] = [
+    { text: "Always a student,", at: [29, 14] },
+    { text: "from buildings to brands,", at: [57, 35] },
+    { text: "exhibitions to products,", at: [29, 56] },
+    { text: "brand · exhibition · web · product", at: [43, 77], label: true },
+    { text: "and whatever comes next.", at: [71, 77] },
 ];
 
 type Offsets = Record<string, { x: number; y: number }>;
 
+/*
+ * Hero: a board of things round the intro. The section is taller than the
+ * screen and its board stays put while it scrolls past; the scroll (0 → 1,
+ * as --p) moves everything from the scatter into the grid, the intro giving
+ * way to the line across the grid. Things can also be dragged about.
+ */
 export const Hero = () => {
-    const [layout, setLayout] = useState<Layout>("scatter");
+    const sectionRef = useRef<HTMLElement>(null);
     // How far each thing has been dragged from its place (px)
     const [offsets, setOffsets] = useState<Offsets>({});
     const drag = useRef<{ id: string; x: number; y: number; from: { x: number; y: number }; moved: boolean } | null>(null);
 
-    const arrange = (next: Layout) => {
-        setLayout(next);
-        setOffsets({});
-    };
+    // Scroll progress through the hero, as --p (0 at the top, 1 once fully arranged)
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+        let frame = 0;
+        const update = () => {
+            frame = 0;
+            const travel = section.offsetHeight - window.innerHeight;
+            const scrolled = -section.getBoundingClientRect().top;
+            const progress = travel > 0 ? Math.min(Math.max(scrolled / travel, 0), 1) : 0;
+            section.style.setProperty("--p", progress.toFixed(3));
+        };
+        const onScroll = () => { if (!frame) frame = window.requestAnimationFrame(update); };
+        update();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("resize", onScroll);
+            window.cancelAnimationFrame(frame);
+        };
+    }, []);
 
     const onPointerDown = (id: string) => (event: PointerEvent<HTMLElement>) => {
         if (event.button !== 0) return;
@@ -122,53 +148,48 @@ export const Hero = () => {
     };
 
     return (
-        <section className="hero" data-layout={layout} aria-label="Introduction">
-            <header className="hero__intro">
-                <h1 className="hero__title">Hello there!</h1>
-                <p className="hero__bio">
-                    I’m Geetika, a multi-disciplinary designer with around 7 years of experience spanning brand,
-                    exhibition, web, and product design.
-                </p>
-            </header>
+        <section ref={sectionRef} className="hero" aria-label="Introduction">
+            <div className="hero__board">
+                <header className="hero__intro">
+                    <h1 className="hero__title">Hello there!</h1>
+                    <p className="hero__role">
+                        Manager — Design @ Reserve Bank Innovation Hub <span aria-hidden="true">·</span> Ex-Setu
+                    </p>
+                    <p className="hero__line">
+                        Seven years of learning by doing — from buildings and exhibitions to brands and products.
+                    </p>
+                </header>
 
-            {/* The intro again, as phrases in the board's cells (shown in the board layout) */}
-            <ul className="hero__phrases" aria-hidden="true">
-                {PHRASES.map(({ text, at: [x, y] }) => (
-                    <li key={text} className="hero__phrase" style={{ "--x": `${x}%`, "--y": `${y}%` } as CSSProperties}>{text}</li>
-                ))}
-            </ul>
-
-            <ul className="hero__items">
-                {ITEMS.map(({ id, kind, content, label, href, w, scatter, board }) => {
-                    const [x, y, tilt] = layout === "scatter" ? scatter : [...board, 0];
-                    const offset = offsets[id] ?? { x: 0, y: 0 };
-                    const style = {
-                        "--x": `${x}%`, "--y": `${y}%`, "--tilt": `${tilt}deg`, "--w": w,
-                        "--dx": `${offset.x}px`, "--dy": `${offset.y}px`,
-                    } as CSSProperties;
-                    const handlers = {
-                        onPointerDown : onPointerDown(id),
-                        onPointerMove,
-                        onPointerUp,
-                        onClick,
-                    };
-                    return (
-                        <li key={id} className={`hero__item hero__item--${kind}`} style={style} title={label}>
-                            {href
-                                ? <Link href={href} className="hero__thing" draggable={false} aria-label={label} {...handlers}>{content}</Link>
-                                : <span className="hero__thing" {...handlers}>{content}</span>}
+                <ul className="hero__phrases" aria-hidden="true">
+                    {PHRASES.map(({ text, at: [x, y], label }) => (
+                        <li
+                            key={text}
+                            className={`hero__phrase${label ? " hero__phrase--label" : ""}`}
+                            style={{ "--x": `${x}%`, "--y": `${y}%` } as CSSProperties}
+                        >
+                            {text}
                         </li>
-                    );
-                })}
-            </ul>
+                    ))}
+                </ul>
 
-            <div className="hero__layouts" role="group" aria-label="Arrange the board">
-                <button type="button" className="hero__layout" aria-pressed={layout === "board"} aria-label="Tidy into a grid" onClick={() => arrange("board")}>
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" /></svg>
-                </button>
-                <button type="button" className="hero__layout" aria-pressed={layout === "scatter"} aria-label="Scatter around the intro" onClick={() => arrange("scatter")}>
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM18.5 15l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" /></svg>
-                </button>
+                <ul className="hero__items">
+                    {ITEMS.map(({ id, kind, content, label, href, w, scatter: [sx, sy, tilt], grid: [gx, gy] }) => {
+                        const offset = offsets[id] ?? { x: 0, y: 0 };
+                        const style = {
+                            "--sx": `${sx}%`, "--sy": `${sy}%`, "--gx": `${gx}%`, "--gy": `${gy}%`,
+                            "--tilt": `${tilt}deg`, "--w": w,
+                            "--dx": `${offset.x}px`, "--dy": `${offset.y}px`,
+                        } as CSSProperties;
+                        const handlers = { onPointerDown: onPointerDown(id), onPointerMove, onPointerUp, onClick };
+                        return (
+                            <li key={id} className={`hero__item hero__item--${kind}`} style={style} title={label}>
+                                {href
+                                    ? <Link href={href} className="hero__thing" draggable={false} aria-label={label} {...handlers}>{content}</Link>
+                                    : <span className="hero__thing" {...handlers}>{content}</span>}
+                            </li>
+                        );
+                    })}
+                </ul>
             </div>
         </section>
     );

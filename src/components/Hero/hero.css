@@ -1,14 +1,24 @@
 /*
- * Hero: a board on the page's faint grid. The intro sits in the middle with
- * things scattered round the edges; switched to the board layout, the things
- * settle into a 6 × 4 grid of cells around the intro, set as phrases. Things
- * can be dragged; switching layout tidies them back.
+ * Hero: a board on the page's faint grid, with the intro in the middle and
+ * things scattered round the edges. The section runs taller than the screen
+ * while the board stays put; scrolling through it (--p, 0 → 1, set by
+ * Hero.tsx) moves each thing from its scatter place (--sx, --sy, tilted) to
+ * its grid cell (--gx, --gy), and the intro gives way to a line set in the
+ * grid's empty cells. Things can be dragged (--dx, --dy).
  */
 .hero {
+    --p: 0;
     --line: color-mix(in srgb, var(--color-text) 6%, transparent);
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
     position: relative;
+    /* The board's screen, plus the scroll it takes to arrange it */
+    height: calc(100svh - var(--header-height) + 90svh);
+}
+
+.hero__board {
+    position: sticky;
+    top: var(--header-height);
     height: calc(100svh - var(--header-height));
     min-height: 620px;
     overflow: clip;
@@ -19,15 +29,16 @@
 }
 
 /* INTRO ==================================================================== */
+/* Fades and settles away over the first part of the scroll */
 .hero__intro {
     position: absolute;
     top: 50%;
     left: 50%;
     z-index: 1;
-    width: min(460px, 40%);
+    width: min(520px, 44%);
     text-align: center;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.4s ease, transform 0.6s var(--ease);
+    opacity: clamp(0, calc(1 - var(--p) * 2.5), 1);
+    transform: translate(-50%, calc(-50% - var(--p) * 40px));
 }
 
 .hero__title {
@@ -74,58 +85,56 @@
     }
 }
 
-.hero__bio {
-    margin: 16px 0 0;
-    color: var(--color-text-muted);
+.hero__role {
+    margin: 18px 0 0;
+    color: var(--color-text);
     font-family: var(--font-heading);
     font-size: 1.2rem;
     font-weight: 500;
-    line-height: 1.55;
 }
 
-/* In the board layout the intro gives way to its phrases */
-.hero[data-layout="board"] .hero__intro {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.96);
-    pointer-events: none;
+.hero__line {
+    margin: 10px 0 0;
+    color: var(--color-text-muted);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
 }
 
 /* PHRASES ================================================================== */
+/* A line set straight into the grid's empty cells; comes in at the end */
 .hero__phrases {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-/* Each spans two of the board's cells (each 16% wide, 21% tall) */
+/* Each spans two of the grid's cells (each 14% wide) */
 .hero__phrase {
     position: absolute;
     top: var(--y);
     left: var(--x);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 31%;
-    height: 18%;
-    padding: 0 16px;
-    border: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
-    border-radius: 8px;
-    background-color: color-mix(in srgb, var(--color-surface) 70%, transparent);
+    width: 26%;
     color: var(--color-text);
     font-family: var(--font-heading);
-    font-size: clamp(1.1rem, 1.9vw, 1.7rem);
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.15;
     text-align: center;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.96);
-    transition: opacity 0.4s ease, transform 0.6s var(--ease);
+    opacity: clamp(0, calc((var(--p) - 0.55) * 2.5), 1);
+    transform: translate(-50%, calc(-50% + (1 - var(--p)) * 16px));
 }
 
-.hero[data-layout="board"] .hero__phrase {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-    transition-delay: 0.15s;
+/* The disciplines, as a quiet label */
+.hero__phrase--label {
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 /* THINGS =================================================================== */
@@ -135,23 +144,21 @@
     list-style: none;
 }
 
-/* Centred on (--x, --y), tilted, and moved by however far it was dragged */
+/* Between its scatter place and its grid cell by --p, untilting as it goes,
+   and moved by however far it was dragged */
 .hero__item {
     position: absolute;
-    top: var(--y);
-    left: var(--x);
+    top: calc(var(--sy) + (var(--gy) - var(--sy)) * var(--p));
+    left: calc(var(--sx) + (var(--gx) - var(--sx)) * var(--p));
     z-index: 2;
     width: var(--w);
     transform:
         translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px)))
-        rotate(var(--tilt, 0deg));
-    transition: top 0.8s var(--ease), left 0.8s var(--ease), transform 0.8s var(--ease);
+        rotate(calc(var(--tilt, 0deg) * (1 - var(--p))));
 }
 
-/* While dragged, it follows the pointer exactly */
 .hero__item:has(.hero__thing:active) {
     z-index: 3;
-    transition: top 0.8s var(--ease), left 0.8s var(--ease);
 }
 
 .hero__thing {
@@ -209,53 +216,57 @@
     filter: drop-shadow(0 4px 8px rgba(43, 45, 56, 0.12));
 }
 
-/* LAYOUT SWITCH ============================================================ */
-.hero__layouts {
+/* VINYL ==================================================================== */
+/* The record sits in its sleeve; on hover it slides out and spins */
+.vinyl {
+    position: relative;
+    display: block;
+}
+
+.vinyl__sleeve {
+    position: relative;
+    z-index: 1;
+}
+
+.vinyl__disc {
     position: absolute;
-    bottom: 28px;
-    left: 50%;
-    z-index: 4;
-    display: flex;
-    gap: 10px;
-    transform: translateX(-50%);
+    top: 4%;
+    left: 4%;
+    width: 92%;
+    height: 92%;
+    transform: translateX(8%);
+    transition: transform 0.6s var(--ease);
 }
 
-.hero__layout {
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    border: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
-    border-radius: 50%;
-    background-color: var(--color-surface);
-    color: var(--color-text-muted);
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(43, 45, 56, 0.08);
-    transition: background-color 0.2s ease, color 0.2s ease;
+.vinyl__disc svg {
+    height: 100%;
+    animation: vinyl-spin 2.4s linear infinite;
+    animation-play-state: paused;
 }
 
-.hero__layout svg {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
+.hero__thing:hover .vinyl__disc {
+    transform: translateX(56%);
 }
 
-.hero__layout:hover,
-.hero__layout:focus-visible {
-    color: var(--color-text);
+.hero__thing:hover .vinyl__disc svg {
+    animation-play-state: running;
 }
 
-.hero__layout[aria-pressed="true"] {
-    border-color: var(--color-accent-2);
-    background-color: var(--color-accent-2);
-    color: #FFFFFF;
+@keyframes vinyl-spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* NARROW SCREENS =========================================================== */
-/* The intro on top, then the things as a loose, tilted collage; no board */
+/* The intro on top, then the things as a loose, tilted collage; no grid */
 @media (max-width: 899px) {
     .hero {
+        height: auto;
+    }
+
+    .hero__board {
+        position: static;
         height: auto;
         min-height: 0;
         padding: 32px var(--page-gutter) 40px;
@@ -265,6 +276,7 @@
         position: static;
         width: auto;
         margin-bottom: 28px;
+        opacity: 1;
         transform: none;
     }
 
@@ -272,8 +284,7 @@
         font-size: 2.4rem;
     }
 
-    .hero__phrases,
-    .hero__layouts {
+    .hero__phrases {
         display: none;
     }
 
@@ -298,10 +309,12 @@
         background-position: 50% 0;
     }
 
-    .hero__intro,
-    .hero__phrase,
-    .hero__item,
-    .hero__thing {
+    .hero__thing,
+    .vinyl__disc {
         transition: none;
+    }
+
+    .vinyl__disc svg {
+        animation: none;
     }
 }
