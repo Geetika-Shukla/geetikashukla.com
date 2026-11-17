@@ -54,17 +54,27 @@ export const InkBottle = () => (
     </svg>
 );
 
-// The teal mug from the desk, steaming
-export const Mug = () => (
+// South Indian filter coffee: a steel tumbler, frothed, in its dabarah
+export const FilterCoffee = () => (
     <svg viewBox="0 0 120 120" aria-hidden="true">
-        <ellipse cx="58" cy="106" rx="38" ry="6" fill={INK} opacity="0.08" />
-        <path d="M44 22 Q38 30 44 38 Q50 46 44 54" stroke="#C9C4BA" strokeWidth="3" fill="none" strokeLinecap="round" />
-        <path d="M60 18 Q54 28 60 36 Q66 44 60 52" stroke="#C9C4BA" strokeWidth="3" fill="none" strokeLinecap="round" />
-        <path d="M18 62 Q6 64 8 78 Q10 92 26 90" stroke={TEAL} strokeWidth="7" fill="none" strokeLinecap="round" />
-        <path d="M22 56 H94 V96 Q94 106 84 106 H32 Q22 106 22 96 Z" fill={TEAL} />
-        <ellipse cx="58" cy="56" rx="36" ry="6" fill="#2F7570" />
-        <ellipse cx="58" cy="57" rx="31" ry="4" fill="#A9774F" />
-        <path d="M30 68 V94" stroke="#FFFFFF" strokeOpacity="0.25" strokeWidth="4" strokeLinecap="round" />
+        <ellipse cx="60" cy="110" rx="44" ry="5" fill={INK} opacity="0.08" />
+        {/* Steam */}
+        <path d="M52 12 Q46 20 52 28 Q58 36 52 44" stroke="#C9C4BA" strokeWidth="3" fill="none" strokeLinecap="round" />
+        <path d="M66 8 Q60 17 66 25 Q72 33 66 41" stroke="#C9C4BA" strokeWidth="3" fill="none" strokeLinecap="round" />
+        {/* The dabarah: a wide steel bowl with a rolled rim */}
+        <path d="M16 82 H104 L96 104 Q94 108 88 108 H32 Q26 108 24 104 Z" fill="#B9BCC2" />
+        <path d="M16 82 H104 L101 90 H19 Z" fill="#D4D6DB" />
+        <ellipse cx="60" cy="82" rx="44" ry="5" fill="#E4E6EA" />
+        <path d="M30 96 Q60 102 90 96" stroke="#FFFFFF" strokeOpacity="0.5" strokeWidth="2" fill="none" />
+        {/* The tumbler, set in the bowl */}
+        <path d="M38 48 H82 L78 84 Q77 88 72 88 H48 Q43 88 42 84 Z" fill="#C7CAD0" />
+        <rect x="38" y="44" width="44" height="7" rx="3.5" fill="#E4E6EA" />
+        <path d="M40 60 H80" stroke="#A9ACB3" strokeWidth="1.5" />
+        <path d="M41 72 H79" stroke="#A9ACB3" strokeWidth="1.5" />
+        <path d="M47 52 L46 84" stroke="#FFFFFF" strokeOpacity="0.55" strokeWidth="3.5" strokeLinecap="round" />
+        {/* Froth */}
+        <ellipse cx="60" cy="46" rx="20" ry="3.5" fill="#C9A27A" />
+        <ellipse cx="57" cy="45.5" rx="9" ry="1.6" fill="#E6CFAE" />
     </svg>
 );
 

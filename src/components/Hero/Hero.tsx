@@ -7,7 +7,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 // INTERNAL DEPS ===============================================================
 import { timeline } from "@/data/projects";
-import { InkBottle, Mug, PixelHeart, Soap, Spool, StickyNote, Vinyl } from "./Illustrations";
+import { FilterCoffee, InkBottle, PixelHeart, Soap, Spool, StickyNote, Vinyl } from "./Illustrations";
 
 // STYLES ======================================================================
 import "./hero.css";
@@ -56,7 +56,7 @@ interface Item {
 const ITEMS: Item[] = [
     { id: "calli", kind: "photo", content: photo(calliOne, "Calligraphy"), label: "Calligraphy", w: "clamp(90px, 8.5vw, 140px)", scatter: [8, 52, 4], grid: [8, 18] },
     { id: "type", kind: "work", content: work("/visual/26-days-of-type"), label: "26 days of Type", href: "/visual/26-days-of-type", w: "clamp(130px, 12vw, 190px)", scatter: [50, 11, -3], grid: [50, 18] },
-    { id: "mug", kind: "art", content: <Mug />, label: "Tea", w: "clamp(60px, 5vw, 84px)", scatter: [70, 17, 5], grid: [64, 18] },
+    { id: "coffee", kind: "art", content: <FilterCoffee />, label: "Filter coffee", w: "clamp(64px, 5.5vw, 90px)", scatter: [70, 17, 5], grid: [64, 18] },
     { id: "heart", kind: "art", content: <PixelHeart />, label: "A pixel heart", w: "clamp(44px, 3.6vw, 60px)", scatter: [24, 43, -8], grid: [78, 18] },
     { id: "books", kind: "photo", content: photo(japanFic, "Japanese fiction"), label: "Japanese fiction", w: "clamp(90px, 8.5vw, 140px)", scatter: [86, 22, 6], grid: [92, 18] },
 
