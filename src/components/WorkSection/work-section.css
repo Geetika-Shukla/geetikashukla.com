@@ -2,12 +2,11 @@
  * Work: the title and filters in a column on the left that stays in view,
  * beside three columns of project cards.
  */
-/* Within the page's margins like every other page; the list's column is wide
-   enough to keep the three columns of cards a modest size */
+/* Within the page's margins like every other page */
 .work {
     display: grid;
-    grid-template-columns: 320px minmax(0, 1fr);
-    gap: 64px;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 56px;
     max-width: var(--page-max-width);
     margin: 0 auto;
     padding: 96px var(--page-gutter) 120px;
@@ -128,7 +127,7 @@
 .wcard__media {
     position: relative;
     display: block;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
     overflow: hidden;
     border-radius: var(--radius);
     background-color: var(--tint);
