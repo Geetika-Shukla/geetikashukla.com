@@ -1,25 +1,22 @@
 /*
- * Work: a filter list on the left, beside project cards laid flat on the
- * floor's grid (IsoFloor, which carries the floor and card styles). Clicking
- * the title clears the filter.
+ * Work: the title and filters in a row at the top, above project cards laid
+ * flat on the floor's grid across the page (IsoFloor, which carries the floor
+ * and card styles). Clicking the title clears the filter.
  */
 .work {
     position: relative;
 }
 
 /*
- * The cards (64 × 31 cells) sit within the page's margins like every other
- * page: from the list's column to the right margin, and below the nav. Widths
- * are measured against the section (cqw), so a scrollbar doesn't push them
- * past the margin.
+ * The cards (64 × 31 cells) span the page between its margins, like every
+ * other page, below the title row. Widths are measured against the section
+ * (cqw), so a scrollbar doesn't push them past the margin.
  */
 .work.iso {
     --edge: max(var(--page-gutter), calc((100cqw - var(--page-max-width)) / 2 + var(--page-gutter)));
-    --list-column: 300px;
-    --c: min(
-        calc((100cqw - 2 * var(--edge) - var(--list-column)) / 64),
-        calc((100svh - 220px) / 31)
-    );
+    --c: calc((100cqw - 2 * var(--edge)) / 64);
+    --list-top: calc(var(--header-height) + 20px);
+    --cards-top: calc(var(--header-height) + 100px);
     --plane-shift: 0px;
 }
 
@@ -29,25 +26,27 @@
     height: 125svh;
 }
 
-/* Cell (0, 0) is the middle of the cards (32 cells in from their left edge),
-   centred in the first screen below the nav */
+/* Cell (0, 0) is the middle of the cards: 32 cells in from their left edge,
+   16 down from their top */
 .work .floor__plane {
-    top: calc(50svh + var(--header-height) / 2);
-    left: calc(var(--edge) + var(--list-column) + 32 * var(--c));
+    top: calc(var(--cards-top) + 16 * var(--c));
+    left: calc(var(--edge) + 32 * var(--c));
 }
 
 /* LIST ===================================================================== */
+/* The title, then the filters beside it like tabs */
 .work__list {
     position: absolute;
-    /* Level with the top of the first row (v −16), less the title's leading so
-       its capitals line up */
-    top: calc(max(50svh, 320px) + var(--header-height) / 2 - 16 * var(--c) - 6px);
+    top: var(--list-top);
     left: var(--edge);
     z-index: 2;
+    display: flex;
+    align-items: baseline;
+    gap: 40px;
 }
 
 .work__title {
-    margin: 0 0 28px;
+    margin: 0;
     color: var(--color-text);
     font-family: var(--font-heading);
     font-size: 2.2rem;
@@ -76,8 +75,7 @@
 
 .work__list ul {
     display: flex;
-    flex-direction: column;
-    gap: 14px;
+    gap: 28px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -107,7 +105,7 @@
 }
 
 /* NARROW SCREENS =========================================================== */
-/* List on top of the flat cards */
+/* The title row wraps above the flat cards */
 @media (max-width: 899px) {
     .work {
         padding: 0 var(--page-gutter) 48px;
@@ -115,11 +113,12 @@
 
     .work__list {
         position: static;
+        flex-wrap: wrap;
+        gap: 8px 24px;
         margin-bottom: 20px;
     }
 
     .work__list ul {
-        flex-direction: row;
         flex-wrap: wrap;
         gap: 6px 20px;
     }
