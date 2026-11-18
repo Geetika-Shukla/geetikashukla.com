@@ -413,15 +413,18 @@
     text-transform: uppercase;
 }
 
-/* Die-cut stickers: a white edge all round, and a soft shadow */
+/* Die-cut stickers: a smooth white edge all round (the SVG filter in Journal.tsx), no shadow */
+.journal__defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
 .journal__sticker {
     position: absolute;
     z-index: 1;
     display: block;
-    filter:
-        drop-shadow(2px 0 0 #FFFFFF) drop-shadow(-2px 0 0 #FFFFFF)
-        drop-shadow(0 2px 0 #FFFFFF) drop-shadow(0 -2px 0 #FFFFFF)
-        drop-shadow(0 3px 5px rgba(0, 0, 0, 0.25));
+    filter: url(#sticker-edge);
 }
 
 .journal__sticker svg {
@@ -558,18 +561,6 @@
     font-family: var(--font-heading);
     font-size: 0.95rem;
     font-style: italic;
-}
-
-/* A ribbon bookmark hanging below the book */
-.journal__ribbon {
-    position: absolute;
-    bottom: -40px;
-    left: calc(50% + 48px);
-    z-index: 3;
-    width: 16px;
-    height: 56px;
-    background-color: #3F8F8A;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
 }
 
 /* TURNING PAGES ============================================================ */
@@ -826,8 +817,7 @@
         border-radius: var(--radius);
     }
 
-    .journal__face--front,
-    .journal__ribbon {
+    .journal__face--front {
         display: none;
     }
 

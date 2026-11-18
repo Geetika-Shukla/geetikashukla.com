@@ -67,6 +67,21 @@ export const Journal = ({ contributions }: { contributions: Contributions | null
                             tabIndex={open ? -1 : 0}
                         >
                             <span className="journal__strap" aria-hidden="true" />
+                            {/* A smooth white die-cut edge for the stickers: blur the shape's outline, then sharpen it back */}
+                            <svg className="journal__defs" aria-hidden="true">
+                                <filter id="sticker-edge" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur in="SourceAlpha" stdDeviation="2.4" />
+                                    <feComponentTransfer result="edge">
+                                        <feFuncA type="linear" slope="12" intercept="-0.6" />
+                                    </feComponentTransfer>
+                                    <feFlood floodColor="#FFFFFF" />
+                                    <feComposite in2="edge" operator="in" />
+                                    <feMerge>
+                                        <feMergeNode />
+                                        <feMergeNode in="SourceGraphic" />
+                                    </feMerge>
+                                </filter>
+                            </svg>
                             <span className="journal__engraved">
                                 <span className="journal__engraved-title">The journey<br />so far</span>
                                 <span className="journal__engraved-name">Geetika Shukla</span>
@@ -97,7 +112,6 @@ export const Journal = ({ contributions }: { contributions: Contributions | null
                         </div>
                     </div>
 
-                    <span className="journal__ribbon" aria-hidden="true" />
                 </div>
 
                 {page < last && (
