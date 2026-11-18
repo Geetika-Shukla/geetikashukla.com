@@ -273,6 +273,7 @@ html:has(.journal) {
     flex: 1;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-content: center;
+    align-items: start;
     gap: 22px;
     margin: 0 0 40px;
     padding: 0;
@@ -286,8 +287,10 @@ html:has(.journal) {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding: 26px 18px 22px;
+    gap: 8px;
+    /* All four the same size, whatever their words */
+    aspect-ratio: 3 / 4.5;
+    padding: 26px 18px 20px;
     background-color: var(--note);
     box-shadow: 0 1px 2px rgba(43, 45, 56, 0.12), 0 6px 14px rgba(43, 45, 56, 0.08);
     transform: rotate(var(--tilt, -1.5deg));
@@ -312,12 +315,6 @@ html:has(.journal) {
     --note: #D3E1F2;
     --tape: #E3B94C;
     --tilt: 1.5deg;
-}
-
-.journal__note-icon {
-    width: 36px;
-    height: 36px;
-    margin-bottom: 6px;
 }
 
 .journal__note strong {
@@ -906,6 +903,10 @@ html:has(.journal) {
 
     .journal__note:nth-child(2) {
         margin-top: 0;
+    }
+
+    .journal__note {
+        aspect-ratio: auto;
     }
 
     .journal__label[data-spacer] {

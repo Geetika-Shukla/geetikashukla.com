@@ -18,10 +18,6 @@ import NSLogo from "@/assets/images/ns-logo.svg";
 import AtherLogo from "@/assets/images/ather-logo.svg";
 import SetuLogo from "@/assets/images/setu-logo.svg";
 import RBIHLogo from "@/assets/images/rbih-logo.svg";
-import IconCollab from "@/assets/images/Link.svg";
-import IconSystem from "@/assets/images/Integrity.svg";
-import IconForm from "@/assets/images/BoxWithShapes.svg";
-import IconProcess from "@/assets/images/SignPost.svg";
 
 // TYPES =======================================================================
 import type { ComponentType, ReactNode, SVGProps } from "react";
@@ -178,24 +174,19 @@ const Route = ({ half }: { half: "left" | "right" }) => (
     </div>
 );
 
-// An icon for each way of working, in the order they're listed
-const PRACTICE_ICONS = [IconCollab, IconSystem, IconForm, IconProcess];
-
-// The ways of working as sticky notes across the spread, two to a page, each
-// with its icon; the right page also holds the link to the résumé
+// The ways of working as sticky notes across the spread, two to a page, all
+// the same size; the right page also holds the link to the résumé
 const Practice = ({ half }: { half: "left" | "right" }) => {
-    const notes = PRACTICE.map((item, i) => ({ ...item, Icon: PRACTICE_ICONS[i] }));
-    const shown = half === "left" ? notes.slice(0, 2) : notes.slice(2);
+    const shown = half === "left" ? PRACTICE.slice(0, 2) : PRACTICE.slice(2);
 
     return (
         <>
             {/* The right page keeps the heading's room (unseen), so the notes line up across */}
             <h3 className="journal__label" aria-hidden={half === "right" || undefined} data-spacer={half === "right" || undefined}>In practice</h3>
             <ul className="journal__notes">
-                {shown.map(({ title, text, Icon }) => (
+                {shown.map(({ title, text }) => (
                     <li key={title} className="journal__note">
                         <span className="journal__tape" aria-hidden="true" />
-                        {Icon && <Icon className="journal__note-icon" aria-hidden="true" />}
                         <strong>{title}</strong>
                         <span>{text}</span>
                     </li>
