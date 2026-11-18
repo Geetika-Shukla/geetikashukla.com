@@ -77,16 +77,18 @@ html:has(.work__step) {
 .work__filters {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-self: stretch;
     margin: var(--block) 0;
 }
 
-.work__filters .work__filter {
-    height: calc(var(--block) * 2);
-}
-
+/* Each a block on the grid: the column's width, two blocks tall */
 .work__filter {
-    padding: 4px 0;
+    --edge: color-mix(in srgb, var(--color-text) 16%, transparent);
+
+    display: flex;
+    align-items: center;
+    height: calc(var(--block) * 2);
+    padding: 0 12px;
     border: 0;
     background: none;
     color: var(--color-text-muted);
@@ -94,12 +96,31 @@ html:has(.work__step) {
     font-family: var(--font-heading);
     font-size: 1.3rem;
     font-weight: 400;
-    transition: color 0.2s ease;
+    text-align: left;
+    transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Hover: outlined, the edges on grid lines (top and left just inside, right
+   and bottom just outside) */
 .work__filter:hover,
 .work__filter:focus-visible {
     color: var(--color-text);
+    box-shadow: inset 1px 1px 0 var(--edge), 1px 1px 0 var(--edge);
+}
+
+/* The kind of work in view: a solid block of ink, the label reversed out,
+   an arrow pointing to the work */
+.work__filter[aria-pressed="true"] {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    box-shadow: none;
+}
+
+.work__filter[aria-pressed="true"]::after {
+    content: "→";
+    margin-left: auto;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
 }
 
 /* A note scribbled beside a filter (new!), a little askew */
@@ -111,14 +132,6 @@ html:has(.work__step) {
     font-size: 1.15rem;
     font-weight: 700;
     transform: rotate(-8deg) translateY(-6px);
-}
-
-/* The kind of work in view: in colour, underlined by hand */
-.work__filter[aria-pressed="true"] {
-    color: var(--color-accent-2);
-    text-decoration: underline wavy;
-    text-decoration-thickness: 1.5px;
-    text-underline-offset: 6px;
 }
 
 /* THE BOARD ================================================================ */
@@ -391,8 +404,17 @@ a.wcard__link:focus-visible .wcard__go {
     .work__filters {
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 0 24px;
+        align-self: auto;
+        gap: 4px 8px;
         margin: 8px 0 24px;
+    }
+
+    .work__filter {
+        height: 40px;
+    }
+
+    .work__filter[aria-pressed="true"]::after {
+        content: none;
     }
 
     .work__pause {
