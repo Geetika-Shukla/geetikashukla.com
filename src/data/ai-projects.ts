@@ -28,6 +28,8 @@ export interface AIProject {
     screens?    : StaticImageData[];
     // Or a still cover
     cover?      : StaticImageData;
+    // A deck (an HTML file in public/) that opens over the page instead of a link
+    deck?       : string;
 }
 
 export const AI_PROJECTS: AIProject[] = [
@@ -35,9 +37,9 @@ export const AI_PROJECTS: AIProject[] = [
         title       : "The invisible future of finance",
         description : "A keynote deck for the CEO of Reserve Bank Innovation Hub at Global Fintech Fest 2026.",
         tools       : ["Keynote", "Presentation"],
-        href        : "/ai/gff-2026-keynote",
         placeholder : false,
         cover       : gffKeynote,
+        deck        : "/keynotes/gff-2026.html",
     },
     {
         title       : "Project two",
