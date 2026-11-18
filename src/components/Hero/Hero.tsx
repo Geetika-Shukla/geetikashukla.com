@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
 // INTERNAL DEPS ===============================================================
-import { FilterCoffee, InkBottle, PixelHeart, Soap, Spool, StickyNote, Vinyl } from "./Illustrations";
+import { InkBottle, PixelHeart, Soap, Spool, StickyNote, SwatchFan, Vinyl } from "./Illustrations";
 
 // STYLES ======================================================================
 import "./hero.css";
@@ -52,7 +52,7 @@ interface Item {
 const ITEMS: Item[] = [
     { id: "calli", kind: "photo", content: photo(calliOne, "Calligraphy", 1.25), label: "Calligraphy", w: "clamp(90px, 8.5vw, 140px)", scatter: [8, 52, 4], grid: [8, 18] },
     { id: "image-1", kind: "placeholder", content: placeholder(16 / 10), label: "Image to come", w: "clamp(130px, 12vw, 190px)", scatter: [50, 11, -3], grid: [50, 18] },
-    { id: "coffee", kind: "art", content: <FilterCoffee />, label: "Filter coffee", w: "clamp(64px, 5.5vw, 90px)", scatter: [70, 17, 5], grid: [64, 18] },
+    { id: "swatches", kind: "art", content: <SwatchFan />, label: "Colour swatches", w: "clamp(64px, 5.5vw, 90px)", scatter: [70, 17, 5], grid: [64, 18] },
     { id: "heart", kind: "art", content: <PixelHeart />, label: "A pixel heart", w: "clamp(44px, 3.6vw, 60px)", scatter: [24, 43, -8], grid: [78, 18] },
     { id: "image-2", kind: "placeholder", content: placeholder(0.72), label: "Image to come", w: "clamp(90px, 8.5vw, 140px)", scatter: [86, 22, 6], grid: [92, 18] },
 

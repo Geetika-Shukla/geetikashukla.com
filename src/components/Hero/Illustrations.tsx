@@ -53,27 +53,29 @@ export const InkBottle = () => (
     </svg>
 );
 
-// South Indian filter coffee: a steel tumbler, frothed, in its dabarah
-export const FilterCoffee = () => (
+// A fan of colour swatches, pinned at a rivet: five paint-chip strips in the
+// site's colours, each with a label band at its foot
+const SWATCHES = [
+    { colour: "#3F8F8A", angle: -36 },
+    { colour: "#7A5AD6", angle: -18 },
+    { colour: "#E8B931", angle: 0 },
+    { colour: "#F6CFC9", angle: 18 },
+    { colour: RUST, angle: 36 },
+];
+
+export const SwatchFan = () => (
     <svg viewBox="0 0 120 120" aria-hidden="true">
-        <ellipse cx="60" cy="110" rx="44" ry="5" fill={INK} opacity="0.08" />
-        {/* Steam */}
-        <path d="M52 12 Q46 20 52 28 Q58 36 52 44" stroke="#C9C4BA" strokeWidth="3" fill="none" strokeLinecap="round" />
-        <path d="M66 8 Q60 17 66 25 Q72 33 66 41" stroke="#C9C4BA" strokeWidth="3" fill="none" strokeLinecap="round" />
-        {/* The dabarah: a wide steel bowl with a rolled rim */}
-        <path d="M16 82 H104 L96 104 Q94 108 88 108 H32 Q26 108 24 104 Z" fill="#B9BCC2" />
-        <path d="M16 82 H104 L101 90 H19 Z" fill="#D4D6DB" />
-        <ellipse cx="60" cy="82" rx="44" ry="5" fill="#E4E6EA" />
-        <path d="M30 96 Q60 102 90 96" stroke="#FFFFFF" strokeOpacity="0.5" strokeWidth="2" fill="none" />
-        {/* The tumbler, set in the bowl */}
-        <path d="M38 48 H82 L78 84 Q77 88 72 88 H48 Q43 88 42 84 Z" fill="#C7CAD0" />
-        <rect x="38" y="44" width="44" height="7" rx="3.5" fill="#E4E6EA" />
-        <path d="M40 60 H80" stroke="#A9ACB3" strokeWidth="1.5" />
-        <path d="M41 72 H79" stroke="#A9ACB3" strokeWidth="1.5" />
-        <path d="M47 52 L46 84" stroke="#FFFFFF" strokeOpacity="0.55" strokeWidth="3.5" strokeLinecap="round" />
-        {/* Froth */}
-        <ellipse cx="60" cy="46" rx="20" ry="3.5" fill="#C9A27A" />
-        <ellipse cx="57" cy="45.5" rx="9" ry="1.6" fill="#E6CFAE" />
+        <ellipse cx="60" cy="110" rx="34" ry="4" fill={INK} opacity="0.08" />
+        {SWATCHES.map(({ colour, angle }) => (
+            <g key={colour} transform={`rotate(${angle} 60 100)`}>
+                <rect x="49" y="14" width="22" height="94" rx="3" fill={PAPER} stroke={INK} strokeOpacity="0.15" />
+                <rect x="51" y="16" width="18" height="62" rx="1.5" fill={colour} />
+                <path d="M53 84 H67 M53 89 H63" stroke={INK} strokeOpacity="0.35" strokeWidth="1.4" strokeLinecap="round" />
+            </g>
+        ))}
+        {/* The rivet */}
+        <circle cx="60" cy="100" r="4.5" fill={GOLD} stroke={INK} strokeOpacity="0.3" />
+        <circle cx="59" cy="99" r="1.4" fill="#FFFFFF" opacity="0.7" />
     </svg>
 );
 
