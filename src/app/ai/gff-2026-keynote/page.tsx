@@ -35,8 +35,8 @@ export default function GffKeynotePage() {
             {/* HERO SECTION */}
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="small">
-                {/* A wider column than usual, so the title sits on two lines */}
-                <Portion desktopSpan="15" horizontalMargin="small">
+                {/* A little wider than usual, so the title sits on three lines */}
+                <Portion desktopSpan="12" horizontalMargin="small">
                     <Heading1 className="hero-heading">
                         The invisible future of finance
                     </Heading1>
@@ -44,7 +44,7 @@ export default function GffKeynotePage() {
 
                 <Portion desktopSpan="1" hideOnMobile />
 
-                <Portion desktopSpan="8" mobileSpan="whole" marginLeft="small">
+                <Portion desktopSpan="11" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">
                         <Text marginBottom="tiny">
                             A keynote deck for the CEO of Reserve Bank Innovation Hub at Global Fintech Fest
@@ -57,13 +57,7 @@ export default function GffKeynotePage() {
 
             {/* THE KEYNOTE: photos from the day, and the deck itself */}
 
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
-                <Portion desktopSpan="whole">
-                    <h5>The keynote</h5>
-                </Portion>
-            </Row>
-
-            <Row horizontalPadding="huge" marginBottom="medium">
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium">
                 <Portion desktopSpan="8" mobileSpan="whole">
                     <div className="keynote__photos">
                         {PHOTOS.map((label, i) => (
