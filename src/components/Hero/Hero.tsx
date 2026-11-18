@@ -113,10 +113,10 @@ const thingCut = (at: [number, number], size: Size, board: Size) =>
     cutOut(at, Math.ceil((size.w + BLOCK) / BLOCK), Math.ceil((size.h + BLOCK) / BLOCK), board);
 
 /*
- * Hero: a board of things, opening as a tidy grid with a line set in its
- * cells. The section is taller than the screen and its board stays put while
- * it scrolls past; the scroll (0 → 1, as --p) scatters everything to the
- * edges and brings in the intro. Things can also be dragged about.
+ * Hero: a board of things, opening on the intro with everything scattered
+ * round the edges. The section is taller than the screen and its board stays
+ * put while it scrolls past; the scroll (0 → 1, as --p) gathers everything
+ * into a tidy grid with a line set in its cells. Things can also be dragged about.
  */
 export const Hero = () => {
     const sectionRef = useRef<HTMLElement>(null);
@@ -144,7 +144,7 @@ export const Hero = () => {
     const [offsets, setOffsets] = useState<Offsets>({});
     const drag = useRef<{ id: string; x: number; y: number; from: { x: number; y: number }; moved: boolean } | null>(null);
 
-    // Scroll progress through the hero, as --p (0 at the top, 1 once fully scattered)
+    // Scroll progress through the hero, as --p (0 at the top, 1 once fully arranged)
     useEffect(() => {
         const section = sectionRef.current;
         if (!section) return;
