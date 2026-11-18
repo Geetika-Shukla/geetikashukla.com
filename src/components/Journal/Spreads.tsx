@@ -115,15 +115,27 @@ const STOPS: Stop[] = [
 const logoProps = (Logo: Stop["Logo"]): SVGProps<SVGSVGElement> =>
     Logo === RBIHLogo ? {} : { viewBox: "0 0 51 51" };
 
-// An organic line through the stops: a smooth curve (Catmull-Rom) through each
-// stop and a wobble between them, from a little before the first to a little past the last
+// The line through the stops, with detours: a smooth curve (Catmull-Rom)
+// through each stop, gently arched between them, and a loop-the-loop on two of
+// the stretches. The drawing is 1.6 times wider than tall, so a loop's
+// horizontal radius is squashed to match and it comes out round.
+const LOOPS = new Set([2, 4]);
+const LOOP: [number, number] = [2.8, 4.5];
+
 const LINE = (() => {
     const points: [number, number][] = [[1, 80]];
     STOPS.forEach(({ at }, i) => {
         if (i > 0) {
             const [px, py] = STOPS[i - 1].at;
-            const wobble = i % 2 ? 3 : -3;
-            points.push([(px + at[0]) / 2, (py + at[1]) / 2 + wobble]);
+            const [mx, my] = [(px + at[0]) / 2, (py + at[1]) / 2];
+            if (LOOPS.has(i)) {
+                // Round a loop above the line, then on
+                const [rx, ry] = LOOP;
+                points.push([mx - rx, my], [mx + rx, my - ry], [mx, my - ry * 2], [mx - rx, my - ry], [mx + rx * 0.6, my + 0.5]);
+            } else {
+                // A gentle arch
+                points.push([mx, my + (at[1] < py ? 4 : -4)]);
+            }
         }
         points.push(at);
     });
