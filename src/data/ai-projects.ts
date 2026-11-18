@@ -30,6 +30,8 @@ export interface AIProject {
     cover?      : StaticImageData;
     // A deck (an HTML file in public/) that opens over the page instead of a link
     deck?       : string;
+    // Who it was made with, shown with the deck
+    credit?     : string;
 }
 
 export const AI_PROJECTS: AIProject[] = [
@@ -40,6 +42,7 @@ export const AI_PROJECTS: AIProject[] = [
         placeholder : false,
         cover       : gffKeynote,
         deck        : "/keynotes/gff-2026.html",
+        credit      : "With Naresh Singaravelu, Rhea Sinha and Rajat Mittal",
     },
     {
         title       : "Project two",

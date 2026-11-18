@@ -86,8 +86,9 @@ interface Piece {
     motion?     : Motion;
     // A still image, filling the thumbnail
     image?      : StaticImageData;
-    // A deck to open over the page, in place of a link
+    // A deck to open over the page, in place of a link, and who it was made with
     deck?       : string;
+    credit?     : string;
     ai          : boolean;
     // What an empty thumbnail says
     note?       : string;
@@ -102,11 +103,12 @@ const PIECES: Piece[] = [
         const { title, description, category, tags = [], Thumbnail } = project;
         return [{ key: href, group: category, title, description, tags, href, Thumbnail, bg, whole, art, motion, ai: false }];
     }),
-    ...AI_PROJECTS.map(({ title, description, tools, href, note, screens, cover, deck }, i): Piece => ({
+    ...AI_PROJECTS.map(({ title, description, tools, href, note, screens, cover, deck, credit }, i): Piece => ({
         key: `ai-${i}`, group: "AI", title, description, tags: tools, href, bg: "#F4F1EA", whole: false, art: 1, ai: true, note,
         motion: screens && { kind: "browser", screens },
         image: cover,
         deck,
+        credit,
     })),
 ];
 
@@ -310,7 +312,7 @@ export const WorkSection = () => {
                 </div>
             </div>
 
-            <DeckDialog deck={open?.deck ?? null} title={open?.title ?? ""} onClose={() => setOpen(null)} />
+            <DeckDialog deck={open?.deck ?? null} title={open?.title ?? ""} credit={open?.credit} onClose={() => setOpen(null)} />
         </div>
     );
 };

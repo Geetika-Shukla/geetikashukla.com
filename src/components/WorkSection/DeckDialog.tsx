@@ -9,9 +9,10 @@ import "./deck-dialog.css";
 /*
  * A deck, playing in a window over the page: its own arrow keys move through
  * the slides, it can go fullscreen, and Esc, the close button or a click
- * outside it closes it. `deck` is the deck's address (null when closed).
+ * outside it closes it. `deck` is the deck's address (null when closed);
+ * `credit`, who it was made with, sits under its title.
  */
-export const DeckDialog = ({ deck, title, onClose }: { deck: string | null; title: string; onClose: () => void }) => {
+export const DeckDialog = ({ deck, title, credit, onClose }: { deck: string | null; title: string; credit?: string; onClose: () => void }) => {
     const dialogRef = useRef<HTMLDialogElement>(null);
     const frameRef = useRef<HTMLDivElement>(null);
 
@@ -42,7 +43,10 @@ export const DeckDialog = ({ deck, title, onClose }: { deck: string | null; titl
             }}
         >
             <div className="deck__bar">
-                <span className="deck__title">{title}</span>
+                <span className="deck__heading">
+                    <span className="deck__title">{title}</span>
+                    {credit && <span className="deck__credit">{credit}</span>}
+                </span>
                 <button type="button" className="deck__button" onClick={fullscreen}>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" /></svg>
                     Fullscreen

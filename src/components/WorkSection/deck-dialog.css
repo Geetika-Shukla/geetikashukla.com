@@ -37,8 +37,19 @@
     border-bottom: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
 }
 
-.deck__title {
+.deck__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
     margin-right: auto;
+}
+
+.deck__credit {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}
+
+.deck__title {
     color: var(--color-text);
     font-family: var(--font-heading);
     font-size: 1rem;
