@@ -23,3 +23,8 @@
     filter: none;
     opacity: 1;
 }
+
+/* The GitHub mark is black: in the dark, it turns white */
+:root[data-theme="dark"] .site-footer__link[aria-label="GitHub"] svg {
+    filter: invert(1);
+}

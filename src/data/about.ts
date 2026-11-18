@@ -85,39 +85,44 @@ export const PATH: { step: string; question?: string }[] = [
 ];
 
 export interface Testimonial {
-    quote   : string[];
-    name    : string;
-    role    : string;
-    profile : string;
+    quote     : string[];
+    // A phrase from the quote (exactly as written there) to mark as its heart
+    highlight : string;
+    name      : string;
+    role      : string;
+    profile   : string;
 }
 
 export const TESTIMONIALS: Testimonial[] = [
     {
-        quote   : [
+        quote     : [
             "Geetika is one of my favourite people to collaborate with at Setu! Her work is filled with so much creativity, thought, and an incredible attention to not just detail, but craft. There’s a certain magic in everything she creates and every single time, she amazes me with the kind of work she puts out—I go to her with just a basic outline, and she transforms it into a masterpiece that never fails to leave me in awe. Couldn’t be more grateful for the outstanding people experience pieces she’s helped bring to life for our team.",
             "Beyond work, she’s also an amazing person at heart and a joy to be around—kind, thoughtful, and someone you can always count on to keep things real. Always rooting for you, Geetika ❤️",
         ],
-        name    : "Ruby Jane Antony",
-        role    : "Director, People Ops, Setu",
-        profile : "https://www.linkedin.com/in/ruby-jane/",
+        highlight : "There’s a certain magic in everything she creates",
+        name      : "Ruby Jane Antony",
+        role      : "Director, People Ops, Setu",
+        profile   : "https://www.linkedin.com/in/ruby-jane/",
     },
     {
-        quote   : [
+        quote     : [
             "I had the pleasure of working with Geetika to design the brand identity for my business, and I couldn't be more thrilled with the results! From the start, she took the time to understand my vision, values, and the essence of my brand.",
             "The attention to detail, creativity, and expertise she brought to the table was evident in every aspect of the design. The logo, colour palette, typography, and overall style feel perfectly aligned with the identity I wanted to create.",
             "What truly stood out was Geetika’s professionalism and communication throughout the process. She was very responsive, open to feedback, and delivered on time.",
         ],
-        name    : "Sandeep Atmaram",
-        role    : "Co-founder, Heads Up for Tails",
-        profile : "https://www.linkedin.com/in/sandeep-atmaram-234100217/",
+        highlight : "evident in every aspect of the design",
+        name      : "Sandeep Atmaram",
+        role      : "Co-founder, Heads Up for Tails",
+        profile   : "https://www.linkedin.com/in/sandeep-atmaram-234100217/",
     },
     {
-        quote   : [
+        quote     : [
             "I had the privilege of working with Geetika while in the People Ops team at Setu, where she was our go-to designer for all things visual. From custom letterheads and posters to mailers and swag, her work was always exceptional. She has a knack for turning half-baked ideas into designs that far exceed expectations—both visually striking and versatile.",
             "For anyone looking for a designer with creativity, clarity, and attention to detail, Geetika is an outstanding choice!",
         ],
-        name    : "Asveen Kaur",
-        role    : "Former Manager, People Ops, Setu",
-        profile : "https://www.linkedin.com/in/asveenkaur/",
+        highlight : "She has a knack for turning half-baked ideas into designs that far exceed expectations",
+        name      : "Asveen Kaur",
+        role      : "Former Manager, People Ops, Setu",
+        profile   : "https://www.linkedin.com/in/asveenkaur/",
     },
 ];

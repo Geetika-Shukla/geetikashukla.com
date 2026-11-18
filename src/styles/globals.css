@@ -106,6 +106,24 @@ p {
     }
 }
 
+/* The home page's grid runs on to the footer: fixed to the screen, so it lines
+   up with the hero's and Work's (pinned under the nav, a whole number of
+   blocks down) wherever they meet */
+.home {
+    --line: color-mix(in srgb, var(--color-text) 6%, transparent);
+
+    padding-bottom: 64px;
+    background-image:
+        linear-gradient(to right, var(--line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-attachment: fixed;
+}
+
+.site:has(.home) .site-footer {
+    margin-top: 0;
+}
+
 /* Project pages sit on white */
 body:has(.project-page),
 .site:has(.project-page) {
