@@ -8,8 +8,9 @@
  */
 .work {
     --block: 24px;
-    /* A screen under the nav, rounded down to whole grid blocks */
-    --stage: round(down, calc(100svh - var(--header-height)), var(--block));
+    /* Two blocks above the board, its 27 rows at most, and one row of grid
+       after; or a screen under the nav (in whole blocks), if that's less */
+    --stage: min(calc(var(--block) * 30), round(down, calc(100svh - var(--header-height)), var(--block)));
     --line: color-mix(in srgb, var(--color-text) 6%, transparent);
 
     position: relative;
@@ -81,14 +82,14 @@ html:has(.work__step) {
     margin: var(--block) 0;
 }
 
-/* Each a block on the grid: the column's width, two blocks tall */
+/* Two blocks tall each */
 .work__filter {
-    --edge: color-mix(in srgb, var(--color-text) 16%, transparent);
-
+    position: relative;
     display: flex;
     align-items: center;
+    align-self: flex-start;
     height: calc(var(--block) * 2);
-    padding: 0 12px;
+    padding: 0;
     border: 0;
     background: none;
     color: var(--color-text-muted);
@@ -97,36 +98,53 @@ html:has(.work__step) {
     font-size: 1.3rem;
     font-weight: 400;
     text-align: left;
-    transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    transition: color 0.2s ease;
 }
 
-/* Hover: outlined, the edges on grid lines (top and left just inside, right
-   and bottom just outside) */
 .work__filter:hover,
 .work__filter:focus-visible {
     color: var(--color-text);
-    box-shadow: inset 1px 1px 0 var(--edge), 1px 1px 0 var(--edge);
 }
 
-/* The kind of work in view: a solid block of ink, the label reversed out,
-   an arrow pointing to the work */
+/* The kind of work in view: its name circled by hand */
 .work__filter[aria-pressed="true"] {
-    background-color: var(--color-text);
-    color: var(--color-bg);
-    box-shadow: none;
+    color: var(--color-text);
 }
 
-.work__filter[aria-pressed="true"]::after {
-    content: "→";
-    margin-left: auto;
-    font-family: var(--font-body);
-    font-size: 1.1rem;
+.work__circle {
+    position: absolute;
+    top: 6px;
+    left: -12px;
+    width: calc(100% + 22px);
+    height: calc(100% - 10px);
+    overflow: visible;
+    fill: none;
+    stroke: var(--color-accent-2);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    pointer-events: none;
+    stroke-dasharray: 340;
+    stroke-dashoffset: 340;
+    animation: work-circle 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* A note scribbled beside a filter (new!), a little askew */
+.work__circle path {
+    vector-effect: non-scaling-stroke;
+}
+
+/* Drawn on, as if by hand */
+@keyframes work-circle {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* A note scribbled beside a filter (new!), a little askew, just outside it (so a circle round the name leaves it out) */
 .work__note {
-    display: inline-block;
-    margin-left: 10px;
+    position: absolute;
+    top: 4px;
+    left: calc(100% + 14px);
+    white-space: nowrap;
     color: var(--color-accent-2);
     font-family: var(--font-hand), cursive;
     font-size: 1.15rem;
@@ -405,16 +423,12 @@ a.wcard__link:focus-visible .wcard__go {
         flex-direction: row;
         flex-wrap: wrap;
         align-self: auto;
-        gap: 4px 8px;
+        gap: 4px 28px;
         margin: 8px 0 24px;
     }
 
     .work__filter {
         height: 40px;
-    }
-
-    .work__filter[aria-pressed="true"]::after {
-        content: none;
     }
 
     .work__pause {
@@ -461,8 +475,13 @@ a.wcard__link:focus-visible .wcard__go {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .wcard {
+    .wcard,
+    .work__circle {
         animation: none;
+    }
+
+    .work__circle {
+        stroke-dashoffset: 0;
     }
 
     .wcard__media,

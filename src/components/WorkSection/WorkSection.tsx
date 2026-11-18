@@ -241,6 +241,11 @@ export const WorkSection = () => {
                                 <button key={id} type="button" className="work__filter" aria-pressed={group === g} onClick={() => choose(i)}>
                                     {label}
                                     {note && <span className="work__note">{note}</span>}
+                                    {group === g && (
+                                        <svg className="work__circle" viewBox="0 0 120 44" preserveAspectRatio="none" aria-hidden="true">
+                                            <path d="M8 24 C 6 8, 60 2, 104 10 C 122 14, 118 36, 70 40 C 30 43, 4 36, 12 18" />
+                                        </svg>
+                                    )}
                                 </button>
                             ))}
                         </nav>
