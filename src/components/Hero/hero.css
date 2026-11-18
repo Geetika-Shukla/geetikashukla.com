@@ -17,14 +17,15 @@
     position: relative;
     /* The board's screen, plus the scroll it takes to arrange it (100svh)
        and a pause once arranged (60svh) before the page moves on */
-    height: calc(100svh - var(--header-height) + 160svh);
+    /* Rounded to whole grid blocks, so the next section starts on a grid line */
+    height: round(up, calc(100svh - var(--header-height) + 160svh), 24px);
 }
 
 .hero__board {
     position: sticky;
     top: var(--header-height);
-    height: calc(100svh - var(--header-height));
-    min-height: 620px;
+    height: round(down, calc(100svh - var(--header-height)), 24px);
+    min-height: 624px;
     overflow: clip;
     background-color: var(--paper);
     background-image:

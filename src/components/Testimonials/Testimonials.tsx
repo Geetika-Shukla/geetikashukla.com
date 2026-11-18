@@ -7,43 +7,27 @@ import { TESTIMONIALS } from "@/data/about";
 // STYLES ======================================================================
 import "./testimonials.css";
 
-// A paragraph, with its highlight (if it's in this paragraph) marked
-const Paragraph = ({ text, highlight }: { text: string; highlight: string }) => {
-    const at = text.indexOf(highlight);
-    if (at < 0) return <p>{text}</p>;
-    return (
-        <p>
-            {text.slice(0, at)}
-            <mark>{highlight}</mark>
-            {text.slice(at + highlight.length)}
-        </p>
-    );
-};
-
 /*
  * Kind words from people I've worked with: the heading in the left third, the
  * cards as a bento in the rest (the first across the top, its words in two
  * columns; the others side by side below). Each card has a large quote mark,
- * the heart of the quote marked as if with a highlighter, and who said it.
+ * the words, and who said them.
  */
 export const Testimonials = () => (
-    <section id="kind-words" className="testimonials" aria-labelledby="testimonials-title">
+    <section id="kind-words" className="testimonials" aria-labelledby="testimonials-title" data-snap>
         <div className="testimonials__intro">
             <h2 id="testimonials-title" className="testimonials__title">From those I’ve worked with</h2>
             <p className="testimonials__lede">Colleagues and clients, in their own words.</p>
         </div>
 
         <ul className="testimonials__cards">
-            {TESTIMONIALS.map(({ quote, highlight, name, role, profile }) => (
-                <li key={name} className="testimonials__card">
+            {TESTIMONIALS.map(({ quote, name, role, profile }) => (
+                <li key={name} className="testimonials__card" data-snap>
                     <span className="testimonials__mark" aria-hidden="true">“</span>
                     <blockquote className="testimonials__quote">
-                        {quote.map((paragraph, i) => <Paragraph key={i} text={paragraph} highlight={highlight} />)}
+                        {quote.map((paragraph, i) => <p key={i}>{paragraph}</p>)}
                     </blockquote>
                     <a className="testimonials__person" href={profile} target="_blank" rel="noopener noreferrer">
-                        <span className="testimonials__initials" aria-hidden="true">
-                            {name.split(" ").slice(0, 2).map((part) => part[0]).join("")}
-                        </span>
                         <span>
                             <span className="testimonials__name">{name}</span>
                             <span className="testimonials__role">{role}</span>

@@ -2,7 +2,6 @@
 
 // EXTERNAL DEPS ===============================================================
 import React, { useState } from "react";
-import { Caveat } from "next/font/google";
 
 // INTERNAL DEPS ===============================================================
 import { InkBottle, PixelHeart, Spool } from "@/components/Hero/Illustrations";
@@ -15,9 +14,6 @@ import "./journal.css";
 // TYPES =======================================================================
 import type { CSSProperties } from "react";
 import type { Contributions } from "@/data/github";
-
-// Handwriting, for the notes in the margins
-const hand = Caveat({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-hand" });
 
 // The cover, then each spread
 const CLOSED = -1;
@@ -35,7 +31,7 @@ export const Journal = ({ contributions }: { contributions: Contributions | null
     const last = SPREADS.length - 1;
 
     return (
-        <section id="journal" className={`journal ${hand.variable}`} aria-labelledby="journal-title">
+        <section id="journal" className="journal" aria-labelledby="journal-title" data-snap>
             <h2 id="journal-title" className="journal__heading">The story so far</h2>
             <p className="journal__lede">{open ? "Detours, drafts, and dots that eventually connect." : "Open the journal."}</p>
 

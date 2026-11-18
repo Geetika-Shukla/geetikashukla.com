@@ -9,11 +9,18 @@
     --cover: #9C4A2A;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
+    /* The book's width: as wide as fits (never taller than the screen leaves
+       room for), in steps of eight blocks, which at 16:10 makes its height a
+       whole number of blocks too, and keeps it on the grid closed (a quarter
+       of it shifted) as well as open */
+    --bw: round(down, min(960px, 100% - 2 * var(--section-margin), calc((100svh - var(--header-height) - 216px) * 1.6)), 192px);
+    /* Where it starts: on the grid line nearest centred */
+    --bx: round(nearest, calc((100% - var(--bw)) / 2), 24px);
+
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    min-height: calc(100svh - var(--header-height));
-    padding: 32px var(--section-margin) 48px;
+    min-height: round(down, calc(100svh - var(--header-height)), 24px);
+    padding: 48px 0;
     text-align: center;
     /* Links to #journal (the nav's About me), and the snap, land clear of the nav */
     scroll-margin-top: var(--header-height);
@@ -25,20 +32,25 @@ html:has(.journal) {
     scroll-snap-type: y proximity;
 }
 
+/* Two blocks tall, then a block for the line under it, and a block's gap */
 .journal__heading {
+    height: 48px;
     margin: 0;
     color: var(--color-text);
     font-family: var(--font-heading);
     font-size: 2.2rem;
     font-weight: 700;
+    line-height: 48px;
 }
 
 .journal__lede {
-    margin: 8px 0 40px;
+    height: 24px;
+    margin: 0 0 24px;
     color: var(--color-text-muted);
     font-family: var(--font-heading);
     font-size: 1.2rem;
     font-weight: 500;
+    line-height: 24px;
 }
 
 /* The book is paper in either theme, so its ink stays dark */
@@ -46,15 +58,20 @@ html:has(.journal) {
     --color-text: #1C1C1E;
     --color-text-muted: #5E6066;
     --color-accent-2: #B4532A;
+    /* The component library's own text colours, which bold text follows */
+    --heading-text-colour: #1C1C1E;
+    --paragraph-text-colour: #1C1C1E;
+
+    color: var(--color-text);
 }
 
 /* Two pages wide; closed, shifted left by half a page so the cover is centred */
 .journal__book {
     position: relative;
-    /* As wide as fits, but never taller than the screen leaves room for */
-    width: min(960px, 100%, calc((100svh - var(--header-height) - 230px) * 2 / 1.22));
-    aspect-ratio: 2 / 1.22;
-    margin: 0 auto;
+    /* Whole blocks each way (see --bw), from a grid line */
+    width: var(--bw);
+    aspect-ratio: 16 / 10;
+    margin: 0 0 0 var(--bx);
     perspective: 2400px;
     text-align: left;
     transform: translateX(-25%);
@@ -612,12 +629,13 @@ html:has(.journal) {
     stroke-linejoin: round;
 }
 
+/* Either side of the book */
 .journal__turn--back {
-    left: max(-72px, calc(var(--section-margin) * -0.8));
+    left: calc(var(--bx) - 72px);
 }
 
 .journal__turn--next {
-    right: max(-72px, calc(var(--section-margin) * -0.8));
+    left: calc(var(--bx) + var(--bw) + 20px);
 }
 
 .journal__turn--back:hover {
@@ -631,8 +649,10 @@ html:has(.journal) {
 .journal__dots {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 10px;
-    margin: 28px 0 0;
+    height: 24px;
+    margin: 24px 0 0;
     padding: 0;
     list-style: none;
 }
@@ -817,6 +837,8 @@ html:has(.journal) {
     .journal__book,
     .journal__book[data-open="true"] {
         width: 100%;
+        aspect-ratio: auto;
+        margin: 0;
     }
 
     .journal__lede {
