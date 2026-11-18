@@ -114,16 +114,16 @@ const COMPOSITIONS: Record<number, { rows: number; spots: Spot[] }> = {
         { x: 2, y: 0, w: 17, h: 10, words: "under" },
         { x: 23, y: 9, w: 15, h: 9, words: "under" },
     ] },
-    3: { rows: 27, spots: [
-        { x: 1, y: 0, w: 15, h: 9, words: "under" },
+    3: { rows: 26, spots: [
+        { x: 1, y: 0, w: 15, h: 8, words: "under" },
         { x: 19, y: 2, w: 12, h: 8, words: "beside" },
-        { x: 10, y: 17, w: 13, h: 8, words: "beside" },
+        { x: 10, y: 16, w: 13, h: 8, words: "beside" },
     ] },
-    4: { rows: 27, spots: [
-        { x: 0, y: 0, w: 15, h: 9, words: "under" },
-        { x: 18, y: 1, w: 13, h: 8, words: "beside" },
-        { x: 2, y: 17, w: 13, h: 8, words: "beside" },
-        { x: 27, y: 12, w: 13, h: 8, words: "under" },
+    4: { rows: 26, spots: [
+        { x: 0, y: 0, w: 15, h: 8, words: "under" },
+        { x: 18, y: 0, w: 13, h: 8, words: "beside" },
+        { x: 2, y: 16, w: 13, h: 8, words: "beside" },
+        { x: 27, y: 11, w: 13, h: 8, words: "under" },
     ] },
 };
 
