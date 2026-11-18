@@ -1,57 +1,71 @@
 /*
- * Work: the title and filters in a column on the left that stays in view,
- * beside three columns of project cards.
+ * Work: a stage on the hero's grid that stays put while the section scrolls
+ * past, a screen's scroll (and a snap point) for each kind of work. The heading
+ * and filters sit centred on top, a whole number of grid blocks tall, so the
+ * board below starts on a grid line; the board is a whole number of blocks
+ * wide and starts on one too. Each piece sits in a cut-out of the grid (no
+ * lines behind it), placed and sized in blocks by WorkSection.tsx.
  */
-/* Within the section margins */
 .work {
-    display: grid;
-    grid-template-columns: 200px minmax(0, 1fr);
-    gap: 48px;
-    padding: 96px var(--section-margin) 120px;
+    --block: 24px;
+    --stage: calc(100svh - var(--header-height));
+    --line: color-mix(in srgb, var(--color-text) 6%, transparent);
+
+    position: relative;
+    /* The stage, plus a screen's scroll for each step after the first */
+    height: calc(var(--stage) * var(--steps, 4));
 }
 
-/* LIST ===================================================================== */
-.work__list {
+/* Snap points (and link targets), one a stage-height apart */
+.work__step {
+    position: absolute;
+    top: calc(var(--stage) * var(--step));
+    left: 0;
+    width: 1px;
+    height: 1px;
+    scroll-margin-top: var(--header-height);
+    scroll-snap-align: start;
+}
+
+html:has(.work__step) {
+    scroll-snap-type: y proximity;
+}
+
+.work__stage {
     position: sticky;
-    top: calc(var(--header-height) + 32px);
-    align-self: start;
+    top: var(--header-height);
+    height: var(--stage);
+    overflow: clip;
+    padding-top: var(--block);
+    background-color: var(--color-bg);
+    background-image:
+        linear-gradient(to right, var(--line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: var(--block) var(--block);
+    text-align: center;
 }
 
+/* Two blocks tall */
 .work__title {
-    margin: 0 0 28px;
+    height: calc(var(--block) * 2);
+    margin: 0;
     color: var(--color-text);
     font-family: var(--font-heading);
     font-size: 2.2rem;
     font-weight: 700;
+    line-height: calc(var(--block) * 2);
 }
 
-.work__reset {
-    padding: 0;
-    border: 0;
-    background: none;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-
-/* Nothing to reset: plain title */
-.work__reset:disabled {
-    cursor: default;
-}
-
-.work__reset:not(:disabled):hover,
-.work__reset:focus-visible {
-    color: var(--color-accent-2);
-}
-
-.work__list ul {
+/* FILTERS ================================================================== */
+/* Two blocks tall, and a block's gap under them */
+.work__filters {
     display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px 28px;
+    height: calc(var(--block) * 2);
+    margin-bottom: var(--block);
 }
 
 .work__filter {
@@ -61,9 +75,8 @@
     color: var(--color-text-muted);
     cursor: pointer;
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 400;
-    scroll-margin-top: calc(var(--header-height) + 100px);
     transition: color 0.2s ease;
 }
 
@@ -72,32 +85,45 @@
     color: var(--color-text);
 }
 
-/* Selected filter: shown by colour */
+/* The kind of work in view: in colour, underlined by hand */
 .work__filter[aria-pressed="true"] {
     color: var(--color-accent-2);
+    text-decoration: underline wavy;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 6px;
 }
 
-/* CARDS ==================================================================== */
-.work__cards {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 56px 40px;
-    margin: 0;
+/* THE BOARD ================================================================ */
+/* 40 blocks wide, set on a grid line nearest the middle */
+.work__board {
+    position: relative;
+    width: calc(var(--block) * 40);
+    height: calc(var(--block) * var(--rows));
+    margin: 0 0 0 round(nearest, calc((100% - var(--block) * 40) / 2), var(--block));
     padding: 0;
     list-style: none;
+    text-align: left;
 }
 
-/* Each type of work has its own tint; cards ease in when a filter changes */
+/* Each kind of work has its own tint; pieces settle in when the kind changes */
 .wcard {
     --tint: #ECEAE4;
 
-    animation: wcard-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+    position: absolute;
+    top: calc(var(--block) * var(--y));
+    left: calc(var(--block) * var(--x));
+    width: calc(var(--block) * var(--cw));
+    height: calc(var(--block) * var(--ch));
+    /* The cut-out: plain paper, no grid lines behind the piece */
+    background-color: var(--color-bg);
+    animation: wcard-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i) * 80ms);
 }
 
 @keyframes wcard-in {
     from {
         opacity: 0;
-        transform: translateY(12px);
+        transform: translate(calc(var(--i) * 10px - 16px), 24px);
     }
 }
 
@@ -113,26 +139,56 @@
     --tint: #ECEAE4;
 }
 
+.wcard--ai {
+    --tint: #ECE6F7;
+}
+
+/* A block of paper all round the thumbnail; its words under it or beside it */
 .wcard__link {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    height: 100%;
+    padding: var(--block);
     color: inherit;
     text-decoration: none;
 }
 
-/* The panel holding the thumbnail, filled with the thumbnail's own background
-   (--bg) so the artwork sits in it seamlessly; a hairline edge keeps white
-   panels from melting into the page */
+.wcard[data-words="beside"] .wcard__link {
+    flex-direction: row;
+    gap: var(--block);
+}
+
+/* The panel holding the thumbnail, a whole number of blocks each way, filled
+   with the thumbnail's own background (--bg) so the artwork sits in it
+   seamlessly; a hairline edge keeps white panels from melting into the page */
 .wcard__media {
     position: relative;
     display: block;
-    aspect-ratio: 16 / 10;
+    flex-shrink: 0;
+    width: calc(var(--block) * var(--mw));
+    height: calc(var(--block) * var(--mh));
     overflow: hidden;
     border-radius: var(--radius);
     background-color: var(--bg, var(--tint));
     box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-text) 8%, transparent);
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+
+/* No image yet: a dashed placeholder */
+.wcard__media[data-empty] {
+    display: grid;
+    place-items: center;
+    background-color: color-mix(in srgb, var(--color-text) 3%, transparent);
+    box-shadow: none;
+    outline: 1.5px dashed color-mix(in srgb, var(--color-text) 25%, transparent);
+    outline-offset: -1.5px;
+}
+
+.wcard__soon {
+    color: var(--color-text-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .wcard__art {
@@ -144,29 +200,43 @@
     transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* The title, with an arrow that slides in after it on hover */
-.wcard__title {
-    margin-top: 16px;
-    color: var(--color-text);
-    font-family: var(--font-heading);
-    font-size: 1.15rem;
-    font-weight: 700;
-    line-height: 1.2;
+.wcard__words {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding-top: 12px;
 }
 
+.wcard[data-words="beside"] .wcard__words {
+    padding-top: 0;
+}
+
+.wcard__title {
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1.08rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* A line about it (two at most) */
 .wcard__description {
-    margin-top: 6px;
+    display: -webkit-box;
+    margin-top: 4px;
+    overflow: hidden;
     color: var(--color-text-muted);
-    font-size: 0.92rem;
+    font-size: 0.86rem;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1.4;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 
 .wcard__tags {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin-top: 12px;
+    margin-top: 8px;
 }
 
 .wcard__tag {
@@ -174,20 +244,26 @@
     border-radius: var(--radius-small);
     background-color: var(--tint);
     color: var(--color-text-muted);
-    font-size: 0.68rem;
+    font-size: 0.64rem;
     font-weight: 600;
     text-transform: uppercase;
 }
 
+/* Built using AI: in the accent purple */
+.wcard__tag--ai {
+    background-color: #7A5AD6;
+    color: #FFFFFF;
+}
+
 /* Hover: the panel lifts, the artwork leans in, the arrow slides in */
-.wcard__link:hover .wcard__media,
-.wcard__link:focus-visible .wcard__media {
-    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-text) 8%, transparent), 0 14px 30px rgba(43, 45, 56, 0.1);
+a.wcard__link:hover .wcard__media,
+a.wcard__link:focus-visible .wcard__media {
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-text) 8%, transparent), 0 14px 30px rgba(43, 45, 56, 0.12);
     transform: translateY(-4px);
 }
 
-.wcard__link:hover .wcard__art,
-.wcard__link:focus-visible .wcard__art {
+a.wcard__link:hover .wcard__art,
+a.wcard__link:focus-visible .wcard__art {
     transform: scale(calc(var(--art, 1) * 1.04));
 }
 
@@ -212,48 +288,66 @@
     transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.wcard__link:hover .wcard__go,
-.wcard__link:focus-visible .wcard__go {
+a.wcard__link:hover .wcard__go,
+a.wcard__link:focus-visible .wcard__go {
     opacity: 1;
     transform: none;
 }
 
-/* Medium screens: two columns */
-@media (min-width: 900px) and (max-width: 1199px) {
-    .work__cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-/* NARROW SCREENS =========================================================== */
-@media (max-width: 899px) {
+/* NARROWER SCREENS ========================================================= */
+/* Not enough room to lay things out: an ordinary section, a plain list (two
+   across, then one), and the filters simply switch */
+@media (max-width: 1099px) {
     .work {
-        grid-template-columns: 1fr;
-        gap: 24px;
-        padding: 56px var(--section-margin) 72px;
+        height: auto;
     }
 
-    .work__list {
+    .work__step {
+        display: none;
+    }
+
+    .work__stage {
         position: static;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: baseline;
-        gap: 8px 24px;
+        height: auto;
+        padding: 48px var(--section-margin) 72px;
     }
 
-    .work__title {
+    .work__board {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 32px;
+        width: auto;
+        height: auto;
         margin: 0;
     }
 
-    .work__list ul {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 6px 20px;
+    .wcard {
+        position: static;
+        width: auto;
+        height: auto;
     }
 
-    .work__cards {
+    .wcard__link,
+    .wcard[data-words="beside"] .wcard__link {
+        flex-direction: column;
+        gap: 0;
+        padding: 16px;
+    }
+
+    .wcard__media {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 10;
+    }
+
+    .wcard[data-words="beside"] .wcard__words {
+        padding-top: 12px;
+    }
+}
+
+@media (max-width: 699px) {
+    .work__board {
         grid-template-columns: 1fr;
-        gap: 40px;
     }
 }
 
