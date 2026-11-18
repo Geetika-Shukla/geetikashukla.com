@@ -1,48 +1,14 @@
 /*
- * The GFF 2026 keynote page: a heading, then three columns (photos stacked in
- * the first, the deck across the other two); one column on narrow screens.
+ * The GFF 2026 keynote page, in the project pages' format; these are just its
+ * own pieces: the cover, the photos (stacked) and the deck.
  */
-.keynote {
-    padding: 72px var(--section-margin) 96px;
+.keynote__cover {
+    display: block;
+    width: 100vw;
+    height: auto;
 }
 
-.keynote__header {
-    max-width: 720px;
-    margin-bottom: 48px;
-}
-
-.keynote__eyebrow {
-    margin: 0 0 12px;
-    color: var(--color-accent-2);
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.keynote__title {
-    margin: 0;
-    color: var(--color-text);
-    font-family: var(--font-heading);
-    font-size: clamp(2.2rem, 4vw, 3.4rem);
-    font-weight: 700;
-    line-height: 1.05;
-}
-
-.keynote__intro {
-    margin: 16px 0 0;
-    color: var(--color-text-muted);
-    font-size: 1.1rem;
-    line-height: 1.5;
-}
-
-/* THREE COLUMNS ============================================================ */
-.keynote__layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-    gap: 24px;
-    align-items: start;
-}
-
-/* Photos, one above the other */
+/* PHOTOS =================================================================== */
 .keynote__photos {
     display: flex;
     flex-direction: column;
@@ -149,16 +115,7 @@
 
 /* NARROW SCREENS =========================================================== */
 @media (max-width: 899px) {
-    .keynote {
-        padding: 48px var(--section-margin) 72px;
-    }
-
-    .keynote__layout {
-        grid-template-columns: 1fr;
-    }
-
-    /* The deck first, then the photos */
     .keynote__photos {
-        order: 2;
+        margin-top: 24px;
     }
 }

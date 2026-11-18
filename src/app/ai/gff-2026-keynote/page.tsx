@@ -1,11 +1,20 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
+import Image from "next/image";
 
 // INTERNAL DEPS ===============================================================
+import { Heading1, Portion, Row, Div, Text } from "fictoan-react";
+
+// COMPONENTS ==================================================================
 import { KeynotePreview } from "./KeynotePreview";
 
 // STYLES ======================================================================
+import "../../experiences/experiences-projects.css";
+import "../../experiences/page-experiences.css";
 import "./page-keynote.css";
+
+// ASSETS ======================================================================
+import KeynoteCover from "@/assets/images/motion/gff-keynote-cover.webp";
 
 // TYPES =======================================================================
 import type { Metadata } from "next";
@@ -20,38 +29,68 @@ const DECK = "/keynotes/gff-2026.html";
 // PLACEHOLDERS: swap in the two photos from GFF (and what each shows)
 const PHOTOS = ["Photo from GFF 2026", "Photo from GFF 2026"];
 
-/*
- * The GFF 2026 keynote: a heading, then three columns: photos from the day
- * stacked in the first, the deck itself across the other two (playable here,
- * or fullscreen).
- */
 export default function GffKeynotePage() {
+
     return (
-        <article className="project-page keynote">
-            <header className="keynote__header">
-                <p className="keynote__eyebrow">Built using AI · Global Fintech Fest 2026</p>
-                <h1 className="keynote__title">The invisible future of finance</h1>
-                <p className="keynote__intro">
-                    A keynote deck for Reserve Bank Innovation Hub at Global Fintech Fest 2026.
-                </p>
-            </header>
 
-            <div className="keynote__layout">
-                <div className="keynote__photos">
-                    {PHOTOS.map((label, i) => (
-                        <div key={i} className="keynote__photo" role="img" aria-label={label}>
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <rect x="3" y="5" width="18" height="14" rx="2" />
-                                <circle cx="9" cy="10" r="1.6" />
-                                <path d="m4 17 5-4 4 3 3-2 4 3" />
-                            </svg>
-                            <span>{label}</span>
-                        </div>
-                    ))}
-                </div>
+        <article className="project-page">
 
-                <KeynotePreview src={DECK} title="The invisible future of finance: the keynote deck" />
-            </div>
+
+            {/* HERO SECTION */}
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="small">
+                <Portion desktopSpan="10" horizontalMargin="small">
+                    <Heading1 className="hero-heading">
+                        The invisible future of finance
+                    </Heading1>
+                </Portion>
+
+                <Portion desktopSpan="2" hideOnMobile />
+
+                <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
+                    <Div marginTop="small">
+                        <Text marginBottom="tiny">
+                            A keynote deck for Reserve Bank Innovation Hub at Global Fintech Fest 2026, built
+                            using AI.
+                        </Text>
+                    </Div>
+                </Portion>
+            </Row>
+
+            <Row className="center-align-svg" marginBottom="tiny">
+                <Image src={KeynoteCover} alt="The deck's cover: The invisible future of finance, Global Fintech Fest 2026" className="keynote__cover" sizes="100vw" priority />
+            </Row>
+
+
+            {/* THE KEYNOTE: photos from the day, and the deck itself */}
+
+            <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
+                <Portion desktopSpan="whole">
+                    <h5>The keynote</h5>
+                </Portion>
+            </Row>
+
+            <Row horizontalPadding="huge" marginBottom="medium">
+                <Portion desktopSpan="8" mobileSpan="whole">
+                    <div className="keynote__photos">
+                        {PHOTOS.map((label, i) => (
+                            <div key={i} className="keynote__photo" role="img" aria-label={label}>
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                                    <circle cx="9" cy="10" r="1.6" />
+                                    <path d="m4 17 5-4 4 3 3-2 4 3" />
+                                </svg>
+                                <span>{label}</span>
+                            </div>
+                        ))}
+                    </div>
+                </Portion>
+
+                <Portion desktopSpan="16" mobileSpan="whole">
+                    <KeynotePreview src={DECK} title="The invisible future of finance: the keynote deck" />
+                </Portion>
+            </Row>
+
         </article>
     );
 }
