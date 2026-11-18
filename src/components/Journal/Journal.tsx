@@ -8,12 +8,14 @@ import { InkBottle, PixelHeart, Spool } from "@/components/Hero/Illustrations";
 import { ClaudeSpark, ContributionStrip, FigmaMark } from "./CoverPieces";
 import { SPREADS } from "./Spreads";
 
+// DATA ========================================================================
+import { CONTRIBUTIONS } from "@/data/github";
+
 // STYLES ======================================================================
 import "./journal.css";
 
 // TYPES =======================================================================
 import type { CSSProperties } from "react";
-import type { Contributions } from "@/data/github";
 
 // The cover, then each spread
 const CLOSED = -1;
@@ -25,7 +27,7 @@ const CLOSED = -1;
  * each spread, and the right page sits underneath. Arrows either side turn
  * from the cover through the spreads.
  */
-export const Journal = ({ contributions }: { contributions: Contributions | null }) => {
+export const Journal = () => {
     const [page, setPage] = useState(CLOSED);
     const open = page !== CLOSED;
     const last = SPREADS.length - 1;
@@ -89,13 +91,11 @@ export const Journal = ({ contributions }: { contributions: Contributions | null
                                 <span className="journal__sticker journal__sticker--ink"><InkBottle /></span>
                                 <span className="journal__sticker journal__sticker--spool"><Spool /></span>
                             </span>
-                            {contributions && contributions.days.length > 0 && (
-                                <span className="journal__contrib" aria-hidden="true">
-                                    <span className="journal__tape journal__tape--left" />
-                                    <ContributionStrip {...contributions} />
-                                    <span className="journal__tape journal__tape--right" />
-                                </span>
-                            )}
+                            <span className="journal__contrib" aria-hidden="true">
+                                <span className="journal__tape journal__tape--left" />
+                                <ContributionStrip {...CONTRIBUTIONS} />
+                                <span className="journal__tape journal__tape--right" />
+                            </span>
                         </button>
 
                         <div className="journal__face journal__face--back journal__page">

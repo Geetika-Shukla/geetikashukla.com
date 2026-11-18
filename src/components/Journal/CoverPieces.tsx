@@ -55,7 +55,7 @@ const TEAR = (() => {
 })();
 
 // A torn strip of paper with the last year of GitHub contributions, a column per week
-export const ContributionStrip = ({ total, since, days }: Contributions) => {
+export const ContributionStrip = ({ total, period, days }: Contributions) => {
     // Pad the first week so each column runs Sunday to Saturday
     const offset = new Date(`${days[0].date}T00:00:00Z`).getUTCDay();
     const weeks = Math.ceil((offset + days.length) / 7);
@@ -71,7 +71,7 @@ export const ContributionStrip = ({ total, since, days }: Contributions) => {
         <span className="contrib" style={{ clipPath: TEAR }}>
             <span className="contrib__head">
                 <span>My contributions <em>[GitHub]</em></span>
-                <span className="contrib__total">{total} since {since}</span>
+                <span className="contrib__total">{total} {period}</span>
             </span>
             <span className="contrib__months" style={{ gridTemplateColumns: `repeat(${weeks}, 1fr)` }}>
                 {labels.map((label, week) => label && (

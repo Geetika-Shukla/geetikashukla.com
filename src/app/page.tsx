@@ -5,15 +5,11 @@ import { Journal } from "@/components/Journal/Journal";
 import { Testimonials } from "@/components/Testimonials/Testimonials";
 import { GridSnap } from "@/components/GridSnap/GridSnap";
 
-// DATA ========================================================================
-import { getContributions } from "@/data/github";
 
 // The home page: a board of things around the intro, then the work (on the
 // same grid, AI projects among it), the journal (the story so far, and the
 // résumé) and kind words
-export default async function Home() {
-    const contributions = await getContributions();
-
+export default function Home() {
     return (
         <article className="home">
             <Hero />
@@ -22,7 +18,7 @@ export default async function Home() {
                 <WorkSection />
             </section>
 
-            <Journal contributions={contributions} />
+            <Journal />
             <Testimonials />
             <GridSnap />
         </article>

@@ -567,7 +567,8 @@ html:has(.journal) {
     display: flex;
     justify-content: space-between;
     gap: 12px;
-    font-size: 0.78rem;
+    font-size: 0.7rem;
+    white-space: nowrap;
 }
 
 .contrib__head em {
