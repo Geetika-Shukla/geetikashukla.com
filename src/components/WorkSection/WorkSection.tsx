@@ -52,11 +52,11 @@ const filterFromHash = (hash: string): Category | null =>
  * Work: the title and filters on the left, staying in view, beside three
  * columns of project cards. A card is a panel holding the thumbnail, then the
  * title (an arrow slides in after it on hover), a line of description and tags
- * for the kind of work it is. A filter shows only that type of work; clicking the title, or the
- * filter again, shows everything.
+ * for the kind of work it is. A filter shows only that type of work (Experiences
+ * to begin with); clicking the title, or the filter again, shows everything.
  */
 export const WorkSection = () => {
-    const [filter, setFilter] = useState<Category | null>(null);
+    const [filter, setFilter] = useState<Category | null>("Experience");
 
     // Links point at /#experiences etc.: pick up the filter from the address
     useEffect(() => {
