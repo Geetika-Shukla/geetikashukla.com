@@ -245,67 +245,70 @@
 }
 
 /* IN PRACTICE ============================================================== */
-/* One index card: blue rules, a red margin line, taped to the page */
-.journal__card {
-    --line: 26px;
+/* Four sticky notes, two by two, the right-hand column dropped a little */
+.journal__notes {
+    display: grid;
+    flex: 1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 20px;
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.journal__note {
+    --note: #F7E08A;
     --tape: #7FB7B2;
 
     position: relative;
-    margin-top: 10px;
-    padding: 26px 22px 26px 52px;
-    background-color: #FFFFFF;
-    background-image:
-        linear-gradient(to right, transparent 38px, rgba(214, 85, 85, 0.45) 38px 39.5px, transparent 39.5px),
-        repeating-linear-gradient(to bottom, transparent 0 calc(var(--line) - 1px), rgba(80, 130, 190, 0.25) calc(var(--line) - 1px) var(--line));
-    box-shadow: 0 2px 4px rgba(43, 45, 56, 0.1), 0 10px 22px rgba(43, 45, 56, 0.1);
-    transform: rotate(0.8deg);
-}
-
-.journal__principles {
     display: flex;
     flex-direction: column;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    counter-reset: principle;
+    gap: 6px;
+    padding: 22px 18px 18px;
+    background-color: var(--note);
+    box-shadow: 0 1px 2px rgba(43, 45, 56, 0.12), 0 6px 14px rgba(43, 45, 56, 0.08);
+    transform: rotate(var(--tilt, -1.5deg));
 }
 
-.journal__principles li {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    counter-increment: principle;
+.journal__note:nth-child(2) {
+    --note: #F6CFC9;
+    --tape: #E3B94C;
+    --tilt: 2deg;
+
+    margin-top: 22px;
 }
 
-/* A hand-circled number in the margin */
-.journal__principles li::before {
-    content: counter(principle);
-    position: absolute;
-    top: 1px;
-    left: -42px;
-    display: grid;
-    place-items: center;
-    width: 26px;
-    height: 24px;
-    border: 1.5px solid var(--color-accent-2);
-    border-radius: 52% 48% 55% 45% / 50% 55% 45% 50%;
-    color: var(--color-accent-2);
-    font-family: var(--font-hand), cursive;
-    font-size: 1.1rem;
-    line-height: 1;
-    transform: rotate(-6deg);
+.journal__note:nth-child(3) {
+    --note: #CFE7D9;
+    --tape: #C9683E;
+    --tilt: 1deg;
 }
 
-.journal__principles strong {
+.journal__note:nth-child(4) {
+    --note: #D3E1F2;
+    --tape: #E3B94C;
+    --tilt: -2deg;
+
+    margin-top: 22px;
+}
+
+.journal__note-icon {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 4px;
+}
+
+.journal__note strong {
     font-family: var(--font-heading);
-    font-size: 0.98rem;
-    line-height: var(--line);
+    font-size: 1.02rem;
+    line-height: 1.2;
 }
 
-.journal__principles span {
-    color: var(--color-text-muted);
+.journal__note span:not(.journal__tape) {
+    color: var(--color-text);
     font-size: 0.8rem;
-    line-height: var(--line);
+    line-height: 1.45;
+    opacity: 0.8;
 }
 
 /* The résumé page: a handwritten note over the ticket, in the middle of the page */
@@ -887,6 +890,14 @@
     .journal__leaf:has(.journal__wide[data-half="right"]),
     .journal__line {
         display: none;
+    }
+
+    .journal__notes {
+        grid-template-columns: 1fr;
+    }
+
+    .journal__note:nth-child(even) {
+        margin-top: 0;
     }
 
     .journal__stops {

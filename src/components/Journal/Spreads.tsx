@@ -18,6 +18,10 @@ import NSLogo from "@/assets/images/ns-logo.svg";
 import AtherLogo from "@/assets/images/ather-logo.svg";
 import SetuLogo from "@/assets/images/setu-logo.svg";
 import RBIHLogo from "@/assets/images/rbih-logo.svg";
+import IconCollab from "@/assets/images/Link.svg";
+import IconSystem from "@/assets/images/Integrity.svg";
+import IconForm from "@/assets/images/BoxWithShapes.svg";
+import IconProcess from "@/assets/images/SignPost.svg";
 
 // TYPES =======================================================================
 import type { ComponentType, ReactNode, SVGProps } from "react";
@@ -168,21 +172,26 @@ const Route = ({ half }: { half: "left" | "right" }) => (
     </div>
 );
 
-// The ways of working on one lined index card
+// An icon for each way of working, in the order they're listed
+const PRACTICE_ICONS = [IconCollab, IconSystem, IconForm, IconProcess];
+
+// The ways of working as sticky notes, each with its icon, taped down a little askew
 const Practice = () => (
     <>
         <h3 className="journal__label">In practice</h3>
-        <div className="journal__card">
-            <span className="journal__tape" aria-hidden="true" />
-            <ol className="journal__principles">
-                {PRACTICE.map(({ title, text }) => (
-                    <li key={title}>
+        <ul className="journal__notes">
+            {PRACTICE.map(({ title, text }, i) => {
+                const Icon = PRACTICE_ICONS[i];
+                return (
+                    <li key={title} className="journal__note">
+                        <span className="journal__tape" aria-hidden="true" />
+                        {Icon && <Icon className="journal__note-icon" aria-hidden="true" />}
                         <strong>{title}</strong>
                         <span>{text}</span>
                     </li>
-                ))}
-            </ol>
-        </div>
+                );
+            })}
+        </ul>
     </>
 );
 
