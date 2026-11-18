@@ -12,6 +12,8 @@ export interface AIProject {
     tools       : string[];
     href?       : string;
     placeholder : boolean;
+    // What the thumbnail says until there's an image ("Coming soon" if left out)
+    note?       : string;
 }
 
 export const AI_PROJECTS: AIProject[] = [
@@ -28,9 +30,10 @@ export const AI_PROJECTS: AIProject[] = [
         placeholder : true,
     },
     {
-        title       : "Project three",
-        description : "A line about what it is, and what AI did to build it.",
-        tools       : ["Tool", "Tool"],
-        placeholder : true,
+        title       : "Well, this website :P",
+        description : "Designed by me, built with Claude Code, prompt by prompt.",
+        tools       : ["Claude Code", "Next.js"],
+        placeholder : false,
+        note        : "You’re looking at it",
     },
 ];

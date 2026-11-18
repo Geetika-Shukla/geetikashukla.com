@@ -95,7 +95,7 @@ html.is-page-top .site-header {
 }
 
 /* THEME TOGGLE ============================================================= */
-/* A pixel window: day outside in the light theme, night in the dark */
+/* In pixels: a sun in the light theme, a crescent moon in the dark */
 .theme-toggle {
     display: grid;
     place-items: center;
@@ -117,74 +117,29 @@ html.is-page-top .site-header {
 }
 
 .theme-toggle svg {
-    width: 26px;
-    height: 24px;
-}
-
-.theme-toggle__frame {
+    width: 18px;
+    height: 18px;
     fill: currentColor;
 }
 
-.theme-toggle__day .theme-toggle__sky {
-    fill: #BFE3F5;
-}
-
-.theme-toggle__cloud {
-    fill: #FFFFFF;
-}
-
-.theme-toggle__sun {
-    fill: #F2B632;
-}
-
-.theme-toggle__night .theme-toggle__sky {
-    fill: #1F2A4D;
-}
-
+/* One gives way to the other in a few steps, like an old game */
+.theme-toggle__sun,
 .theme-toggle__moon {
-    fill: #F4EBC8;
-}
-
-.theme-toggle__star {
-    fill: #FFE58A;
-}
-
-/* The view changes in a few steps, like an old game */
-.theme-toggle__day,
-.theme-toggle__night {
     transition: opacity 0.3s steps(3);
 }
 
-.theme-toggle__night {
+.theme-toggle__moon,
+:root[data-theme="dark"] .theme-toggle__sun {
     opacity: 0;
 }
 
-:root[data-theme="dark"] .theme-toggle__day {
-    opacity: 0;
-}
-
-:root[data-theme="dark"] .theme-toggle__night {
+:root[data-theme="dark"] .theme-toggle__moon {
     opacity: 1;
 }
 
-/* The stars twinkle now and then */
-:root[data-theme="dark"] .theme-toggle__star {
-    animation: theme-twinkle 2.4s steps(2) infinite;
-}
-
-@keyframes theme-twinkle {
-    50% {
-        opacity: 0.35;
-    }
-}
-
 @media (prefers-reduced-motion: reduce) {
-    .theme-toggle__day,
-    .theme-toggle__night {
+    .theme-toggle__sun,
+    .theme-toggle__moon {
         transition: none;
-    }
-
-    :root[data-theme="dark"] .theme-toggle__star {
-        animation: none;
     }
 }

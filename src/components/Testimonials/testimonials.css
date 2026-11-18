@@ -67,6 +67,15 @@
     column-gap: 40px;
 }
 
+/* Wide enough for two columns: fill the first to ten lines, the rest flowing
+   into the second (rather than balancing them) */
+@media (min-width: 1260px) {
+    .testimonials__card:first-child .testimonials__quote {
+        height: 10lh;
+        column-fill: auto;
+    }
+}
+
 /* A big quote mark, top left */
 .testimonials__mark {
     position: absolute;

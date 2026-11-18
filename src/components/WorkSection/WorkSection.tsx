@@ -82,6 +82,8 @@ interface Piece {
     art         : number;
     motion?     : Motion;
     ai          : boolean;
+    // What an empty thumbnail says
+    note?       : string;
 }
 
 const BY_HREF = new Map(timeline.flatMap((period) => period.projects).map((project) => [project.href, project]));
@@ -93,8 +95,8 @@ const PIECES: Piece[] = [
         const { title, description, category, tags = [], Thumbnail } = project;
         return [{ key: href, group: category, title, description, tags, href, Thumbnail, bg, whole, art, motion, ai: false }];
     }),
-    ...AI_PROJECTS.map(({ title, description, tools, href }, i): Piece => ({
-        key: `ai-${i}`, group: "AI", title, description, tags: tools, href, bg: "#F4F1EA", whole: false, art: 1, ai: true,
+    ...AI_PROJECTS.map(({ title, description, tools, href, note }, i): Piece => ({
+        key: `ai-${i}`, group: "AI", title, description, tags: tools, href, bg: "#F4F1EA", whole: false, art: 1, ai: true, note,
     })),
 ];
 
@@ -134,13 +136,13 @@ const cut = ({ w, h, words }: Spot) => words === "under"
 
 // A card's thumbnail panel: screens in motion, the thumbnail, or a placeholder
 // until a project has its image
-const Media = ({ piece: { Thumbnail, bg, whole, art, motion, ai }, paused, offset }: { piece: Piece; paused: boolean; offset: number }) => (
+const Media = ({ piece: { Thumbnail, bg, whole, art, motion, ai, note }, paused, offset }: { piece: Piece; paused: boolean; offset: number }) => (
     <span className="wcard__media" style={{ "--art": art, "--bg": bg } as CSSProperties} data-empty={(!Thumbnail && !motion) || undefined}>
         {motion
             ? <MotionThumb motion={motion} paused={paused} offset={offset} />
             : Thumbnail
                 ? <Thumbnail className="wcard__art" aria-hidden="true" preserveAspectRatio={`xMidYMid ${whole ? "meet" : "slice"}`} />
-                : <span className="wcard__soon">{ai ? "Coming soon" : "Image to come"}</span>}
+                : <span className="wcard__soon">{note ?? (ai ? "Coming soon" : "Image to come")}</span>}
     </span>
 );
 
