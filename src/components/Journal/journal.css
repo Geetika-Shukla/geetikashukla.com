@@ -490,36 +490,36 @@ html:has(.journal) {
 }
 
 .journal__sticker--claude {
-    top: 28%;
-    left: 60%;
+    top: 25%;
+    left: 58%;
     width: 15%;
     transform: rotate(10deg);
 }
 
 .journal__sticker--spool {
-    top: 50%;
-    left: 70%;
+    top: 47%;
+    left: 74%;
     width: 10%;
     transform: rotate(14deg);
 }
 
 .journal__sticker--figma {
-    top: 7%;
-    left: 75%;
+    top: 6%;
+    left: 76%;
     width: 7%;
     transform: rotate(-9deg);
 }
 
 .journal__sticker--heart {
-    top: 46%;
-    left: 35%;
+    top: 50%;
+    left: 32%;
     width: 10%;
     transform: rotate(-10deg);
 }
 
 .journal__sticker--ink {
-    top: 37%;
-    left: 10%;
+    top: 36%;
+    left: 6%;
     width: 12%;
     transform: rotate(-6deg);
 }
