@@ -6,6 +6,15 @@
  * there's a page or a live link to point to.
  */
 
+// SCREENS =====================================================================
+// This website, for its own thumbnail
+import siteHero from "@/assets/images/motion/site-hero.webp";
+import siteWork from "@/assets/images/motion/site-work.webp";
+import siteJournal from "@/assets/images/motion/site-journal.webp";
+import siteKindWords from "@/assets/images/motion/site-kind-words.webp";
+
+import type { StaticImageData } from "next/image";
+
 export interface AIProject {
     title       : string;
     description : string;
@@ -14,6 +23,8 @@ export interface AIProject {
     placeholder : boolean;
     // What the thumbnail says until there's an image ("Coming soon" if left out)
     note?       : string;
+    // Screens to play in the thumbnail, one after another
+    screens?    : StaticImageData[];
 }
 
 export const AI_PROJECTS: AIProject[] = [
@@ -30,10 +41,10 @@ export const AI_PROJECTS: AIProject[] = [
         placeholder : true,
     },
     {
-        title       : "Well, this website :P",
-        description : "Designed by me, built with Claude Code, prompt by prompt.",
+        title       : "Well, this website 😜",
+        description : "v1 I coded by hand. This one I designed and prompted; Claude Code built it.",
         tools       : ["Claude Code", "Next.js"],
         placeholder : false,
-        note        : "You’re looking at it",
+        screens     : [siteHero, siteWork, siteJournal, siteKindWords],
     },
 ];
