@@ -95,7 +95,7 @@ html.is-page-top .site-header {
 }
 
 /* THEME TOGGLE ============================================================= */
-/* A sun that sets into a moon: the rays draw in as a bite closes over it */
+/* A pixel window: day outside in the light theme, night in the dark */
 .theme-toggle {
     display: grid;
     place-items: center;
@@ -104,7 +104,7 @@ html.is-page-top .site-header {
     margin-left: -32px;
     padding: 0;
     border: 0;
-    border-radius: 50%;
+    border-radius: var(--radius-small);
     background: none;
     color: var(--color-text);
     cursor: pointer;
@@ -117,54 +117,74 @@ html.is-page-top .site-header {
 }
 
 .theme-toggle svg {
-    width: 22px;
-    height: 22px;
-    overflow: visible;
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    width: 26px;
+    height: 24px;
 }
 
-.theme-toggle__body {
+.theme-toggle__frame {
     fill: currentColor;
-    transform-origin: 12px 12px;
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.theme-toggle__bite {
-    transition: cx 0.5s cubic-bezier(0.22, 1, 0.36, 1), cy 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+.theme-toggle__day .theme-toggle__sky {
+    fill: #BFE3F5;
 }
 
-.theme-toggle__rays {
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    transform-origin: 12px 12px;
-    transition: opacity 0.3s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+.theme-toggle__cloud {
+    fill: #FFFFFF;
 }
 
-/* Dark: the moon (bigger body, the bite moved in, the rays gone) */
-:root[data-theme="dark"] .theme-toggle svg {
-    transform: rotate(-30deg);
+.theme-toggle__sun {
+    fill: #F2B632;
 }
 
-:root[data-theme="dark"] .theme-toggle__body {
-    transform: scale(1.6);
+.theme-toggle__night .theme-toggle__sky {
+    fill: #1F2A4D;
 }
 
-:root[data-theme="dark"] .theme-toggle__bite {
-    cx: 17px;
-    cy: 8px;
+.theme-toggle__moon {
+    fill: #F4EBC8;
 }
 
-:root[data-theme="dark"] .theme-toggle__rays {
+.theme-toggle__star {
+    fill: #FFE58A;
+}
+
+/* The view changes in a few steps, like an old game */
+.theme-toggle__day,
+.theme-toggle__night {
+    transition: opacity 0.3s steps(3);
+}
+
+.theme-toggle__night {
     opacity: 0;
-    transform: scale(0.5) rotate(45deg);
+}
+
+:root[data-theme="dark"] .theme-toggle__day {
+    opacity: 0;
+}
+
+:root[data-theme="dark"] .theme-toggle__night {
+    opacity: 1;
+}
+
+/* The stars twinkle now and then */
+:root[data-theme="dark"] .theme-toggle__star {
+    animation: theme-twinkle 2.4s steps(2) infinite;
+}
+
+@keyframes theme-twinkle {
+    50% {
+        opacity: 0.35;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .theme-toggle svg,
-    .theme-toggle__body,
-    .theme-toggle__bite,
-    .theme-toggle__rays {
+    .theme-toggle__day,
+    .theme-toggle__night {
         transition: none;
+    }
+
+    :root[data-theme="dark"] .theme-toggle__star {
+        animation: none;
     }
 }
