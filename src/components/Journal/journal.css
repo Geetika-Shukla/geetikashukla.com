@@ -431,9 +431,10 @@ html:has(.journal) {
     transform: rotateY(180deg);
 }
 
-/* An elastic strap down the right edge */
+/* An elastic strap down the right edge, over everything stuck on the cover */
 .journal__strap {
     position: absolute;
+    z-index: 3;
     top: 0;
     right: 9%;
     bottom: 0;

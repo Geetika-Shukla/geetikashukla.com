@@ -17,7 +17,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title       : "The invisible future of finance — Geetika Shukla",
-    description : "A keynote deck for Reserve Bank Innovation Hub at Global Fintech Fest 2026.",
+    description : "A keynote deck for the CEO of Reserve Bank Innovation Hub at Global Fintech Fest 2026.",
 };
 
 const DECK = "/keynotes/gff-2026.html";
@@ -47,8 +47,8 @@ export default function GffKeynotePage() {
                 <Portion desktopSpan="8" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">
                         <Text marginBottom="tiny">
-                            A keynote deck for Reserve Bank Innovation Hub at Global Fintech Fest 2026, built
-                            using AI.
+                            A keynote deck for the CEO of Reserve Bank Innovation Hub at Global Fintech Fest
+                            2026, built using AI.
                         </Text>
                     </Div>
                 </Portion>

@@ -33,7 +33,7 @@ export interface AIProject {
 export const AI_PROJECTS: AIProject[] = [
     {
         title       : "The invisible future of finance",
-        description : "A keynote deck for Reserve Bank Innovation Hub at Global Fintech Fest 2026.",
+        description : "A keynote deck for the CEO of Reserve Bank Innovation Hub at Global Fintech Fest 2026.",
         tools       : ["Keynote", "Presentation"],
         href        : "/ai/gff-2026-keynote",
         placeholder : false,
