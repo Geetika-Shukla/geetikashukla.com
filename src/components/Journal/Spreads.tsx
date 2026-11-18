@@ -9,8 +9,6 @@ import Image from "next/image";
 // DATA ========================================================================
 import { EDUCATION, PATH, PRACTICE, RESUME_URL, ROLES } from "@/data/about";
 
-// INTERNAL DEPS ===============================================================
-import { PixelHeart } from "@/components/Hero/Illustrations";
 
 // ASSETS ======================================================================
 import portrait from "@/assets/images/me-portrait.jpg";
@@ -40,7 +38,6 @@ const Hello = () => (
             <span className="journal__tape" aria-hidden="true" />
             <Image src={portrait} alt="Geetika, smiling, on a staircase with a carved wooden banister" sizes="240px" />
             <figcaption>Nice to meet you!</figcaption>
-            <span className="journal__polaroid-heart" aria-hidden="true"><PixelHeart /></span>
         </figure>
         <p className="journal__now">
             <span className="journal__hand">currently</span>
@@ -68,10 +65,6 @@ const Path = () => (
                 </li>
             ))}
         </ol>
-
-        <p className="journal__proof">
-            Need proof? <a href="#work">See the work <span aria-hidden="true">↑</span></a>
-        </p>
     </>
 );
 

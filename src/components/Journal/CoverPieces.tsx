@@ -1,37 +1,11 @@
-// The scrapbook pieces stuck on the journal's cover: a hanko (name seal), a
-// Claude sticker, a Figma sticker and a torn strip of GitHub contributions
+// The scrapbook pieces stuck on the journal's cover: a Claude sticker, a Figma
+// sticker and a torn strip of GitHub contributions
 
 // EXTERNAL DEPS ===============================================================
 import React from "react";
 
 // TYPES =======================================================================
 import type { Contributions } from "@/data/github";
-
-// HANKO =======================================================================
-// An oval name seal in vermilion: ギーティカ (Geetika), read top to bottom, the
-// ink a little uneven like a real stamp
-export const Hanko = () => (
-    <svg viewBox="0 0 64 112" aria-hidden="true">
-        <defs>
-            <filter id="hanko-ink" x="-10%" y="-10%" width="120%" height="120%">
-                <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="noise" />
-                <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.6" result="rough" />
-                <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.6 1.9" result="speckle" />
-                <feComposite in="rough" in2="speckle" operator="in" />
-            </filter>
-        </defs>
-        <g filter="url(#hanko-ink)" fill="#D0312B" stroke="#D0312B">
-            <ellipse cx="32" cy="56" rx="28" ry="52" fill="none" strokeWidth="4" />
-            <g className="hanko__name" strokeWidth="1.2" strokeLinejoin="round" fontSize="18" fontWeight="700" textAnchor="middle">
-                <text x="32" y="28">ギ</text>
-                <rect x="30" y="34" width="4" height="15" rx="1" stroke="none" />
-                <text x="32" y="69">テ</text>
-                <text x="34" y="84" fontSize="12">ィ</text>
-                <text x="32" y="102">カ</text>
-            </g>
-        </g>
-    </svg>
-);
 
 // CLAUDE ======================================================================
 // Claude's spark: tapered rays of slightly different lengths around a centre
@@ -81,7 +55,7 @@ const TEAR = (() => {
 })();
 
 // A torn strip of paper with the last year of GitHub contributions, a column per week
-export const ContributionStrip = ({ total, days }: Contributions) => {
+export const ContributionStrip = ({ total, since, days }: Contributions) => {
     // Pad the first week so each column runs Sunday to Saturday
     const offset = new Date(`${days[0].date}T00:00:00Z`).getUTCDay();
     const weeks = Math.ceil((offset + days.length) / 7);
@@ -97,7 +71,7 @@ export const ContributionStrip = ({ total, days }: Contributions) => {
         <span className="contrib" style={{ clipPath: TEAR }}>
             <span className="contrib__head">
                 <span>My contributions <em>[GitHub]</em></span>
-                <span className="contrib__total">{total} in the last year</span>
+                <span className="contrib__total">{total} since {since}</span>
             </span>
             <span className="contrib__months" style={{ gridTemplateColumns: `repeat(${weeks}, 1fr)` }}>
                 {labels.map((label, week) => label && (

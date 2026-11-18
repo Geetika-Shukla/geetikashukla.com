@@ -6,7 +6,7 @@ import { Caveat } from "next/font/google";
 
 // INTERNAL DEPS ===============================================================
 import { InkBottle, PixelHeart, Spool } from "@/components/Hero/Illustrations";
-import { ClaudeSpark, ContributionStrip, FigmaMark, Hanko } from "./CoverPieces";
+import { ClaudeSpark, ContributionStrip, FigmaMark } from "./CoverPieces";
 import { SPREADS } from "./Spreads";
 
 // STYLES ======================================================================
@@ -23,8 +23,8 @@ const hand = Caveat({ subsets: ["latin"], weight: ["500", "700"], variable: "--f
 const CLOSED = -1;
 
 /*
- * Journal: a closed notebook whose cover is a scrapbook (a sticky note, a name
- * seal, stickers and a torn strip of the last year's GitHub contributions).
+ * Journal: a closed notebook, its title in white on the cover, stuck with
+ * stickers and a torn strip of GitHub contributions.
  * The cover swings open on its left edge; its inside becomes the left page of
  * each spread, and the right page sits underneath. Arrows and dots turn from
  * the cover through the spreads.
@@ -67,10 +67,9 @@ export const Journal = ({ contributions }: { contributions: Contributions | null
                             tabIndex={open ? -1 : 0}
                         >
                             <span className="journal__strap" aria-hidden="true" />
-                            <span className="journal__plate">
-                                <span className="journal__plate-tag">Notes on a practice</span>
-                                <span className="journal__plate-title">Always a student, from buildings to brands, exhibitions to products.</span>
-                                <span className="journal__hanko" aria-hidden="true"><Hanko /></span>
+                            <span className="journal__engraved">
+                                <span className="journal__engraved-title">The journey<br />so far</span>
+                                <span className="journal__engraved-name">Geetika Shukla</span>
                             </span>
                             <span className="journal__stickers" aria-hidden="true">
                                 <span className="journal__sticker journal__sticker--claude"><ClaudeSpark /></span>
