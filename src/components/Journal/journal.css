@@ -578,8 +578,7 @@ html:has(.journal) {
 
 .contrib__total {
     color: #2F7A4A;
-    font-family: ui-monospace, "SF Mono", Menlo, monospace;
-    font-size: 0.7rem;
+    font-weight: 600;
 }
 
 .contrib__months {
