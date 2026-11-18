@@ -3,6 +3,7 @@ import Link from "next/link";
 
 // COMPONENTS ==================================================================
 import PersonalLogo from "@/assets/images/logo.svg";
+import { ThemeToggle } from "./ThemeToggle";
 
 // STYLES ======================================================================
 import "./site-header.css";
@@ -24,6 +25,7 @@ export const SiteHeader = () => {
                     {NAV_LINKS.map(({ href, label }) => (
                         <Link key={href} href={href} className="site-header__link">{label}</Link>
                     ))}
+                    <ThemeToggle />
                 </nav>
             </div>
         </header>

@@ -251,6 +251,10 @@ html:has(.work__step) {
     text-transform: uppercase;
 }
 
+:root[data-theme="dark"] .wcard__tag {
+    background-color: color-mix(in srgb, var(--color-text) 10%, transparent);
+}
+
 /* Built using AI: in the accent purple */
 .wcard__tag--ai {
     background-color: #7A5AD6;

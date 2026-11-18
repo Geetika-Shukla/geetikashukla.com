@@ -73,7 +73,7 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background-color: #F3E7DC;
+    background-color: color-mix(in srgb, var(--color-accent-2) 16%, transparent);
     color: var(--color-accent-2);
     font-family: var(--font-heading);
     font-weight: 700;

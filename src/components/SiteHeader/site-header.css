@@ -21,6 +21,18 @@
         -webkit-backdrop-filter 0.3s ease;
 }
 
+/* In the dark, the glass is smoked */
+:root[data-theme="dark"] .site-header {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(23, 23, 26, 0.55);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* The logo, a dark tile, turns light */
+:root[data-theme="dark"] .site-header__logo svg {
+    filter: invert(1);
+}
+
 /* The nav sits clear at the top of a page; the glass shows once it scrolls */
 html.is-page-top .site-header {
     border-bottom-color: transparent;
@@ -79,5 +91,80 @@ html.is-page-top .site-header {
 
     .site-header__link {
         font-size: 0.875rem;
+    }
+}
+
+/* THEME TOGGLE ============================================================= */
+/* A sun that sets into a moon: the rays draw in as a bite closes over it */
+.theme-toggle {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    margin-left: -32px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+    background-color: color-mix(in srgb, var(--color-text) 8%, transparent);
+}
+
+.theme-toggle svg {
+    width: 22px;
+    height: 22px;
+    overflow: visible;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.theme-toggle__body {
+    fill: currentColor;
+    transform-origin: 12px 12px;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.theme-toggle__bite {
+    transition: cx 0.5s cubic-bezier(0.22, 1, 0.36, 1), cy 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.theme-toggle__rays {
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    transform-origin: 12px 12px;
+    transition: opacity 0.3s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Dark: the moon (bigger body, the bite moved in, the rays gone) */
+:root[data-theme="dark"] .theme-toggle svg {
+    transform: rotate(-30deg);
+}
+
+:root[data-theme="dark"] .theme-toggle__body {
+    transform: scale(1.6);
+}
+
+:root[data-theme="dark"] .theme-toggle__bite {
+    cx: 17px;
+    cy: 8px;
+}
+
+:root[data-theme="dark"] .theme-toggle__rays {
+    opacity: 0;
+    transform: scale(0.5) rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .theme-toggle svg,
+    .theme-toggle__body,
+    .theme-toggle__bite,
+    .theme-toggle__rays {
+        transition: none;
     }
 }

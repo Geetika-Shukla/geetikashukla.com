@@ -41,6 +41,13 @@ html:has(.journal) {
     font-weight: 500;
 }
 
+/* The book is paper in either theme, so its ink stays dark */
+.journal__book {
+    --color-text: #1C1C1E;
+    --color-text-muted: #5E6066;
+    --color-accent-2: #B4532A;
+}
+
 /* Two pages wide; closed, shifted left by half a page so the cover is centred */
 .journal__book {
     position: relative;

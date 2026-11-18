@@ -35,6 +35,21 @@
     --header-height  : 72px;
 }
 
+/* Dark: the same palette, inverted; chosen with the toggle in the nav, or
+   following the device's setting until then (see THEME_SCRIPT in layout.tsx) */
+:root[data-theme="dark"] {
+    --color-bg         : #17171A;
+    --color-surface    : #202024;
+    --color-text       : #ECEAE6;
+    --color-text-muted : #A4A4AA;
+    --color-border     : #34343A;
+
+    --color-accent   : #9DB8DA;
+    --color-accent-2 : #E2825A;
+
+    color-scheme: dark;
+}
+
 /* GLOBAL RULES ///////////////////////////////////////////////////////////// */
 html {
     scroll-behavior: smooth;
@@ -94,7 +109,49 @@ p {
 /* Project pages sit on white */
 body:has(.project-page),
 .site:has(.project-page) {
-    background-color: #FFFFFF;
+    background-color: var(--color-surface);
+}
+
+/* Dark project pages: their light-tinted cards become dark ones of the same
+   hue, so the (now light) text on them reads */
+:root[data-theme="dark"] .project-page {
+    .violet-card {
+        background-color: color-mix(in srgb, #7A5AD6 18%, var(--color-surface));
+    }
+
+    .hdfc-blue-card,
+    .card-front,
+    .card-back {
+        background-color: color-mix(in srgb, #3D8BFD 14%, var(--color-surface));
+    }
+
+    .bridge-cyan-card {
+        background-color: color-mix(in srgb, #2FB8BC 16%, var(--color-surface));
+    }
+
+    .bridge-grey-card,
+    .stat-card,
+    .pointer-card,
+    .horizontal-pointer-card {
+        background-color: color-mix(in srgb, var(--color-text) 6%, var(--color-surface));
+    }
+
+    .overview-card,
+    .full-width-banner {
+        background-color: color-mix(in srgb, #E3B94C 10%, var(--color-surface));
+    }
+}
+
+:root[data-theme="dark"] #page-more-about-me {
+    .card-front,
+    .card-back {
+        background-color: color-mix(in srgb, var(--color-text) 6%, var(--color-surface));
+    }
+
+    .resume-button {
+        background-color: var(--color-text);
+        color: var(--color-bg);
+    }
 }
 
 /* Medium screens: narrower section margins */
