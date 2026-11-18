@@ -459,16 +459,16 @@
 }
 
 .journal__sticker--claude {
-    top: 16%;
-    left: 50%;
-    width: 17%;
+    top: 28%;
+    left: 60%;
+    width: 15%;
     transform: rotate(10deg);
 }
 
 .journal__sticker--spool {
-    top: 57%;
-    left: 67%;
-    width: 11%;
+    top: 50%;
+    left: 70%;
+    width: 10%;
     transform: rotate(14deg);
 }
 
@@ -480,16 +480,16 @@
 }
 
 .journal__sticker--heart {
-    top: 60%;
-    left: 29%;
-    width: 11%;
+    top: 46%;
+    left: 35%;
+    width: 10%;
     transform: rotate(-10deg);
 }
 
 .journal__sticker--ink {
-    top: 54%;
-    left: 11%;
-    width: 14%;
+    top: 37%;
+    left: 10%;
+    width: 12%;
     transform: rotate(-6deg);
 }
 
