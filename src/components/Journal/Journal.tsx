@@ -100,7 +100,6 @@ export const Journal = ({ contributions }: { contributions: Contributions | null
                                     <span className="journal__tape journal__tape--right" />
                                 </span>
                             )}
-                            <span className="journal__hint">Open</span>
                         </button>
 
                         <div className="journal__face journal__face--back journal__page">

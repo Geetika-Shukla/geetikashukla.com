@@ -385,31 +385,15 @@
 
 .journal__engraved-title {
     font-family: var(--font-heading);
-    font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+    font-size: clamp(1.8rem, 3.4vw, 2.7rem);
     font-weight: 700;
-    line-height: 1;
+    line-height: 1.05;
 }
 
 .journal__engraved-name {
     color: rgba(255, 255, 255, 0.75);
     font-size: 0.78rem;
     font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-}
-
-.journal__engraved-title {
-    font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 3.4vw, 2.7rem);
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    line-height: 1.05;
-}
-
-.journal__engraved-name {
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.24em;
     text-transform: uppercase;
 }
 
@@ -552,16 +536,6 @@
 .contrib__day[data-level="2"] { background-color: #5DBB6E; }
 .contrib__day[data-level="3"] { background-color: #2F9A55; }
 .contrib__day[data-level="4"] { background-color: #1D6B3A; }
-
-.journal__hint {
-    position: absolute;
-    right: 18%;
-    bottom: 2.5%;
-    color: rgba(255, 255, 255, 0.75);
-    font-family: var(--font-heading);
-    font-size: 0.95rem;
-    font-style: italic;
-}
 
 /* TURNING PAGES ============================================================ */
 /* Hand-drawn arrows either side of the book, and a dot for each spread below */
