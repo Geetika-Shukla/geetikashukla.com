@@ -263,13 +263,18 @@ html:has(.journal) {
 
 
 /* IN PRACTICE ============================================================== */
-/* Four sticky notes, two by two, the right-hand column dropped a little */
+/* Two sticky notes to a page, across the spread, staggered and a little askew */
+.journal__label[data-spacer] {
+    visibility: hidden;
+}
+
 .journal__notes {
     display: grid;
     flex: 1;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 22px 18px;
-    margin: 12px 0 0;
+    align-content: center;
+    gap: 22px;
+    margin: 0 0 40px;
     padding: 0;
     list-style: none;
 }
@@ -281,97 +286,71 @@ html:has(.journal) {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding: 18px 14px 14px;
+    gap: 6px;
+    padding: 26px 18px 22px;
     background-color: var(--note);
     box-shadow: 0 1px 2px rgba(43, 45, 56, 0.12), 0 6px 14px rgba(43, 45, 56, 0.08);
     transform: rotate(var(--tilt, -1.5deg));
 }
 
+/* The second of each pair sits lower; the colours and tilts run on across the spread */
 .journal__note:nth-child(2) {
     --note: #F6CFC9;
     --tape: #E3B94C;
     --tilt: 2deg;
 
-    margin-top: 14px;
+    margin-top: 48px;
 }
 
-.journal__note:nth-child(3) {
+.journal__leaf:has([data-spacer]) .journal__note:nth-child(1) {
     --note: #CFE7D9;
     --tape: #C9683E;
-    --tilt: 1deg;
+    --tilt: -1deg;
 }
 
-.journal__note:nth-child(4) {
+.journal__leaf:has([data-spacer]) .journal__note:nth-child(2) {
     --note: #D3E1F2;
     --tape: #E3B94C;
-    --tilt: -2deg;
-
-    margin-top: 14px;
+    --tilt: 1.5deg;
 }
 
 .journal__note-icon {
-    width: 28px;
-    height: 28px;
-    margin-bottom: 2px;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 6px;
 }
 
 .journal__note strong {
     font-family: var(--font-heading);
-    font-size: 0.95rem;
+    font-size: 1.08rem;
     line-height: 1.2;
 }
 
 .journal__note span:not(.journal__tape) {
     color: var(--color-text);
-    font-size: 0.74rem;
-    line-height: 1.4;
+    font-size: 0.84rem;
+    line-height: 1.45;
     opacity: 0.8;
 }
 
-/* The résumé page: a handwritten note over the ticket, in the middle of the page */
-.journal__resume-page {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-}
-
-.journal__resume-page p {
-    margin: 0;
-    color: var(--color-text-muted);
-    font-size: 1.4rem;
-}
-
-/* The résumé, as a paper ticket taped to the page */
-.journal__ticket {
-    --tape: #7FB7B2;
-
-    position: relative;
-    align-self: center;
-    padding: 12px 22px;
-    border-radius: var(--radius-small);
-    background-color: var(--color-accent-2);
-    color: #FFFFFF;
+/* The résumé: just a link, bottom right */
+.journal__download {
+    position: absolute;
+    right: 32px;
+    bottom: 26px;
+    color: var(--color-text);
     font-family: var(--font-heading);
     font-size: 1rem;
     font-weight: 700;
-    text-decoration: none;
-    transform: rotate(-2deg);
-    transition: transform 0.25s ease, background-color 0.2s ease;
-    /* Notched ends, like a ticket */
-    mask: radial-gradient(circle 7px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat,
-          radial-gradient(circle 7px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat;
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 4px;
 }
 
-.journal__ticket:hover,
-.journal__ticket:focus-visible {
-    background-color: #9C4A2A;
-    transform: rotate(0deg) scale(1.03);
+.journal__download:hover,
+.journal__download:focus-visible {
+    color: var(--color-accent-2);
 }
-
 
 /* COVER ==================================================================== */
 /* Hinged on its left edge, over the right page */
@@ -922,10 +901,21 @@ html:has(.journal) {
 
     .journal__notes {
         grid-template-columns: 1fr;
+        margin-bottom: 0;
     }
 
-    .journal__note:nth-child(even) {
+    .journal__note:nth-child(2) {
         margin-top: 0;
+    }
+
+    .journal__label[data-spacer] {
+        display: none;
+    }
+
+    .journal__download {
+        position: static;
+        align-self: flex-start;
+        margin-top: 24px;
     }
 
     .journal__stops {

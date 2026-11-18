@@ -1,6 +1,6 @@
 // The journal's spreads, each a left and a right page: hello (a polaroid, and
 // the path so far), the route across both pages (each place, and the switch it
-// was), then the ways of working and the résumé
+// was), then the ways of working across both pages, with a link to the résumé
 
 // EXTERNAL DEPS ===============================================================
 import React from "react";
@@ -181,42 +181,37 @@ const Route = ({ half }: { half: "left" | "right" }) => (
 // An icon for each way of working, in the order they're listed
 const PRACTICE_ICONS = [IconCollab, IconSystem, IconForm, IconProcess];
 
-// The ways of working as sticky notes, each with its icon, taped down a little askew
-const Practice = () => (
-    <>
-        <h3 className="journal__label">In practice</h3>
-        <ul className="journal__notes">
-            {PRACTICE.map(({ title, text }, i) => {
-                const Icon = PRACTICE_ICONS[i];
-                return (
+// The ways of working as sticky notes across the spread, two to a page, each
+// with its icon; the right page also holds the link to the résumé
+const Practice = ({ half }: { half: "left" | "right" }) => {
+    const notes = PRACTICE.map((item, i) => ({ ...item, Icon: PRACTICE_ICONS[i] }));
+    const shown = half === "left" ? notes.slice(0, 2) : notes.slice(2);
+
+    return (
+        <>
+            {/* The right page keeps the heading's room (unseen), so the notes line up across */}
+            <h3 className="journal__label" aria-hidden={half === "right" || undefined} data-spacer={half === "right" || undefined}>In practice</h3>
+            <ul className="journal__notes">
+                {shown.map(({ title, text, Icon }) => (
                     <li key={title} className="journal__note">
                         <span className="journal__tape" aria-hidden="true" />
                         {Icon && <Icon className="journal__note-icon" aria-hidden="true" />}
                         <strong>{title}</strong>
                         <span>{text}</span>
                     </li>
-                );
-            })}
-        </ul>
-    </>
-);
-
-// The résumé, as a ticket taped to the page
-const Resume = () => (
-    <>
-        <h3 className="journal__label">The short version</h3>
-        <div className="journal__resume-page">
-            <p className="journal__hand">the whole route, on one page</p>
-            <a className="journal__ticket" href={RESUME_URL} target="_blank" rel="noopener noreferrer" download>
-                <span className="journal__tape" aria-hidden="true" />
-                Download résumé <span aria-hidden="true">↓</span>
-            </a>
-        </div>
-    </>
-);
+                ))}
+            </ul>
+            {half === "right" && (
+                <a className="journal__download" href={RESUME_URL} target="_blank" rel="noopener noreferrer" download>
+                    Download résumé <span aria-hidden="true">↓</span>
+                </a>
+            )}
+        </>
+    );
+};
 
 export const SPREADS: Spread[] = [
     { name: "Hello", left: <Hello />, right: <Path /> },
     { name: "The route so far", left: <Route half="left" />, right: <Route half="right" /> },
-    { name: "In practice", left: <Practice />, right: <Resume /> },
+    { name: "In practice", left: <Practice half="left" />, right: <Practice half="right" /> },
 ];
