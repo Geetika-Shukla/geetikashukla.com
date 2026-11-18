@@ -78,7 +78,7 @@ export const PRACTICE: { title: string; text: string }[] = [
 // Always learning: the path so far, each step with the question it asked
 export const PATH: { step: string; question?: string }[] = [
     { step: "Architecture", question: "How do spaces feel?" },
-    { step: "Retail & exhibitions", question: "How do people move through a story?" },
+    { step: "Retail design", question: "How do people move through a story?" },
     { step: "Brand", question: "How does an idea look and sound?" },
     { step: "Product", question: "How does it work at scale?" },
     { step: "And next?" },
