@@ -9,10 +9,20 @@
     --cover: #9C4A2A;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
-    padding: 40px var(--section-margin) 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100svh - var(--header-height));
+    padding: 32px var(--section-margin) 48px;
     text-align: center;
-    /* Links to #journal (the nav's About me) land clear of the nav */
+    /* Links to #journal (the nav's About me), and the snap, land clear of the nav */
     scroll-margin-top: var(--header-height);
+    scroll-snap-align: start;
+}
+
+/* Scrolling settles on the journal when it stops close by (a gentle snap, home page only) */
+html:has(.journal) {
+    scroll-snap-type: y proximity;
 }
 
 .journal__heading {
@@ -34,7 +44,8 @@
 /* Two pages wide; closed, shifted left by half a page so the cover is centred */
 .journal__book {
     position: relative;
-    width: min(1040px, 100%);
+    /* As wide as fits, but never taller than the screen leaves room for */
+    width: min(960px, 100%, calc((100svh - var(--header-height) - 230px) * 2 / 1.22));
     aspect-ratio: 2 / 1.22;
     margin: 0 auto;
     perspective: 2400px;
@@ -250,8 +261,8 @@
     display: grid;
     flex: 1;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 26px 20px;
-    margin: 14px 0 0;
+    gap: 22px 18px;
+    margin: 12px 0 0;
     padding: 0;
     list-style: none;
 }
@@ -263,8 +274,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding: 22px 18px 18px;
+    gap: 4px;
+    padding: 18px 14px 14px;
     background-color: var(--note);
     box-shadow: 0 1px 2px rgba(43, 45, 56, 0.12), 0 6px 14px rgba(43, 45, 56, 0.08);
     transform: rotate(var(--tilt, -1.5deg));
@@ -275,7 +286,7 @@
     --tape: #E3B94C;
     --tilt: 2deg;
 
-    margin-top: 22px;
+    margin-top: 14px;
 }
 
 .journal__note:nth-child(3) {
@@ -289,25 +300,25 @@
     --tape: #E3B94C;
     --tilt: -2deg;
 
-    margin-top: 22px;
+    margin-top: 14px;
 }
 
 .journal__note-icon {
-    width: 30px;
-    height: 30px;
-    margin-bottom: 4px;
+    width: 28px;
+    height: 28px;
+    margin-bottom: 2px;
 }
 
 .journal__note strong {
     font-family: var(--font-heading);
-    font-size: 1.02rem;
+    font-size: 0.95rem;
     line-height: 1.2;
 }
 
 .journal__note span:not(.journal__tape) {
     color: var(--color-text);
-    font-size: 0.8rem;
-    line-height: 1.45;
+    font-size: 0.74rem;
+    line-height: 1.4;
     opacity: 0.8;
 }
 
@@ -631,7 +642,7 @@
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin: 64px 0 0;
+    margin: 28px 0 0;
     padding: 0;
     list-style: none;
 }
@@ -804,8 +815,18 @@
 /* NARROW SCREENS =========================================================== */
 /* No flipping: the pages one after the other */
 @media (max-width: 899px) {
+    html:has(.journal) {
+        scroll-snap-type: none;
+    }
+
     .journal {
+        min-height: 0;
         padding: 24px var(--section-margin) 72px;
+    }
+
+    .journal__book,
+    .journal__book[data-open="true"] {
+        width: 100%;
     }
 
     .journal__lede {

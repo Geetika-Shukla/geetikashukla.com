@@ -100,7 +100,7 @@ const [rbih, setu, ather, nonesuch] = ROLES;
 // (words below the low stops, above the high ones, so the line never crosses
 // them), each with a line on the switch it was
 const STOPS: Stop[] = [
-    { ...fromDegree(foa), Logo: FOALogo, at: [9, 68], text: "below",
+    { ...fromDegree(foa), Logo: FOALogo, at: [11, 68], text: "below",
         shift: "Started with buildings: how spaces make people feel" },
     { ...fromDegree(nid), Logo: NIDLogo, at: [25, 44], text: "above",
         shift: "Switched to retail and exhibitions: stories people walk through" },
@@ -110,7 +110,7 @@ const STOPS: Stop[] = [
         shift: "Put it to work: an exhibition system for pop-ups and deliveries" },
     { ...fromRole(setu), Logo: SetuLogo, at: [75, 60], text: "below",
         shift: "Moved into product: UI, design systems and a brand, for fintech at scale" },
-    { ...fromRole(rbih), Logo: RBIHLogo, at: [91, 36], text: "above",
+    { ...fromRole(rbih), Logo: RBIHLogo, at: [88, 38], text: "above",
         shift: "Leading design now: one system from identity to product" },
 ];
 
