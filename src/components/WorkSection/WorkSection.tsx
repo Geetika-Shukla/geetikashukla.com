@@ -8,11 +8,31 @@ import React, { useEffect, useRef, useState } from "react";
 import { timeline } from "@/data/projects";
 import { AI_PROJECTS } from "@/data/ai-projects";
 
+// INTERNAL DEPS ===============================================================
+import { MotionThumb } from "./MotionThumb";
+
 // STYLES ======================================================================
 import "./work-section.css";
 
+// ASSETS ======================================================================
+// Screens from each Experience project, for its thumbnail in motion
+import reportsPage from "@/assets/images/motion/reports-page.webp";
+import reportsDownload from "@/assets/images/motion/reports-download.webp";
+import reportsToasts from "@/assets/images/motion/reports-toasts.webp";
+import partnershipsSignup from "@/assets/images/motion/partnerships-signup.webp";
+import partnershipsDashboard from "@/assets/images/motion/partnerships-dashboard.webp";
+import partnershipsTestimonials from "@/assets/images/motion/partnerships-testimonials.webp";
+import hdfcKyc from "@/assets/images/motion/hdfc-kyc.webp";
+import hdfcKycError from "@/assets/images/motion/hdfc-kyc-error.webp";
+import hdfcVideoKyc from "@/assets/images/motion/hdfc-video-kyc.webp";
+import hdfcFd from "@/assets/images/motion/hdfc-fd.webp";
+import discoveryHome from "@/assets/images/motion/discovery-home.webp";
+import discoveryMenu from "@/assets/images/motion/discovery-menu.webp";
+import discoveryContact from "@/assets/images/motion/discovery-contact.webp";
+
 // TYPES =======================================================================
 import type { ComponentType, CSSProperties, SVGProps } from "react";
+import type { Motion } from "./MotionThumb";
 
 type Group = "Experience" | "Visual" | "Type" | "AI";
 
@@ -27,16 +47,25 @@ const FILTERS: { id: string; label: string; group: Group }[] = [
 // The order the projects are shown in. Each thumbnail fills its panel, cropped
 // from the middle; where cropping would cut into lettering, `whole` shows it all
 // instead, enlarged by `art` (on its own background, `bg`, which fills the panel).
-const ORDER: { href: string; bg: string; whole?: boolean; art?: number }[] = [
-    { href: "/experiences/revamping-reports", bg: "#FFFFFF" },
+// `motion` plays real screens from the project in place of the thumbnail.
+const ORDER: { href: string; bg: string; whole?: boolean; art?: number; motion?: Motion }[] = [
+    { href: "/experiences/revamping-reports", bg: "#FFFFFF", motion: {
+        kind: "browser", backdrop: "linear-gradient(135deg, #2FB8BC, #A6E6E2)", screens: [reportsPage, reportsDownload, reportsToasts],
+    } },
     { href: "/visual/kannauj-perfumery", bg: "#FFFFFF" },
-    { href: "/experiences/path-to-partnerships", bg: "#56CFD2" },
+    { href: "/experiences/path-to-partnerships", bg: "#56CFD2", motion: {
+        kind: "browser", backdrop: "linear-gradient(135deg, #56CFD2, #C9F0EE)", screens: [partnershipsSignup, partnershipsDashboard, partnershipsTestimonials],
+    } },
     { href: "/visual/26-days-of-type", bg: "#FFFFFF", whole: true, art: 1.5 },
     { href: "/visual/people-experience", bg: "#CCF6F7" },
     { href: "/type/47-days-of-devanagari-type", bg: "#FFFFFF", whole: true, art: 1.5 },
-    { href: "/experiences/hdfc-journeys", bg: "#E5F2FF" },
+    { href: "/experiences/hdfc-journeys", bg: "#E5F2FF", motion: {
+        kind: "phone", backdrop: "linear-gradient(135deg, #BFD8F6, #EEF5FF)", screens: [hdfcKyc, hdfcKycError, hdfcVideoKyc, hdfcFd],
+    } },
     { href: "/visual/icon-system-for-setu", bg: "#F2FDFD" },
-    { href: "/experiences/assisted-product-discovery", bg: "#C7EFF0" },
+    { href: "/experiences/assisted-product-discovery", bg: "#C7EFF0", motion: {
+        kind: "browser", backdrop: "linear-gradient(135deg, #7A5AD6, #C7EFF0)", screens: [discoveryHome, discoveryMenu, discoveryContact],
+    } },
     { href: "/type/inktober-2017", bg: "#FFFFFF", whole: true, art: 0.85 },
 ];
 
@@ -51,17 +80,18 @@ interface Piece {
     bg          : string;
     whole       : boolean;
     art         : number;
+    motion?     : Motion;
     ai          : boolean;
 }
 
 const BY_HREF = new Map(timeline.flatMap((period) => period.projects).map((project) => [project.href, project]));
 
 const PIECES: Piece[] = [
-    ...ORDER.flatMap(({ href, bg, whole = false, art = 1 }): Piece[] => {
+    ...ORDER.flatMap(({ href, bg, whole = false, art = 1, motion }): Piece[] => {
         const project = BY_HREF.get(href);
         if (!project) return [];
         const { title, description, category, tags = [], Thumbnail } = project;
-        return [{ key: href, group: category, title, description, tags, href, Thumbnail, bg, whole, art, ai: false }];
+        return [{ key: href, group: category, title, description, tags, href, Thumbnail, bg, whole, art, motion, ai: false }];
     }),
     ...AI_PROJECTS.map(({ title, description, tools, href }, i): Piece => ({
         key: `ai-${i}`, group: "AI", title, description, tags: tools, href, bg: "#F4F1EA", whole: false, art: 1, ai: true,
@@ -102,12 +132,15 @@ const cut = ({ w, h, words }: Spot) => words === "under"
     ? { cw: w + 2, ch: h + 2 + WORDS_UNDER }
     : { cw: w + 2 + WORDS_BESIDE + 1, ch: h + 2 };
 
-// A card's thumbnail panel; a placeholder until a project has its image
-const Media = ({ piece: { Thumbnail, bg, whole, art, ai } }: { piece: Piece }) => (
-    <span className="wcard__media" style={{ "--art": art, "--bg": bg } as CSSProperties} data-empty={!Thumbnail || undefined}>
-        {Thumbnail
-            ? <Thumbnail className="wcard__art" aria-hidden="true" preserveAspectRatio={`xMidYMid ${whole ? "meet" : "slice"}`} />
-            : <span className="wcard__soon">{ai ? "Coming soon" : "Image to come"}</span>}
+// A card's thumbnail panel: screens in motion, the thumbnail, or a placeholder
+// until a project has its image
+const Media = ({ piece: { Thumbnail, bg, whole, art, motion, ai }, paused, offset }: { piece: Piece; paused: boolean; offset: number }) => (
+    <span className="wcard__media" style={{ "--art": art, "--bg": bg } as CSSProperties} data-empty={(!Thumbnail && !motion) || undefined}>
+        {motion
+            ? <MotionThumb motion={motion} paused={paused} offset={offset} />
+            : Thumbnail
+                ? <Thumbnail className="wcard__art" aria-hidden="true" preserveAspectRatio={`xMidYMid ${whole ? "meet" : "slice"}`} />
+                : <span className="wcard__soon">{ai ? "Coming soon" : "Image to come"}</span>}
     </span>
 );
 
@@ -141,6 +174,8 @@ const Words = ({ piece: { title, description, tags, href, ai } }: { piece: Piece
  */
 export const WorkSection = () => {
     const [group, setGroup] = useState<Group>("Experience");
+    // The thumbnails in motion can all be paused
+    const [paused, setPaused] = useState(false);
     const sectionRef = useRef<HTMLDivElement>(null);
     const stepRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
@@ -180,6 +215,7 @@ export const WorkSection = () => {
 
     const shown = PIECES.filter((piece) => piece.group === group);
     const { rows, spots } = COMPOSITIONS[shown.length] ?? COMPOSITIONS[4];
+    const moving = shown.some((piece) => piece.motion);
 
     return (
         <div ref={sectionRef} className="work" style={{ "--steps": FILTERS.length } as CSSProperties}>
@@ -218,12 +254,12 @@ export const WorkSection = () => {
                             <li key={piece.key} className={`wcard wcard--${piece.group.toLowerCase()}`} data-words={spot.words} style={style}>
                                 {piece.href ? (
                                     <Link href={piece.href} className="wcard__link">
-                                        <Media piece={piece} />
+                                        <Media piece={piece} paused={paused} offset={i * 900} />
                                         <Words piece={piece} />
                                     </Link>
                                 ) : (
                                     <div className="wcard__link">
-                                        <Media piece={piece} />
+                                        <Media piece={piece} paused={paused} offset={i * 900} />
                                         <Words piece={piece} />
                                     </div>
                                 )}
@@ -231,6 +267,15 @@ export const WorkSection = () => {
                         );
                     })}
                 </ul>
+
+                {moving && (
+                    <button type="button" className="work__pause" aria-pressed={paused} onClick={() => setPaused(!paused)}>
+                        <svg viewBox="0 0 16 16" aria-hidden="true">
+                            {paused ? <path d="M5 3.5v9l7-4.5z" /> : <path d="M5 3.5v9M11 3.5v9" />}
+                        </svg>
+                        {paused ? "Play previews" : "Pause previews"}
+                    </button>
+                )}
             </div>
         </div>
     );
