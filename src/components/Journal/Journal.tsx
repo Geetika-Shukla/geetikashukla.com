@@ -22,8 +22,8 @@ const CLOSED = -1;
  * Journal: a closed notebook, its title in white on the cover, stuck with
  * stickers and a torn strip of GitHub contributions.
  * The cover swings open on its left edge; its inside becomes the left page of
- * each spread, and the right page sits underneath. Arrows and dots turn from
- * the cover through the spreads.
+ * each spread, and the right page sits underneath. Arrows either side turn
+ * from the cover through the spreads.
  */
 export const Journal = ({ contributions }: { contributions: Contributions | null }) => {
     const [page, setPage] = useState(CLOSED);
@@ -33,7 +33,7 @@ export const Journal = ({ contributions }: { contributions: Contributions | null
     return (
         <section id="journal" className="journal" aria-labelledby="journal-title" data-snap>
             <h2 id="journal-title" className="journal__heading">The story so far</h2>
-            <p className="journal__lede">{open ? "Detours, drafts, and dots that eventually connect." : "Open the journal."}</p>
+            <p className="journal__lede">Detours, drafts, and dots that eventually connect.</p>
 
             <div className="journal__stage">
                 {open && (
@@ -115,15 +115,6 @@ export const Journal = ({ contributions }: { contributions: Contributions | null
                     </button>
                 )}
             </div>
-
-            {/* Where you are: the cover, then each spread */}
-            <ol className="journal__dots">
-                {[{ name: "Cover" }, ...SPREADS].map(({ name }, i) => (
-                    <li key={name}>
-                        <button type="button" aria-label={name} aria-current={i - 1 === page ? "page" : undefined} onClick={() => setPage(i - 1)} />
-                    </li>
-                ))}
-            </ol>
         </section>
     );
 };

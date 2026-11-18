@@ -109,12 +109,21 @@ html:has(.journal) {
 }
 
 /* Each spread's half of the page; only the open spread's shows */
+/* Laid out a little larger than the page, then scaled to fit it: everything
+   on the pages at 90% */
 .journal__leaf {
+    --scale: 0.9;
+
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
     display: flex;
     flex-direction: column;
+    width: calc(100% / var(--scale));
+    height: calc(100% / var(--scale));
     padding: 28px 32px;
+    transform: scale(var(--scale));
+    transform-origin: 0 0;
 }
 
 .journal__leaf[data-active="false"] {
@@ -129,7 +138,7 @@ html:has(.journal) {
 @keyframes journal-leaf {
     from {
         opacity: 0;
-        transform: translateY(6px);
+        transform: translateY(6px) scale(var(--scale));
     }
 }
 
@@ -600,7 +609,7 @@ html:has(.journal) {
 .contrib__day[data-level="4"] { background-color: #1D6B3A; }
 
 /* TURNING PAGES ============================================================ */
-/* Hand-drawn arrows either side of the book, and a dot for each spread below */
+/* Hand-drawn arrows either side of the book */
 .journal__stage {
     position: relative;
 }
@@ -644,32 +653,6 @@ html:has(.journal) {
 
 .journal__turn--next:hover {
     transform: translate(4px, -50%);
-}
-
-.journal__dots {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    height: 24px;
-    margin: 24px 0 0;
-    padding: 0;
-    list-style: none;
-}
-
-.journal__dots button {
-    display: block;
-    width: 9px;
-    height: 9px;
-    padding: 0;
-    border: 1.5px solid var(--color-text);
-    border-radius: 50%;
-    background: none;
-    cursor: pointer;
-}
-
-.journal__dots button[aria-current="page"] {
-    background-color: var(--color-text);
 }
 
 /* HELLO ==================================================================== */
@@ -888,6 +871,9 @@ html:has(.journal) {
     .journal__leaf,
     .journal__leaf[data-active="false"] {
         position: relative;
+        width: auto;
+        height: auto;
+        transform: none;
         order: var(--order);
         overflow: visible;
         border-radius: var(--radius);
@@ -903,8 +889,7 @@ html:has(.journal) {
         margin-top: 24px;
     }
 
-    .journal__turn,
-    .journal__dots {
+    .journal__turn {
         display: none;
     }
 
