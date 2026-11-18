@@ -12,6 +12,7 @@ import siteHero from "@/assets/images/motion/site-hero.webp";
 import siteWork from "@/assets/images/motion/site-work.webp";
 import siteJournal from "@/assets/images/motion/site-journal.webp";
 import siteKindWords from "@/assets/images/motion/site-kind-words.webp";
+import gffKeynote from "@/assets/images/motion/gff-keynote-cover.webp";
 
 import type { StaticImageData } from "next/image";
 
@@ -25,14 +26,17 @@ export interface AIProject {
     note?       : string;
     // Screens to play in the thumbnail, one after another
     screens?    : StaticImageData[];
+    // Or a still cover
+    cover?      : StaticImageData;
 }
 
 export const AI_PROJECTS: AIProject[] = [
     {
-        title       : "Project one",
-        description : "A line about what it is, and what AI did to build it.",
-        tools       : ["Tool", "Tool"],
-        placeholder : true,
+        title       : "The invisible future of finance",
+        description : "A keynote deck for Reserve Bank Innovation Hub at Global Fintech Fest 2026.",
+        tools       : ["Keynote", "Presentation"],
+        placeholder : false,
+        cover       : gffKeynote,
     },
     {
         title       : "Project two",

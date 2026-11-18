@@ -29,7 +29,6 @@ import hdfcFd from "@/assets/images/motion/hdfc-fd.webp";
 import discoveryHome from "@/assets/images/motion/discovery-home.webp";
 import discoveryMenu from "@/assets/images/motion/discovery-menu.webp";
 import discoveryContact from "@/assets/images/motion/discovery-contact.webp";
-import gffKeynote from "@/assets/images/motion/gff-keynote-cover.webp";
 
 // TYPES =======================================================================
 import type { ComponentType, CSSProperties, SVGProps } from "react";
@@ -93,31 +92,17 @@ interface Piece {
 
 const BY_HREF = new Map(timeline.flatMap((period) => period.projects).map((project) => [project.href, project]));
 
-// Work without a page of its own yet
-const KEYNOTE: Piece = {
-    key         : "gff-keynote",
-    group       : "Visual",
-    title       : "The invisible future of finance",
-    description : "A keynote deck for Reserve Bank Innovation Hub at Global Fintech Fest 2026.",
-    tags        : ["Keynote", "Presentation", "Brand"],
-    image       : gffKeynote,
-    bg          : "#FBFAF7",
-    whole       : false,
-    art         : 1,
-    ai          : false,
-};
-
 const PIECES: Piece[] = [
-    KEYNOTE,
     ...ORDER.flatMap(({ href, bg, whole = false, art = 1, motion }): Piece[] => {
         const project = BY_HREF.get(href);
         if (!project) return [];
         const { title, description, category, tags = [], Thumbnail } = project;
         return [{ key: href, group: category, title, description, tags, href, Thumbnail, bg, whole, art, motion, ai: false }];
     }),
-    ...AI_PROJECTS.map(({ title, description, tools, href, note, screens }, i): Piece => ({
+    ...AI_PROJECTS.map(({ title, description, tools, href, note, screens, cover }, i): Piece => ({
         key: `ai-${i}`, group: "AI", title, description, tags: tools, href, bg: "#F4F1EA", whole: false, art: 1, ai: true, note,
         motion: screens && { kind: "browser", screens },
+        image: cover,
     })),
 ];
 
@@ -141,14 +126,6 @@ const COMPOSITIONS: Record<number, { rows: number; spots: Spot[] }> = {
         { x: 1, y: 0, w: 15, h: 8, words: "under" },
         { x: 19, y: 2, w: 12, h: 8, words: "beside" },
         { x: 19, y: 13, w: 12, h: 8, words: "beside" },
-    ] },
-    // Three across the top, two below
-    5: { rows: 26, spots: [
-        { x: 0, y: 0, w: 12, h: 7, words: "under" },
-        { x: 15, y: 1, w: 12, h: 7, words: "under" },
-        { x: 30, y: 0, w: 10, h: 6, words: "under" },
-        { x: 0, y: 16, w: 9, h: 6, words: "beside" },
-        { x: 21, y: 17, w: 9, h: 6, words: "beside" },
     ] },
     4: { rows: 26, spots: [
         { x: 0, y: 0, w: 15, h: 8, words: "under" },

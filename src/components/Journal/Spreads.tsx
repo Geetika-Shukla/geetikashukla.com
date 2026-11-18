@@ -92,21 +92,21 @@ const fromRole = ({ title, company, dates }: Role): Pick<Stop, "years" | "title"
 const [nid, foa] = EDUCATION;
 const [rbih, setu, ather, nonesuch] = ROLES;
 
-// The route so far, oldest first, zigzagging up from bottom left to top right
-// (words below the low stops, above the high ones, so the line never crosses
-// them), each with a line on the switch it was
+// The route so far, oldest first, up a road of hairpin bends from bottom left
+// to top right: two stops on each run (left to right, back, then left to right
+// again), staggered so no stop's words sit above or below another run's
 const STOPS: Stop[] = [
-    { ...fromDegree(foa), Logo: FOALogo, at: [11, 68], text: "below",
+    { ...fromDegree(foa), Logo: FOALogo, at: [10, 84], text: "above",
         shift: "Started with how spaces feel" },
-    { ...fromDegree(nid), Logo: NIDLogo, at: [25, 44], text: "above",
+    { ...fromDegree(nid), Logo: NIDLogo, at: [38, 84], text: "above",
         shift: "Switched to retail design" },
-    { ...fromRole(nonesuch), Logo: NSLogo, at: [41, 64], text: "below",
+    { ...fromRole(nonesuch), Logo: NSLogo, at: [84, 52], text: "below",
         shift: "Freelanced into brand" },
-    { ...fromRole(ather), Logo: AtherLogo, at: [56, 40], text: "above",
+    { ...fromRole(ather), Logo: AtherLogo, at: [60, 52], text: "below",
         shift: "Built an exhibition system" },
-    { ...fromRole(setu), Logo: SetuLogo, at: [75, 60], text: "below",
+    { ...fromRole(setu), Logo: SetuLogo, at: [40, 20], text: "below",
         shift: "Moved into product and systems" },
-    { ...fromRole(rbih), Logo: RBIHLogo, at: [88, 38], text: "above",
+    { ...fromRole(rbih), Logo: RBIHLogo, at: [88, 20], text: "below",
         shift: "Leading design, brand to product" },
 ];
 
@@ -115,43 +115,9 @@ const STOPS: Stop[] = [
 const logoProps = (Logo: Stop["Logo"]): SVGProps<SVGSVGElement> =>
     Logo === RBIHLogo ? {} : { viewBox: "0 0 51 51" };
 
-// The line through the stops, with detours: a smooth curve (Catmull-Rom)
-// through each stop, gently arched between them, and a loop-the-loop on two of
-// the stretches. The drawing is 1.6 times wider than tall, so a loop's
-// horizontal radius is squashed to match and it comes out round.
-const LOOPS = new Set([2, 4]);
-const LOOP: [number, number] = [2.8, 4.5];
-
-const LINE = (() => {
-    const points: [number, number][] = [[1, 80]];
-    STOPS.forEach(({ at }, i) => {
-        if (i > 0) {
-            const [px, py] = STOPS[i - 1].at;
-            const [mx, my] = [(px + at[0]) / 2, (py + at[1]) / 2];
-            if (LOOPS.has(i)) {
-                // Round a loop above the line, then on
-                const [rx, ry] = LOOP;
-                points.push([mx - rx, my], [mx + rx, my - ry], [mx, my - ry * 2], [mx - rx, my - ry], [mx + rx * 0.6, my + 0.5]);
-            } else {
-                // A gentle arch
-                points.push([mx, my + (at[1] < py ? 4 : -4)]);
-            }
-        }
-        points.push(at);
-    });
-    points.push([99, 26]);
-
-    const f = (n: number) => n.toFixed(2);
-    let d = `M${f(points[0][0])} ${f(points[0][1])}`;
-    for (let i = 0; i < points.length - 1; i++) {
-        const [x0, y0] = points[Math.max(0, i - 1)];
-        const [x1, y1] = points[i];
-        const [x2, y2] = points[i + 1];
-        const [x3, y3] = points[Math.min(points.length - 1, i + 2)];
-        d += ` C${f(x1 + (x2 - x0) / 6)} ${f(y1 + (y2 - y0) / 6)}, ${f(x2 - (x3 - x1) / 6)} ${f(y2 - (y3 - y1) / 6)}, ${f(x2)} ${f(y2)}`;
-    }
-    return d;
-})();
+// The road: three runs across, joined by hairpin bends (the drawing is
+// stretched to the spread, so each bend is a U drawn with a curve)
+const LINE = "M3 84 H95 C100 84, 100 52, 95 52 H6 C1 52, 1 20, 6 20 H93";
 
 // The route across the whole spread: drawn once, wider than a page, and shown
 // in each page's half (the right half is a copy, so hidden from screen readers)
