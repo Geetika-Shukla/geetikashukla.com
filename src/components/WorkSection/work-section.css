@@ -1,10 +1,10 @@
 /*
  * Work: a stage on the hero's grid that stays put while the section scrolls
- * past, a screen's scroll (and a snap point) for each kind of work. The heading
- * and filters sit centred on top, a whole number of grid blocks tall, so the
- * board below starts on a grid line; the board is a whole number of blocks
- * wide and starts on one too. Each piece sits in a cut-out of the grid (no
- * lines behind it), placed and sized in blocks by WorkSection.tsx.
+ * past, a screen's scroll (and a snap point) for each kind of work. A column
+ * on the left holds the heading, filters and the pause; beside it, the board.
+ * Column and board are whole numbers of grid blocks wide and start on a grid
+ * line. Each piece sits in a cut-out of the grid (no lines behind it), placed
+ * and sized in blocks by WorkSection.tsx.
  */
 .work {
     --block: 24px;
@@ -36,13 +36,28 @@ html:has(.work__step) {
     top: var(--header-height);
     height: var(--stage);
     overflow: clip;
-    padding-top: var(--block);
+    padding-top: calc(var(--block) * 2);
     background-color: var(--color-bg);
     background-image:
         linear-gradient(to right, var(--line) 1px, transparent 1px),
         linear-gradient(to bottom, var(--line) 1px, transparent 1px);
     background-size: var(--block) var(--block);
-    text-align: center;
+}
+
+/* The side column (8 blocks) and the board (42), a block apart, set on a grid
+   line nearest the middle */
+.work__layout {
+    display: flex;
+    gap: var(--block);
+    margin-left: round(nearest, calc((100% - var(--block) * 51) / 2), var(--block));
+}
+
+.work__side {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: flex-start;
+    width: calc(var(--block) * 8);
 }
 
 /* Two blocks tall */
@@ -57,15 +72,16 @@ html:has(.work__step) {
 }
 
 /* FILTERS ================================================================== */
-/* Two blocks tall, and a block's gap under them */
+/* Down the column, a block and a half each */
 .work__filters {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 6px 28px;
-    height: calc(var(--block) * 2);
-    margin-bottom: var(--block);
+    flex-direction: column;
+    align-items: flex-start;
+    margin: var(--block) 0;
+}
+
+.work__filters .work__filter {
+    height: calc(var(--block) * 1.5);
 }
 
 .work__filter {
@@ -94,12 +110,13 @@ html:has(.work__step) {
 }
 
 /* THE BOARD ================================================================ */
-/* 40 blocks wide, set on a grid line nearest the middle */
+/* 42 blocks wide */
 .work__board {
     position: relative;
-    width: calc(var(--block) * 40);
+    flex-shrink: 0;
+    width: calc(var(--block) * 42);
     height: calc(var(--block) * var(--rows));
-    margin: 0 0 0 round(nearest, calc((100% - var(--block) * 40) / 2), var(--block));
+    margin: 0;
     padding: 0;
     list-style: none;
     text-align: left;
@@ -300,12 +317,11 @@ a.wcard__link:focus-visible .wcard__go {
     transform: none;
 }
 
-/* Pause (or play) the thumbnails in motion: bottom right of the stage */
+/* Pause (or play) the thumbnails in motion: at the foot of the side column */
 .work__pause {
-    position: absolute;
-    right: var(--section-margin);
-    bottom: var(--block);
     display: inline-flex;
+    margin-top: auto;
+    margin-bottom: var(--block);
     align-items: center;
     gap: 6px;
     padding: 6px 12px;
@@ -334,9 +350,9 @@ a.wcard__link:focus-visible .wcard__go {
 }
 
 /* NARROWER SCREENS ========================================================= */
-/* Not enough room to lay things out: an ordinary section, a plain list (two
-   across, then one), and the filters simply switch */
-@media (max-width: 1099px) {
+/* Not enough room for the column and board side by side: an ordinary section,
+   a plain list (two across, then one), and the filters simply switch */
+@media (max-width: 1259px) {
     .work {
         height: auto;
     }
@@ -348,7 +364,27 @@ a.wcard__link:focus-visible .wcard__go {
     .work__stage {
         position: relative;
         height: auto;
-        padding: 48px var(--section-margin) 96px;
+        padding: 48px var(--section-margin) 72px;
+    }
+
+    .work__layout {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .work__side {
+        width: auto;
+    }
+
+    .work__filters {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0 24px;
+        margin: 8px 0 24px;
+    }
+
+    .work__pause {
+        margin: 0 0 24px;
     }
 
     .work__board {

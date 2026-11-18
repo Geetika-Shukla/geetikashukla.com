@@ -110,20 +110,20 @@ const WORDS_BESIDE = 8;
 
 type Spot = { x: number; y: number; w: number; h: number; words: "under" | "beside" };
 const COMPOSITIONS: Record<number, { rows: number; spots: Spot[] }> = {
-    2: { rows: 21, spots: [
-        { x: 3, y: 0, w: 14, h: 8, words: "under" },
-        { x: 22, y: 7, w: 12, h: 7, words: "under" },
+    2: { rows: 25, spots: [
+        { x: 2, y: 0, w: 17, h: 10, words: "under" },
+        { x: 23, y: 9, w: 15, h: 9, words: "under" },
     ] },
-    3: { rows: 23, spots: [
-        { x: 1, y: 0, w: 12, h: 7, words: "under" },
-        { x: 18, y: 2, w: 10, h: 6, words: "beside" },
-        { x: 12, y: 15, w: 10, h: 6, words: "beside" },
+    3: { rows: 27, spots: [
+        { x: 1, y: 0, w: 15, h: 9, words: "under" },
+        { x: 18, y: 2, w: 13, h: 8, words: "beside" },
+        { x: 10, y: 17, w: 13, h: 8, words: "beside" },
     ] },
-    4: { rows: 23, spots: [
-        { x: 0, y: 0, w: 12, h: 7, words: "under" },
-        { x: 17, y: 0, w: 10, h: 6, words: "beside" },
-        { x: 2, y: 15, w: 10, h: 6, words: "beside" },
-        { x: 25, y: 9, w: 12, h: 7, words: "under" },
+    4: { rows: 27, spots: [
+        { x: 0, y: 0, w: 15, h: 9, words: "under" },
+        { x: 18, y: 1, w: 13, h: 8, words: "beside" },
+        { x: 2, y: 17, w: 13, h: 8, words: "beside" },
+        { x: 27, y: 12, w: 13, h: 8, words: "under" },
     ] },
 };
 
@@ -166,10 +166,10 @@ const Words = ({ piece: { title, description, tags, href, ai } }: { piece: Piece
 /*
  * Work: a stage that stays put while the section scrolls past, stepping from
  * Experiences through Visual and Type to AI, a screen's scroll each (with a
- * snap point at every step). The heading and filters sit centred on top; below,
- * the kind of work in view is laid out on the grid, each thumbnail in its own
- * cut-out with its title and a line about it. Projects built with AI carry a
- * label saying so. On narrower screens it's an ordinary section, and the
+ * snap point at every step). The heading, filters and a pause for the moving
+ * thumbnails sit in a column on the left; beside them, the kind of work in view
+ * is laid out on the grid, each thumbnail in its own cut-out with its title
+ * and a line about it. Projects built with AI carry a label saying so. On narrower screens it's an ordinary section, and the
  * filters simply switch.
  */
 export const WorkSection = () => {
@@ -232,50 +232,55 @@ export const WorkSection = () => {
             ))}
 
             <div className="work__stage">
-                <h2 id="work-title" className="work__title">Work</h2>
-                <nav className="work__filters" aria-label="Kinds of work">
-                    {FILTERS.map(({ id, label, group: g }, i) => (
-                        <button key={id} type="button" className="work__filter" aria-pressed={group === g} onClick={() => choose(i)}>
-                            {label}
-                        </button>
-                    ))}
-                </nav>
+                <div className="work__layout">
+                    {/* The heading, filters and the pause, in a column on the left */}
+                    <div className="work__side">
+                        <h2 id="work-title" className="work__title">Work</h2>
+                        <nav className="work__filters" aria-label="Kinds of work">
+                            {FILTERS.map(({ id, label, group: g }, i) => (
+                                <button key={id} type="button" className="work__filter" aria-pressed={group === g} onClick={() => choose(i)}>
+                                    {label}
+                                </button>
+                            ))}
+                        </nav>
 
-                {/* Keyed by the kind of work, so each set settles in afresh */}
-                <ul key={group} className="work__board" style={{ "--rows": rows } as CSSProperties}>
-                    {shown.map((piece, i) => {
-                        const spot = spots[i % spots.length];
-                        const { cw, ch } = cut(spot);
-                        const style = {
-                            "--x": spot.x, "--y": spot.y, "--cw": cw, "--ch": ch, "--mw": spot.w, "--mh": spot.h, "--i": i,
-                        } as CSSProperties;
+                        {moving && (
+                            <button type="button" className="work__pause" aria-pressed={paused} onClick={() => setPaused(!paused)}>
+                                <svg viewBox="0 0 16 16" aria-hidden="true">
+                                    {paused ? <path d="M5 3.5v9l7-4.5z" /> : <path d="M5 3.5v9M11 3.5v9" />}
+                                </svg>
+                                {paused ? "Play previews" : "Pause previews"}
+                            </button>
+                        )}
+                    </div>
 
-                        return (
-                            <li key={piece.key} className={`wcard wcard--${piece.group.toLowerCase()}`} data-words={spot.words} style={style}>
-                                {piece.href ? (
-                                    <Link href={piece.href} className="wcard__link">
-                                        <Media piece={piece} paused={paused} offset={i * 900} />
-                                        <Words piece={piece} />
-                                    </Link>
-                                ) : (
-                                    <div className="wcard__link">
-                                        <Media piece={piece} paused={paused} offset={i * 900} />
-                                        <Words piece={piece} />
-                                    </div>
-                                )}
-                            </li>
-                        );
-                    })}
-                </ul>
+                    {/* Keyed by the kind of work, so each set settles in afresh */}
+                    <ul key={group} className="work__board" style={{ "--rows": rows } as CSSProperties}>
+                        {shown.map((piece, i) => {
+                            const spot = spots[i % spots.length];
+                            const { cw, ch } = cut(spot);
+                            const style = {
+                                "--x": spot.x, "--y": spot.y, "--cw": cw, "--ch": ch, "--mw": spot.w, "--mh": spot.h, "--i": i,
+                            } as CSSProperties;
 
-                {moving && (
-                    <button type="button" className="work__pause" aria-pressed={paused} onClick={() => setPaused(!paused)}>
-                        <svg viewBox="0 0 16 16" aria-hidden="true">
-                            {paused ? <path d="M5 3.5v9l7-4.5z" /> : <path d="M5 3.5v9M11 3.5v9" />}
-                        </svg>
-                        {paused ? "Play previews" : "Pause previews"}
-                    </button>
-                )}
+                            return (
+                                <li key={piece.key} className={`wcard wcard--${piece.group.toLowerCase()}`} data-words={spot.words} style={style}>
+                                    {piece.href ? (
+                                        <Link href={piece.href} className="wcard__link">
+                                            <Media piece={piece} paused={paused} offset={i * 900} />
+                                            <Words piece={piece} />
+                                        </Link>
+                                    ) : (
+                                        <div className="wcard__link">
+                                            <Media piece={piece} paused={paused} offset={i * 900} />
+                                            <Words piece={piece} />
+                                        </div>
+                                    )}
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
             </div>
         </div>
     );
