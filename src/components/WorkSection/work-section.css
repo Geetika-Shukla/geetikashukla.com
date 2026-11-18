@@ -8,7 +8,8 @@
  */
 .work {
     --block: 24px;
-    --stage: calc(100svh - var(--header-height));
+    /* A screen under the nav, rounded down to whole grid blocks */
+    --stage: round(down, calc(100svh - var(--header-height)), var(--block));
     --line: color-mix(in srgb, var(--color-text) 6%, transparent);
 
     position: relative;
@@ -72,7 +73,7 @@ html:has(.work__step) {
 }
 
 /* FILTERS ================================================================== */
-/* Down the column, a block and a half each */
+/* Down the column, two blocks each */
 .work__filters {
     display: flex;
     flex-direction: column;
@@ -81,7 +82,7 @@ html:has(.work__step) {
 }
 
 .work__filters .work__filter {
-    height: calc(var(--block) * 1.5);
+    height: calc(var(--block) * 2);
 }
 
 .work__filter {
@@ -99,6 +100,17 @@ html:has(.work__step) {
 .work__filter:hover,
 .work__filter:focus-visible {
     color: var(--color-text);
+}
+
+/* A note scribbled beside a filter (new!), a little askew */
+.work__note {
+    display: inline-block;
+    margin-left: 10px;
+    color: var(--color-accent-2);
+    font-family: var(--font-hand), cursive;
+    font-size: 1.15rem;
+    font-weight: 700;
+    transform: rotate(-8deg) translateY(-6px);
 }
 
 /* The kind of work in view: in colour, underlined by hand */

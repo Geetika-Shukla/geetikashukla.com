@@ -18,7 +18,6 @@ import "./work-section.css";
 // Screens from each Experience project, for its thumbnail in motion
 import reportsPage from "@/assets/images/motion/reports-page.webp";
 import reportsDownload from "@/assets/images/motion/reports-download.webp";
-import reportsToasts from "@/assets/images/motion/reports-toasts.webp";
 import partnershipsSignup from "@/assets/images/motion/partnerships-signup.webp";
 import partnershipsDashboard from "@/assets/images/motion/partnerships-dashboard.webp";
 import partnershipsTestimonials from "@/assets/images/motion/partnerships-testimonials.webp";
@@ -37,11 +36,12 @@ import type { Motion } from "./MotionThumb";
 type Group = "Experience" | "Visual" | "Type" | "AI";
 
 // The filters, in scroll order; the ids let a link go straight to one (/#visual)
-const FILTERS: { id: string; label: string; group: Group }[] = [
+const FILTERS: { id: string; label: string; group: Group; note?: string }[] = [
     { id: "experiences", label: "Experiences", group: "Experience" },
     { id: "visual", label: "Visual", group: "Visual" },
     { id: "type", label: "Type", group: "Type" },
-    { id: "ai", label: "AI", group: "AI" },
+    // A note scribbled beside it
+    { id: "ai", label: "AI", group: "AI", note: "new!" },
 ];
 
 // The order the projects are shown in. Each thumbnail fills its panel, cropped
@@ -50,7 +50,7 @@ const FILTERS: { id: string; label: string; group: Group }[] = [
 // `motion` plays real screens from the project in place of the thumbnail.
 const ORDER: { href: string; bg: string; whole?: boolean; art?: number; motion?: Motion }[] = [
     { href: "/experiences/revamping-reports", bg: "#FFFFFF", motion: {
-        kind: "browser", screens: [reportsPage, reportsDownload, reportsToasts],
+        kind: "browser", screens: [reportsPage, reportsDownload],
     } },
     { href: "/visual/kannauj-perfumery", bg: "#FFFFFF" },
     { href: "/experiences/path-to-partnerships", bg: "#56CFD2", motion: {
@@ -116,7 +116,7 @@ const COMPOSITIONS: Record<number, { rows: number; spots: Spot[] }> = {
     ] },
     3: { rows: 27, spots: [
         { x: 1, y: 0, w: 15, h: 9, words: "under" },
-        { x: 18, y: 2, w: 13, h: 8, words: "beside" },
+        { x: 19, y: 2, w: 12, h: 8, words: "beside" },
         { x: 10, y: 17, w: 13, h: 8, words: "beside" },
     ] },
     4: { rows: 27, spots: [
@@ -237,9 +237,10 @@ export const WorkSection = () => {
                     <div className="work__side">
                         <h2 id="work-title" className="work__title">Work</h2>
                         <nav className="work__filters" aria-label="Kinds of work">
-                            {FILTERS.map(({ id, label, group: g }, i) => (
+                            {FILTERS.map(({ id, label, group: g, note }, i) => (
                                 <button key={id} type="button" className="work__filter" aria-pressed={group === g} onClick={() => choose(i)}>
                                     {label}
+                                    {note && <span className="work__note">{note}</span>}
                                 </button>
                             ))}
                         </nav>
