@@ -10,6 +10,7 @@ import { AI_PROJECTS } from "@/data/ai-projects";
 
 // INTERNAL DEPS ===============================================================
 import { MotionThumb } from "./MotionThumb";
+import Image from "next/image";
 
 // STYLES ======================================================================
 import "./work-section.css";
@@ -28,9 +29,11 @@ import hdfcFd from "@/assets/images/motion/hdfc-fd.webp";
 import discoveryHome from "@/assets/images/motion/discovery-home.webp";
 import discoveryMenu from "@/assets/images/motion/discovery-menu.webp";
 import discoveryContact from "@/assets/images/motion/discovery-contact.webp";
+import gffKeynote from "@/assets/images/motion/gff-keynote-cover.webp";
 
 // TYPES =======================================================================
 import type { ComponentType, CSSProperties, SVGProps } from "react";
+import type { StaticImageData } from "next/image";
 import type { Motion } from "./MotionThumb";
 
 type Group = "Experience" | "Visual" | "Type" | "AI";
@@ -81,6 +84,8 @@ interface Piece {
     whole       : boolean;
     art         : number;
     motion?     : Motion;
+    // A still image, filling the thumbnail
+    image?      : StaticImageData;
     ai          : boolean;
     // What an empty thumbnail says
     note?       : string;
@@ -88,7 +93,22 @@ interface Piece {
 
 const BY_HREF = new Map(timeline.flatMap((period) => period.projects).map((project) => [project.href, project]));
 
+// Work without a page of its own yet
+const KEYNOTE: Piece = {
+    key         : "gff-keynote",
+    group       : "Visual",
+    title       : "The invisible future of finance",
+    description : "A keynote deck for Reserve Bank Innovation Hub at Global Fintech Fest 2026.",
+    tags        : ["Keynote", "Presentation", "Brand"],
+    image       : gffKeynote,
+    bg          : "#FBFAF7",
+    whole       : false,
+    art         : 1,
+    ai          : false,
+};
+
 const PIECES: Piece[] = [
+    KEYNOTE,
     ...ORDER.flatMap(({ href, bg, whole = false, art = 1, motion }): Piece[] => {
         const project = BY_HREF.get(href);
         if (!project) return [];
@@ -120,7 +140,15 @@ const COMPOSITIONS: Record<number, { rows: number; spots: Spot[] }> = {
     3: { rows: 26, spots: [
         { x: 1, y: 0, w: 15, h: 8, words: "under" },
         { x: 19, y: 2, w: 12, h: 8, words: "beside" },
-        { x: 10, y: 16, w: 13, h: 8, words: "beside" },
+        { x: 19, y: 13, w: 12, h: 8, words: "beside" },
+    ] },
+    // Three across the top, two below
+    5: { rows: 26, spots: [
+        { x: 0, y: 0, w: 12, h: 7, words: "under" },
+        { x: 15, y: 1, w: 12, h: 7, words: "under" },
+        { x: 30, y: 0, w: 10, h: 6, words: "under" },
+        { x: 0, y: 16, w: 9, h: 6, words: "beside" },
+        { x: 21, y: 17, w: 9, h: 6, words: "beside" },
     ] },
     4: { rows: 26, spots: [
         { x: 0, y: 0, w: 15, h: 8, words: "under" },
@@ -137,10 +165,12 @@ const cut = ({ w, h, words }: Spot) => words === "under"
 
 // A card's thumbnail panel: screens in motion, the thumbnail, or a placeholder
 // until a project has its image
-const Media = ({ piece: { Thumbnail, bg, whole, art, motion, ai, note }, paused, offset }: { piece: Piece; paused: boolean; offset: number }) => (
-    <span className="wcard__media" style={{ "--art": art, "--bg": bg } as CSSProperties} data-empty={(!Thumbnail && !motion) || undefined}>
+const Media = ({ piece: { Thumbnail, bg, whole, art, motion, image, ai, note }, paused, offset }: { piece: Piece; paused: boolean; offset: number }) => (
+    <span className="wcard__media" style={{ "--art": art, "--bg": bg } as CSSProperties} data-empty={(!Thumbnail && !motion && !image) || undefined}>
         {motion
             ? <MotionThumb motion={motion} paused={paused} offset={offset} />
+            : image
+            ? <Image src={image} alt="" className="wcard__image" sizes="360px" />
             : Thumbnail
                 ? <Thumbnail className="wcard__art" aria-hidden="true" preserveAspectRatio={`xMidYMid ${whole ? "meet" : "slice"}`} />
                 : <span className="wcard__soon">{note ?? (ai ? "Coming soon" : "Image to come")}</span>}

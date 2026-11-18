@@ -41,8 +41,8 @@ export const AI_PROJECTS: AIProject[] = [
         placeholder : true,
     },
     {
-        title       : "Well, this website 😜",
-        description : "v1 I coded by hand. This one I designed and prompted; Claude Code built it.",
+        title       : "Well, this website 😄",
+        description : "I manually coded v1 of the website. For v2, I designed and prompted; Claude Code built it.",
         tools       : ["Claude Code", "Next.js"],
         placeholder : false,
         screens     : [siteHero, siteWork, siteJournal, siteKindWords],
