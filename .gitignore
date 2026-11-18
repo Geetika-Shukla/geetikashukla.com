@@ -18,7 +18,10 @@
 
 # production
 /build
-/public
+# public/ holds working files; only these are part of the site
+/public/*
+!/public/favicon.ico
+!/public/keynotes/
 /out
 
 

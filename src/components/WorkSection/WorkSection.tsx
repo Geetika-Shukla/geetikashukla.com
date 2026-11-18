@@ -39,11 +39,11 @@ type Group = "Experience" | "Visual" | "Type" | "AI";
 
 // The filters, in scroll order; the ids let a link go straight to one (/#visual)
 const FILTERS: { id: string; label: string; group: Group; note?: string }[] = [
+    // A note scribbled beside it
+    { id: "ai", label: "AI", group: "AI", note: "new!" },
     { id: "experiences", label: "Experiences", group: "Experience" },
     { id: "visual", label: "Visual", group: "Visual" },
     { id: "type", label: "Type", group: "Type" },
-    // A note scribbled beside it
-    { id: "ai", label: "AI", group: "AI", note: "new!" },
 ];
 
 // The order the projects are shown in. Each thumbnail fills its panel, cropped
@@ -175,7 +175,7 @@ const Words = ({ piece: { title, description, tags, href, ai } }: { piece: Piece
 
 /*
  * Work: a stage that stays put while the section scrolls past, stepping from
- * Experiences through Visual and Type to AI, a screen's scroll each (with a
+ * AI through Experiences and Visual to Type, a screen's scroll each (with a
  * snap point at every step). The heading, filters and a pause for the moving
  * thumbnails sit in a column on the left; beside them, the kind of work in view
  * is laid out on the grid, each thumbnail in its own cut-out with its title
@@ -183,7 +183,7 @@ const Words = ({ piece: { title, description, tags, href, ai } }: { piece: Piece
  * filters simply switch.
  */
 export const WorkSection = () => {
-    const [group, setGroup] = useState<Group>("Experience");
+    const [group, setGroup] = useState<Group>(FILTERS[0].group);
     // The thumbnails in motion can all be paused
     const [paused, setPaused] = useState(false);
     const sectionRef = useRef<HTMLDivElement>(null);
