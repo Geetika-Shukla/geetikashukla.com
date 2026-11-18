@@ -1,56 +1,18 @@
 /*
- * Thumbnails in motion: a browser window on a coloured backdrop stepping
- * through screens, or phone screens gliding past. --backdrop and --hold
- * (how long each screen stays) come from MotionThumb.tsx.
+ * Thumbnails in motion: screens filling the thumbnail one after another, or
+ * phone screens gliding past. --hold (how long each screen stays) comes from
+ * MotionThumb.tsx.
  */
 .motion {
     position: absolute;
     inset: 0;
     overflow: hidden;
-    background: var(--backdrop);
-}
-
-/* BROWSER ================================================================== */
-/* A window set in the backdrop, running off the bottom edge */
-.motion__window {
-    position: absolute;
-    top: 10%;
-    right: 8%;
-    bottom: -4%;
-    left: 8%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border-radius: 5px 5px 0 0;
     background-color: #FFFFFF;
-    box-shadow: 0 6px 18px rgba(20, 30, 50, 0.22);
 }
 
-.motion__bar {
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    gap: 3px;
-    height: 11px;
-    padding: 0 6px;
-    background-color: #EEF0F3;
-}
-
-.motion__bar i {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background-color: #C8CCD3;
-}
-
-.motion__view {
-    position: relative;
-    flex: 1;
-    overflow: hidden;
-}
-
-/* Each screen fills the view; the one showing drifts across what doesn't fit
-   (a long page scrolls down, a wide one pans across) */
+/* SCREENS ================================================================== */
+/* Each screen fills the thumbnail; the one showing drifts across what doesn't
+   fit (a long page scrolls down, a wide one pans across) */
 .motion__screen {
     position: absolute;
     inset: 0;
@@ -82,7 +44,11 @@
 }
 
 /* PHONE ==================================================================== */
-/* Phone screens in a row, gliding left in a loop */
+/* Phone screens in a row, gliding left in a loop, on their own pale blue */
+.motion--phone {
+    background-color: #EEF4FB;
+}
+
 .motion__track {
     position: absolute;
     top: 12%;

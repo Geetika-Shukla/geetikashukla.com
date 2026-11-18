@@ -12,22 +12,21 @@ import type { CSSProperties } from "react";
 import type { StaticImageData } from "next/image";
 
 export interface Motion {
-    // A browser window stepping through screens, or phone screens gliding past
-    kind     : "browser" | "phone";
-    backdrop : string;
-    screens  : StaticImageData[];
+    // Screens filling the thumbnail one after another, or phone screens gliding past
+    kind    : "browser" | "phone";
+    screens : StaticImageData[];
 }
 
 const HOLD = 4200;
 
 /*
- * A thumbnail in motion, like a screen recording. In a browser window, each
- * screen drifts (a long page scrolls, a wide one pans) before the next slides
- * in; phone screens glide past in a loop. It holds still when paused, and for
- * anyone who prefers less motion. `offset` staggers the start, so a set of
- * them doesn't move in step.
+ * A thumbnail in motion, like a screen recording. Each screen fills the
+ * thumbnail and drifts (a long page scrolls, a wide one pans) before the next
+ * slides in; phone screens glide past in a loop. It holds still when paused,
+ * and for anyone who prefers less motion. `offset` staggers the start, so a
+ * set of them doesn't move in step.
  */
-export const MotionThumb = ({ motion: { kind, backdrop, screens }, paused, offset = 0 }: { motion: Motion; paused: boolean; offset?: number }) => {
+export const MotionThumb = ({ motion: { kind, screens }, paused, offset = 0 }: { motion: Motion; paused: boolean; offset?: number }) => {
     const [active, setActive] = useState(0);
 
     useEffect(() => {
@@ -43,7 +42,7 @@ export const MotionThumb = ({ motion: { kind, backdrop, screens }, paused, offse
         };
     }, [kind, paused, offset, screens.length]);
 
-    const style = { "--backdrop": backdrop, "--hold": `${HOLD}ms` } as CSSProperties;
+    const style = { "--hold": `${HOLD}ms` } as CSSProperties;
 
     if (kind === "phone") {
         return (
@@ -59,23 +58,10 @@ export const MotionThumb = ({ motion: { kind, backdrop, screens }, paused, offse
     }
 
     return (
-        <span className="motion motion--browser" style={style} data-paused={paused || undefined} aria-hidden="true">
-            <span className="motion__window">
-                <span className="motion__bar"><i /><i /><i /></span>
-                <span className="motion__view">
-                    {screens.map((screen, i) => (
-                        <Image
-                            key={i}
-                            src={screen}
-                            alt=""
-                            className="motion__screen"
-                            data-active={i === active}
-                            sizes="320px"
-                            priority={false}
-                        />
-                    ))}
-                </span>
-            </span>
+        <span className="motion motion--screens" style={style} data-paused={paused || undefined} aria-hidden="true">
+            {screens.map((screen, i) => (
+                <Image key={i} src={screen} alt="" className="motion__screen" data-active={i === active} sizes="360px" />
+            ))}
         </span>
     );
 };

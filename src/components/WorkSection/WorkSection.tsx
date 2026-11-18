@@ -50,21 +50,21 @@ const FILTERS: { id: string; label: string; group: Group }[] = [
 // `motion` plays real screens from the project in place of the thumbnail.
 const ORDER: { href: string; bg: string; whole?: boolean; art?: number; motion?: Motion }[] = [
     { href: "/experiences/revamping-reports", bg: "#FFFFFF", motion: {
-        kind: "browser", backdrop: "linear-gradient(135deg, #2FB8BC, #A6E6E2)", screens: [reportsPage, reportsDownload, reportsToasts],
+        kind: "browser", screens: [reportsPage, reportsDownload, reportsToasts],
     } },
     { href: "/visual/kannauj-perfumery", bg: "#FFFFFF" },
     { href: "/experiences/path-to-partnerships", bg: "#56CFD2", motion: {
-        kind: "browser", backdrop: "linear-gradient(135deg, #56CFD2, #C9F0EE)", screens: [partnershipsSignup, partnershipsDashboard, partnershipsTestimonials],
+        kind: "browser", screens: [partnershipsSignup, partnershipsDashboard, partnershipsTestimonials],
     } },
     { href: "/visual/26-days-of-type", bg: "#FFFFFF", whole: true, art: 1.5 },
     { href: "/visual/people-experience", bg: "#CCF6F7" },
     { href: "/type/47-days-of-devanagari-type", bg: "#FFFFFF", whole: true, art: 1.5 },
     { href: "/experiences/hdfc-journeys", bg: "#E5F2FF", motion: {
-        kind: "phone", backdrop: "linear-gradient(135deg, #BFD8F6, #EEF5FF)", screens: [hdfcKyc, hdfcKycError, hdfcVideoKyc, hdfcFd],
+        kind: "phone", screens: [hdfcKyc, hdfcKycError, hdfcVideoKyc, hdfcFd],
     } },
     { href: "/visual/icon-system-for-setu", bg: "#F2FDFD" },
     { href: "/experiences/assisted-product-discovery", bg: "#C7EFF0", motion: {
-        kind: "browser", backdrop: "linear-gradient(135deg, #7A5AD6, #C7EFF0)", screens: [discoveryHome, discoveryMenu, discoveryContact],
+        kind: "browser", screens: [discoveryHome, discoveryMenu, discoveryContact],
     } },
     { href: "/type/inktober-2017", bg: "#FFFFFF", whole: true, art: 0.85 },
 ];
