@@ -211,10 +211,23 @@ html:has(.journal) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 172px;
     line-height: 1.25;
     text-align: center;
+    /* Every line on one line */
+    white-space: nowrap;
     transform: translateX(-50%);
+}
+
+.journal__stop[data-align="start"] .journal__stop-text {
+    align-items: flex-start;
+    text-align: left;
+    transform: translateX(calc(var(--marker) / -2));
+}
+
+.journal__stop[data-align="end"] .journal__stop-text {
+    align-items: flex-end;
+    text-align: right;
+    transform: translateX(calc(-100% + var(--marker) / 2));
 }
 
 .journal__stop[data-text="above"] .journal__stop-text {
@@ -248,12 +261,6 @@ html:has(.journal) {
     line-height: 1.1;
 }
 
-.journal__here {
-    margin-top: 4px;
-    color: var(--color-accent-2);
-    font-size: 1.15rem;
-    font-weight: 700;
-}
 
 /* IN PRACTICE ============================================================== */
 /* Four sticky notes, two by two, the right-hand column dropped a little */
@@ -946,6 +953,7 @@ html:has(.journal) {
         align-items: flex-start;
         width: auto;
         text-align: left;
+        white-space: normal;
         transform: none;
     }
 

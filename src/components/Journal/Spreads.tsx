@@ -101,17 +101,17 @@ const [rbih, setu, ather, nonesuch] = ROLES;
 // them), each with a line on the switch it was
 const STOPS: Stop[] = [
     { ...fromDegree(foa), Logo: FOALogo, at: [11, 68], text: "below",
-        shift: "Started with buildings: how spaces make people feel" },
+        shift: "Started with how spaces feel" },
     { ...fromDegree(nid), Logo: NIDLogo, at: [25, 44], text: "above",
-        shift: "Switched to retail and exhibitions: stories people walk through" },
+        shift: "Switched to retail design" },
     { ...fromRole(nonesuch), Logo: NSLogo, at: [41, 64], text: "below",
-        shift: "Freelanced into brand: identity, editorial, social" },
-    { ...fromRole(ather), Logo: AtherLogo, at: [59, 40], text: "above",
-        shift: "Put it to work: an exhibition system for pop-ups and deliveries" },
+        shift: "Freelanced into brand" },
+    { ...fromRole(ather), Logo: AtherLogo, at: [56, 40], text: "above",
+        shift: "Built an exhibition system" },
     { ...fromRole(setu), Logo: SetuLogo, at: [75, 60], text: "below",
-        shift: "Moved into product: UI, design systems and a brand, for fintech at scale" },
+        shift: "Moved into product and systems" },
     { ...fromRole(rbih), Logo: RBIHLogo, at: [88, 38], text: "above",
-        shift: "Leading design now: one system from identity to product" },
+        shift: "Leading design, brand to product" },
 ];
 
 // The round badge logos (51 × 51) lose their viewBox in the SVG build; giving it
@@ -157,14 +157,20 @@ const Route = ({ half }: { half: "left" | "right" }) => (
 
         <ol className="journal__stops">
             {STOPS.map(({ years, title, place, shift, Logo, at: [x, y], text }, i) => (
-                <li key={place} className="journal__stop" data-text={text} style={{ left: `${x}%`, top: `${y}%` }}>
+                <li
+                    key={place}
+                    className="journal__stop"
+                    data-text={text}
+                    // The end stops' words run inwards, so they stay on the page
+                    data-align={i === 0 ? "start" : i === STOPS.length - 1 ? "end" : undefined}
+                    style={{ left: `${x}%`, top: `${y}%` }}
+                >
                     <span className="journal__badge" aria-hidden="true"><Logo {...logoProps(Logo)} /></span>
                     <span className="journal__stop-text">
                         <span className="journal__years journal__hand">{years}</span>
                         <strong>{title}</strong>
                         <span className="journal__place">{place}</span>
                         <span className="journal__shift journal__hand">{shift}</span>
-                        {i === STOPS.length - 1 && <span className="journal__here journal__hand">you are here ↓</span>}
                     </span>
                 </li>
             ))}
