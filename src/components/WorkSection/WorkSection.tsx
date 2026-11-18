@@ -23,26 +23,26 @@ const FILTERS: { id: string; label: string; category: Category }[] = [
     { id: "type", label: "Type", category: "Type" },
 ];
 
-// The order the projects are shown in. `bg` is the thumbnail's own background,
-// which fills its panel so the artwork sits in it seamlessly; `art` scales a
-// thumbnail down where it reads too large.
-const ORDER: { href: string; bg: string; art?: number }[] = [
+// The order the projects are shown in. Each thumbnail fills its panel, cropped
+// from the middle; where cropping would cut into lettering, `whole` shows it all
+// instead, enlarged by `art` (on its own background, `bg`, which fills the panel).
+const ORDER: { href: string; bg: string; whole?: boolean; art?: number }[] = [
     { href: "/experiences/revamping-reports", bg: "#FFFFFF" },
     { href: "/visual/kannauj-perfumery", bg: "#FFFFFF" },
     { href: "/experiences/path-to-partnerships", bg: "#56CFD2" },
-    { href: "/visual/26-days-of-type", bg: "#FFFFFF" },
+    { href: "/visual/26-days-of-type", bg: "#FFFFFF", whole: true, art: 1.5 },
     { href: "/visual/people-experience", bg: "#CCF6F7" },
-    { href: "/type/47-days-of-devanagari-type", bg: "#FFFFFF" },
+    { href: "/type/47-days-of-devanagari-type", bg: "#FFFFFF", whole: true, art: 1.5 },
     { href: "/experiences/hdfc-journeys", bg: "#E5F2FF" },
     { href: "/visual/icon-system-for-setu", bg: "#F2FDFD" },
     { href: "/experiences/assisted-product-discovery", bg: "#C7EFF0" },
-    { href: "/type/inktober-2017", bg: "#FFFFFF", art: 0.7 },
+    { href: "/type/inktober-2017", bg: "#FFFFFF", whole: true, art: 0.85 },
 ];
 
 const BY_HREF = new Map(timeline.flatMap((period) => period.projects).map((project) => [project.href, project]));
-const PROJECTS = ORDER.flatMap(({ href, bg, art = 1 }) => {
+const PROJECTS = ORDER.flatMap(({ href, bg, whole = false, art = 1 }) => {
     const project = BY_HREF.get(href);
-    return project ? [{ ...project, bg, art }] : [];
+    return project ? [{ ...project, bg, whole, art }] : [];
 });
 
 const filterFromHash = (hash: string): Category | null =>
@@ -95,16 +95,12 @@ export const WorkSection = () => {
             </nav>
 
             <ul className="work__cards">
-                {PROJECTS.filter(({ category }) => filter === null || category === filter).map(({ title, description, category, tags = [], href, Thumbnail, shape, bg, art }) => (
+                {PROJECTS.filter(({ category }) => filter === null || category === filter).map(({ title, description, category, tags = [], href, Thumbnail, bg, whole, art }) => (
                     <li key={href} className={`wcard wcard--${category.toLowerCase()}`}>
                         <Link href={href!} className="wcard__link">
                             <span className="wcard__media" style={{ "--art": art, "--bg": bg } as CSSProperties}>
-                                {/* Strips span the panel's width; squares sit whole in its middle */}
-                                <Thumbnail
-                                    className={`wcard__art wcard__art--${shape === "wide" ? "wide" : "square"}`}
-                                    aria-hidden="true"
-                                    preserveAspectRatio="xMidYMid meet"
-                                />
+                                {/* Each thumbnail fills its panel, cropped from the middle (or shown whole, for lettering) */}
+                                <Thumbnail className="wcard__art" aria-hidden="true" preserveAspectRatio={`xMidYMid ${whole ? "meet" : "slice"}`} />
                             </span>
                             <span className="wcard__title">
                                 {title.slice(0, title.lastIndexOf(" ") + 1)}
