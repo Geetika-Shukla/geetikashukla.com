@@ -1,12 +1,7 @@
 /*
  * The GFF 2026 keynote page, in the project pages' format; these are just its
- * own pieces: the cover, the photos (stacked) and the deck.
+ * own pieces: the photos (stacked) and the deck.
  */
-.keynote__cover {
-    display: block;
-    width: 100vw;
-    height: auto;
-}
 
 /* PHOTOS =================================================================== */
 .keynote__photos {
@@ -71,14 +66,8 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 12px 20px;
+    justify-content: flex-end;
     margin-top: 16px;
-}
-
-.keynote__hint {
-    margin-right: auto;
-    color: var(--color-text-muted);
-    font-size: 0.85rem;
 }
 
 .keynote__button {
@@ -104,13 +93,6 @@
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
-}
-
-.keynote__link {
-    color: var(--color-text);
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-underline-offset: 3px;
 }
 
 /* NARROW SCREENS =========================================================== */

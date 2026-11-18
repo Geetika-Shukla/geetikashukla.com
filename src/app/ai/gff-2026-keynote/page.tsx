@@ -1,6 +1,5 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
-import Image from "next/image";
 
 // INTERNAL DEPS ===============================================================
 import { Heading1, Portion, Row, Div, Text } from "fictoan-react";
@@ -12,9 +11,6 @@ import { KeynotePreview } from "./KeynotePreview";
 import "../../experiences/experiences-projects.css";
 import "../../experiences/page-experiences.css";
 import "./page-keynote.css";
-
-// ASSETS ======================================================================
-import KeynoteCover from "@/assets/images/motion/gff-keynote-cover.webp";
 
 // TYPES =======================================================================
 import type { Metadata } from "next";
@@ -39,15 +35,16 @@ export default function GffKeynotePage() {
             {/* HERO SECTION */}
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="small">
-                <Portion desktopSpan="10" horizontalMargin="small">
+                {/* A wider column than usual, so the title sits on two lines */}
+                <Portion desktopSpan="15" horizontalMargin="small">
                     <Heading1 className="hero-heading">
                         The invisible future of finance
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" hideOnMobile />
+                <Portion desktopSpan="1" hideOnMobile />
 
-                <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
+                <Portion desktopSpan="8" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">
                         <Text marginBottom="tiny">
                             A keynote deck for Reserve Bank Innovation Hub at Global Fintech Fest 2026, built
@@ -55,10 +52,6 @@ export default function GffKeynotePage() {
                         </Text>
                     </Div>
                 </Portion>
-            </Row>
-
-            <Row className="center-align-svg" marginBottom="tiny">
-                <Image src={KeynoteCover} alt="The deck's cover: The invisible future of finance, Global Fintech Fest 2026" className="keynote__cover" sizes="100vw" priority />
             </Row>
 
 
