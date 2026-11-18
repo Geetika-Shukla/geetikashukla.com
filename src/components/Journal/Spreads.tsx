@@ -1,6 +1,6 @@
 // The journal's spreads, each a left and a right page: hello (a polaroid, and
-// the path so far), then the route (the places, as sticky notes) and the ways
-// of working with the résumé
+// the path so far), the route across both pages (each place, and the switch it
+// was), then the ways of working and the résumé
 
 // EXTERNAL DEPS ===============================================================
 import React from "react";
@@ -73,29 +73,41 @@ interface Stop {
     years : string;
     title : string;
     place : string;
+    shift : string;
     Logo  : ComponentType<SVGProps<SVGSVGElement>>;
+    // Where it sits on the spread (% across both pages, % down), and whether its words sit above or below
+    at    : [number, number];
+    text  : "above" | "below";
 }
 
 // "M.Des. (2017–19)" → the degree and its years
-const fromDegree = ({ degree, school }: Degree, Logo: Stop["Logo"]): Stop => {
+const fromDegree = ({ degree, school }: Degree): Pick<Stop, "years" | "title" | "place"> => {
     const [, title = degree, years = ""] = degree.match(/^(.*?)\s*\((.*)\)$/) ?? [];
-    return { years, title, place: school.split(",")[0], Logo };
+    return { years, title, place: school.split(",")[0] };
 };
 
-const fromRole = ({ title, company, dates }: Role, Logo: Stop["Logo"]): Stop =>
-    ({ years: dates, title, place: company, Logo });
+const fromRole = ({ title, company, dates }: Role): Pick<Stop, "years" | "title" | "place"> =>
+    ({ years: dates, title, place: company });
 
 const [nid, foa] = EDUCATION;
 const [rbih, setu, ather, nonesuch] = ROLES;
 
-// The route so far, oldest first
+// The route so far, oldest first, zigzagging up from bottom left to top right
+// (words below the low stops, above the high ones, so the line never crosses
+// them), each with a line on the switch it was
 const STOPS: Stop[] = [
-    fromDegree(foa, FOALogo),
-    fromDegree(nid, NIDLogo),
-    fromRole(nonesuch, NSLogo),
-    fromRole(ather, AtherLogo),
-    fromRole(setu, SetuLogo),
-    fromRole(rbih, RBIHLogo),
+    { ...fromDegree(foa), Logo: FOALogo, at: [9, 68], text: "below",
+        shift: "Started with buildings: how spaces make people feel" },
+    { ...fromDegree(nid), Logo: NIDLogo, at: [25, 44], text: "above",
+        shift: "Switched to retail and exhibitions: stories people walk through" },
+    { ...fromRole(nonesuch), Logo: NSLogo, at: [41, 64], text: "below",
+        shift: "Freelanced into brand: identity, editorial, social" },
+    { ...fromRole(ather), Logo: AtherLogo, at: [59, 40], text: "above",
+        shift: "Put it to work: an exhibition system for pop-ups and deliveries" },
+    { ...fromRole(setu), Logo: SetuLogo, at: [75, 60], text: "below",
+        shift: "Moved into product: UI, design systems and a brand, for fintech at scale" },
+    { ...fromRole(rbih), Logo: RBIHLogo, at: [91, 36], text: "above",
+        shift: "Leading design now: one system from identity to product" },
 ];
 
 // The round badge logos (51 × 51) lose their viewBox in the SVG build; giving it
@@ -103,37 +115,60 @@ const STOPS: Stop[] = [
 const logoProps = (Logo: Stop["Logo"]): SVGProps<SVGSVGElement> =>
     Logo === RBIHLogo ? {} : { viewBox: "0 0 51 51" };
 
-// A hand-drawn line down the page, each place a logo sticker on it, the years
-// in the margin, ending where things are now
-const Route = () => (
-    <>
+// An organic line through the stops: a smooth curve (Catmull-Rom) through each
+// stop and a wobble between them, from a little before the first to a little past the last
+const LINE = (() => {
+    const points: [number, number][] = [[1, 80]];
+    STOPS.forEach(({ at }, i) => {
+        if (i > 0) {
+            const [px, py] = STOPS[i - 1].at;
+            const wobble = i % 2 ? 3 : -3;
+            points.push([(px + at[0]) / 2, (py + at[1]) / 2 + wobble]);
+        }
+        points.push(at);
+    });
+    points.push([99, 26]);
+
+    const f = (n: number) => n.toFixed(2);
+    let d = `M${f(points[0][0])} ${f(points[0][1])}`;
+    for (let i = 0; i < points.length - 1; i++) {
+        const [x0, y0] = points[Math.max(0, i - 1)];
+        const [x1, y1] = points[i];
+        const [x2, y2] = points[i + 1];
+        const [x3, y3] = points[Math.min(points.length - 1, i + 2)];
+        d += ` C${f(x1 + (x2 - x0) / 6)} ${f(y1 + (y2 - y0) / 6)}, ${f(x2 - (x3 - x1) / 6)} ${f(y2 - (y3 - y1) / 6)}, ${f(x2)} ${f(y2)}`;
+    }
+    return d;
+})();
+
+// The route across the whole spread: drawn once, wider than a page, and shown
+// in each page's half (the right half is a copy, so hidden from screen readers)
+const Route = ({ half }: { half: "left" | "right" }) => (
+    <div className="journal__wide" data-half={half} aria-hidden={half === "right" || undefined}>
         <h3 className="journal__label">The route so far</h3>
 
-        <div className="journal__route">
-            <svg className="journal__line" viewBox="0 0 20 100" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M10 2 C 13 12, 7 20, 10 30 C 13 40, 7 48, 10 58 C 13 68, 7 76, 10 86 C 12 92, 9 96, 10 98" />
-            </svg>
+        <svg className="journal__line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <path d={LINE} />
+        </svg>
 
-            <ol className="journal__stops">
-                {STOPS.map(({ years, title, place, Logo }, i) => (
-                    <li key={place} className="journal__stop">
-                        <span className="journal__badge" aria-hidden="true"><Logo {...logoProps(Logo)} /></span>
-                        <span className="journal__stop-text">
-                            <span className="journal__years journal__hand">{years}</span>
-                            <strong>{title}</strong>
-                            <span className="journal__place">
-                                {place}
-                                {i === STOPS.length - 1 && <span className="journal__here journal__hand"> ← you are here</span>}
-                            </span>
-                        </span>
-                    </li>
-                ))}
-            </ol>
-        </div>
-    </>
+        <ol className="journal__stops">
+            {STOPS.map(({ years, title, place, shift, Logo, at: [x, y], text }, i) => (
+                <li key={place} className="journal__stop" data-text={text} style={{ left: `${x}%`, top: `${y}%` }}>
+                    <span className="journal__badge" aria-hidden="true"><Logo {...logoProps(Logo)} /></span>
+                    <span className="journal__stop-text">
+                        <span className="journal__years journal__hand">{years}</span>
+                        <strong>{title}</strong>
+                        <span className="journal__place">{place}</span>
+                        <span className="journal__shift journal__hand">{shift}</span>
+                        {i === STOPS.length - 1 && <span className="journal__here journal__hand">you are here ↓</span>}
+                    </span>
+                </li>
+            ))}
+        </ol>
+    </div>
 );
 
-// The ways of working on one lined index card, and the résumé as a ticket
+// The ways of working on one lined index card
 const Practice = () => (
     <>
         <h3 className="journal__label">In practice</h3>
@@ -148,15 +183,25 @@ const Practice = () => (
                 ))}
             </ol>
         </div>
+    </>
+);
 
-        <a className="journal__ticket" href={RESUME_URL} target="_blank" rel="noopener noreferrer" download>
-            <span className="journal__tape" aria-hidden="true" />
-            Download résumé <span aria-hidden="true">↓</span>
-        </a>
+// The résumé, as a ticket taped to the page
+const Resume = () => (
+    <>
+        <h3 className="journal__label">The short version</h3>
+        <div className="journal__resume-page">
+            <p className="journal__hand">the whole route, on one page</p>
+            <a className="journal__ticket" href={RESUME_URL} target="_blank" rel="noopener noreferrer" download>
+                <span className="journal__tape" aria-hidden="true" />
+                Download résumé <span aria-hidden="true">↓</span>
+            </a>
+        </div>
     </>
 );
 
 export const SPREADS: Spread[] = [
     { name: "Hello", left: <Hello />, right: <Path /> },
-    { name: "The route so far", left: <Route />, right: <Practice /> },
+    { name: "The route so far", left: <Route half="left" />, right: <Route half="right" /> },
+    { name: "In practice", left: <Practice />, right: <Resume /> },
 ];
