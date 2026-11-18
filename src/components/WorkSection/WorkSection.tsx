@@ -10,6 +10,7 @@ import { AI_PROJECTS } from "@/data/ai-projects";
 
 // INTERNAL DEPS ===============================================================
 import { MotionThumb } from "./MotionThumb";
+import { DeckDialog } from "./DeckDialog";
 import Image from "next/image";
 
 // STYLES ======================================================================
@@ -54,7 +55,7 @@ const ORDER: { href: string; bg: string; whole?: boolean; art?: number; motion?:
     { href: "/experiences/revamping-reports", bg: "#FFFFFF", motion: {
         kind: "browser", screens: [reportsPage, reportsDownload],
     } },
-    { href: "/visual/kannauj-perfumery", bg: "#FFFFFF" },
+    { href: "/visual/icon-system-for-setu", bg: "#F2FDFD" },
     { href: "/experiences/path-to-partnerships", bg: "#56CFD2", motion: {
         kind: "browser", screens: [partnershipsSignup, partnershipsDashboard, partnershipsTestimonials],
     } },
@@ -64,7 +65,7 @@ const ORDER: { href: string; bg: string; whole?: boolean; art?: number; motion?:
     { href: "/experiences/hdfc-journeys", bg: "#E5F2FF", motion: {
         kind: "phone", screens: [hdfcKyc, hdfcKycError, hdfcVideoKyc, hdfcFd],
     } },
-    { href: "/visual/icon-system-for-setu", bg: "#F2FDFD" },
+    { href: "/visual/kannauj-perfumery", bg: "#FFFFFF" },
     { href: "/experiences/assisted-product-discovery", bg: "#C7EFF0", motion: {
         kind: "browser", screens: [discoveryHome, discoveryMenu, discoveryContact],
     } },
@@ -85,6 +86,8 @@ interface Piece {
     motion?     : Motion;
     // A still image, filling the thumbnail
     image?      : StaticImageData;
+    // A deck to open over the page, in place of a link
+    deck?       : string;
     ai          : boolean;
     // What an empty thumbnail says
     note?       : string;
@@ -99,10 +102,11 @@ const PIECES: Piece[] = [
         const { title, description, category, tags = [], Thumbnail } = project;
         return [{ key: href, group: category, title, description, tags, href, Thumbnail, bg, whole, art, motion, ai: false }];
     }),
-    ...AI_PROJECTS.map(({ title, description, tools, href, note, screens, cover }, i): Piece => ({
+    ...AI_PROJECTS.map(({ title, description, tools, href, note, screens, cover, deck }, i): Piece => ({
         key: `ai-${i}`, group: "AI", title, description, tags: tools, href, bg: "#F4F1EA", whole: false, art: 1, ai: true, note,
         motion: screens && { kind: "browser", screens },
         image: cover,
+        deck,
     })),
 ];
 
@@ -155,14 +159,14 @@ const Media = ({ piece: { Thumbnail, bg, whole, art, motion, image, ai, note }, 
 );
 
 // A card's title, line about it and tags
-const Words = ({ piece: { title, description, tags, href, ai } }: { piece: Piece }) => (
+const Words = ({ piece: { title, description, tags, href, deck, ai } }: { piece: Piece }) => (
     <span className="wcard__words">
         <span className="wcard__title">
             {title.slice(0, title.lastIndexOf(" ") + 1)}
             {/* The last word and the arrow (which slides in on hover) stay together */}
             <span className="wcard__last">
                 {title.slice(title.lastIndexOf(" ") + 1)}
-                {href && <svg className="wcard__go" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>}
+                {(href || deck) && <svg className="wcard__go" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>}
             </span>
         </span>
         <span className="wcard__description">{description}</span>
@@ -186,6 +190,8 @@ export const WorkSection = () => {
     const [group, setGroup] = useState<Group>(FILTERS[0].group);
     // The thumbnails in motion can all be paused
     const [paused, setPaused] = useState(false);
+    // The deck open over the page, if any
+    const [open, setOpen] = useState<Piece | null>(null);
     const sectionRef = useRef<HTMLDivElement>(null);
     const stepRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
@@ -281,7 +287,12 @@ export const WorkSection = () => {
 
                             return (
                                 <li key={piece.key} className={`wcard wcard--${piece.group.toLowerCase()}`} data-words={spot.words} style={style}>
-                                    {piece.href ? (
+                                    {piece.deck ? (
+                                        <button type="button" className="wcard__link" onClick={() => setOpen(piece)} aria-haspopup="dialog">
+                                            <Media piece={piece} paused={paused} offset={i * 900} />
+                                            <Words piece={piece} />
+                                        </button>
+                                    ) : piece.href ? (
                                         <Link href={piece.href} className="wcard__link">
                                             <Media piece={piece} paused={paused} offset={i * 900} />
                                             <Words piece={piece} />
@@ -298,6 +309,8 @@ export const WorkSection = () => {
                     </ul>
                 </div>
             </div>
+
+            <DeckDialog deck={open?.deck ?? null} title={open?.title ?? ""} onClose={() => setOpen(null)} />
         </div>
     );
 };
