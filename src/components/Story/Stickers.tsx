@@ -1,5 +1,5 @@
-// Stickers stuck about the story section: Claude, Figma (and, from the hero,
-// the pixel heart). Each gets a smooth white die-cut edge from StickerEdge.
+// Stickers stuck about the story section: Claude and Figma. Each gets a
+// smooth white die-cut edge from StickerEdge.
 
 // EXTERNAL DEPS ===============================================================
 import React from "react";

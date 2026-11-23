@@ -9,7 +9,6 @@ import { EDUCATION, PATH, PRACTICE, RESUME_URL, ROLES } from "@/data/about";
 import "./story.css";
 
 // INTERNAL DEPS ===============================================================
-import { PixelHeart } from "@/components/Hero/Illustrations";
 import { ClaudeSpark, FigmaMark, StickerEdge } from "./Stickers";
 
 // ASSETS ======================================================================
@@ -56,9 +55,7 @@ export const Story = () => (
 
                 <figure className="story__photo">
                     <span className="story__tape story__tape--left" aria-hidden="true" />
-                    <span className="story__tape story__tape--right" aria-hidden="true" />
                     <Image src={portrait} alt="Geetika, smiling, on a staircase with a carved wooden banister" sizes="200px" />
-                    <span className="story__sticker story__sticker--heart" aria-hidden="true"><PixelHeart /></span>
                 </figure>
 
                 <div className="story__education">
@@ -81,7 +78,7 @@ export const Story = () => (
                 </div>
 
                 <a className="story__resume" href={RESUME_URL} target="_blank" rel="noopener noreferrer" download>
-                    Download résumé <span aria-hidden="true">↓</span>
+                    Download résumé
                 </a>
             </div>
 
