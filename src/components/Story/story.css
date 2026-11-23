@@ -6,8 +6,18 @@
  * rounds heights to the grid.
  */
 .story {
+    --line: color-mix(in srgb, var(--color-text) 6%, transparent);
+
     position: relative;
     padding: 96px 0 120px;
+    /* The page's grid, but still while the content scrolls over it; the nav is
+       three blocks tall, so its lines still fall where the page's would */
+    background-color: var(--color-bg);
+    background-image:
+        linear-gradient(to right, var(--line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-attachment: fixed;
     /* Links to #journal (the nav's About me), and the snap, land clear of the nav */
     scroll-margin-top: var(--header-height);
     scroll-snap-align: start;
