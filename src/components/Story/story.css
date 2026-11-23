@@ -157,6 +157,13 @@
     border-radius: 50%;
 }
 
+/* A wordmark, not a badge (RBIH): in a white circle of the same size */
+.story__logo:not([data-round]) {
+    padding: 5px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+}
+
 .story__logo svg {
     width: 100%;
     height: 100%;
@@ -191,10 +198,11 @@
    blocks below the pinned left column's top (which sits a block under the
    nav), so the box (and the GitHub strip under it), the work line and the
    whole left column all fit on the screen */
+/* (StorySteps moves between them, reading this margin; no CSS snap, which
+   would pull a scroll leaving the section back to a stop) */
 .story__about,
 .story__work {
     scroll-margin-top: calc(var(--header-height) + 24px + 48px);
-    scroll-snap-align: start;
 }
 
 /* Room after the work line, so the left column stays pinned beside it rather
@@ -522,12 +530,6 @@
 }
 
 @media (max-width: 899px) {
-    /* One long column: no snapping */
-    .story__about,
-    .story__work {
-        scroll-snap-align: none;
-    }
-
     .story__work {
         margin-bottom: 72px;
     }

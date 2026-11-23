@@ -33,9 +33,9 @@ const logoProps = (Logo: Logo): SVGProps<SVGSVGElement> =>
     Logo === RBIHLogo ? {} : { viewBox: "0 0 51 51" };
 
 // Logos drawn in dark ink, which turn light in the dark theme
-const inked = (Logo: Logo) => Logo === NIDLogo || Logo === RBIHLogo;
+const inked = (Logo: Logo) => Logo === NIDLogo;
 
-// The square badges are trimmed to circles; RBIH's wordmark isn't a badge
+// The square badges are trimmed to circles; RBIH's wordmark sits in a white one
 const round = (Logo: Logo) => Logo !== RBIHLogo;
 
 // In the order they're listed in about.ts

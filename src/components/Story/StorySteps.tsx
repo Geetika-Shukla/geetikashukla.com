@@ -3,13 +3,19 @@
 // EXTERNAL DEPS ===============================================================
 import { useEffect } from "react";
 
+// How long one step takes, and how long a gesture's momentum is swallowed after
+const STEP = 650;
+const GESTURE_GAP = 140;
+
 /*
- * Two stops in the story section, the About box and then the work line, so it
- * scrolls in two steps. The page snaps to them on its own when a scroll ends
- * close to one; this finishes the step when a scroll comes to rest between
- * them: on from the box to the work line going down, back to the box going up
- * (or, arriving from above or below, to the nearer of the two). Not on narrow
- * screens, where it's one long column, nor for anyone who prefers less motion.
+ * The story section's right column moves in locked steps: the About box, then
+ * the work line. A wheel or trackpad gesture near or between them is taken
+ * over and moves exactly one step (its momentum swallowed, so it can't run on
+ * past); scrolling up from the box, or down from the work line, lets go into
+ * the page's normal scrolling. Anything else that comes to rest between the
+ * two (a scrollbar drag, the keyboard) is finished to the nearer stop. Not on
+ * narrow screens, where it's one long column, nor for anyone who prefers less
+ * motion.
  */
 export const StorySteps = () => {
     useEffect(() => {
@@ -20,46 +26,67 @@ export const StorySteps = () => {
 
         // Where the page sits at each stop (each lands its scroll-margin under the top)
         const stop = (box: HTMLElement) =>
-            box.getBoundingClientRect().top + window.scrollY - parseFloat(getComputedStyle(box).scrollMarginTop);
+            Math.round(box.getBoundingClientRect().top + window.scrollY - parseFloat(getComputedStyle(box).scrollMarginTop));
 
-        let last = window.scrollY;
-        let rest = window.scrollY;
-        let direction = 0;
-        let stepping = false;
-        let timer = 0;
+        let moving = false;
+        let lastWheel = 0;
+        let gestureUsed = false;
+        let settleTimer = 0;
 
-        const settle = () => {
-            // Our own step has just finished
-            if (stepping) {
-                stepping = false;
-                rest = window.scrollY;
-                return;
-            }
+        const go = (target: number) => {
+            moving = true;
+            window.scrollTo({ top: target, behavior: "smooth" });
+            window.setTimeout(() => {
+                moving = false;
+            }, STEP);
+        };
+
+        const onWheel = (event: WheelEvent) => {
+            const now = event.timeStamp;
+            const continuing = now - lastWheel < GESTURE_GAP;
+            lastWheel = now;
+            if (!continuing) gestureUsed = false;
+
             const [first, second] = [stop(about), stop(work)];
-            const y = window.scrollY;
-            if (y > first + 2 && y < second - 2) {
-                const target = direction > 0
-                    ? (rest < first - 2 ? first : second)
-                    : (rest > second + 2 ? second : first);
-                stepping = true;
-                window.scrollTo({ top: target, behavior: "smooth" });
+            const y = Math.round(window.scrollY);
+            const down = event.deltaY > 0;
+            const reach = window.innerHeight * 0.6;
+
+            // Mid-step, or the rest of a gesture that already moved a step: hold still
+            if (moving || gestureUsed) {
+                if (y > first - reach && y < second + reach) event.preventDefault();
                 return;
             }
-            rest = y;
+
+            let target: number | null = null;
+            if (down && y >= first - reach && y < first - 2) target = first;            // arriving from above
+            else if (down && y >= first - 2 && y < second - 2) target = second;         // the box → the work line
+            else if (!down && y > second + 2 && y <= second + reach) target = second;   // arriving from below
+            else if (!down && y > first + 2 && y <= second + 2) target = first;         // the work line → the box
+
+            if (target === null) return;
+            event.preventDefault();
+            gestureUsed = true;
+            go(target);
         };
 
+        // Anything that comes to rest between the stops otherwise: on to the nearer one
         const onScroll = () => {
-            const y = window.scrollY;
-            if (y !== last) direction = Math.sign(y - last);
-            last = y;
-            window.clearTimeout(timer);
-            timer = window.setTimeout(settle, 140);
+            window.clearTimeout(settleTimer);
+            settleTimer = window.setTimeout(() => {
+                if (moving) return;
+                const [first, second] = [stop(about), stop(work)];
+                const y = window.scrollY;
+                if (y > first + 2 && y < second - 2) go(y - first < second - y ? first : second);
+            }, 200);
         };
 
+        window.addEventListener("wheel", onWheel, { passive: false });
         window.addEventListener("scroll", onScroll, { passive: true });
         return () => {
+            window.removeEventListener("wheel", onWheel);
             window.removeEventListener("scroll", onScroll);
-            window.clearTimeout(timer);
+            window.clearTimeout(settleTimer);
         };
     }, []);
 
