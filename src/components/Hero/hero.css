@@ -11,7 +11,7 @@
     --p: 0;
     --q: calc(1 - var(--p));
     --paper: var(--color-bg);
-    --line: color-mix(in srgb, var(--color-text) 6%, transparent);
+    --line: color-mix(in srgb, var(--color-text) 5.2%, transparent);
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
     position: relative;

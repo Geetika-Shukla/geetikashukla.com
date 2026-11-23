@@ -11,7 +11,7 @@
     /* Two blocks above the board, its 26 rows at most, and one row of grid
        after; or a screen under the nav (in whole blocks), if that's less */
     --stage: min(calc(var(--block) * 29), round(down, calc(100svh - var(--header-height)), var(--block)));
-    --line: color-mix(in srgb, var(--color-text) 6%, transparent);
+    --line: color-mix(in srgb, var(--color-text) 5.2%, transparent);
 
     position: relative;
     /* The stage, plus a screen's scroll for each step after the first */

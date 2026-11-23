@@ -110,7 +110,7 @@ p {
    of blocks tall, and every box on it is sized and placed in blocks (heights
    rounded by GridSnap), so they all sit on its lines */
 .home {
-    --line: color-mix(in srgb, var(--color-text) 6%, transparent);
+    --line: color-mix(in srgb, var(--color-text) 5.2%, transparent);
 
     padding-bottom: 72px;
     background-image:

@@ -8,7 +8,7 @@
 
 /* The grid runs behind the whole page, footer included */
 .site:has(.interests) {
-    --line: color-mix(in srgb, var(--color-text) 6%, transparent);
+    --line: color-mix(in srgb, var(--color-text) 5.2%, transparent);
 
     background-image:
         linear-gradient(to right, var(--line) 1px, transparent 1px),
