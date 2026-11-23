@@ -13,7 +13,39 @@
     scroll-snap-align: start;
 }
 
+/* GLINTS =================================================================== */
+/* Now and then, a few grid squares glow faintly purple and fade (GridGlints) */
+.story__glints {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.story__glints span {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: color-mix(in srgb, #7A5AD6 22%, transparent);
+    opacity: 0;
+    animation: story-glint 4.5s ease-in-out both;
+}
+
+@keyframes story-glint {
+    25%,
+    65% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* The content over them */
 .story__grid {
+    position: relative;
+    z-index: 1;
     display: grid;
     grid-template-columns: calc(24px * 17) calc(24px * 33);
     column-gap: 24px;
@@ -284,12 +316,13 @@
     list-style: none;
 }
 
-.story__timeline::before {
+/* The line, drawn from each logo down to the next (so it stops at the last) */
+.story__timeline li:not(:last-child)::before {
     content: "";
     position: absolute;
-    top: 20px;
-    bottom: 20px;
-    left: 19px;
+    top: 14px;
+    bottom: -46px;
+    left: -45px;
     border-left: 2px solid color-mix(in srgb, var(--color-accent-2) 45%, transparent);
 }
 

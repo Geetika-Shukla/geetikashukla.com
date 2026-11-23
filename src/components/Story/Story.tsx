@@ -10,6 +10,7 @@ import "./story.css";
 
 // INTERNAL DEPS ===============================================================
 import { ClaudeSpark, FigmaMark, StickerEdge } from "./Stickers";
+import { GridGlints } from "./GridGlints";
 
 // ASSETS ======================================================================
 import portrait from "@/assets/images/me-portrait.jpg";
@@ -44,6 +45,8 @@ const WORK_LOGOS: Logo[] = [RBIHLogo, SetuLogo, AtherLogo, NSLogo];
 export const Story = () => (
     <section id="journal" className="story" aria-labelledby="story-title" data-snap>
         <StickerEdge />
+        {/* Squares of the grid glowing faintly purple, now and then */}
+        <GridGlints />
         <div className="story__grid">
             {/* LEFT: stays in view */}
             <div className="story__side">
