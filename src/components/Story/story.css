@@ -171,6 +171,13 @@
     margin-bottom: 72px;
 }
 
+/* The second snap: scrolling on from the box stops on the work line, the left
+   column still pinned beside it (its top level with the left column's) */
+.story__work {
+    scroll-margin-top: calc(var(--header-height) + 24px);
+    scroll-snap-align: start;
+}
+
 /* Always a student, in a box on the grid: plain paper, its top and left edges
    just inside, right and bottom just outside, so all four sit on grid lines */
 .story__about {
@@ -401,6 +408,12 @@
 }
 
 @media (max-width: 899px) {
+    /* One long column: no snapping */
+    .story,
+    .story__work {
+        scroll-snap-align: none;
+    }
+
     .story__about {
         padding: 32px 24px;
     }
