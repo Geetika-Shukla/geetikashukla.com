@@ -1,0 +1,538 @@
+/*
+ * The story so far, on the page's grid: 51 blocks across, set on the grid line
+ * nearest centred, in two columns. The left (17 blocks) stays in view; the
+ * right (33) scrolls past it. Cards are cut-outs of the grid (plain paper,
+ * outlined on the grid lines), spanning whole blocks; GridSnap rounds their
+ * heights.
+ */
+.story {
+    padding: 72px 0 96px;
+    /* Links to #journal (the nav's About me), and the snap, land clear of the nav */
+    scroll-margin-top: var(--header-height);
+    scroll-snap-align: start;
+}
+
+.story__grid {
+    display: grid;
+    grid-template-columns: calc(24px * 17) calc(24px * 33);
+    column-gap: 24px;
+    align-items: start;
+    margin-left: round(nearest, calc((100% - 24px * 51) / 2), 24px);
+}
+
+/* LEFT, staying in view a block under the nav */
+.story__side {
+    position: sticky;
+    top: calc(var(--header-height) + 24px);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Two blocks for the title, one for the line under it */
+.story__title {
+    height: 48px;
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 48px;
+}
+
+.story__lede {
+    height: 24px;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+/* RIGHT: cards in whole blocks, the ways of working two by two */
+.story__main {
+    display: grid;
+    grid-template-columns: repeat(33, 24px);
+    row-gap: 24px;
+}
+
+/* CARDS ==================================================================== */
+/* A cut-out: plain paper, its top and left edges just inside, right and bottom
+   just outside, so all four sit on grid lines */
+.story__card {
+    --edge: color-mix(in srgb, var(--color-text) 16%, transparent);
+
+    position: relative;
+    margin: 0;
+    padding: 24px;
+    background-color: var(--color-bg);
+    box-shadow: inset 1px 1px 0 var(--edge), 1px 1px 0 var(--edge);
+}
+
+.story__about,
+.story__route-card {
+    grid-column: 1 / -1;
+}
+
+.story__practice:nth-child(odd) {
+    grid-column: 1 / span 16;
+}
+
+.story__practice:nth-child(even) {
+    grid-column: 18 / span 16;
+}
+
+.story__label {
+    margin: 0 0 12px;
+    color: var(--color-accent-2);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.story__hand {
+    font-family: var(--font-hand), cursive;
+}
+
+/* HELLO ==================================================================== */
+.story__photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: 50% 30%;
+}
+
+.story__photo figcaption {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+    color: var(--color-text);
+    font-size: 0.85rem;
+    line-height: 1.35;
+}
+
+.story__photo figcaption .story__hand {
+    color: var(--color-accent-2);
+    font-size: 1.15rem;
+}
+
+/* ALWAYS A STUDENT ========================================================= */
+.story__big {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.story__circled {
+    position: relative;
+    display: inline-block;
+}
+
+.story__circled svg {
+    position: absolute;
+    inset: -8px -12px -6px -10px;
+    width: calc(100% + 22px);
+    height: calc(100% + 14px);
+    overflow: visible;
+    fill: none;
+    stroke: var(--color-accent-2);
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.story__circled svg path {
+    vector-effect: non-scaling-stroke;
+}
+
+.story__aside {
+    display: inline-block;
+    margin-left: 16px;
+    color: var(--color-accent-2);
+    font-size: 1.3rem;
+    font-weight: 500;
+    transform: rotate(-4deg);
+}
+
+.story__intro {
+    margin: 12px 0 24px;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+/* The path, across: each step with its question under it, an arrow between */
+.story__path {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.story__path li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.story__path li + li::before {
+    content: "→";
+    position: absolute;
+    top: -2px;
+    left: -16px;
+    color: var(--color-accent-2);
+    font-family: var(--font-hand), cursive;
+    font-size: 1.3rem;
+    line-height: 1;
+}
+
+.story__path strong {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+}
+
+.story__path .story__hand {
+    color: var(--color-text-muted);
+    font-size: 1.2rem;
+    line-height: 1.1;
+}
+
+/* THE ROUTE ================================================================ */
+/* 26 blocks tall; the road and the stops placed in % of it */
+.story__route {
+    position: relative;
+    height: calc(24px * 26);
+}
+
+.story__line {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--color-accent-2);
+    stroke-width: 2;
+    stroke-dasharray: 6 7;
+    stroke-linecap: round;
+}
+
+.story__line path {
+    vector-effect: non-scaling-stroke;
+}
+
+.story__stops {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.story__stop {
+    --marker: 44px;
+
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.story__badge {
+    position: absolute;
+    top: calc(var(--marker) / -2);
+    left: calc(var(--marker) / -2);
+    display: grid;
+    place-items: center;
+    width: var(--marker);
+    height: var(--marker);
+    padding: 5px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 2px var(--color-accent-2);
+}
+
+.story__badge svg {
+    width: 100%;
+    height: 100%;
+}
+
+.story__stop-text {
+    position: absolute;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    transform: translateX(-50%);
+}
+
+.story__stop[data-text="above"] .story__stop-text {
+    bottom: calc(var(--marker) / 2 + 10px);
+}
+
+.story__stop[data-text="below"] .story__stop-text {
+    top: calc(var(--marker) / 2 + 10px);
+}
+
+.story__stop[data-align="start"] .story__stop-text {
+    align-items: flex-start;
+    text-align: left;
+    transform: translateX(calc(var(--marker) / -2));
+}
+
+.story__stop[data-align="end"] .story__stop-text {
+    align-items: flex-end;
+    text-align: right;
+    transform: translateX(calc(-100% + var(--marker) / 2));
+}
+
+.story__stop strong {
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+}
+
+.story__years {
+    color: var(--color-accent-2);
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+.story__place {
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+}
+
+.story__shift {
+    margin-top: 4px;
+    color: var(--color-text);
+    font-size: 1.1rem;
+    line-height: 1.1;
+}
+
+/* IN PRACTICE ============================================================== */
+/* Sticky notes, square to the grid, each in its own colour with a strip of tape */
+.story__practice {
+    --note: #F7E08A;
+    --tape: #7FB7B2;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: var(--note);
+    box-shadow: none;
+}
+
+.story__practice:nth-child(4n + 4) { --note: #F6CFC9; --tape: #E3B94C; }
+.story__practice:nth-child(4n + 5) { --note: #CFE7D9; --tape: #C9683E; }
+.story__practice:nth-child(4n + 6) { --note: #D3E1F2; --tape: #E3B94C; }
+
+/* The notes are paper in either theme: their ink stays dark */
+.story__practice {
+    --color-text: #1C1C1E;
+    --color-text-muted: #4A4C52;
+}
+
+.story__tape {
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    width: 64px;
+    height: 18px;
+    background-color: color-mix(in srgb, var(--tape) 55%, transparent);
+    background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.35) 0 4px, transparent 4px 9px);
+    transform: translateX(-50%) rotate(-3deg);
+}
+
+.story__number {
+    color: var(--color-accent-2);
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.story__practice-title {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.story__practice p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+/* GITHUB =================================================================== */
+/* Small, at the foot of the left column */
+.story__github {
+    padding: 16px 24px;
+}
+
+.story__github .story__label {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.story__card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.story__count {
+    color: #2F7A4A;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.story__months {
+    display: grid;
+    margin-bottom: 4px;
+    color: var(--color-text-muted);
+    font-size: 0.68rem;
+}
+
+.story__days {
+    display: grid;
+    grid-template-rows: repeat(7, auto);
+    grid-auto-flow: column;
+    gap: 2px;
+}
+
+.story__days > span {
+    aspect-ratio: 1;
+    border-radius: 1px;
+}
+
+.story__days [data-level] {
+    background-color: color-mix(in srgb, var(--color-text) 8%, transparent);
+}
+
+.story__days [data-level="1"] { background-color: #A8DDA0; }
+.story__days [data-level="2"] { background-color: #5DBB6E; }
+.story__days [data-level="3"] { background-color: #2F9A55; }
+.story__days [data-level="4"] { background-color: #1D6B3A; }
+
+/* RÉSUMÉ =================================================================== */
+/* A card that's a link: two blocks tall */
+.story__resume {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+    padding: 0 24px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.story__resume:hover,
+.story__resume:focus-visible {
+    color: var(--color-accent-2);
+}
+
+/* NARROWER SCREENS ========================================================= */
+/* Not room for 51 blocks: the same columns, fluid, then one after the other */
+@media (max-width: 1259px) {
+    .story {
+        padding: 56px var(--section-margin) 72px;
+    }
+
+    .story__grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+        column-gap: 32px;
+        margin-left: 0;
+    }
+
+    .story__main {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+    }
+
+    .story__practice:nth-child(odd) { grid-column: 1; }
+    .story__practice:nth-child(even) { grid-column: 2; }
+}
+
+@media (max-width: 899px) {
+    .story__grid {
+        grid-template-columns: 1fr;
+        row-gap: 24px;
+    }
+
+    .story__side {
+        position: static;
+    }
+
+    .story__main {
+        grid-template-columns: 1fr;
+    }
+
+    .story__practice:nth-child(n) {
+        grid-column: 1;
+    }
+
+    .story__photo img {
+        max-width: 240px;
+    }
+
+    /* The route as a list down the card */
+    .story__route {
+        height: auto;
+    }
+
+    .story__line {
+        display: none;
+    }
+
+    .story__stops {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+    }
+
+    .story__stop {
+        position: static;
+        display: flex;
+        gap: 14px;
+        width: auto;
+        height: auto;
+    }
+
+    .story__badge {
+        position: static;
+        flex-shrink: 0;
+    }
+
+    .story__stop-text,
+    .story__stop[data-text] .story__stop-text {
+        position: static;
+        align-items: flex-start;
+        text-align: left;
+        white-space: normal;
+        transform: none;
+    }
+
+    .story__path {
+        grid-template-columns: 1fr;
+    }
+
+    .story__path li + li::before {
+        content: none;
+    }
+}
