@@ -117,17 +117,17 @@
     font-size: 1rem;
 }
 
-/* The résumé: a button, two blocks tall */
+/* The résumé: a small button */
 .story__resume {
     display: inline-flex;
     align-items: center;
     align-self: flex-start;
-    height: 48px;
-    padding: 0 24px;
+    height: 36px;
+    padding: 0 16px;
     border-radius: var(--radius-small);
     background-color: var(--color-text);
     color: var(--color-bg);
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 600;
     text-decoration: none;
     transition: background-color 0.2s ease;
