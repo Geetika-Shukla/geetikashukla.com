@@ -210,7 +210,7 @@
 
     /* Two dots down, so it starts level with the photo rather than the heading */
     margin-top: 48px;
-    padding: 48px;
+    padding: 40px 48px;
     background-color: var(--color-bg);
     box-shadow: inset 1px 1px 0 var(--edge), 1px 1px 0 var(--edge);
 }
@@ -256,7 +256,7 @@
 }
 
 .story__intro {
-    margin: 16px 0 40px;
+    margin: 16px 0 24px;
     color: var(--color-text-muted);
     font-size: 0.95rem;
 }
@@ -276,17 +276,18 @@
     flex-wrap: wrap;
     align-items: baseline;
     gap: 4px 12px;
-    padding-top: 32px;
+    padding-top: 52px;
 }
 
 .story__path li:first-child {
     padding-top: 0;
 }
 
+/* Centred in the gap above its step */
 .story__path li + li::before {
     content: "↓";
     position: absolute;
-    top: 4px;
+    top: 16px;
     left: 6px;
     color: var(--color-accent-2);
     font-family: var(--font-hand), cursive;
@@ -315,7 +316,7 @@
 
     position: relative;
     width: min(100%, 440px);
-    margin: 40px -12px -96px auto;
+    margin: 16px -12px -96px auto;
     transform: rotate(-1.5deg);
 }
 
