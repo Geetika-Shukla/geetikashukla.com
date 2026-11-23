@@ -13,9 +13,9 @@
     scroll-snap-align: start;
 }
 
-/* CURRENTS ================================================================= */
-/* Now and then, a faint purple current runs along a grid line (GridCurrents):
-   a short streak, bright at its head, travelling the line's length (--run) */
+/* HIGHLIGHTS ON THE GRID =================================================== */
+/* Now and then, stretches of the grid's lines light up faint purple
+   (GridCurrents): each appears, stays a while, and fades slowly, in place */
 .story__currents {
     position: absolute;
     inset: 0;
@@ -24,68 +24,35 @@
 }
 
 .story__currents span {
-    --length: 160px;
     --glow: #7A5AD6;
 
     position: absolute;
+    background-color: color-mix(in srgb, var(--glow) 75%, transparent);
+    box-shadow: 0 0 6px color-mix(in srgb, var(--glow) 40%, transparent);
     opacity: 0;
-    animation: story-current 2.6s cubic-bezier(0.45, 0, 0.55, 1) both;
+    animation: story-highlight 7s ease-in-out both;
 }
 
-/* Across a horizontal line: 1px tall, sitting on the line */
+/* On the line: 1px across it, its length along it */
 .story__currents [data-along="across"] {
-    left: 0;
     width: var(--length);
     height: 1px;
-    background: linear-gradient(to right, transparent, color-mix(in srgb, var(--glow) 70%, transparent) 75%, var(--glow));
-    box-shadow: 0 0 6px color-mix(in srgb, var(--glow) 45%, transparent);
 }
 
-/* Down a vertical line: 1px wide, sitting on the line */
 .story__currents [data-along="down"] {
-    top: 0;
     width: 1px;
     height: var(--length);
-    background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--glow) 70%, transparent) 75%, var(--glow));
-    box-shadow: 0 0 6px color-mix(in srgb, var(--glow) 45%, transparent);
 }
 
-@keyframes story-current {
-    0% {
-        opacity: 0;
-        transform: translate(calc(var(--length) * -1), 0);
-    }
-
-    10%,
-    85% {
+/* In over a second, held, then out slowly */
+@keyframes story-highlight {
+    15%,
+    45% {
         opacity: 1;
     }
 
     100% {
         opacity: 0;
-        transform: translate(var(--run), 0);
-    }
-}
-
-/* Down a line, the same run vertically */
-.story__currents [data-along="down"] {
-    animation-name: story-current-down;
-}
-
-@keyframes story-current-down {
-    0% {
-        opacity: 0;
-        transform: translate(0, calc(var(--length) * -1));
-    }
-
-    10%,
-    85% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-        transform: translate(0, var(--run));
     }
 }
 
