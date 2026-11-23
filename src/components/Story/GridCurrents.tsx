@@ -33,8 +33,9 @@ export const GridCurrents = () => {
         let every = 0;
 
         const play = () => {
-            const cols = Math.floor(section.clientWidth / BLOCK);
-            const rows = Math.floor(section.clientHeight / BLOCK);
+            // On the screen's grid (the section's grid stays still, fixed to the screen)
+            const cols = Math.floor(window.innerWidth / BLOCK);
+            const rows = Math.floor(window.innerHeight / BLOCK);
             const round = Date.now();
             setCurrents(Array.from({ length: COUNT }, (_, i): Current => {
                 const along = Math.random() < 0.6 ? "across" : "down";

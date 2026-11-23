@@ -18,6 +18,8 @@
         linear-gradient(to bottom, var(--line) 1px, transparent 1px);
     background-size: 24px 24px;
     background-attachment: fixed;
+    /* Keeps the highlights (fixed to the screen, like the grid) inside the section */
+    clip-path: inset(0);
     /* Links to #journal (the nav's About me), and the snap, land clear of the nav */
     scroll-margin-top: var(--header-height);
     scroll-snap-align: start;
@@ -26,10 +28,10 @@
 /* HIGHLIGHTS ON THE GRID =================================================== */
 /* Now and then, stretches of the grid's lines light up faint purple
    (GridCurrents): each appears, stays a while, and fades slowly, in place */
+/* Fixed to the screen, like the section's grid, so they stay on its lines */
 .story__currents {
-    position: absolute;
+    position: fixed;
     inset: 0;
-    overflow: hidden;
     pointer-events: none;
 }
 
