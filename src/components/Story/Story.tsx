@@ -11,6 +11,7 @@ import "./story.css";
 // INTERNAL DEPS ===============================================================
 import { ClaudeSpark, FigmaMark, StickerEdge } from "./Stickers";
 import { GridCurrents } from "./GridCurrents";
+import { GithubSnap } from "./GithubSnap";
 
 // ASSETS ======================================================================
 import portrait from "@/assets/images/me-portrait.jpg";
@@ -103,6 +104,8 @@ export const Story = () => (
                             </li>
                         ))}
                     </ol>
+                    {/* A year on GitHub, taped to the box's bottom edge */}
+                    <GithubSnap />
                 </div>
 
                 {/* Work experience: a line from now back, a logo on it for each role */}
