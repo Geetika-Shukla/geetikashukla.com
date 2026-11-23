@@ -6,7 +6,7 @@
  * rounds heights to the grid.
  */
 .story {
-    --line: color-mix(in srgb, var(--color-text) 6%, transparent);
+    --line: color-mix(in srgb, var(--color-text) 5.2%, transparent);
 
     position: relative;
     padding: 96px 0 120px;
@@ -181,12 +181,13 @@
     margin-bottom: 144px;
 }
 
-/* Two stops: first the About box, then the work line, each level with the
-   pinned left column's top, so the box (and the GitHub strip under it), the
-   work line and the whole left column all fit on the screen */
+/* Two stops: first the About box, then the work line, each landing two grid
+   blocks below the pinned left column's top (which sits a block under the
+   nav), so the box (and the GitHub strip under it), the work line and the
+   whole left column all fit on the screen */
 .story__about,
 .story__work {
-    scroll-margin-top: calc(var(--header-height) + 24px);
+    scroll-margin-top: calc(var(--header-height) + 24px + 48px);
     scroll-snap-align: start;
 }
 
