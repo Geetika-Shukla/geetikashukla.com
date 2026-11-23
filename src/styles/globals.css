@@ -106,17 +106,17 @@ p {
     }
 }
 
-/* The home page's grid runs on to the footer. Every section is a whole number
+/* The home page's grid runs on to the footer, drawn by GridCanvas behind the
+   page (so it can liquify under the cursor). Every section is a whole number
    of blocks tall, and every box on it is sized and placed in blocks (heights
    rounded by GridSnap), so they all sit on its lines */
 .home {
-    --line: color-mix(in srgb, var(--color-text) 5.2%, transparent);
-
     padding-bottom: 72px;
-    background-image:
-        linear-gradient(to right, var(--line) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--line) 1px, transparent 1px);
-    background-size: 24px 24px;
+}
+
+/* Nothing on the home page paints over the grid behind it but the cut-outs */
+.site:has(.home) {
+    background-color: transparent;
 }
 
 .site:has(.home) .site-footer {

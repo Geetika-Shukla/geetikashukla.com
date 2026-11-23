@@ -4,6 +4,7 @@ import { WorkSection } from "@/components/WorkSection/WorkSection";
 import { Story } from "@/components/Story/Story";
 import { Testimonials } from "@/components/Testimonials/Testimonials";
 import { GridSnap } from "@/components/GridSnap/GridSnap";
+import { GridCanvas } from "@/components/GridCanvas/GridCanvas";
 
 
 // The home page: a board of things around the intro, then the work (on the
@@ -12,6 +13,7 @@ import { GridSnap } from "@/components/GridSnap/GridSnap";
 export default function Home() {
     return (
         <article className="home">
+            <GridCanvas />
             <Hero />
 
             <section id="work" aria-labelledby="work-title">

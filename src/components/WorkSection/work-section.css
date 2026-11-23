@@ -11,7 +11,6 @@
     /* Two blocks above the board, its 26 rows at most, and one row of grid
        after; or a screen under the nav (in whole blocks), if that's less */
     --stage: min(calc(var(--block) * 29), round(down, calc(100svh - var(--header-height)), var(--block)));
-    --line: color-mix(in srgb, var(--color-text) 5.2%, transparent);
 
     position: relative;
     /* The stage, plus a screen's scroll for each step after the first */
@@ -39,11 +38,7 @@ html:has(.work__step) {
     height: var(--stage);
     overflow: clip;
     padding-top: calc(var(--block) * 2);
-    background-color: var(--color-bg);
-    background-image:
-        linear-gradient(to right, var(--line) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--line) 1px, transparent 1px);
-    background-size: var(--block) var(--block);
+    /* The grid behind it is drawn by GridCanvas (carried with the stage) */
 }
 
 /* The side column (8 blocks) and the board (42), a block apart, set on a grid

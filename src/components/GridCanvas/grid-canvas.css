@@ -1,0 +1,9 @@
+/* The home page's grid, on a canvas fixed behind everything (GridCanvas.tsx) */
+.grid-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
