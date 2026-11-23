@@ -6,6 +6,16 @@
  * cards), from a grid line, their heights rounded to the grid by GridSnap.
  */
 .testimonials {
+    --line: color-mix(in srgb, var(--color-text) 6%, transparent);
+
+    /* The page's grid, but still while the cards scroll over it; the nav is
+       three blocks tall, so its lines still fall where the page's would */
+    background-color: var(--color-bg);
+    background-image:
+        linear-gradient(to right, var(--line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-attachment: fixed;
     display: grid;
     grid-template-columns: calc(24px * 17) calc(24px * 33);
     gap: 24px;
