@@ -74,9 +74,9 @@ const ITEMS: Item[] = [
 // A line set across the grid, a phrase to a pair of cells, read left to right,
 // top to bottom
 const PHRASES: { text: string; at: [number, number] }[] = [
-    { text: "From buildings to brands,", at: [57, 38] },
-    { text: "exhibitions to products,", at: [29, 58] },
-    { text: "and whatever comes next…", at: [71, 78] },
+    { text: "From buildings to brands,", at: [29, 18] },
+    { text: "exhibitions to products,", at: [57, 38] },
+    { text: "and whatever comes next…", at: [43, 78] },
 ];
 
 type Offsets = Record<string, { x: number; y: number }>;
