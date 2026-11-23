@@ -35,7 +35,7 @@ const COLLEGE_LOGOS: Logo[] = [NIDLogo, FOALogo];
 const WORK_LOGOS: Logo[] = [RBIHLogo, SetuLogo, AtherLogo, NSLogo];
 
 /*
- * The story so far, a little unserious, on a dot grid, in two columns, after
+ * The story so far, a little unserious, on the page's grid, in two columns, after
  * the original About page: on the left, staying in view, the heading, a small
  * photo taped on, education and the résumé; on the right, scrolling past it,
  * the path so far (each step with the question it asked) and work experience

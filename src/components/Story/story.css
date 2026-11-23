@@ -1,22 +1,13 @@
 /*
- * The story so far, a little unserious but kept simple: a dot grid (a dot where
- * each pair of grid lines would cross), 51 blocks across, set on the grid line
- * nearest centred, in two columns. The left (17 blocks) stays in view; the
- * right (33) scrolls past it. Nothing boxed: just type on the dots, a photo
- * taped on, a few stickers. GridSnap rounds heights to the grid.
+ * The story so far, a little unserious but kept simple, on the page's grid:
+ * 51 blocks across, set on the grid line nearest centred, in two columns. The
+ * left (17 blocks) stays in view; the right (33) scrolls past it. Type on the
+ * grid, the About box with stickers on its edge, a photo taped on. GridSnap
+ * rounds heights to the grid.
  */
 .story {
-    --dot: color-mix(in srgb, var(--color-text) 22%, transparent);
-
     position: relative;
     padding: 96px 0 120px;
-    background-color: var(--color-bg);
-    background-image: radial-gradient(circle, var(--dot) 1px, transparent 1.4px);
-    background-size: 24px 24px;
-    /* Still while the content scrolls over it; the nav is three blocks tall, so
-       the dots still sit where the page's grid lines cross */
-    background-position: -12px -12px;
-    background-attachment: fixed;
     /* Links to #journal (the nav's About me), and the snap, land clear of the nav */
     scroll-margin-top: var(--header-height);
     scroll-snap-align: start;
