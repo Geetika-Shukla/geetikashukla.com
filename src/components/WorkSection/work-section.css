@@ -160,6 +160,47 @@ html:has(.work__step) {
     text-align: left;
 }
 
+/* The preview whose turn it is: a line drawing itself round the cut-out's
+   outline over its play-through (--play), gone when the next one's begins */
+.wcard__progress {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.wcard__progress rect {
+    x: 0.5px;
+    y: 0.5px;
+    width: calc(100% - 1px);
+    height: calc(100% - 1px);
+    fill: none;
+    stroke: var(--color-accent-2);
+    stroke-width: 1.5;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: wcard-progress var(--play) linear forwards;
+}
+
+.wcard__progress[data-paused] rect {
+    animation-play-state: paused;
+}
+
+@keyframes wcard-progress {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wcard__progress {
+        display: none;
+    }
+}
+
 /* Each kind of work has its own tint; pieces settle in when the kind changes */
 .wcard {
     --tint: #ECEAE4;

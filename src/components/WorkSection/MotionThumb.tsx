@@ -18,15 +18,19 @@ export interface Motion {
 }
 
 const HOLD = 4200;
+// Phone screens glide on with no end; a turn of theirs lasts this long
+const GLIDE_TURN = 10000;
+
+// How long one play-through of a thumbnail lasts (ms)
+export const playLength = ({ kind, screens }: Motion) => (kind === "browser" ? screens.length * HOLD : GLIDE_TURN);
 
 /*
  * A thumbnail in motion, like a screen recording. Each screen fills the
  * thumbnail and drifts (a long page scrolls, a wide one pans) before the next
  * slides in; phone screens glide past in a loop. It holds still when paused,
- * and for anyone who prefers less motion. `offset` staggers the start, so a
- * set of them doesn't move in step.
+ * and for anyone who prefers less motion.
  */
-export const MotionThumb = ({ motion: { kind, screens }, paused, offset = 0 }: { motion: Motion; paused: boolean; offset?: number }) => {
+export const MotionThumb = ({ motion: { kind, screens }, paused }: { motion: Motion; paused: boolean }) => {
     const [active, setActive] = useState(0);
 
     useEffect(() => {
@@ -35,12 +39,12 @@ export const MotionThumb = ({ motion: { kind, screens }, paused, offset = 0 }: {
         const start = window.setTimeout(() => {
             setActive((current) => (current + 1) % screens.length);
             interval = window.setInterval(() => setActive((current) => (current + 1) % screens.length), HOLD);
-        }, HOLD + offset);
+        }, HOLD);
         return () => {
             window.clearTimeout(start);
             window.clearInterval(interval);
         };
-    }, [kind, paused, offset, screens.length]);
+    }, [kind, paused, screens.length]);
 
     const style = { "--hold": `${HOLD}ms` } as CSSProperties;
 

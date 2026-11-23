@@ -9,7 +9,7 @@ import { timeline } from "@/data/projects";
 import { AI_PROJECTS } from "@/data/ai-projects";
 
 // INTERNAL DEPS ===============================================================
-import { MotionThumb } from "./MotionThumb";
+import { MotionThumb, playLength } from "./MotionThumb";
 import { DeckDialog } from "./DeckDialog";
 import Image from "next/image";
 
@@ -148,10 +148,11 @@ const cut = ({ w, h, words }: Spot) => words === "under"
 
 // A card's thumbnail panel: screens in motion, the thumbnail, or a placeholder
 // until a project has its image
-const Media = ({ piece: { Thumbnail, bg, whole, art, motion, image, ai, note }, paused, offset }: { piece: Piece; paused: boolean; offset: number }) => (
+const Media = ({ piece: { Thumbnail, bg, whole, art, motion, image, ai, note }, paused, turn }: { piece: Piece; paused: boolean; turn: number }) => (
     <span className="wcard__media" style={{ "--art": art, "--bg": bg } as CSSProperties} data-empty={(!Thumbnail && !motion && !image) || undefined}>
         {motion
-            ? <MotionThumb motion={motion} paused={paused} offset={offset} />
+            // A fresh start (from its first screen) each turn it plays
+            ? <MotionThumb key={turn} motion={motion} paused={paused} />
             : image
             ? <Image src={image} alt="" className="wcard__image" sizes="360px" />
             : Thumbnail
@@ -192,6 +193,9 @@ export const WorkSection = () => {
     const [group, setGroup] = useState<Group>(FILTERS[0].group);
     // The thumbnails in motion can all be paused
     const [paused, setPaused] = useState(false);
+    // They play one at a time: which (of this kind's moving ones) has its turn, and
+    // a count of turns, so each starts afresh
+    const [turns, setTurns] = useState({ group: FILTERS[0].group as Group, index: 0, turn: 0 });
     // The deck open over the page, if any
     const [open, setOpen] = useState<Piece | null>(null);
     const sectionRef = useRef<HTMLDivElement>(null);
@@ -224,51 +228,6 @@ export const WorkSection = () => {
         };
     }, []);
 
-    // A key (the arrows, Page Up and Down, the space bar) moves one step at a time
-    // while the stage is pinned; past the first or last, the page scrolls on
-    useEffect(() => {
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        let moving = 0;
-
-        const onKey = (event: KeyboardEvent) => {
-            if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey) return;
-            const field = event.target as HTMLElement | null;
-            if (field?.closest("input, textarea, select, [contenteditable='true']")) return;
-            if (event.key === " " && field?.closest("button, a, summary")) return;
-
-            const down = event.key === "ArrowDown" || event.key === "PageDown" || (event.key === " " && !event.shiftKey);
-            const up = event.key === "ArrowUp" || event.key === "PageUp" || (event.key === " " && event.shiftKey);
-            if (!down && !up) return;
-
-            // Only with the stepping on (wide screens) and the page within the steps
-            const steps = stepRefs.current.filter((step): step is HTMLSpanElement => step !== null && step.offsetParent !== null);
-            if (!steps.length) return;
-            const tops = steps.map((step) => Math.round(step.getBoundingClientRect().top + window.scrollY - parseFloat(getComputedStyle(step).scrollMarginTop)));
-            const y = Math.round(window.scrollY);
-            if (y < tops[0] - 2 || y > tops[tops.length - 1] + 2) return;
-
-            if (moving) {
-                event.preventDefault();
-                return;
-            }
-            // The step the page is at (or just past), then the next one in the key's direction
-            const at = tops.reduce((nearest, top, i) => (Math.abs(top - y) < Math.abs(tops[nearest] - y) ? i : nearest), 0);
-            const target = at + (down ? 1 : -1);
-            if (target < 0 || target >= tops.length) return;
-            event.preventDefault();
-            window.scrollTo({ top: tops[target], behavior: "smooth" });
-            moving = window.setTimeout(() => {
-                moving = 0;
-            }, 650);
-        };
-
-        window.addEventListener("keydown", onKey);
-        return () => {
-            window.removeEventListener("keydown", onKey);
-            window.clearTimeout(moving);
-        };
-    }, []);
-
     // A filter scrolls to its step (or, without the stepping, just switches)
     const choose = (index: number) => {
         const step = stepRefs.current[index];
@@ -279,6 +238,27 @@ export const WorkSection = () => {
     const shown = PIECES.filter((piece) => piece.group === group);
     const { rows, spots } = COMPOSITIONS[shown.length] ?? COMPOSITIONS[4];
     const moving = shown.some((piece) => piece.motion);
+
+    // Whose turn it is (back to the first when the kind of work changes)
+    const players = shown.filter((piece) => piece.motion);
+    const current = turns.group === group ? turns.index % Math.max(players.length, 1) : 0;
+    const turn = turns.group === group ? turns.turn : 0;
+    const playing = players[current];
+
+    // When a turn's play-through ends, the next one's begins
+    useEffect(() => {
+        if (paused || !playing?.motion || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const timer = window.setTimeout(() => {
+            setTurns({ group, index: (current + 1) % players.length, turn: turn + 1 });
+        }, playLength(playing.motion));
+        return () => window.clearTimeout(timer);
+    }, [paused, playing, group, current, turn, players.length]);
+
+    // Pausing holds the turn; playing again starts it afresh
+    const togglePaused = () => {
+        if (paused) setTurns({ group, index: current, turn: turn + 1 });
+        setPaused(!paused);
+    };
 
     return (
         <div ref={sectionRef} className="work" style={{ "--steps": FILTERS.length } as CSSProperties}>
@@ -314,7 +294,7 @@ export const WorkSection = () => {
                         </nav>
 
                         {moving && (
-                            <button type="button" className="work__pause" aria-pressed={paused} onClick={() => setPaused(!paused)}>
+                            <button type="button" className="work__pause" aria-pressed={paused} onClick={togglePaused}>
                                 <svg viewBox="0 0 16 16" aria-hidden="true">
                                     {paused ? <path d="M5 3.5v9l7-4.5z" /> : <path d="M5 3.5v9M11 3.5v9" />}
                                 </svg>
@@ -334,19 +314,31 @@ export const WorkSection = () => {
 
                             return (
                                 <li key={piece.key} className={`wcard wcard--${piece.group.toLowerCase()}`} data-words={spot.words} style={style}>
+                                    {/* Its turn: a line drawing itself round the outline as it plays */}
+                                    {piece === playing && piece.motion && (
+                                        <svg
+                                            key={turn}
+                                            className="wcard__progress"
+                                            data-paused={paused || undefined}
+                                            style={{ "--play": `${playLength(piece.motion)}ms` } as CSSProperties}
+                                            aria-hidden="true"
+                                        >
+                                            <rect pathLength="100" />
+                                        </svg>
+                                    )}
                                     {piece.deck ? (
                                         <button type="button" className="wcard__link" onClick={() => setOpen(piece)} aria-haspopup="dialog">
-                                            <Media piece={piece} paused={paused} offset={i * 900} />
+                                            <Media piece={piece} paused={paused || piece !== playing} turn={piece === playing ? turn : -1} />
                                             <Words piece={piece} />
                                         </button>
                                     ) : piece.href ? (
                                         <Link href={piece.href} className="wcard__link">
-                                            <Media piece={piece} paused={paused} offset={i * 900} />
+                                            <Media piece={piece} paused={paused || piece !== playing} turn={piece === playing ? turn : -1} />
                                             <Words piece={piece} />
                                         </Link>
                                     ) : (
                                         <div className="wcard__link">
-                                            <Media piece={piece} paused={paused} offset={i * 900} />
+                                            <Media piece={piece} paused={paused || piece !== playing} turn={piece === playing ? turn : -1} />
                                             <Words piece={piece} />
                                         </div>
                                     )}
