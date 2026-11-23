@@ -114,9 +114,14 @@ p {
     padding-bottom: 72px;
 }
 
-/* Nothing on the home page paints over the grid behind it but the cut-outs */
+/* Nothing on the home page paints over the grid behind it but the cut-outs,
+   and the footer (the socials), which stays plain */
 .site:has(.home) {
     background-color: transparent;
+}
+
+.site:has(.home) .site-footer {
+    background-color: var(--color-bg);
 }
 
 .site:has(.home) .site-footer {
