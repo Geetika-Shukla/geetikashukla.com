@@ -13,32 +13,79 @@
     scroll-snap-align: start;
 }
 
-/* GLINTS =================================================================== */
-/* Now and then, a few grid squares glow faintly purple and fade (GridGlints) */
-.story__glints {
+/* CURRENTS ================================================================= */
+/* Now and then, a faint purple current runs along a grid line (GridCurrents):
+   a short streak, bright at its head, travelling the line's length (--run) */
+.story__currents {
     position: absolute;
     inset: 0;
     overflow: hidden;
     pointer-events: none;
 }
 
-.story__glints span {
+.story__currents span {
+    --length: 160px;
+    --glow: #7A5AD6;
+
     position: absolute;
-    width: 24px;
-    height: 24px;
-    background-color: color-mix(in srgb, #7A5AD6 22%, transparent);
     opacity: 0;
-    animation: story-glint 4.5s ease-in-out both;
+    animation: story-current 2.6s cubic-bezier(0.45, 0, 0.55, 1) both;
 }
 
-@keyframes story-glint {
-    25%,
-    65% {
+/* Across a horizontal line: 1px tall, sitting on the line */
+.story__currents [data-along="across"] {
+    left: 0;
+    width: var(--length);
+    height: 1px;
+    background: linear-gradient(to right, transparent, color-mix(in srgb, var(--glow) 70%, transparent) 75%, var(--glow));
+    box-shadow: 0 0 6px color-mix(in srgb, var(--glow) 45%, transparent);
+}
+
+/* Down a vertical line: 1px wide, sitting on the line */
+.story__currents [data-along="down"] {
+    top: 0;
+    width: 1px;
+    height: var(--length);
+    background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--glow) 70%, transparent) 75%, var(--glow));
+    box-shadow: 0 0 6px color-mix(in srgb, var(--glow) 45%, transparent);
+}
+
+@keyframes story-current {
+    0% {
+        opacity: 0;
+        transform: translate(calc(var(--length) * -1), 0);
+    }
+
+    10%,
+    85% {
         opacity: 1;
     }
 
     100% {
         opacity: 0;
+        transform: translate(var(--run), 0);
+    }
+}
+
+/* Down a line, the same run vertically */
+.story__currents [data-along="down"] {
+    animation-name: story-current-down;
+}
+
+@keyframes story-current-down {
+    0% {
+        opacity: 0;
+        transform: translate(0, calc(var(--length) * -1));
+    }
+
+    10%,
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(0, var(--run));
     }
 }
 
