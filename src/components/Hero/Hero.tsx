@@ -76,7 +76,7 @@ const ITEMS: Item[] = [
 const PHRASES: { text: string; at: [number, number] }[] = [
     { text: "From buildings to brands,", at: [29, 18] },
     { text: "exhibitions to products,", at: [57, 38] },
-    { text: "and whatever comes next…", at: [43, 78] },
+    { text: "and whatever comes next…", at: [71, 78] },
 ];
 
 type Offsets = Record<string, { x: number; y: number }>;
