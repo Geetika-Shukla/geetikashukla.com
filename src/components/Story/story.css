@@ -176,6 +176,8 @@
 .story__about {
     --edge: color-mix(in srgb, var(--color-text) 16%, transparent);
 
+    /* Two dots down, so it starts level with the photo rather than the heading */
+    margin-top: 48px;
     padding: 48px;
     background-color: var(--color-bg);
     box-shadow: inset 1px 1px 0 var(--edge), 1px 1px 0 var(--edge);
