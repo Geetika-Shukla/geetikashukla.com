@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 
 // DATA ========================================================================
-import { EDUCATION, PATH, PRACTICE, RESUME_URL, ROLES } from "@/data/about";
+import { EDUCATION, PATH, RESUME_URL, ROLES } from "@/data/about";
 
 // STYLES ======================================================================
 import "./story.css";
@@ -38,9 +38,8 @@ const WORK_LOGOS: Logo[] = [RBIHLogo, SetuLogo, AtherLogo, NSLogo];
  * The story so far, a little unserious, on a dot grid, in two columns, after
  * the original About page: on the left, staying in view, the heading, a small
  * photo taped on, education and the résumé; on the right, scrolling past it,
- * the path so far (each step with the question it asked), work experience as
- * a line from now back, and the ways of working as sticky notes. A few
- * stickers are stuck about. Blocks are whole grid blocks.
+ * the path so far (each step with the question it asked) and work experience
+ * as a line from now back. A few stickers are stuck about. Blocks are whole grid blocks.
  */
 export const Story = () => (
     <section id="journal" className="story" aria-labelledby="story-title" data-snap>
@@ -121,16 +120,6 @@ export const Story = () => (
                         })}
                     </ol>
                 </div>
-
-                {/* The ways of working, as sticky notes two by two */}
-                {PRACTICE.map(({ title, text }, i) => (
-                    <div key={title} className="story__practice" data-snap>
-                        <span className="story__tape" aria-hidden="true" />
-                        <span className="story__number story__hand">{i + 1}</span>
-                        <h3 className="story__practice-title">{title}</h3>
-                        <p>{text}</p>
-                    </div>
-                ))}
             </div>
         </div>
     </section>

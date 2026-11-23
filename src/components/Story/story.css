@@ -3,7 +3,7 @@
  * each pair of grid lines would cross), 51 blocks across, set on the grid line
  * nearest centred, in two columns. The left (17 blocks) stays in view; the
  * right (33) scrolls past it. Nothing boxed: just type on the dots, a photo
- * taped on, sticky notes, a few stickers. GridSnap rounds heights to the grid.
+ * taped on, a few stickers. GridSnap rounds heights to the grid.
  */
 .story {
     --dot: color-mix(in srgb, var(--color-text) 22%, transparent);
@@ -167,7 +167,7 @@
 }
 
 /* RIGHT ==================================================================== */
-/* About, then work, a full stop of space after each; the notes two by two */
+/* About, then work, a full stop of space after each */
 .story__main {
     display: grid;
     grid-template-columns: repeat(33, 24px);
@@ -319,58 +319,6 @@
     line-height: 1.5;
 }
 
-/* IN PRACTICE ============================================================== */
-/* Sticky notes, each in its own colour with a strip of tape, a little askew */
-.story__practice {
-    --note: #F7E08A;
-    --tape: #7FB7B2;
-    /* Paper in either theme: the ink stays dark */
-    --color-text: #1C1C1E;
-    --color-text-muted: #4A4C52;
-
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 28px;
-    background-color: var(--note);
-    box-shadow: 0 1px 2px rgba(43, 45, 56, 0.1), 0 6px 14px rgba(43, 45, 56, 0.06);
-    transform: rotate(var(--tilt, -0.6deg));
-}
-
-.story__practice:nth-child(odd) { grid-column: 1 / span 16; }
-
-/* Room between the two rows of notes */
-.story__practice:nth-child(n + 5) { margin-top: 16px; }
-.story__practice:nth-child(even) { grid-column: 18 / span 16; }
-
-.story__practice:nth-child(4n + 4) { --note: #F6CFC9; --tape: #E3B94C; --tilt: 0.8deg; }
-.story__practice:nth-child(4n + 5) { --note: #CFE7D9; --tape: #C9683E; --tilt: 0.5deg; }
-.story__practice:nth-child(4n + 6) { --note: #D3E1F2; --tape: #E3B94C; --tilt: -0.8deg; }
-
-.story__number {
-    color: var(--color-accent-2);
-    font-size: 1.6rem;
-    font-weight: 700;
-    line-height: 1;
-}
-
-.story__practice-title {
-    margin: 0;
-    color: var(--color-text);
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    font-weight: 700;
-    line-height: 1.25;
-}
-
-.story__practice p {
-    margin: 0;
-    color: var(--color-text-muted);
-    font-size: 0.88rem;
-    line-height: 1.5;
-}
-
 /* STICKERS AND TAPE ======================================================== */
 .story__defs {
     position: absolute;
@@ -423,12 +371,6 @@
     transform: rotate(-32deg);
 }
 
-.story__practice .story__tape {
-    top: -9px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-3deg);
-}
-
 /* NARROWER SCREENS ========================================================= */
 /* Not room for 51 blocks: the same columns, fluid, then one after the other */
 @media (max-width: 1259px) {
@@ -446,9 +388,6 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 24px;
     }
-
-    .story__practice:nth-child(odd) { grid-column: 1; }
-    .story__practice:nth-child(even) { grid-column: 2; }
 
     .story__path {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -468,10 +407,6 @@
 
     .story__main {
         grid-template-columns: 1fr;
-    }
-
-    .story__practice:nth-child(n) {
-        grid-column: 1;
     }
 
     .story__path {
