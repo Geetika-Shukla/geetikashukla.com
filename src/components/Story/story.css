@@ -229,11 +229,10 @@
     font-size: 0.95rem;
 }
 
-/* The path, across: each step with its question under it, an arrow between */
+/* The path, down: each step with its question beside it, an arrow down to the next */
 .story__path {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 24px;
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -242,15 +241,21 @@
 .story__path li {
     position: relative;
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    padding-top: 32px;
+}
+
+.story__path li:first-child {
+    padding-top: 0;
 }
 
 .story__path li + li::before {
-    content: "→";
+    content: "↓";
     position: absolute;
-    top: -2px;
-    left: -20px;
+    top: 4px;
+    left: 6px;
     color: var(--color-accent-2);
     font-family: var(--font-hand), cursive;
     font-size: 1.3rem;
@@ -258,13 +263,14 @@
 }
 
 .story__path strong {
+    flex-shrink: 0;
     font-family: var(--font-heading);
-    font-size: 1.05rem;
+    font-size: 1.1rem;
 }
 
 .story__path .story__hand {
     color: var(--color-text-muted);
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     line-height: 1.1;
 }
 
@@ -392,10 +398,6 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 24px;
     }
-
-    .story__path {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
 }
 
 @media (max-width: 899px) {
@@ -415,13 +417,5 @@
 
     .story__main {
         grid-template-columns: 1fr;
-    }
-
-    .story__path {
-        grid-template-columns: 1fr;
-    }
-
-    .story__path li + li::before {
-        content: none;
     }
 }
