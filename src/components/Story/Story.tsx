@@ -10,8 +10,8 @@ import "./story.css";
 
 // INTERNAL DEPS ===============================================================
 import { ClaudeSpark, FigmaMark, StickerEdge } from "./Stickers";
-import { GridCurrents } from "./GridCurrents";
 import { GithubSnap } from "./GithubSnap";
+import { StorySteps } from "./StorySteps";
 
 // ASSETS ======================================================================
 import portrait from "@/assets/images/me-portrait.jpg";
@@ -32,6 +32,9 @@ type Logo = ComponentType<SVGProps<SVGSVGElement>>;
 const logoProps = (Logo: Logo): SVGProps<SVGSVGElement> =>
     Logo === RBIHLogo ? {} : { viewBox: "0 0 51 51" };
 
+// Logos drawn in dark ink, which turn light in the dark theme
+const inked = (Logo: Logo) => Logo === NIDLogo || Logo === RBIHLogo;
+
 // In the order they're listed in about.ts
 const COLLEGE_LOGOS: Logo[] = [NIDLogo, FOALogo];
 const WORK_LOGOS: Logo[] = [RBIHLogo, SetuLogo, AtherLogo, NSLogo];
@@ -46,8 +49,8 @@ const WORK_LOGOS: Logo[] = [RBIHLogo, SetuLogo, AtherLogo, NSLogo];
 export const Story = () => (
     <section id="journal" className="story" aria-labelledby="story-title" data-snap>
         <StickerEdge />
-        {/* A faint purple current along the grid's lines, now and then */}
-        <GridCurrents />
+        {/* Scrolls in two steps: the About box, then the work line */}
+        <StorySteps />
         <div className="story__grid">
             {/* LEFT: stays in view */}
             <div className="story__side">
@@ -67,7 +70,7 @@ export const Story = () => (
                             const Logo = COLLEGE_LOGOS[i];
                             return (
                                 <li key={degree}>
-                                    {Logo && <span className="story__logo" aria-hidden="true"><Logo {...logoProps(Logo)} /></span>}
+                                    {Logo && <span className="story__logo" data-inked={inked(Logo) || undefined} aria-hidden="true"><Logo {...logoProps(Logo)} /></span>}
                                     <span>
                                         <strong>{degree}</strong>
                                         <span>{field}</span>
@@ -116,7 +119,7 @@ export const Story = () => (
                             const Logo = WORK_LOGOS[i];
                             return (
                                 <li key={company}>
-                                    {Logo && <span className="story__logo" aria-hidden="true"><Logo {...logoProps(Logo)} /></span>}
+                                    {Logo && <span className="story__logo" data-inked={inked(Logo) || undefined} aria-hidden="true"><Logo {...logoProps(Logo)} /></span>}
                                     <strong>{title}</strong>
                                     <span className="story__muted">{company} · {dates}</span>
                                     {/* The main line about it */}

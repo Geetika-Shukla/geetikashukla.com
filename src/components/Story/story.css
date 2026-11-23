@@ -18,54 +18,8 @@
         linear-gradient(to bottom, var(--line) 1px, transparent 1px);
     background-size: 24px 24px;
     background-attachment: fixed;
-    /* Keeps the highlights (fixed to the screen, like the grid) inside the section */
-    clip-path: inset(0);
-    /* Links to #journal (the nav's About me), and the snap, land clear of the nav */
+    /* Links to #journal (the nav's About me) land clear of the nav */
     scroll-margin-top: var(--header-height);
-    scroll-snap-align: start;
-}
-
-/* HIGHLIGHTS ON THE GRID =================================================== */
-/* Now and then, stretches of the grid's lines light up faint purple
-   (GridCurrents): each appears, stays a while, and fades slowly, in place */
-/* Fixed to the screen, like the section's grid, so they stay on its lines */
-.story__currents {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-}
-
-.story__currents span {
-    --glow: #7A5AD6;
-
-    position: absolute;
-    background-color: color-mix(in srgb, var(--glow) 75%, transparent);
-    box-shadow: 0 0 6px color-mix(in srgb, var(--glow) 40%, transparent);
-    opacity: 0;
-    animation: story-highlight 7s ease-in-out both;
-}
-
-/* On the line: 1px across it, its length along it */
-.story__currents [data-along="across"] {
-    width: var(--length);
-    height: 1px;
-}
-
-.story__currents [data-along="down"] {
-    width: 1px;
-    height: var(--length);
-}
-
-/* In over a second, held, then out slowly */
-@keyframes story-highlight {
-    15%,
-    45% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
 }
 
 /* The content over them */
@@ -188,21 +142,23 @@
 }
 
 /* LOGOS ==================================================================== */
+/* Each logo as it is, 40px */
 .story__logo {
     display: grid;
     flex-shrink: 0;
     place-items: center;
     width: 40px;
     height: 40px;
-    padding: 4px;
-    border-radius: 50%;
-    background-color: #FFFFFF;
-    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-text) 14%, transparent);
 }
 
 .story__logo svg {
     width: 100%;
     height: 100%;
+}
+
+/* Dark-ink logos turn light in the dark theme (their colours otherwise kept) */
+:root[data-theme="dark"] .story__logo[data-inked] svg {
+    filter: invert(1) hue-rotate(180deg);
 }
 
 /* RIGHT ==================================================================== */
@@ -225,11 +181,19 @@
     margin-bottom: 144px;
 }
 
-/* The second snap: scrolling on from the box stops on the work line, the left
-   column still pinned beside it (its top level with the left column's) */
+/* Two stops: first the About box, then the work line, each level with the
+   pinned left column's top, so the box (and the GitHub strip under it), the
+   work line and the whole left column all fit on the screen */
+.story__about,
 .story__work {
     scroll-margin-top: calc(var(--header-height) + 24px);
     scroll-snap-align: start;
+}
+
+/* Room after the work line, so the left column stays pinned beside it rather
+   than being carried off as the section ends */
+.story__work {
+    margin-bottom: 168px;
 }
 
 /* Always a student, in a box on the grid: plain paper, its top and left edges
@@ -434,12 +398,13 @@
     list-style: none;
 }
 
-/* The line, drawn from each logo down to the next (so it stops at the last) */
+/* The line, from the foot of each logo to the top of the next (so it stops at
+   the last, and never shows through a logo) */
 .story__timeline li:not(:last-child)::before {
     content: "";
     position: absolute;
-    top: 14px;
-    bottom: -46px;
+    top: 40px;
+    bottom: -20px;
     left: -45px;
     border-left: 2px solid color-mix(in srgb, var(--color-accent-2) 45%, transparent);
 }
@@ -551,9 +516,13 @@
 
 @media (max-width: 899px) {
     /* One long column: no snapping */
-    .story,
+    .story__about,
     .story__work {
         scroll-snap-align: none;
+    }
+
+    .story__work {
+        margin-bottom: 72px;
     }
 
     .story__about {

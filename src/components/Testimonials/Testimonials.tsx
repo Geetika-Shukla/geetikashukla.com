@@ -17,7 +17,6 @@ export const Testimonials = () => (
     <section id="kind-words" className="testimonials" aria-labelledby="testimonials-title" data-snap>
         <div className="testimonials__intro">
             <h2 id="testimonials-title" className="testimonials__title">From those I’ve worked with</h2>
-            <p className="testimonials__lede">Colleagues and clients, in their own words.</p>
         </div>
 
         <ul className="testimonials__cards">

@@ -16,6 +16,9 @@
         linear-gradient(to bottom, var(--line) 1px, transparent 1px);
     background-size: 24px 24px;
     background-attachment: fixed;
+    /* A stop of its own when scrolling, the heading clear of the nav */
+    scroll-margin-top: var(--header-height);
+    scroll-snap-align: start;
     display: grid;
     grid-template-columns: calc(24px * 17) calc(24px * 33);
     gap: 24px;
@@ -35,12 +38,6 @@
     font-size: clamp(2rem, 3.2vw, 2.8rem);
     font-weight: 700;
     line-height: 1.1;
-}
-
-.testimonials__lede {
-    margin: 14px 0 0;
-    color: var(--color-text-muted);
-    font-size: 1rem;
 }
 
 /* THE BENTO ================================================================ */
@@ -179,6 +176,7 @@
 
 @media (max-width: 899px) {
     .testimonials {
+        scroll-snap-align: none;
         grid-template-columns: 1fr;
         gap: 28px;
         padding: 56px var(--section-margin) 72px;
