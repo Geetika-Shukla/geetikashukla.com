@@ -9,6 +9,10 @@ import { CONTRIBUTIONS } from "@/data/github";
 // STYLES ======================================================================
 import "./story.css";
 
+// INTERNAL DEPS ===============================================================
+import { PixelHeart } from "@/components/Hero/Illustrations";
+import { ClaudeSpark, FigmaMark, StickerEdge } from "./Stickers";
+
 // ASSETS ======================================================================
 import portrait from "@/assets/images/me-portrait.jpg";
 import FOALogo from "@/assets/images/foa-logo.svg";
@@ -107,16 +111,16 @@ const Contributions = () => {
 };
 
 /*
- * The story so far, on the page's grid, in two columns: on the left, staying
- * in view, the heading, a photo, the résumé and a year on GitHub; on the
- * right, scrolling past it, the path so far (each step with the question it
- * asked), the route (each place, and the switch it was) and the ways of
- * working, as sticky notes.
- * Every card is a cut-out of the grid, placed and sized in blocks, its height
- * rounded to the grid by GridSnap.
+ * The story so far, a little unserious, on a dot grid, in two columns: on the
+ * left, staying in view, the heading, a photo taped on, the résumé and a year
+ * on GitHub; on the right, scrolling past it, the path so far (each step with
+ * the question it asked), the route (each place, and the switch it was) and
+ * the ways of working, as sticky notes. A few stickers are stuck about. Things
+ * sit straight on the dots, no boxes; blocks are still whole grid blocks.
  */
 export const Story = () => (
     <section id="journal" className="story" aria-labelledby="story-title" data-snap>
+        <StickerEdge />
         <div className="story__grid">
             {/* LEFT: stays in view */}
             <div className="story__side">
@@ -126,7 +130,10 @@ export const Story = () => (
                 </header>
 
                 <figure className="story__card story__photo" data-snap>
+                    <span className="story__tape story__tape--left" aria-hidden="true" />
+                    <span className="story__tape story__tape--right" aria-hidden="true" />
                     <Image src={portrait} alt="Geetika, smiling, on a staircase with a carved wooden banister" sizes="360px" />
+                    <span className="story__sticker story__sticker--heart" aria-hidden="true"><PixelHeart /></span>
                     <figcaption>
                         <span className="story__hand">currently</span>
                         Manager — Design, Reserve Bank Innovation Hub
@@ -147,6 +154,7 @@ export const Story = () => (
             <div className="story__main">
                 {/* Always a student: the path, each step with the question it asked */}
                 <div className="story__card story__about" data-snap>
+                    <span className="story__sticker story__sticker--claude" aria-hidden="true"><ClaudeSpark /></span>
                     <h3 className="story__label">About me</h3>
                     <p className="story__big">
                         Always a <span className="story__circled">student<svg viewBox="0 0 120 44" preserveAspectRatio="none" aria-hidden="true"><path d="M8 24 C 6 8, 60 2, 104 10 C 122 14, 118 36, 70 40 C 30 43, 4 36, 12 18" /></svg></span>.
@@ -166,6 +174,7 @@ export const Story = () => (
                 {/* The route */}
                 <div className="story__card story__route-card" data-snap>
                     <h3 className="story__label">The route so far</h3>
+                    <span className="story__sticker story__sticker--figma" aria-hidden="true"><FigmaMark /></span>
                     <div className="story__route">
                         <svg className="story__line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
                             <path d={LINE} />
