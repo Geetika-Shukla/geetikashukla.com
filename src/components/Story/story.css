@@ -58,7 +58,7 @@
     padding-right: 48px;
 }
 
-/* Two blocks for the title, one for the line under it */
+/* Two blocks tall */
 .story__title {
     height: 48px;
     margin: 0;
@@ -67,16 +67,6 @@
     font-size: 2.2rem;
     font-weight: 700;
     line-height: 48px;
-}
-
-.story__lede {
-    height: 24px;
-    margin: 0;
-    color: var(--color-text-muted);
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    font-weight: 500;
-    line-height: 24px;
 }
 
 /* A small portrait, taped on at two corners, a little askew, with room either side */
@@ -376,10 +366,11 @@
     background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.35) 0 4px, transparent 4px 9px);
 }
 
-.story__tape--left {
-    top: -6px;
-    left: -20px;
-    transform: rotate(-32deg);
+/* Across the middle of the photo's top edge */
+.story__tape--top {
+    top: -9px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-4deg);
 }
 
 /* NARROWER SCREENS ========================================================= */
