@@ -462,10 +462,10 @@
     height: auto;
 }
 
-/* Stuck across the box's top edge */
+/* Claude, stuck across the box's right edge; Figma, across its top edge */
 .story__sticker--claude {
-    top: -32px;
-    right: 48px;
+    top: 72px;
+    right: -32px;
     width: 64px;
     transform: rotate(10deg);
 }

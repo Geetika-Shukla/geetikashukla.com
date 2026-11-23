@@ -5,7 +5,8 @@
 import React from "react";
 
 // CLAUDE ======================================================================
-// Claude's spark: tapered rays of slightly different lengths around a centre
+// Claude's spark (drawn here, not the official artwork): chunky rays of
+// slightly different lengths around a centre, each with a rounded tip
 const RAYS: [number, number][] = [
     [0, 44], [31, 38], [62, 45], [93, 36], [122, 43], [151, 39],
     [182, 45], [213, 37], [242, 44], [271, 40], [301, 45], [331, 37],
@@ -18,7 +19,8 @@ const ray = ([angle, length]: [number, number]) => {
         const y = 50 + r * Math.sin(a) + side * Math.cos(a);
         return `${x.toFixed(2)} ${y.toFixed(2)}`;
     };
-    return `M${at(4, -3.4)} L${at(length, -1.6)} Q${at(length + 2.4, 0)} ${at(length, 1.6)} L${at(4, 3.4)} Z`;
+    // Wide at the centre, barely narrowing, ending in a full round cap
+    return `M${at(4, -4.2)} L${at(length - 3, -3)} A3 3 0 0 1 ${at(length - 3, 3)} L${at(4, 4.2)} Z`;
 };
 
 export const ClaudeSpark = () => (
