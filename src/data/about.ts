@@ -18,7 +18,7 @@ export const ROLES: Role[] = [
         company : "Reserve Bank Innovation Hub",
         dates   : "Sep 2025 – present",
         notes   : [
-            "Currently working on rebranding initiatives and building a scalable design system that connects visual identity with product experience.",
+            "Currently working on rebranding initiatives, revamping the website, and building a scalable design system that connects visual identity with product experience.",
         ],
     },
     {

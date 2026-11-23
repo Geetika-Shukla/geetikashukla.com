@@ -143,7 +143,7 @@ const MoreAboutMePage = () => {
                                 Reserve Bank Innovation Hub · Sep 2025 – present
                             </Text>
                             <Text marginBottom="nano">
-                                Currently working on rebranding initiatives and building a scalable design system that connects visual identity with product experience.
+                                Currently working on rebranding initiatives, revamping the website, and building a scalable design system that connects visual identity with product experience.
                             </Text>
                         </div>
 
