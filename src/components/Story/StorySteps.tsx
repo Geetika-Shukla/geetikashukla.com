@@ -9,11 +9,12 @@ const GESTURE_GAP = 140;
 
 /*
  * The story section's right column moves in locked steps: the About box, then
- * the work line. A wheel or trackpad gesture near or between them is taken
- * over and moves exactly one step (its momentum swallowed, so it can't run on
- * past); scrolling up from the box, or down from the work line, lets go into
- * the page's normal scrolling. Anything else that comes to rest between the
- * two (a scrollbar drag, the keyboard) is finished to the nearer stop. Not on
+ * the work line. A wheel or trackpad gesture, or a key (the arrows, Page Up
+ * and Down, the space bar), near or between them is taken over and moves
+ * exactly one step (a gesture's momentum swallowed, so it can't run on past);
+ * scrolling up from the box, or down from the work line, lets go into the
+ * page's normal scrolling. Anything else that comes to rest between the
+ * two (a scrollbar drag, say) is finished to the nearer stop. Not on
  * narrow screens, where it's one long column, nor for anyone who prefers less
  * motion.
  */
@@ -41,32 +42,62 @@ export const StorySteps = () => {
             }, STEP);
         };
 
+        // Where a step down (or up) from here goes; null to let the page scroll
+        const next = (down: boolean): number | null => {
+            const [first, second] = [stop(about), stop(work)];
+            const y = Math.round(window.scrollY);
+            const reach = window.innerHeight * 0.6;
+            if (down && y >= first - reach && y < first - 2) return first;            // arriving from above
+            if (down && y >= first - 2 && y < second - 2) return second;              // the box → the work line
+            if (!down && y > second + 2 && y <= second + reach) return second;        // arriving from below
+            if (!down && y > first + 2 && y <= second + 2) return first;              // the work line → the box
+            return null;
+        };
+
+        // Within reach of the stops (where a step in progress holds the page still)
+        const inZone = () => {
+            const y = window.scrollY;
+            const reach = window.innerHeight * 0.6;
+            return y > stop(about) - reach && y < stop(work) + reach;
+        };
+
         const onWheel = (event: WheelEvent) => {
             const now = event.timeStamp;
             const continuing = now - lastWheel < GESTURE_GAP;
             lastWheel = now;
             if (!continuing) gestureUsed = false;
 
-            const [first, second] = [stop(about), stop(work)];
-            const y = Math.round(window.scrollY);
-            const down = event.deltaY > 0;
-            const reach = window.innerHeight * 0.6;
-
             // Mid-step, or the rest of a gesture that already moved a step: hold still
             if (moving || gestureUsed) {
-                if (y > first - reach && y < second + reach) event.preventDefault();
+                if (inZone()) event.preventDefault();
                 return;
             }
 
-            let target: number | null = null;
-            if (down && y >= first - reach && y < first - 2) target = first;            // arriving from above
-            else if (down && y >= first - 2 && y < second - 2) target = second;         // the box → the work line
-            else if (!down && y > second + 2 && y <= second + reach) target = second;   // arriving from below
-            else if (!down && y > first + 2 && y <= second + 2) target = first;         // the work line → the box
-
+            const target = next(event.deltaY > 0);
             if (target === null) return;
             event.preventDefault();
             gestureUsed = true;
+            go(target);
+        };
+
+        const onKey = (event: KeyboardEvent) => {
+            if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey) return;
+            // Not while typing, nor the space bar on a focused button or link (which presses it)
+            const field = event.target as HTMLElement | null;
+            if (field?.closest("input, textarea, select, [contenteditable='true']")) return;
+            if (event.key === " " && field?.closest("button, a, summary")) return;
+
+            const down = event.key === "ArrowDown" || event.key === "PageDown" || (event.key === " " && !event.shiftKey);
+            const up = event.key === "ArrowUp" || event.key === "PageUp" || (event.key === " " && event.shiftKey);
+            if (!down && !up) return;
+
+            if (moving) {
+                if (inZone()) event.preventDefault();
+                return;
+            }
+            const target = next(down);
+            if (target === null) return;
+            event.preventDefault();
             go(target);
         };
 
@@ -82,9 +113,11 @@ export const StorySteps = () => {
         };
 
         window.addEventListener("wheel", onWheel, { passive: false });
+        window.addEventListener("keydown", onKey);
         window.addEventListener("scroll", onScroll, { passive: true });
         return () => {
             window.removeEventListener("wheel", onWheel);
+            window.removeEventListener("keydown", onKey);
             window.removeEventListener("scroll", onScroll);
             window.clearTimeout(settleTimer);
         };

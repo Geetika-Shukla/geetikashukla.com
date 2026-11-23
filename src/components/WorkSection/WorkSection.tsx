@@ -224,6 +224,51 @@ export const WorkSection = () => {
         };
     }, []);
 
+    // A key (the arrows, Page Up and Down, the space bar) moves one step at a time
+    // while the stage is pinned; past the first or last, the page scrolls on
+    useEffect(() => {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        let moving = 0;
+
+        const onKey = (event: KeyboardEvent) => {
+            if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey) return;
+            const field = event.target as HTMLElement | null;
+            if (field?.closest("input, textarea, select, [contenteditable='true']")) return;
+            if (event.key === " " && field?.closest("button, a, summary")) return;
+
+            const down = event.key === "ArrowDown" || event.key === "PageDown" || (event.key === " " && !event.shiftKey);
+            const up = event.key === "ArrowUp" || event.key === "PageUp" || (event.key === " " && event.shiftKey);
+            if (!down && !up) return;
+
+            // Only with the stepping on (wide screens) and the page within the steps
+            const steps = stepRefs.current.filter((step): step is HTMLSpanElement => step !== null && step.offsetParent !== null);
+            if (!steps.length) return;
+            const tops = steps.map((step) => Math.round(step.getBoundingClientRect().top + window.scrollY - parseFloat(getComputedStyle(step).scrollMarginTop)));
+            const y = Math.round(window.scrollY);
+            if (y < tops[0] - 2 || y > tops[tops.length - 1] + 2) return;
+
+            if (moving) {
+                event.preventDefault();
+                return;
+            }
+            // The step the page is at (or just past), then the next one in the key's direction
+            const at = tops.reduce((nearest, top, i) => (Math.abs(top - y) < Math.abs(tops[nearest] - y) ? i : nearest), 0);
+            const target = at + (down ? 1 : -1);
+            if (target < 0 || target >= tops.length) return;
+            event.preventDefault();
+            window.scrollTo({ top: tops[target], behavior: "smooth" });
+            moving = window.setTimeout(() => {
+                moving = 0;
+            }, 650);
+        };
+
+        window.addEventListener("keydown", onKey);
+        return () => {
+            window.removeEventListener("keydown", onKey);
+            window.clearTimeout(moving);
+        };
+    }, []);
+
     // A filter scrolls to its step (or, without the stepping, just switches)
     const choose = (index: number) => {
         const step = stepRefs.current[index];
