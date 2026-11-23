@@ -10,7 +10,7 @@
 // This website, for its own thumbnail
 import siteHero from "@/assets/images/motion/site-hero.webp";
 import siteWork from "@/assets/images/motion/site-work.webp";
-import siteJournal from "@/assets/images/motion/site-journal.webp";
+import siteStory from "@/assets/images/motion/site-story.webp";
 import siteKindWords from "@/assets/images/motion/site-kind-words.webp";
 import gffKeynote from "@/assets/images/motion/gff-keynote-cover.webp";
 
@@ -55,6 +55,6 @@ export const AI_PROJECTS: AIProject[] = [
         description : "I manually coded v1 of the website. For v2, I designed and prompted; Claude Code built it.",
         tools       : ["Claude Code", "Next.js"],
         placeholder : false,
-        screens     : [siteHero, siteWork, siteJournal, siteKindWords],
+        screens     : [siteHero, siteWork, siteStory, siteKindWords],
     },
 ];
