@@ -142,13 +142,19 @@
 }
 
 /* LOGOS ==================================================================== */
-/* Each logo as it is, 40px */
+/* Each logo as it is, 40px; the square badges trimmed to circles of the same
+   size (just their corners cut off) */
 .story__logo {
     display: grid;
     flex-shrink: 0;
     place-items: center;
     width: 40px;
     height: 40px;
+}
+
+.story__logo[data-round] {
+    overflow: hidden;
+    border-radius: 50%;
 }
 
 .story__logo svg {

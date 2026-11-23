@@ -35,6 +35,9 @@ const logoProps = (Logo: Logo): SVGProps<SVGSVGElement> =>
 // Logos drawn in dark ink, which turn light in the dark theme
 const inked = (Logo: Logo) => Logo === NIDLogo || Logo === RBIHLogo;
 
+// The square badges are trimmed to circles; RBIH's wordmark isn't a badge
+const round = (Logo: Logo) => Logo !== RBIHLogo;
+
 // In the order they're listed in about.ts
 const COLLEGE_LOGOS: Logo[] = [NIDLogo, FOALogo];
 const WORK_LOGOS: Logo[] = [RBIHLogo, SetuLogo, AtherLogo, NSLogo];
@@ -70,7 +73,7 @@ export const Story = () => (
                             const Logo = COLLEGE_LOGOS[i];
                             return (
                                 <li key={degree}>
-                                    {Logo && <span className="story__logo" data-inked={inked(Logo) || undefined} aria-hidden="true"><Logo {...logoProps(Logo)} /></span>}
+                                    {Logo && <span className="story__logo" data-inked={inked(Logo) || undefined} data-round={round(Logo) || undefined} aria-hidden="true"><Logo {...logoProps(Logo)} /></span>}
                                     <span>
                                         <strong>{degree}</strong>
                                         <span>{field}</span>
@@ -119,7 +122,7 @@ export const Story = () => (
                             const Logo = WORK_LOGOS[i];
                             return (
                                 <li key={company}>
-                                    {Logo && <span className="story__logo" data-inked={inked(Logo) || undefined} aria-hidden="true"><Logo {...logoProps(Logo)} /></span>}
+                                    {Logo && <span className="story__logo" data-inked={inked(Logo) || undefined} data-round={round(Logo) || undefined} aria-hidden="true"><Logo {...logoProps(Logo)} /></span>}
                                     <strong>{title}</strong>
                                     <span className="story__muted">{company} · {dates}</span>
                                     {/* The main line about it */}
