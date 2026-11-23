@@ -181,6 +181,16 @@
     margin-bottom: 72px;
 }
 
+/* Always a student, in a box on the grid: plain paper, its top and left edges
+   just inside, right and bottom just outside, so all four sit on grid lines */
+.story__about {
+    --edge: color-mix(in srgb, var(--color-text) 16%, transparent);
+
+    padding: 48px;
+    background-color: var(--color-bg);
+    box-shadow: inset 1px 1px 0 var(--edge), 1px 1px 0 var(--edge);
+}
+
 /* ALWAYS A STUDENT ========================================================= */
 .story__big {
     margin: 0;
@@ -272,7 +282,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 32px;
     margin: 0;
     padding: 0 0 0 64px;
     list-style: none;
@@ -339,16 +349,17 @@
     height: auto;
 }
 
+/* Stuck across the box's top edge */
 .story__sticker--claude {
-    top: -12px;
-    right: 24px;
+    top: -32px;
+    right: 48px;
     width: 64px;
     transform: rotate(10deg);
 }
 
 .story__sticker--figma {
-    top: -8px;
-    right: 96px;
+    top: -24px;
+    right: 132px;
     width: 30px;
     transform: rotate(-9deg);
 }
@@ -395,6 +406,10 @@
 }
 
 @media (max-width: 899px) {
+    .story__about {
+        padding: 32px 24px;
+    }
+
     .story__grid {
         grid-template-columns: 1fr;
         row-gap: 48px;

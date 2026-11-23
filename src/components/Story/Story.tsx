@@ -83,9 +83,10 @@ export const Story = () => (
 
             {/* RIGHT: scrolls past */}
             <div className="story__main">
-                {/* Always a student: the path, each step with the question it asked */}
+                {/* Always a student: the path, each step with the question it asked, in a box with stickers on its edge */}
                 <div className="story__about" data-snap>
                     <span className="story__sticker story__sticker--claude" aria-hidden="true"><ClaudeSpark /></span>
+                    <span className="story__sticker story__sticker--figma" aria-hidden="true"><FigmaMark /></span>
                     <h3 className="story__label">About me</h3>
                     <p className="story__big">
                         Always a <span className="story__circled">student<svg viewBox="0 0 120 44" preserveAspectRatio="none" aria-hidden="true"><path d="M8 24 C 6 8, 60 2, 104 10 C 122 14, 118 36, 70 40 C 30 43, 4 36, 12 18" /></svg></span>.
@@ -104,7 +105,6 @@ export const Story = () => (
 
                 {/* Work experience: a line from now back, a logo on it for each role */}
                 <div className="story__work" data-snap>
-                    <span className="story__sticker story__sticker--figma" aria-hidden="true"><FigmaMark /></span>
                     <h3 className="story__label">Work experience</h3>
                     <ol className="story__timeline">
                         {ROLES.map(({ title, company, dates, notes }, i) => {
@@ -114,7 +114,8 @@ export const Story = () => (
                                     {Logo && <span className="story__logo" aria-hidden="true"><Logo {...logoProps(Logo)} /></span>}
                                     <strong>{title}</strong>
                                     <span className="story__muted">{company} · {dates}</span>
-                                    {notes.map((note) => <p key={note}>{note}</p>)}
+                                    {/* The main line about it */}
+                                    <p>{notes[0]}</p>
                                 </li>
                             );
                         })}
