@@ -178,7 +178,7 @@ html:has(.work__step) {
     width: calc(100% - 1px);
     height: calc(100% - 1px);
     fill: none;
-    stroke: var(--color-accent-2);
+    stroke: color-mix(in srgb, #7A5AD6 40%, white);
     stroke-width: 1.5;
     stroke-dasharray: 100;
     stroke-dashoffset: 100;
