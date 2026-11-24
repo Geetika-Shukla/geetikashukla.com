@@ -163,3 +163,102 @@ export const Vinyl = () => (
         <Image className="vinyl__sleeve" src={spiritedAwayCover} alt="" sizes="120px" draggable={false} />
     </span>
 );
+
+// A letter in the post: an envelope seen from the back, its flap sealed with
+// rust wax, a handwritten page peeking out from behind it and a stamp on top
+export const SealedLetter = () => (
+    <svg viewBox="0 0 240 120" aria-hidden="true">
+        <ellipse cx="120" cy="112" rx="96" ry="5" fill={INK} opacity="0.08" />
+        {/* The letter, tucked behind and tilted, in pencil lines of writing */}
+        <g transform="rotate(-7 160 56)">
+            <rect x="118" y="6" width="96" height="92" fill={PAPER} stroke={INK} strokeOpacity="0.15" />
+            <text x="128" y="24" fontFamily="serif" fontStyle="italic" fontSize="9" fill={INK} fillOpacity="0.75">Dear you,</text>
+            {[34, 44, 54, 64, 74].map((y, i) => (
+                <path key={y} d={`M128 ${y} q6 -3 12 0 t12 0 t12 0 t12 0 t${i % 2 ? 10 : 14} 0`} stroke={INK} strokeOpacity="0.4" strokeWidth="1" fill="none" strokeLinecap="round" />
+            ))}
+        </g>
+        {/* The envelope's back, its flap folded down */}
+        <rect x="24" y="22" width="156" height="86" rx="2" fill="#EFE6D2" />
+        <path d="M24 108 L102 62 L180 108 Z" fill="#E6DAC0" />
+        <path d="M24 22 L102 72 L180 22 Z" fill="#F4ECDA" stroke="#D9CBAE" strokeWidth="1" strokeLinejoin="round" />
+        {/* The wax seal, a little uneven at its edge */}
+        <path d="M102 58 q8 -2 12 4 q7 4 4 12 q2 8 -6 11 q-6 6 -13 1 q-8 -1 -8 -9 q-4 -7 2 -12 q3 -7 9 -7 Z" fill={RUST} />
+        <circle cx="102" cy="72" r="9" fill="none" stroke="#A9512E" strokeWidth="1.4" />
+        <text x="102" y="76.5" textAnchor="middle" fontFamily="serif" fontStyle="italic" fontSize="12" fill="#A9512E">g</text>
+        <path d="M95 64 q3 -3 7 -3" stroke="#FFFFFF" strokeOpacity="0.4" strokeWidth="1.6" fill="none" strokeLinecap="round" />
+        {/* A stamp with a sun on it, and its postmark */}
+        <g transform="rotate(6 196 92)">
+            <rect x="180" y="76" width="30" height="34" fill={PAPER} stroke={INK} strokeOpacity="0.2" strokeDasharray="2 1.4" />
+            <rect x="184" y="80" width="22" height="22" fill="#E8B931" fillOpacity="0.85" />
+            <circle cx="195" cy="91" r="5" fill={RUST} />
+            <path d="M184 98 q5 -4 11 0 t11 0 V102 H184 Z" fill="#3F8F8A" />
+        </g>
+        <circle cx="170" cy="86" r="11" fill="none" stroke={INK} strokeOpacity="0.35" strokeWidth="1" />
+        <path d="M150 82 q5 -3 10 0 t10 0 M150 88 q5 -3 10 0 t10 0" stroke={INK} strokeOpacity="0.35" strokeWidth="1" fill="none" />
+    </svg>
+);
+
+// A wooden letterpress block with अ cut into it in reverse, inked in rust, and
+// the print it leaves on a slip of paper, the right way round
+export const LetterpressBlock = () => (
+    <svg viewBox="0 0 192 120" aria-hidden="true">
+        <ellipse cx="96" cy="112" rx="82" ry="5" fill={INK} opacity="0.08" />
+        {/* The print */}
+        <g transform="rotate(5 142 60)">
+            <rect x="108" y="18" width="68" height="84" fill={PAPER} stroke={INK} strokeOpacity="0.15" />
+            <text x="142" y="78" textAnchor="middle" fontFamily="'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" fontWeight="600" fontSize="50" fill={RUST} fillOpacity="0.88">अ</text>
+        </g>
+        {/* The block: its face, inked, and the wood's edge below */}
+        <rect x="16" y="94" width="80" height="12" rx="2" fill="#BE9B74" />
+        <rect x="16" y="20" width="80" height="80" rx="3" fill="#D9B98C" />
+        <path d="M22 34 Q50 30 90 36 M22 84 Q58 80 90 88" stroke="#C9A27A" strokeWidth="1" fill="none" />
+        <rect x="24" y="28" width="64" height="64" rx="2" fill="#C9A27A" />
+        <text
+            x="56" y="78" textAnchor="middle" transform="translate(112 0) scale(-1 1)"
+            fontFamily="'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" fontWeight="600" fontSize="50" fill={RUST}
+        >अ</text>
+        <path d="M22 26 H60" stroke="#FFFFFF" strokeOpacity="0.4" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+);
+
+// Brahmakamal, queen of the night (an epiphyllum), in a terracotta pot: a bud in the day,
+// opening into its white flower once the page turns dark or it's hovered
+// (see hero.css)
+const QOTN_PETALS = Array.from({ length: 12 }, (_, i) => i * 30);
+const QOTN_SEPALS = Array.from({ length: 10 }, (_, i) => i * 36 + 18);
+
+export const QueenOfTheNight = () => (
+    <svg className="qotn" viewBox="0 0 120 214" aria-hidden="true">
+        <ellipse cx="60" cy="208" rx="30" ry="4" fill={INK} opacity="0.08" />
+        {/* Flat, wavy-edged stems for leaves */}
+        <path d="M60 172 Q52 160 50 150 Q42 146 46 138 Q50 132 44 124 Q36 118 42 110 Q46 102 40 94 Q34 86 42 78 Q46 70 48 64 Q54 72 54 80 Q62 88 56 96 Q52 104 60 112 Q66 120 58 128 Q56 136 62 144 Q68 154 64 172 Z" fill="#6E8B5B" />
+        <path d="M62 170 Q50 120 48 66" stroke="#55704A" strokeWidth="1.2" fill="none" />
+        <path d="M66 172 Q70 160 78 156 Q78 146 86 144 Q86 134 94 130 Q96 122 102 118 Q100 130 96 136 Q96 146 88 150 Q86 160 78 164 Q74 170 70 174 Z" fill="#7E9C69" />
+        {/* The flower's long tube, from a notch in the leaf */}
+        <path d="M58 112 C82 104 84 70 62 50" stroke="#C98A7A" strokeWidth="2.6" fill="none" strokeLinecap="round" />
+        {/* Day: a closed bud */}
+        <g className="qotn__bud">
+            <path d="M62 52 Q48 46 52 28 Q56 16 64 12 Q70 22 70 34 Q70 48 62 52 Z" fill="#C98A7A" />
+            <path d="M62 50 Q56 40 60 26 Q62 18 64 14" stroke="#E8C4B4" strokeWidth="1.2" fill="none" />
+            <path d="M63 50 Q68 40 66 26" stroke="#A9675A" strokeWidth="1" fill="none" />
+        </g>
+        {/* Night: the open flower */}
+        <g className="qotn__bloom">
+            {QOTN_SEPALS.map((angle) => (
+                <ellipse key={angle} cx="60" cy="16" rx="3" ry="22" transform={`rotate(${angle} 60 40)`} fill="#E9C9B8" />
+            ))}
+            {QOTN_PETALS.map((angle) => (
+                <ellipse key={angle} cx="60" cy="22" rx="7" ry="18" transform={`rotate(${angle} 60 40)`} fill="#FFFFFF" stroke="#E6E2DA" strokeWidth="0.6" />
+            ))}
+            <circle cx="60" cy="40" r="8" fill="#F6EFD8" />
+            {[0, 40, 80, 120, 160, 200, 240, 280, 320].map((angle) => (
+                <path key={angle} d="M60 40 V31" transform={`rotate(${angle} 60 40)`} stroke="#E3B94C" strokeWidth="0.9" strokeLinecap="round" />
+            ))}
+            <circle cx="60" cy="40" r="1.8" fill="#C9D98C" />
+        </g>
+        {/* The pot */}
+        <path d="M38 176 H82 L77 206 H43 Z" fill={RUST} />
+        <rect x="34" y="168" width="52" height="10" rx="2" fill="#D97A50" />
+        <path d="M40 182 H80" stroke="#A9512E" strokeWidth="1" />
+    </svg>
+);

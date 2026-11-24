@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
 // INTERNAL DEPS ===============================================================
-import { InkBottle, PixelHeart, Soap, Spool, StickyNote, SwatchFan, Vinyl } from "./Illustrations";
+import { InkBottle, LetterpressBlock, PixelHeart, QueenOfTheNight, SealedLetter, Soap, Spool, StickyNote, SwatchFan, Vinyl } from "./Illustrations";
 
 // STYLES ======================================================================
 import "./hero.css";
@@ -43,7 +43,8 @@ interface Item {
     id      : string;
     kind    : "photo" | "art" | "placeholder";
     content : ReactNode;
-    label   : string;
+    // Shown on hover; left out where the thing speaks for itself
+    label?  : string;
     w       : string;
     scatter : [number, number, number];
     grid    : [number, number];
@@ -57,17 +58,17 @@ const ITEMS: Item[] = [
     { id: "image-2", kind: "placeholder", content: placeholder(0.72), label: "Image to come", w: "clamp(90px, 8.5vw, 140px)", scatter: [86, 22, 6], grid: [92, 18] },
 
     { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(64px, 5.5vw, 90px)", scatter: [30, 87, -4], grid: [8, 38] },
-    { id: "image-3", kind: "placeholder", content: placeholder(2), label: "Image to come", w: "clamp(150px, 15vw, 240px)", scatter: [14, 20, -6], grid: [22, 38] },
+    { id: "letter", kind: "art", content: <SealedLetter />, label: "A letter in the post", w: "clamp(150px, 15vw, 240px)", scatter: [14, 20, -6], grid: [22, 38] },
     { id: "vinyl", kind: "art", content: <Vinyl />, label: "Vinyls", w: "clamp(84px, 7.5vw, 120px)", scatter: [31, 16, 7], grid: [78, 38] },
     { id: "spool", kind: "art", content: <Spool />, label: "Sewing", w: "clamp(54px, 4.5vw, 76px)", scatter: [93, 45, 10], grid: [92, 38] },
 
     { id: "image-4", kind: "placeholder", content: placeholder(1.43), label: "Image to come", w: "clamp(120px, 12vw, 190px)", scatter: [16, 80, 5], grid: [8, 58] },
-    { id: "image-5", kind: "placeholder", content: placeholder(0.56), label: "Image to come", w: "clamp(80px, 7.5vw, 120px)", scatter: [77, 50, -5], grid: [50, 58] },
+    { id: "flower", kind: "art", content: <QueenOfTheNight />, w: "clamp(80px, 7.5vw, 120px)", scatter: [77, 50, -5], grid: [50, 58] },
     { id: "image-6", kind: "placeholder", content: placeholder(16 / 10), label: "Image to come", w: "clamp(130px, 12vw, 190px)", scatter: [87, 76, 4], grid: [64, 58] },
     { id: "image-7", kind: "placeholder", content: placeholder(0.71), label: "Image to come", w: "clamp(80px, 7.5vw, 120px)", scatter: [72, 82, -7], grid: [92, 58] },
 
     { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(80px, 7vw, 110px)", scatter: [39, 86, 3], grid: [8, 78] },
-    { id: "image-8", kind: "placeholder", content: placeholder(16 / 10), label: "Image to come", w: "clamp(84px, 7.5vw, 120px)", scatter: [59, 88, -5], grid: [22, 78] },
+    { id: "letterpress", kind: "art", content: <LetterpressBlock />, label: "A letterpress block", w: "clamp(110px, 10vw, 160px)", scatter: [59, 88, -5], grid: [22, 78] },
     { id: "soap", kind: "art", content: <Soap />, label: "Soaps", w: "clamp(60px, 5vw, 84px)", scatter: [93, 90, -6], grid: [92, 78] },
 ];
 
@@ -81,10 +82,6 @@ const PHRASES: { text: string; at: [number, number] }[] = [
 ];
 
 type Offsets = Record<string, { x: number; y: number }>;
-
-// A tiny heart floating up from the pixel heart when it's clicked
-type Particle = { id: number; x: number; y: number; dx: number; rise: number; spin: number; delay: number; size: number };
-const BURST = 10;
 
 type Size = { w: number; h: number };
 
@@ -183,33 +180,7 @@ export const Hero = () => {
         if (current.moved) setOffsets((previous) => ({ ...previous, [current.id]: { x: current.from.x + dx, y: current.from.y + dy } }));
     };
 
-    // Clicking the pixel heart (without dragging it) sends up a burst of tiny hearts
-    const [particles, setParticles] = useState<Particle[]>([]);
-    const nextParticle = useRef(0);
-
-    const burst = (from: HTMLElement) => {
-        const board = boardRef.current;
-        if (!board) return;
-        const origin = board.getBoundingClientRect();
-        const heart = from.getBoundingClientRect();
-        const x = heart.left + heart.width / 2 - origin.left;
-        const y = heart.top + heart.height / 2 - origin.top;
-        const fresh = Array.from({ length: BURST }, (): Particle => ({
-            id    : nextParticle.current++,
-            x, y,
-            dx    : (Math.random() - 0.5) * 140,
-            rise  : 90 + Math.random() * 90,
-            spin  : (Math.random() - 0.5) * 60,
-            delay : Math.random() * 120,
-            size  : 12 + Math.random() * 12,
-        }));
-        setParticles((current) => [...current, ...fresh]);
-        const ids = new Set(fresh.map(({ id }) => id));
-        window.setTimeout(() => setParticles((current) => current.filter(({ id }) => !ids.has(id))), 1400);
-    };
-
-    const onPointerUp = (event: PointerEvent<HTMLElement>) => {
-        if (drag.current?.id === "heart" && !drag.current.moved) burst(event.currentTarget);
+    const onPointerUp = () => {
         drag.current = null;
     };
 
@@ -238,22 +209,6 @@ export const Hero = () => {
                     ))}
                 </ul>
 
-                {/* Tiny hearts from a click on the pixel heart */}
-                <div className="hero__burst" aria-hidden="true">
-                    {particles.map(({ id, x, y, dx, rise, spin, delay, size }) => (
-                        <span
-                            key={id}
-                            className="hero__spark"
-                            style={{
-                                left: x, top: y, width: size,
-                                "--dx": `${dx}px`, "--rise": `${-rise}px`, "--spin": `${spin}deg`,
-                                animationDelay: `${delay}ms`,
-                            } as CSSProperties}
-                        >
-                            <PixelHeart />
-                        </span>
-                    ))}
-                </div>
 
                 <ul className="hero__items">
                     {ITEMS.map(({ id, kind, content, label, w, scatter: [sx, sy, tilt], grid: [gx, gy] }) => {
