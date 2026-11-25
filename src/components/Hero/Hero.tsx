@@ -1,0 +1,230 @@
+"use client";
+
+// EXTERNAL DEPS ===============================================================
+import Image from "next/image";
+import React, { useEffect, useRef, useState } from "react";
+
+// INTERNAL DEPS ===============================================================
+import { FabricSwatches, GameCartridge, InkBottle, LetterpressBlock, QueenOfTheNight, Spool, StickyNote, SwatchFan, Vinyl } from "./Illustrations";
+
+// STYLES ======================================================================
+import "./hero.css";
+
+// ASSETS ======================================================================
+import calliOne from "@/assets/images/calli-1.png";
+import stampBangalore from "@/assets/images/stamp-bangalore-gpo.png";
+
+// TYPES =======================================================================
+import type { CSSProperties, PointerEvent, ReactNode } from "react";
+import type { StaticImageData } from "next/image";
+
+// A photo, optionally zoomed in within its frame
+const photo = (image: StaticImageData, alt: string, zoom = 1) => (
+    <Image src={image} alt={alt} sizes="16vw" draggable={false} style={zoom !== 1 ? { transform: `scale(${zoom})` } : undefined} />
+);
+
+// A cut-out picture with a see-through edge (a stamp's perforations), laid on
+// the board with a shadow that follows its edge
+const stamp = (image: StaticImageData, alt: string) => (
+    <Image className="hero__stamp" src={image} alt={alt} sizes="12vw" draggable={false} />
+);
+
+/*
+ * Things on the board: photos and illustrations. Each has two places, as
+ * percentages of the board (its centre):
+ *   scatter: [x, y, tilt] round the edges, leaving the middle for the intro
+ *   grid:    [x, y] in a cell of a 7 × 4 grid. Columns are centred at 8, 22,
+ *            36, 50, 64, 78 and 92%; rows at 18, 38, 58 and 78%. Phrases take
+ *            some cells and others are left empty.
+ * The hero opens on the grid; scrolling through it scatters everything.
+ */
+interface Item {
+    id      : string;
+    kind    : "photo" | "art";
+    content : ReactNode;
+    // Shown on hover; left out where the thing speaks for itself
+    label?  : string;
+    w       : string;
+    scatter : [number, number, number];
+    grid    : [number, number];
+}
+
+const ITEMS: Item[] = [
+    { id: "calli", kind: "photo", content: photo(calliOne, "Calligraphy", 1.25), label: "Calligraphy", w: "clamp(103px, 9.8vw, 161px)", scatter: [9, 50, 4], grid: [8, 18] },
+    { id: "fabrics", kind: "art", content: <FabricSwatches />, label: "Fabric swatches", w: "clamp(146px, 13.4vw, 213px)", scatter: [53, 13, -3], grid: [64, 18] },
+    { id: "spool", kind: "art", content: <Spool />, label: "Sewing", w: "clamp(70px, 5.9vw, 99px)", scatter: [91, 35, 10], grid: [92, 18] },
+
+    { id: "cartridge", kind: "art", content: <GameCartridge />, label: "A game cartridge", w: "clamp(91px, 7.8vw, 125px)", scatter: [12, 20, -6], grid: [22, 38] },
+    { id: "swatches", kind: "art", content: <SwatchFan />, label: "Colour swatches", w: "clamp(83px, 7.2vw, 117px)", scatter: [78, 16, 5], grid: [36, 38] },
+    { id: "vinyl", kind: "art", content: <Vinyl />, label: "Vinyls", w: "clamp(97px, 8.6vw, 138px)", scatter: [31, 14, 7], grid: [78, 38] },
+
+    { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(83px, 7.2vw, 117px)", scatter: [22, 70, -4], grid: [8, 58] },
+    { id: "flower", kind: "art", content: <QueenOfTheNight />, w: "clamp(84px, 7.9vw, 126px)", scatter: [80, 55, -5], grid: [50, 58] },
+    { id: "stamp", kind: "art", content: stamp(stampBangalore, "A 1988 stamp of the Bangalore GPO"), label: "A stamp from Bengaluru", w: "clamp(123px, 11.2vw, 179px)", scatter: [85, 84, 6], grid: [92, 58] },
+
+    { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(92px, 8vw, 126px)", scatter: [12, 86, 3], grid: [8, 78] },
+    { id: "letterpress", kind: "art", content: <LetterpressBlock />, label: "A letterpress block", w: "clamp(123px, 11.2vw, 179px)", scatter: [48, 87, -5], grid: [36, 78] },
+];
+
+// A line set across the grid, a phrase to a pair of cells, read left to right,
+// top to bottom
+const PHRASES: { text: string; at: [number, number] }[] = [
+    { text: "Learning by doing,", at: [29, 18] },
+    { text: "from buildings to brands,", at: [57, 38] },
+    { text: "exhibitions to products,", at: [29, 58] },
+    { text: "and whatever comes next…", at: [71, 78] },
+];
+
+type Offsets = Record<string, { x: number; y: number }>;
+
+type Size = { w: number; h: number };
+
+// The board's grid: squares of BLOCK px, drawn from its top-left corner (hero.css).
+// Phrases and things sit in cut-outs of whole squares, centred on their place.
+// A phrase's is PHRASE_ROWS tall and about two of the board's cells (29% of
+// its width) wide; a thing's is the thing plus about half a square all round.
+const BLOCK = 24;
+const PHRASE_ROWS = 3;
+
+type Cut = { left: number; top: number; width: number; height: number };
+
+const cutOut = ([x, y]: [number, number], columns: number, rows: number, board: Size): Cut => ({
+    left   : Math.round(((x / 100) * board.w - (columns * BLOCK) / 2) / BLOCK) * BLOCK,
+    top    : Math.round(((y / 100) * board.h - (rows * BLOCK) / 2) / BLOCK) * BLOCK,
+    width  : columns * BLOCK,
+    height : rows * BLOCK,
+});
+
+// Drawn just inside the grid lines that bound it, so those lines stay as its edge
+const cutStyle = ({ left, top, width, height }: Cut): CSSProperties =>
+    ({ left: left + 1, top: top + 1, width: width - 1, height: height - 1 });
+
+const phraseCut = (at: [number, number], board: Size) => cutOut(at, Math.floor((board.w * 0.29) / BLOCK), PHRASE_ROWS, board);
+const thingCut = (at: [number, number], size: Size, board: Size) =>
+    cutOut(at, Math.ceil((size.w + BLOCK) / BLOCK), Math.ceil((size.h + BLOCK) / BLOCK), board);
+
+/*
+ * Hero: a board of things, opening on the intro with everything scattered
+ * round the edges. The section is taller than the screen and its board stays
+ * put while it scrolls past; the scroll (0 → 1, as --p) gathers everything
+ * into a tidy grid with a line set in its cells. Things can also be dragged about.
+ */
+export const Hero = () => {
+    const sectionRef = useRef<HTMLElement>(null);
+    const boardRef = useRef<HTMLDivElement>(null);
+    // The board's and the things' sizes, to fit their cut-outs to the grid
+    const [board, setBoard] = useState<Size | null>(null);
+    const [sizes, setSizes] = useState<Record<string, Size>>({});
+    const thingRefs = useRef<Record<string, HTMLElement | null>>({});
+
+    useEffect(() => {
+        const element = boardRef.current;
+        if (!element) return;
+        const measure = () => {
+            setBoard({ w: element.clientWidth, h: element.clientHeight });
+            setSizes(Object.fromEntries(Object.entries(thingRefs.current).flatMap(([id, thing]) =>
+                thing ? [[id, { w: thing.offsetWidth, h: thing.offsetHeight }]] : [])));
+        };
+        // Photos change size as they load, so watch the things as well as the board
+        const observer = new ResizeObserver(measure);
+        observer.observe(element);
+        Object.values(thingRefs.current).forEach((thing) => thing && observer.observe(thing));
+        return () => observer.disconnect();
+    }, []);
+    // How far each thing has been dragged from its place (px)
+    const [offsets, setOffsets] = useState<Offsets>({});
+    const drag = useRef<{ id: string; x: number; y: number; from: { x: number; y: number }; moved: boolean } | null>(null);
+
+    // Scroll progress through the hero, as --p (0 at the top, 1 once fully arranged)
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+        let frame = 0;
+        const update = () => {
+            frame = 0;
+            // The scatter takes the first 100svh of the hero's scroll; the rest is a pause
+            const travel = Math.min(window.innerHeight, section.offsetHeight - window.innerHeight);
+            const scrolled = -section.getBoundingClientRect().top;
+            const progress = travel > 0 ? Math.min(Math.max(scrolled / travel, 0), 1) : 0;
+            section.style.setProperty("--p", progress.toFixed(3));
+        };
+        const onScroll = () => { if (!frame) frame = window.requestAnimationFrame(update); };
+        update();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("resize", onScroll);
+            window.cancelAnimationFrame(frame);
+        };
+    }, []);
+
+    const onPointerDown = (id: string) => (event: PointerEvent<HTMLElement>) => {
+        if (event.button !== 0) return;
+        event.currentTarget.setPointerCapture(event.pointerId);
+        drag.current = { id, x: event.clientX, y: event.clientY, from: offsets[id] ?? { x: 0, y: 0 }, moved: false };
+    };
+
+    const onPointerMove = (event: PointerEvent<HTMLElement>) => {
+        const current = drag.current;
+        if (!current) return;
+        const dx = event.clientX - current.x;
+        const dy = event.clientY - current.y;
+        if (Math.hypot(dx, dy) > 4) current.moved = true;
+        if (current.moved) setOffsets((previous) => ({ ...previous, [current.id]: { x: current.from.x + dx, y: current.from.y + dy } }));
+    };
+
+    const onPointerUp = () => {
+        drag.current = null;
+    };
+
+    return (
+        <section ref={sectionRef} className="hero" aria-label="Introduction">
+            <div className="hero__board" ref={boardRef}>
+                <header className="hero__intro">
+                    <h1 className="hero__title">Geetika Shukla</h1>
+                    <p className="hero__role">
+                        Manager — Design @ Reserve Bank Innovation Hub <span aria-hidden="true">·</span> Ex-Setu
+                    </p>
+                </header>
+
+                <ul className="hero__phrases" aria-hidden="true">
+                    {board && PHRASES.map(({ text, at }) => (
+                        <li key={text} className="hero__phrase" style={cutStyle(phraseCut(at, board))}>
+                            {text}
+                        </li>
+                    ))}
+                </ul>
+
+                {/* Each thing's cut-out, where it sits in the grid */}
+                <ul className="hero__cuts" aria-hidden="true">
+                    {board && ITEMS.map(({ id, grid }) => sizes[id] && (
+                        <li key={id} className="hero__cut" style={cutStyle(thingCut(grid, sizes[id], board))} />
+                    ))}
+                </ul>
+
+
+                <ul className="hero__items">
+                    {ITEMS.map(({ id, kind, content, label, w, scatter: [sx, sy, tilt], grid: [gx, gy] }) => {
+                        const offset = offsets[id] ?? { x: 0, y: 0 };
+                        // In the grid, centred in its cut-out once measured
+                        const cut = board && sizes[id] ? thingCut([gx, gy], sizes[id], board) : null;
+                        const style = {
+                            "--sx": `${sx}%`, "--sy": `${sy}%`,
+                            "--gx": cut ? `${cut.left + cut.width / 2}px` : `${gx}%`,
+                            "--gy": cut ? `${cut.top + cut.height / 2}px` : `${gy}%`,
+                            "--tilt": `${tilt}deg`, "--w": w,
+                            "--dx": `${offset.x}px`, "--dy": `${offset.y}px`,
+                        } as CSSProperties;
+                        const handlers = { onPointerDown: onPointerDown(id), onPointerMove, onPointerUp };
+                        return (
+                            <li key={id} className={`hero__item hero__item--${kind}`} style={style} title={label}>
+                                <span ref={(node) => { thingRefs.current[id] = node; }} className="hero__thing" {...handlers}>{content}</span>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </div>
+        </section>
+    );
+};

@@ -8,8 +8,7 @@ import {
     Portion,
     Row,
     Div,
-    Text, Card, Heading6,
-} from "fictoan-react";
+    Text, } from "fictoan-react";
 
 // COMPONENTS ==================================================================
 
@@ -17,7 +16,6 @@ import {
 import "../visual-projects.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
 import PeopleOpsHero from "@/assets/images/people-ops-hero.webp";
 import Hiring1 from "@/assets/images/hiring-1.svg";
 import Hiring2 from "@/assets/images/hiring-2.svg";
@@ -25,9 +23,6 @@ import Hiring3 from "@/assets/images/hiring-3.svg";
 import Onboarding from "@/assets/images/id-cards.webp";
 import Engagement1 from "@/assets/images/engagement-1.webp";
 import Engagement2 from "@/assets/images/engagement-2.webp";
-import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
-import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
-
 
 
 export default function PeopleExpPage() {
@@ -43,9 +38,7 @@ export default function PeopleExpPage() {
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height={32} width={32} />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small" marginTop="nano">
                     <Div marginTop="small">
@@ -116,7 +109,7 @@ export default function PeopleExpPage() {
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="small" horizontallyCenterThis>
                 <Portion desktopSpan="whole">
-                    <Image src={Onboarding} width={1000} className="people-images responsive-image" alt="onboarding-images"/>
+                    <Image src={Onboarding} width={1000} className="people-images responsive-image" alt="Onboarding ID cards"/>
                 </Portion>
             </Row>
 
@@ -134,31 +127,8 @@ export default function PeopleExpPage() {
             </Row>
 
             <Row layoutAsFlexbox horizontalPadding="huge" marginTop="none" marginBottom="medium" horizontallyCenterThis >
-                <Image src={Engagement1} width={1200} className="people-images responsive-image" alt="engagement-images"/>
-                <Image src={Engagement2} width={1200} className="people-images responsive-image" alt="engagement-images"/>
-            </Row>
-
-            <hr className="brown-hr" />
-
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
-                <Portion desktopSpan="4">
-                    <h5>Other projects</h5>
-                </Portion>
-
-                <Portion desktopSpan="20" className="project-thumbnail-row">
-                    <Link href="/experiences/assisted-product-discovery">
-                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                            <ProjectDiscoveryThumbnail alt="Assisted product discovery at Setu" />
-                            <Heading6 className="project-thumbnail-text" >Assisted product discovery at Setu</Heading6>
-                        </Card>
-                    </Link>
-                    <Link href="/visual/icon-system-for-setu">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <IconSystemThumbnail alt="icon-system" />
-                            <Heading6 className="project-thumbnail-text" >Icon system for Setu</Heading6>
-                        </Card>
-                    </Link>
-                </Portion>
+                <Image src={Engagement1} width={1200} className="people-images responsive-image" alt="Employee engagement design"/>
+                <Image src={Engagement2} width={1200} className="people-images responsive-image" alt="Employee engagement design"/>
             </Row>
 
 

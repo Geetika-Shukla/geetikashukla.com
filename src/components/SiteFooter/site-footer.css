@@ -1,31 +1,30 @@
-#site-footer {
+.site-footer {
     flex-shrink: 0;
-
-    #footer-links {
-        position: sticky;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .footer-text {
-        font-size: 1rem;
-        color: hsl(210, 9%, 38%);
-    }
+    margin-top: 64px;
+    border-top: 1px solid var(--color-border);
 }
 
+.site-footer__inner {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    padding-block: 32px;
+}
 
-@media (max-width: 600px) {
-    .links-container {
-        display: flex;
-        justify-content: center;
-        gap: 16px;
-        width: 100%;
-        margin-top: 20px;
-    }
+.site-footer__link {
+    display: flex;
+    filter: grayscale(100%);
+    opacity: 0.75;
+    transition: filter 0.2s ease, opacity 0.2s ease;
+}
 
-    .links-container a {
-        display: block;
-    }
+.site-footer__link:hover,
+.site-footer__link:focus-visible {
+    filter: none;
+    opacity: 1;
+}
+
+/* The GitHub mark is black: in the dark, it turns white */
+:root[data-theme="dark"] .site-footer__link[aria-label="GitHub"] svg {
+    filter: invert(1);
 }

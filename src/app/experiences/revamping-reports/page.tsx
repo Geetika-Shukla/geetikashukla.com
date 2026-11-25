@@ -1,22 +1,14 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
-import Link from "next/link";
-import Image from 'next/image';
 
 // INTERNAL DEPS ===============================================================
 import {
-    Button,
-    Header,
     Card,
-    Tabs,
-    Element,
     Heading1,
     Portion,
     Row,
     Div,
     Text,
-    Footer,
-    CodeBlock, Heading6
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
@@ -26,10 +18,7 @@ import "../experiences-projects.css";
 import "../page-experiences.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
 import ReportsHero from "@/assets/images/reports/reports-hero.svg";
-import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
-import HDFCThumbnail from "@/assets/images/thumbnail-for-hdfc.svg";
 import IconTenacity from "@/assets/images/Tenacity.svg";
 import IconSandbox from "@/assets/images/BoxWithShapes.svg";
 import IconBadge from "@/assets/images/BadgeWithRibbon.svg";
@@ -56,7 +45,6 @@ import DownloadSuccess from "@/assets/images/reports/download-success.svg";
 import SchedulerIA from "@/assets/images/reports/scheduler-ia.svg";
 
 
-
 export default function RevampingReportsPage() {
 
     return (
@@ -73,9 +61,7 @@ export default function RevampingReportsPage() {
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height="32px"/>
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">
@@ -228,7 +214,6 @@ export default function RevampingReportsPage() {
             </Row>
 
 
-
             {/* BRIDGE OVER THE YEARS */}
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
@@ -254,13 +239,13 @@ export default function RevampingReportsPage() {
                     </Card>
                 </Portion>
                 <Portion desktopSpan="16">
-                    <ReportsV1 height="334px" className="please-respond" style={{ borderRadius: "20px" }}/>
+                    <ReportsV1 height="334px" className="please-respond" style={{ borderRadius: "var(--radius)" }}/>
                 </Portion>
             </Row>
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="small">
                 <Portion desktopSpan="16">
-                    <ReportsV2 height="346px" className="please-respond" style={{ borderRadius: "20px" }}/>
+                    <ReportsV2 height="346px" className="please-respond" style={{ borderRadius: "var(--radius)" }}/>
                 </Portion>
                 <Portion desktopSpan="8">
                     <Card className="bridge-cyan-card" isFullHeight>
@@ -298,7 +283,7 @@ export default function RevampingReportsPage() {
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
                 <Portion desktopSpan="whole">
-                    <Reports1SS style={{ borderRadius: "20px" }}/>
+                    <Reports1SS style={{ borderRadius: "var(--radius)" }}/>
                 </Portion>
             </Row>
 
@@ -480,32 +465,6 @@ export default function RevampingReportsPage() {
 
             <Row marginBottom="small"/>
 
-
-            {/* OTHER PROJECTS */}
-
-            <hr className="brown-hr"/>
-
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
-                <Portion desktopSpan="4">
-                    <h5>Other projects</h5>
-                </Portion>
-
-                <Portion desktopSpan="18" className="project-thumbnail-row">
-                    <Link href="/experiences/assisted-product-discovery">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <ProjectDiscoveryThumbnail alt="assisted-discovery-at-setu"/>
-                            <Heading6 className="project-thumbnail-text">Assisted product discovery at
-                                Setu</Heading6>
-                        </Card>
-                    </Link>
-                    <Link href="/experiences/hdfc-journeys">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <HDFCThumbnail alt="hdfc"/>
-                            <Heading6 className="project-thumbnail-text">Digital journeys for HDFC Bank</Heading6>
-                        </Card>
-                    </Link>
-                </Portion>
-            </Row>
 
         </article>
     );

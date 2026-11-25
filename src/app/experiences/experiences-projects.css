@@ -1,11 +1,5 @@
 .project-page {
 
-    .full-width {
-        justify-content: center;
-        width: 100%;
-        align-items: center;
-    }
-
     .center-align-svg {
         display: flex;
         justify-content: center;
@@ -31,18 +25,18 @@
     .image {
         width: 100%;
         height: 100%;
-        border-radius: 20px;
+        border-radius: var(--radius);
     }
 
     .violet-card {
         padding: 24px;
-        border-radius: 16px;
+        border-radius: var(--radius);
         background-color: #EFEAFB;
     }
 
     .hdfc-blue-card {
         padding: 24px;
-        border-radius: 16px;
+        border-radius: var(--radius);
         background-color: #EBF5FE;
         justify-content: flex-start;
         display: flex;
@@ -57,7 +51,7 @@
 
     .bridge-cyan-card {
         padding: 24px;
-        border-radius: 16px;
+        border-radius: var(--radius);
         background-color: #E0FEFF;
         justify-content: flex-start;
         display: flex;
@@ -72,7 +66,7 @@
 
     .bridge-grey-card {
         padding: 24px;
-        border-radius: 16px;
+        border-radius: var(--radius);
         background-color: #F4F8FB;
         justify-content: flex-start;
         display: flex;
@@ -89,16 +83,12 @@
         color: #612DD7;
     }
 
-    .blue-text {
-        color: #014C92;
-    }
-
     .pointer-card {
         position: relative;
         display: flex;
         flex-direction: column;
         width: 22vw;
-        border-radius: 20px;
+        border-radius: var(--radius);
     }
 
     .pointer-card svg {
@@ -114,7 +104,7 @@
         width: 100%;
         gap: 24px;
         padding: 24px;
-        border-radius: 16px;
+        border-radius: var(--radius);
         background-color: #F8FAFC;
     }
 
@@ -127,7 +117,7 @@
     .overview-card {
         background-color: #FEF9F3;
         padding: 32px;
-        border-radius: 12px;
+        border-radius: var(--radius);
         display: flex;
         flex-direction: column;
         max-width: 1200px;
@@ -190,11 +180,6 @@
         gap: 16px;
     }
 
-    .pointer {
-        display: flex;
-        flex-direction: row;
-    }
-
     .content-row {
         display: flex;
         flex-direction: row;
@@ -207,7 +192,7 @@
         justify-content: space-between;
         background-color: #F4F8FB;
         padding: 24px;
-        border-radius: 16px;
+        border-radius: var(--radius);
         max-width: 600px;
         position: relative;
     }
@@ -215,7 +200,7 @@
     .stat {
         font-size: 24px;
         font-weight: bold;
-        font-family: "zilla-slab", serif;
+        font-family: var(--font-heading);
     }
 
     .card-icon {
@@ -249,24 +234,41 @@
     .project-thumbnail {
         position: relative;
         width: 26vw;
-        height: 12vw;
+        aspect-ratio: 1 / 1;
         overflow: hidden;
-        text-align: end;
-        border-radius: 20px;
-        background-color: #FAF8F5;
+        cursor: pointer;
     }
 
-    .project-thumbnail:hover {
-        background-color: #faf4ea;
+    .project-thumbnail svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+        transition: filter 0.3s ease;
+    }
+
+    .project-thumbnail:hover svg {
+        filter: grayscale(100%);
     }
 
     .project-thumbnail-text {
         position: absolute;
-        font-family: "zilla-slab", serif;
-        color: #BE9B74;
-        bottom: 24px;
-        right: 32px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: var(--font-heading);
+        color: #333333;
         font-size: 1rem;
+        font-weight: 600;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        width: 80%;
+        pointer-events: none;
+        margin: 0;
+    }
+
+    .project-thumbnail:hover .project-thumbnail-text {
+        opacity: 1;
     }
 
     .embed-container {
@@ -285,15 +287,14 @@
         width: 100%;
         height: 80vh;
         border: #D8D8D8 solid 1px;
-        border-radius: 20px;
+        border-radius: var(--radius);
         align-self: center;
     }
 
     .proto-embed-container {
-        border-radius: 20px;
+        border-radius: var(--radius);
         border: #D8D8D8 solid 1px;
     }
-
 
     .modules-card {
         position: relative;
@@ -318,7 +319,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        border-radius: 20px;
+        border-radius: var(--radius);
         background-color: #F0F8FF;
         display: flex;
         justify-content: center;
@@ -350,7 +351,6 @@
 }
 
 @media (max-width: 600px) {
-
 
     .horizontal-pointer-card {
         width: 88vw !important;
@@ -425,7 +425,7 @@
 
     .embed-container iframe {
         height: 100% !important;
-        border-radius: 12px !important;
+        border-radius: var(--radius) !important;
     }
 
     .card-front h6 {
@@ -449,4 +449,9 @@
         gap: 16px;
     }
 
+}
+/* Bullet lists inside the phase cards (lists can't live inside <Text>, which renders a <p>) */
+.phase-list {
+    margin: 0;
+    padding: var(--nano) 0 0 1.25em;
 }

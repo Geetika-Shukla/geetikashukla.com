@@ -1,32 +1,23 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
-import Link from "next/link";
 import Image from 'next/image';
 
 // INTERNAL DEPS ===============================================================
 import {
-    Button,
-    Header,
-    Card,
-    Element,
     Heading1,
     Portion,
     Row,
     Div,
     Text,
-    Footer,
-    CodeBlock
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
-import ImageGrid from "@/components/ImageGrid";
 
 // STYLES ======================================================================
 import "../type-projects.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
-import process from "@/assets/images/devanagari/47days.gif";
+import process from "@/assets/images/devanagari/47days.webp";
 import One from "@/assets/images/devanagari/1.svg";
 import Two from "@/assets/images/devanagari/2.svg";
 import Three from "@/assets/images/devanagari/3.svg";
@@ -89,9 +80,7 @@ export default function DevanagariPage() {
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height="32px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">
@@ -104,7 +93,7 @@ export default function DevanagariPage() {
 
             <Row style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <Div style={{ maxWidth: "1050px", width: "100%" }}>
-                    <Image src={process} alt="cover" height={200} width={1000} style={{ width: '100%', height: 'auto' }} />
+                    <Image src={process} alt="Animation of Devanagari letterforms from the 47 days project" height={200} width={1000} style={{ width: '100%', height: 'auto' }} />
                 </Div>
             </Row>
 

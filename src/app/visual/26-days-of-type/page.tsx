@@ -1,31 +1,22 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
-import Link from "next/link";
 import Image from 'next/image';
 
 // INTERNAL DEPS ===============================================================
 import {
-    Button,
-    Header,
-    Card,
-    Element,
     Heading1,
     Portion,
     Row,
     Div,
     Text,
-    Footer,
-    CodeBlock
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
-import ImageGrid from "@/components/ImageGrid";
 
 // STYLES ======================================================================
 import "../visual-projects.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
 import Steel from "@/assets/images/steel.svg";
 import Glass from "@/assets/images/glass.svg";
 import Brick from "@/assets/images/brick.svg";
@@ -34,7 +25,7 @@ import Louvre from "@/assets/images/le-grand-louvre.svg";
 import Museum from "@/assets/images/everson-museum.svg";
 import Tower from "@/assets/images/bank-of-china-tower.svg";
 import TypeGrid from "@/assets/images/type-grid.svg";
-import process from "@/assets/images/i-m-pei.gif";
+import process from "@/assets/images/i-m-pei.webp";
 import A from "@/assets/images/26days/a.svg";
 import B from "@/assets/images/26days/b.svg";
 import C from "@/assets/images/26days/c.svg";
@@ -69,9 +60,7 @@ import T from "@/assets/images/26days/t.svg";
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height="32px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">
@@ -147,7 +136,7 @@ import T from "@/assets/images/26days/t.svg";
             </Row >
 
             <Div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <Image src={process} alt="concept" height={300} width={1800} style={{ width: '100%', height: 'auto' }} />
+                <Image src={process} alt="Animation of the letterform concept" height={300} width={1800} style={{ width: '100%', height: 'auto' }} />
             </Div>
 
             <Row layoutAsFlexbox horizontalPadding="large" marginTop="medium" marginBottom="medium" horizontallyCenterThis>

@@ -1,22 +1,15 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
-import Link from "next/link";
-import Image from 'next/image';
 
 // INTERNAL DEPS ===============================================================
 import {
-    Button,
-    Header,
     Card,
     Tabs,
-    Element,
     Heading1,
     Portion,
     Row,
     Div,
     Text,
-    Footer,
-    CodeBlock, Heading6
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
@@ -26,7 +19,6 @@ import "../experiences-projects.css";
 import "../page-experiences.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
 import HDFCHero from "@/assets/images/hdfc-journeys/hdfc-cover.svg";
 import Portals from "@/assets/images/hdfc-journeys/hdfc-portals.svg";
 import StickyNeo from "@/assets/images/hdfc-journeys/sticky-neobank.svg";
@@ -64,8 +56,6 @@ import IconTeam from "@/assets/images/Team.svg";
 import IconCircleWithExclamationMark from "@/assets/images/CircleWithExclamationMark.svg";
 import IconEdgeCase from "@/assets/images/Jigsaw.svg";
 import IconErrorState from "@/assets/images/CircleWithExclamationMarkRed.svg";
-import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
-import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
 import IconBoxWithBraces from "@/assets/images/BoxWithBraces.svg";
 import IconDiamond from "@/assets/images/Integrity.svg";
 import ErrorStateOne from "@/assets/images/hdfc-journeys/error-state-1.svg";
@@ -77,11 +67,6 @@ import TestingOne from "@/assets/images/hdfc-journeys/testing-1.svg";
 import TestingTwo from "@/assets/images/hdfc-journeys/testing-2.svg";
 import TestingThree from "@/assets/images/hdfc-journeys/testing-3.svg";
 import TestingFour from "@/assets/images/hdfc-journeys/testing-4.svg";
-import AssistedHero from "@/assets/images/product-discovery/assisted-components.svg";
-import IconMobilewithCursor from "@/assets/images/MobilewithCursor.svg";
-import IconPersonWithSettings from "@/assets/images/PersonWithSettings.svg";
-import IconChatBubbles from "@/assets/images/ChatBubbles.svg";
-
 
 
 export default function HdfcJourneysPage() {
@@ -100,9 +85,7 @@ export default function HdfcJourneysPage() {
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height="32px"/>
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">
@@ -262,11 +245,11 @@ export default function HdfcJourneysPage() {
                     <Text paddingTop="nano">
                         Start with essential journeys—
                     </Text>
-                    <Text paddingTop="nano">
+                    <ul className="phase-list">
                         <li>Savings Accounts</li>
                         <li>Current Accounts</li>
                         <li>Fixed Deposits</li>
-                    </Text>
+                    </ul>
                 </Card>
 
                 <Card className="pointer-card" padding="small">
@@ -281,15 +264,14 @@ export default function HdfcJourneysPage() {
                     <Text paddingTop="nano">
                         Work on the next set of journeys—
                     </Text>
-                    <Text paddingTop="nano">
+                    <ul className="phase-list">
                         <li>Credit Card</li>
                         <li>Recurring Deposits</li>
                         <li>Joint Savings Account</li>
                         <li>Personal and business loans</li>
-                    </Text>
+                    </ul>
                 </Card>
             </Row>
-
 
 
             {/* ASSISTED + UNASSISTED */}
@@ -457,7 +439,7 @@ export default function HdfcJourneysPage() {
                             <h6>Personal details</h6>
                         </div>
                         <div className="card-back">
-                            <Text size="medium" fontStyle="serif">This includes details like mother's name, marital status and mailing address.</Text>
+                            <Text size="medium" fontStyle="serif">This includes details like mother&apos;s name, marital status and mailing address.</Text>
                         </div>
                     </div>
                 </div>
@@ -537,7 +519,6 @@ export default function HdfcJourneysPage() {
             </Row>
 
 
-
             {/* OTHER PARTS OF THE APP */}
 
             <Row horizontalPadding="huge" marginTop="small" marginBottom="tiny">
@@ -554,7 +535,7 @@ export default function HdfcJourneysPage() {
                             <h6>Home</h6>
                         </div>
                         <div className="card-back">
-                            <Text size="medium" fontStyle="serif">The Home section shows the user's accounts,
+                            <Text size="medium" fontStyle="serif">The Home section shows the user&apos;s accounts,
                                 notifications, and action items while nudging them to explore other banking
                                 products.</Text>
                         </div>
@@ -875,31 +856,6 @@ export default function HdfcJourneysPage() {
                 </Portion>
             </Row>
 
-            {/* OTHER PROJECTS */}
-
-            <hr className="brown-hr"/>
-
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
-                <Portion desktopSpan="4">
-                    <h5>Other projects</h5>
-                </Portion>
-
-                <Portion desktopSpan="20" className="project-thumbnail-row">
-                    <Link href="/experiences/assisted-product-discovery">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <ProjectDiscoveryThumbnail alt="assisted-discovery-at-setu"/>
-                            <Heading6 className="project-thumbnail-text">Assisted product discovery at
-                                Setu</Heading6>
-                        </Card>
-                    </Link>
-                    <Link href="/visual/icon-system-for-setu">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <IconSystemThumbnail alt="icon-system"/>
-                            <Heading6 className="project-thumbnail-text">Icon system for Setu</Heading6>
-                        </Card>
-                    </Link>
-                </Portion>
-            </Row>
 
         </article>
     );

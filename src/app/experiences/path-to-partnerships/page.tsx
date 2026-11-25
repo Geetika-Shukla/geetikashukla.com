@@ -1,22 +1,15 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
 import Link from "next/link";
-import Image from 'next/image';
 
 // INTERNAL DEPS ===============================================================
 import {
-    Button,
-    Header,
     Card,
-    Tabs,
-    Element,
     Heading1,
     Portion,
     Row,
     Div,
     Text,
-    Footer,
-    CodeBlock, Heading6
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
@@ -26,7 +19,6 @@ import "../experiences-projects.css";
 import "../page-experiences.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
 import PartnershipsHero from "@/assets/images/building-partnerships/partnerships-cover.svg";
 import ExistingLogos from "@/assets/images/building-partnerships/existing-logos.svg";
 import ExistingBlog from "@/assets/images/building-partnerships/existing-blog.svg";
@@ -34,7 +26,6 @@ import TestimonialPlacement from "@/assets/images/building-partnerships/testimon
 import BridgeOne from "@/assets/images/building-partnerships/bridge-1.svg";
 import BridgeTwo from "@/assets/images/building-partnerships/bridge-2.svg";
 import Mailers from "@/assets/images/building-partnerships/mailers.svg";
-import HDFCThumbnail from "@/assets/images/thumbnail-for-hdfc.svg";
 import IconWallOfLove from "@/assets/images/PersonWithHeart.svg";
 import IconLink from "@/assets/images/Link.svg";
 import IconPlant from "@/assets/images/Plant.svg";
@@ -42,12 +33,10 @@ import IconFunnel from "@/assets/images/FunnelWithPlusSymbol.svg";
 import IconHistory from "@/assets/images/DocumentWithGreenTick.svg";
 import IconJigsaw from "@/assets/images/Jigsaw.svg";
 import IconDiamond from "@/assets/images/Integrity.svg";
-import ReportsThumbnail from "@/assets/images/thumbnail-for-reports.svg";
 import MappingTouchPoints from "@/assets/images/building-partnerships/touchpoints.svg";
 import IconRocket from "@/assets/images/Rocket.svg";
 import IconBridge from "@/assets/images/WindowWithBlocks.svg";
 import IconPlay from "@/assets/images/WindowWithPlayButton.svg";
-
 
 
 export default function RevampingReportsPage() {
@@ -66,9 +55,7 @@ export default function RevampingReportsPage() {
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height="32px"/>
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">
@@ -91,7 +78,6 @@ export default function RevampingReportsPage() {
             </Row>
 
 
-
             {/* PROJECT OVERVIEW */}
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="tiny">
@@ -102,7 +88,7 @@ export default function RevampingReportsPage() {
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
             <Portion desktopSpan="whole">
-                <MappingTouchPoints className="please-respond" style={{ borderRadius: "20px" }}/>
+                <MappingTouchPoints className="please-respond" style={{ borderRadius: "var(--radius)" }}/>
             </Portion>
             </Row>
 
@@ -225,7 +211,6 @@ export default function RevampingReportsPage() {
             </Row>
 
 
-
             {/* WALL OF LOVE */}
 
 
@@ -254,10 +239,9 @@ export default function RevampingReportsPage() {
                     </Card>
                 </Portion>
                 <Portion desktopSpan="16">
-                    <ExistingLogos className="please-respond" style={{ borderRadius: "20px" }}/>
+                    <ExistingLogos className="please-respond" style={{ borderRadius: "var(--radius)" }}/>
                 </Portion>
             </Row>
-
 
 
             {/* FIGMA EMBED */}
@@ -311,7 +295,6 @@ export default function RevampingReportsPage() {
             </Row>
 
 
-
             {/* TESTIMONIAL PLACEMENT */}
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
@@ -319,7 +302,7 @@ export default function RevampingReportsPage() {
                     <Text marginTop="nano" marginBottom="tiny">
                         We placed CTAs on homepage, primary navigation and footer—
                     </Text>
-                    <TestimonialPlacement style={{ borderRadius: "20px" }}/>
+                    <TestimonialPlacement style={{ borderRadius: "var(--radius)" }}/>
                 </Portion>
             </Row>
 
@@ -352,12 +335,11 @@ export default function RevampingReportsPage() {
                     </Card>
                 </Portion>
                 <Portion desktopSpan="16">
-                    <ExistingBlog className="please-respond" style={{ borderRadius: "20px" }}/>
+                    <ExistingBlog className="please-respond" style={{ borderRadius: "var(--radius)" }}/>
                 </Portion>
 
 
             </Row>
-
 
 
             {/* FIGMA EMBED */}
@@ -413,22 +395,9 @@ export default function RevampingReportsPage() {
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
                 <Portion desktopSpan="whole">
-                    <Mailers className="please-respond" style={{ borderRadius: "20px" }}/>
+                    <Mailers className="please-respond" style={{ borderRadius: "var(--radius)" }}/>
                 </Portion>
             </Row>
-
-
-            {/* YOUTUBE EMBED */}
-
-            <div className="embed-container">
-                <iframe
-                    width="100%"
-                    height="200px"
-                    src="https://www.youtube.com/embed/9FVkApowTBs"
-                    allowFullScreen>
-                </iframe>
-            </div>
-
 
 
             {/* LINKS  */}
@@ -464,7 +433,6 @@ export default function RevampingReportsPage() {
             </Row>
 
 
-
             {/* CONCLUSION */}
 
             <Row className="summary-section" horizontalMargin="large" marginBottom="medium" marginTop="small">
@@ -483,32 +451,6 @@ export default function RevampingReportsPage() {
                 </Portion>
             </Row>
 
-
-
-            {/* OTHER PROJECTS */}
-
-            <hr className="brown-hr"/>
-
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
-                <Portion desktopSpan="4">
-                    <h5>Other projects</h5>
-                </Portion>
-
-                <Portion desktopSpan="18" className="project-thumbnail-row">
-                    <Link href="/experiences/revamping-reports">
-                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                            <ReportsThumbnail alt="revamping-reports" />
-                            <Heading6 className="project-thumbnail-text" >Revamping reports on Bridge</Heading6>
-                        </Card>
-                    </Link>
-                    <Link href="/experiences/hdfc-journeys">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <HDFCThumbnail alt="hdfc"/>
-                            <Heading6 className="project-thumbnail-text">Digital journeys for HDFC Bank</Heading6>
-                        </Card>
-                    </Link>
-                </Portion>
-            </Row>
 
         </article>
     );

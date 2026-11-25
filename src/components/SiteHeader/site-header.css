@@ -1,39 +1,150 @@
-#site-header {
-    height: 54px;
-    border-bottom: 1px solid var(--slate-dark-30);
-    padding-top: 24px;
-
-    .nav-links {
-        color: hsl(210, 6%, 40%);
-        text-decoration: none;
-        font-size: 1.1rem;
-        padding-right: 40px;
-        font-weight: 500;
-    }
-
-    .nav-links:hover {
-        color: hsl(207, 10%, 17%);
-    }
-
+/*
+ * Once the page scrolls, the nav sits on a frosted-glass band: a light tint
+ * over a strong, saturated blur, with a bright rim along the bottom edge.
+ * The glass is on the header itself: a backdrop blur on a pseudo-element
+ * behind it doesn't take effect.
+ */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+    background-color: rgba(255, 255, 255, 0.28);
+    box-shadow: 0 1px 0 rgba(43, 45, 56, 0.05), 0 6px 20px rgba(43, 45, 56, 0.04);
+    backdrop-filter: blur(16px) saturate(170%);
+    -webkit-backdrop-filter: blur(16px) saturate(170%);
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        backdrop-filter 0.3s ease,
+        -webkit-backdrop-filter 0.3s ease;
 }
 
-@media (max-width: 768px) {
-    #site-header {
-        padding-top: 12px;
-        height: 48px;
-        margin-bottom: 10px;
-        justify-content: space-between;
+/* In the dark, the glass is smoked */
+:root[data-theme="dark"] .site-header {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(36, 36, 40, 0.55);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* The logo, a dark tile, turns light */
+:root[data-theme="dark"] .site-header__logo svg {
+    filter: invert(1);
+}
+
+/* The nav sits clear at the top of a page; the glass shows once it scrolls */
+html.is-page-top .site-header {
+    border-bottom-color: transparent;
+    background-color: transparent;
+    box-shadow: none;
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(0);
+}
+
+.site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: var(--header-height);
+}
+
+.site-header__logo {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.site-header__nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px 96px;
+}
+
+.site-header__link {
+    color: var(--color-text);
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.site-header__link:hover,
+.site-header__link:focus-visible {
+    color: var(--color-accent);
+}
+
+@media (max-width: 640px) {
+    :root {
+        --header-height: 60px;
     }
 
-    .nav-icon {
-        height: 32px;
-        width: 32px;
-        margin-bottom: 20px;
-        margin-left: 32vw;
+    .site-header__inner {
+        gap: 16px;
     }
 
-    .nav-mobile {
-        justify-content: space-between;
-        margin-bottom: 10px;
+    .site-header__nav {
+        gap: 4px 48px;
+    }
+
+
+
+    .site-header__link {
+        font-size: 0.875rem;
+    }
+}
+
+/* THEME TOGGLE ============================================================= */
+/* A bulbul's face in the light theme, an owlet's in the dark (ThemeToggle.tsx) */
+.theme-toggle {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    /* The same distance from About me as About me is from Work: the gap, less
+       the button's own padding round the bird (36px button, 24px face) */
+    margin-left: -6px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-small);
+    background: none;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+    background-color: color-mix(in srgb, var(--color-text) 8%, transparent);
+}
+
+.theme-toggle svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* One gives way to the other, the night bird rising into place */
+.theme-toggle__day,
+.theme-toggle__night {
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.theme-toggle__night,
+:root[data-theme="dark"] .theme-toggle__day {
+    opacity: 0;
+    transform: translateY(3px);
+}
+
+:root[data-theme="dark"] .theme-toggle__night {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .theme-toggle__day,
+    .theme-toggle__night {
+        transition: none;
     }
 }

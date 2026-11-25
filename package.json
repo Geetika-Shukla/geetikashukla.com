@@ -1,27 +1,33 @@
 {
-  "name": "fictoan-react-boilerplate",
+  "name": "geetikashukla.com",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint .",
+    "glimpses": "node scripts/glimpses.mjs",
+    "resume": "node scripts/resume/build.mjs"
   },
   "dependencies": {
-    "fictoan-react": "latest",
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.2",
+    "fictoan-react": "1.11.14",
     "next": "^16.2.6",
-    "prismjs": "^1.29.0",
+    "prismjs": "^1.30.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "three": "^0.170.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/three": "^0.170.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.2.6",
     "typescript": "^5"
   }
 }
-
-

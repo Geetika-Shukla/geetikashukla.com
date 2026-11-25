@@ -1,92 +1,120 @@
-#page-hobbies {
+/*
+ * Interests: the intro on the left, beside photos in a flat grid, on the
+ * site's off-white with a faint square grid behind. Fills one screen.
+ */
+.interests {
+    --footer-height: 124px;
+}
 
-    .star {
-        display: inline-block;
-        transition: transform 4s ease-in-out;
-    }
+/* The grid runs behind the whole page, footer included */
+.site:has(.interests) {
+    --line: color-mix(in srgb, var(--color-text) 5.2%, transparent);
 
-    .star:hover {
-        transform: rotate(360deg);
-    }
-    
-    .hobby-heading {
-        color: #242424;
-        font-family: "zilla-slab", serif;
-        text-align: center;
-    }
+    background-image:
+        linear-gradient(to right, var(--line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
 
-    .bento-grid {
-        display: grid;
-        grid-template-columns: repeat(9, 1fr);
-        grid-template-rows: auto;
+/* The social icons sit on the page: no rule, bottom left */
+.site:has(.interests) > .site-footer {
+    margin-top: 0;
+    border-top: 0;
+}
+
+.site:has(.interests) .site-footer__inner {
+    justify-content: flex-start;
+    padding-block: 48px;
+}
+
+.interests__layout {
+    display: grid;
+    grid-template-columns: minmax(260px, 360px) 1fr;
+    gap: 64px;
+    align-items: center;
+    max-width: var(--page-max-width);
+    min-height: calc(100svh - var(--header-height) - var(--footer-height));
+    margin: 0 auto;
+    padding: 24px var(--page-gutter);
+}
+
+/* INTRO ==================================================================== */
+.interests__title {
+    margin: 0 0 20px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.interests__text {
+    margin: 0 0 14px;
+    color: var(--color-text-muted);
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.55;
+}
+
+/* PHOTOS =================================================================== */
+.interests__grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    height: min(calc(100svh - var(--header-height) - var(--footer-height) - 48px), 680px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.interests__photo {
+    overflow: hidden;
+    border-radius: var(--radius);
+    background-color: var(--color-surface);
+    box-shadow: 4px 4px 0 #E8E8E6;
+}
+
+.interests__photo--wide {
+    grid-column: span 2;
+}
+
+.interests__photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* NARROW SCREENS =========================================================== */
+/* Intro on top of the photos, two to a row */
+@media (max-width: 899px) {
+    .interests__layout {
+        grid-template-columns: 1fr;
         gap: 24px;
-        padding: 16px;
+        min-height: 0;
     }
 
-    .bento-item {
-        border-radius: 20px;
-        overflow: hidden;
+    .interests__title {
+        font-size: 1.8rem;
     }
 
-    .bento-item img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
+    .interests__text {
+        font-size: 1.1rem;
     }
 
-    .item-1 {
-        grid-column: span 3;
+    .interests__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: none;
+        height: auto;
     }
 
-    .item-2 {
-        grid-column: span 6;
+    .interests__photo {
+        aspect-ratio: 3 / 4;
     }
 
-    .item-3 {
-        grid-column: span 3;
+    .interests__photo--wide {
+        aspect-ratio: 16 / 9;
     }
-
-    .item-4 {
-        grid-column: span 3;
-    }
-
-    .item-5 {
-        grid-column: span 3;
-    }
-
-    .item-6 {
-        grid-column: span 2;
-    }
-
-    .item-7 {
-        grid-column: span 5;
-    }
-
-    .item-8 {
-        grid-column: span 2;
-    }
-
-    @media (max-width: 600px) {
-        .bento-grid {
-            grid-template-columns: 1fr;
-            /* Stacks items into one column */
-        }
-
-        .item-1 {
-            grid-column: span 6;
-        }
-
-        .item-6 {
-            grid-column: span 6;
-        }
-
-        .item-7 {
-            grid-column: span 6;
-        }
-
-        .item-8 {
-            grid-column: span 6;
-        }
-    }
-
 }

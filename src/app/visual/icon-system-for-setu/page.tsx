@@ -5,17 +5,12 @@ import Image from 'next/image';
 
 // INTERNAL DEPS ===============================================================
 import {
-    Button,
-    Header,
     Card,
-    Element,
     Heading1,
     Portion,
     Row,
     Div,
     Text,
-    Footer,
-    CodeBlock, Heading6
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
@@ -24,7 +19,6 @@ import {
 import "../visual-projects.css";
 
 // ASSETS ======================================================================
-import YellowStar from "@/assets/images/yellow-star.svg";
 import IconsHero from "@/assets/images/icons.svg";
 import DesignStyles from "@/assets/images/design-styles.svg";
 import IconTenacity from "@/assets/images/Tenacity.svg";
@@ -54,12 +48,7 @@ import Platform10 from "@/assets/images/platform-10.svg";
 import Platform11 from "@/assets/images/platform-11.svg";
 import Platform12 from "@/assets/images/platform-12.svg";
 import Tools from "@/assets/images/Tools.svg";
-import crucible from "@/assets/images/crucible.gif";
-import PeopleExperienceThumbnail from "@/assets/images/thumbnail-for-people-experience.svg";
-import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
-import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
-import process from "@/assets/images/devanagari/47days.gif";
-
+import crucible from "@/assets/images/crucible.webp";
 
 
 const IconSystemPage = () => {
@@ -74,9 +63,7 @@ const IconSystemPage = () => {
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar alt="star" height="32px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
 
                 <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">
@@ -133,7 +120,7 @@ const IconSystemPage = () => {
                         <Card className="pointer-card" padding="small">
                             <IconDocument />
                             <Text paddingTop="tiny">
-                                Given Setu's focus on finance and tech, a style that could balance vibrance and seriousness.
+                                Given Setu&apos;s focus on finance and tech, a style that could balance vibrance and seriousness.
                             </Text>
                         </Card>
                         <Card className="pointer-card" padding="small">
@@ -196,7 +183,7 @@ const IconSystemPage = () => {
             </Row >
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="small" horizontallyCenterThis>
-                <Image src={crucible} alt="crucible-gif" height={200} width={1200} />
+                <Image src={crucible} alt="Animation of the icon set" height={200} width={1200} />
             </Row>
 
             <Row horizontalPadding="huge">
@@ -281,29 +268,6 @@ const IconSystemPage = () => {
                     <Text>
                         It wasn’t just a set of icons; creating, refining, and implementing it on the design website and other platforms, and seeing it being used by other teams was truly rewarding.
                     </Text>
-                </Portion>
-            </Row>
-
-            <hr className="brown-hr"/>
-
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
-                <Portion desktopSpan="4">
-                    <h5>Other projects</h5>
-                </Portion>
-
-                <Portion desktopSpan="20" className="project-thumbnail-row">
-                    <Link href="/visual/people-experience">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <PeopleExperienceThumbnail alt="people-experience" />
-                            <Heading6 className="project-thumbnail-text" >People experience at Setu</Heading6>
-                        </Card>
-                    </Link>
-                    <Link href="/experiences/assisted-product-discovery">
-                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                            <ProjectDiscoveryThumbnail alt="Assisted product discovery at Setu" />
-                            <Heading6 className="project-thumbnail-text" >Assisted product discovery at Setu</Heading6>
-                        </Card>
-                    </Link>
                 </Portion>
             </Row>
 

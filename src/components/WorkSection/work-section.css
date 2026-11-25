@@ -1,0 +1,537 @@
+/*
+ * Work: a stage on the hero's grid that stays put while the section scrolls
+ * past, a screen's scroll (and a snap point) for each kind of work. A column
+ * on the left holds the heading, filters and the pause; beside it, the board.
+ * Column and board are whole numbers of grid blocks wide and start on a grid
+ * line. Each piece sits in a cut-out of the grid (no lines behind it), placed
+ * and sized in blocks by WorkSection.tsx.
+ */
+.work {
+    --block: 24px;
+    /* Two blocks above the board, its 26 rows at most, and one row of grid
+       after; or a screen under the nav (in whole blocks), if that's less */
+    --stage: min(calc(var(--block) * 29), round(down, calc(100svh - var(--header-height)), var(--block)));
+
+    position: relative;
+    /* The stage, plus a screen's scroll for each step after the first */
+    height: calc(var(--stage) * var(--steps, 4));
+}
+
+/* Snap points (and link targets), one a stage-height apart */
+.work__step {
+    position: absolute;
+    top: calc(var(--stage) * var(--step));
+    left: 0;
+    width: 1px;
+    height: 1px;
+    scroll-margin-top: var(--header-height);
+    scroll-snap-align: start;
+}
+
+html:has(.work__step) {
+    scroll-snap-type: y proximity;
+}
+
+.work__stage {
+    position: sticky;
+    top: var(--header-height);
+    height: var(--stage);
+    overflow: clip;
+    padding-top: calc(var(--block) * 2);
+    /* The grid behind it is drawn by GridCanvas (carried with the stage) */
+}
+
+/* The side column (8 blocks) and the board (42), a block apart, set on a grid
+   line nearest the middle */
+.work__layout {
+    display: flex;
+    gap: var(--block);
+    margin-left: round(nearest, calc((100% - var(--block) * 51) / 2), var(--block));
+}
+
+.work__side {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: flex-start;
+    width: calc(var(--block) * 8);
+}
+
+/* Two blocks tall */
+.work__title {
+    height: calc(var(--block) * 2);
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: calc(var(--block) * 2);
+}
+
+/* FILTERS ================================================================== */
+/* Down the column, two blocks each */
+.work__filters {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    margin: var(--block) 0;
+}
+
+/* Two blocks tall each */
+.work__filter {
+    position: relative;
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    height: calc(var(--block) * 2);
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 400;
+    text-align: left;
+    transition: color 0.2s ease;
+}
+
+.work__filter:hover,
+.work__filter:focus-visible {
+    color: var(--color-text);
+}
+
+/* The kind of work in view: its name circled by hand */
+.work__filter[aria-pressed="true"] {
+    color: var(--color-text);
+}
+
+.work__circle {
+    position: absolute;
+    top: 6px;
+    left: -12px;
+    width: calc(100% + 22px);
+    height: calc(100% - 10px);
+    overflow: visible;
+    fill: none;
+    stroke: var(--color-accent-2);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    pointer-events: none;
+    stroke-dasharray: 340;
+    stroke-dashoffset: 340;
+    animation: work-circle 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.work__circle path {
+    vector-effect: non-scaling-stroke;
+}
+
+/* Drawn on, as if by hand */
+@keyframes work-circle {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* A note scribbled beside a filter (new!), a little askew, just outside it (so a circle round the name leaves it out) */
+.work__note {
+    position: absolute;
+    top: 4px;
+    left: calc(100% + 14px);
+    white-space: nowrap;
+    color: var(--color-accent-2);
+    font-family: var(--font-hand), cursive;
+    font-size: 1.15rem;
+    font-weight: 700;
+    transform: rotate(-8deg) translateY(-6px);
+}
+
+/* THE BOARD ================================================================ */
+/* 42 blocks wide */
+.work__board {
+    position: relative;
+    flex-shrink: 0;
+    width: calc(var(--block) * 42);
+    height: calc(var(--block) * var(--rows));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+}
+
+/* The preview whose turn it is: a line drawing itself round the cut-out's
+   outline over its play-through (--play), gone when the next one's begins */
+.wcard__progress {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.wcard__progress rect {
+    x: 0.5px;
+    y: 0.5px;
+    width: calc(100% - 1px);
+    height: calc(100% - 1px);
+    fill: none;
+    stroke: color-mix(in srgb, #7A5AD6 40%, white);
+    stroke-width: 1.5;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: wcard-progress var(--play) linear forwards;
+}
+
+.wcard__progress[data-paused] rect {
+    animation-play-state: paused;
+}
+
+@keyframes wcard-progress {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wcard__progress {
+        display: none;
+    }
+}
+
+/* Each kind of work has its own tint; pieces settle in when the kind changes */
+.wcard {
+    --tint: #ECEAE4;
+
+    position: absolute;
+    top: calc(var(--block) * var(--y));
+    left: calc(var(--block) * var(--x));
+    /* A pixel more each way, so the outline's right and bottom edges land on grid lines too */
+    width: calc(var(--block) * var(--cw) + 1px);
+    height: calc(var(--block) * var(--ch) + 1px);
+    /* The cut-out: plain paper, no grid lines behind the piece, outlined a little darker than the grid */
+    background-color: var(--color-bg);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-text) 16%, transparent);
+    animation: wcard-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i) * 80ms);
+}
+
+@keyframes wcard-in {
+    from {
+        opacity: 0;
+        transform: translate(calc(var(--i) * 10px - 16px), 24px);
+    }
+}
+
+.wcard--experience {
+    --tint: #E5ECF1;
+}
+
+.wcard--visual {
+    --tint: #F3E7DC;
+}
+
+.wcard--type {
+    --tint: #ECEAE4;
+}
+
+.wcard--ai {
+    --tint: #ECE6F7;
+}
+
+/* A block of paper all round the thumbnail; its words under it or beside it */
+.wcard__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: var(--block);
+    color: inherit;
+    text-decoration: none;
+}
+
+.wcard[data-words="beside"] .wcard__link {
+    flex-direction: row;
+    gap: var(--block);
+}
+
+/* The panel holding the thumbnail, a whole number of blocks each way, filled
+   with the thumbnail's own background (--bg) so the artwork sits in it
+   seamlessly; a hairline edge keeps white panels from melting into the page */
+.wcard__media {
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+    width: calc(var(--block) * var(--mw));
+    height: calc(var(--block) * var(--mh));
+    overflow: hidden;
+    border-radius: var(--radius);
+    background-color: var(--bg, var(--tint));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-text) 8%, transparent);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+
+/* No image yet: a dashed placeholder */
+.wcard__media[data-empty] {
+    display: grid;
+    place-items: center;
+    background-color: color-mix(in srgb, var(--color-text) 3%, transparent);
+    box-shadow: none;
+    outline: 1.5px dashed color-mix(in srgb, var(--color-text) 25%, transparent);
+    outline-offset: -1.5px;
+}
+
+.wcard__soon {
+    color: var(--color-text-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* A still image fills its panel */
+.wcard__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+a.wcard__link:hover .wcard__image,
+a.wcard__link:focus-visible .wcard__image {
+    transform: scale(1.04);
+}
+
+.wcard__art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale(var(--art, 1));
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wcard__words {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding-top: 12px;
+}
+
+.wcard[data-words="beside"] .wcard__words {
+    padding-top: 0;
+}
+
+.wcard__title {
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1.08rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* A line about it (four at most) */
+.wcard__description {
+    display: -webkit-box;
+    margin-top: 4px;
+    overflow: hidden;
+    color: var(--color-text-muted);
+    font-size: 0.86rem;
+    font-weight: 400;
+    line-height: 1.4;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+}
+
+.wcard__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.wcard__tag {
+    padding: 3px 8px;
+    border-radius: var(--radius-small);
+    background-color: var(--tint);
+    color: var(--color-text-muted);
+    font-size: 0.64rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+:root[data-theme="dark"] .wcard__tag {
+    background-color: color-mix(in srgb, var(--color-text) 10%, transparent);
+}
+
+/* Hover: the panel lifts, the artwork leans in, the arrow slides in */
+a.wcard__link:hover .wcard__media,
+a.wcard__link:focus-visible .wcard__media {
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-text) 8%, transparent), 0 14px 30px rgba(43, 45, 56, 0.12);
+    transform: translateY(-4px);
+}
+
+a.wcard__link:hover .wcard__art,
+a.wcard__link:focus-visible .wcard__art {
+    transform: scale(calc(var(--art, 1) * 1.04));
+}
+
+/* A thin line arrow, the height of the title's lowercase */
+.wcard__last {
+    white-space: nowrap;
+}
+
+.wcard__go {
+    display: inline-block;
+    width: 0.9em;
+    height: 0.9em;
+    margin-left: 8px;
+    vertical-align: -0.08em;
+    fill: none;
+    stroke: var(--color-accent-2);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+a.wcard__link:hover .wcard__go,
+a.wcard__link:focus-visible .wcard__go {
+    opacity: 1;
+    transform: none;
+}
+
+/* Pause (or play) the thumbnails in motion: at the foot of the side column */
+.work__pause {
+    display: inline-flex;
+    margin-top: auto;
+    margin-bottom: var(--block);
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid color-mix(in srgb, var(--color-text) 16%, transparent);
+    border-radius: 999px;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.work__pause svg {
+    width: 12px;
+    height: 12px;
+    fill: currentColor;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.work__pause:hover,
+.work__pause:focus-visible {
+    border-color: var(--color-text);
+}
+
+/* NARROWER SCREENS ========================================================= */
+/* Not enough room for the column and board side by side: an ordinary section,
+   a plain list (two across, then one), and the filters simply switch */
+@media (max-width: 1259px) {
+    .work {
+        height: auto;
+    }
+
+    .work__step {
+        display: none;
+    }
+
+    .work__stage {
+        position: relative;
+        height: auto;
+        padding: 48px var(--section-margin) 72px;
+    }
+
+    .work__layout {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .work__side {
+        width: auto;
+    }
+
+    .work__filters {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-self: auto;
+        gap: 4px 28px;
+        margin: 8px 0 24px;
+    }
+
+    .work__filter {
+        height: 40px;
+    }
+
+    .work__pause {
+        margin: 0 0 24px;
+    }
+
+    .work__board {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 32px;
+        width: auto;
+        height: auto;
+        margin: 0;
+    }
+
+    .wcard {
+        position: static;
+        width: auto;
+        height: auto;
+    }
+
+    .wcard__link,
+    .wcard[data-words="beside"] .wcard__link {
+        flex-direction: column;
+        gap: 0;
+        padding: 16px;
+    }
+
+    .wcard__media {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 10;
+    }
+
+    .wcard[data-words="beside"] .wcard__words {
+        padding-top: 12px;
+    }
+}
+
+@media (max-width: 699px) {
+    .work__board {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wcard,
+    .work__circle {
+        animation: none;
+    }
+
+    .work__circle {
+        stroke-dashoffset: 0;
+    }
+
+    .wcard__media,
+    .wcard__art,
+    .wcard__go {
+        transition: none;
+    }
+}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<!--
+    The résumé, as a page to print: `npm run resume` prints it to
+    public/Geetika-resume.pdf, which the site offers for download. Laid out after
+    the earlier PDF (a 1200 × 1697 page, General Sans, purple headings).
+-->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Geetika Shukla — Résumé</title>
+    <style>
+        @font-face { font-family: "General Sans"; src: url("../../src/assets/fonts/general-sans/GeneralSans-Regular.otf"); font-weight: 400; }
+        @font-face { font-family: "General Sans"; src: url("../../src/assets/fonts/general-sans/GeneralSans-Medium.otf"); font-weight: 500; }
+        @font-face { font-family: "General Sans"; src: url("../../src/assets/fonts/general-sans/GeneralSans-Semibold.otf"); font-weight: 600; }
+
+        @page { size: 1200px 1697px; margin: 0; }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            width: 1200px;
+            height: 1697px;
+            background: #FFFFFF;
+            color: #1F1F1F;
+            font-family: "General Sans", sans-serif;
+            font-size: 22px;
+            line-height: 31px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        main { padding: 88px 88px 0; }
+
+        /* No word left on a line by itself at the end of a paragraph */
+        p { text-wrap: pretty; }
+
+        /* THE TOP: name, contact, summary */
+        .name {
+            color: #5900B2;
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 60px;
+        }
+
+        .contact {
+            margin-top: 22px;
+            color: #4E4E4E;
+        }
+
+        .summary { margin-top: 34px; }
+
+        hr {
+            margin: 30px 0;
+            border: 0;
+            border-top: 1.5px solid #EEEEEE;
+        }
+
+        /* SECTIONS */
+        h2 {
+            margin-bottom: 18px;
+            color: #400080;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 24px;
+        }
+
+        .list { line-height: 37px; }
+        .list + h2 { margin-top: 26px; }
+        .dot { margin: 0 8px; color: #4E4E4E; }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 388px 1fr;
+        }
+
+        /* EDUCATION */
+        .degree {
+            font-size: 21px;
+            font-weight: 600;
+            color: #2D2D2D;
+        }
+
+        .school {
+            margin-top: 6px;
+            font-size: 19px;
+            line-height: 24px;
+        }
+
+        .school + .degree { margin-top: 32px; }
+
+        /* WORK */
+        .role { margin-bottom: 20px; }
+
+        .title {
+            font-size: 21px;
+            font-weight: 600;
+            color: #2D2D2D;
+        }
+
+        .where {
+            margin-top: 6px;
+            font-size: 19px;
+            line-height: 26px;
+        }
+
+        /* A role's lines of what was done (not its title, or where and when) */
+        .role p:not(.title, .where) {
+            margin-top: 8px;
+            color: #5C5C5C;
+            font-size: 18px;
+            line-height: 24px;
+        }
+
+        /* LINKS */
+        .links {
+            display: flex;
+            gap: 72px;
+            margin-top: 8px;
+        }
+
+        .links a {
+            color: #004FF8;
+            font-size: 21px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <h1 class="name">Geetika Shukla</h1>
+    <p class="contact">Bangalore, India<span class="dot">·</span>geetika2903@gmail.com<span class="dot">·</span>+91 78976 65958</p>
+
+    <p class="summary">
+        With 7+ years of experience spanning brand, exhibition, web, and product design, I’ve spent most of my career
+        designing for fintech, from 0–1 B2B SaaS products at Setu to Reserve Bank Innovation Hub—applying systems
+        thinking with purposeful visual design to turn complex ideas into intuitive user journeys.
+    </p>
+
+    <hr>
+
+    <h2>SKILLS</h2>
+    <p class="list">
+        UI and UX design<span class="dot">·</span>Design systems<span class="dot">·</span>Responsive web design<span class="dot">·</span>Wireframing<span class="dot">·</span>Prototyping<span class="dot">·</span>Design
+        Strategy<span class="dot">·</span>User Research<span class="dot">·</span>Visual design<span class="dot">·</span>Branding &amp; Identity<span class="dot">·</span>Animations &amp; Micro-interactions<span class="dot">·</span>
+        Typography<span class="dot">·</span>HTML/CSS<span class="dot">·</span>Documentation and process design<span class="dot">·</span>Cross-functional collaboration
+    </p>
+
+    <h2>TOOLS</h2>
+    <p class="list">
+        Figma<span class="dot">·</span>Illustrator<span class="dot">·</span>Photoshop<span class="dot">·</span>After Effects<span class="dot">·</span>Google Workspace<span class="dot">·</span>Claude Code
+    </p>
+
+    <hr>
+
+    <div class="columns">
+        <section>
+            <h2>EDUCATION</h2>
+            <p class="degree">M.Des. (2017–19)</p>
+            <p class="school">National Institute of Design,<br>Bengaluru, Karnataka</p>
+            <p class="degree">B.Arch. (2011–16)</p>
+            <p class="school">Faculty of Architecture,<br>Lucknow, Uttar Pradesh</p>
+        </section>
+
+        <section>
+            <h2>WORK EXPERIENCE</h2>
+
+            <div class="role">
+                <p class="title">Manager — Design</p>
+                <p class="where">Reserve Bank Innovation Hub<br>Sep 2025 – Present</p>
+                <p>Leading design @RBIH. Currently working on rebranding initiatives, revamping the website, and building
+                    a scalable design system that connects visual identity with product experience.</p>
+            </div>
+
+            <div class="role">
+                <p class="title">Lead Growth Designer</p>
+                <p class="where">Setu by Pine Labs<br>Feb 2020 – May 2025</p>
+                <p>Led visual and UI design for Setu’s core and service-based products.</p>
+                <p>Built scalable UI frameworks and design systems for in-house products and services used by HDFC,
+                    ICICI, and Axis Bank.</p>
+                <p>Defined brand identity for Setu AA, and maintained visual consistency across web, dashboard, digital
+                    products, blog, and social media.</p>
+            </div>
+
+            <div class="role">
+                <p class="title">Retail Experience Designer (Graduation project)</p>
+                <p class="where">Ather Energy<br>Jun 2019 – Dec 2019</p>
+                <p>Created an exhibition design system and guidelines for pop-up and delivery events.</p>
+            </div>
+
+            <div class="role">
+                <p class="title">Freelance Graphic Designer</p>
+                <p class="where">Nonesuch Studio<br>Oct 2018 – Nov 2019</p>
+                <p>Worked on brand identity, editorial and social media for a pet hospital.</p>
+            </div>
+
+            <nav class="links">
+                <a href="https://www.linkedin.com/in/geetikashukla/">LinkedIn</a>
+                <a href="https://geetikashukla.com/">Portfolio</a>
+                <a href="https://github.com/Geetika-Shukla/geetikashukla.com">Github</a>
+            </nav>
+        </section>
+    </div>
+</main>
+</body>
+</html>

@@ -1,22 +1,15 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
 import Link from "next/link";
-import Image from 'next/image';
 
 // INTERNAL DEPS ===============================================================
 import {
-    Button,
-    Header,
     Card,
-    Element,
     Heading1,
-    Heading6,
     Portion,
     Row,
     Div,
     Text,
-    Footer,
-    CodeBlock
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
@@ -24,10 +17,10 @@ import {
 // STYLES ======================================================================
 import "./page-more-about-me.css";
 
+// DATA ========================================================================
+import { PATH, RESUME_FILE, RESUME_URL } from "@/data/about";
+
 // ASSETS ======================================================================
-import GreenStar from "@/assets/images/green-star.svg";
-import PurpleStar from "@/assets/images/purple-star.svg";
-import YellowStar from "@/assets/images/yellow-star.svg";
 import MyPhoto from "@/assets/images/me.svg";
 import NIDLogo from "@/assets/images/nid-logo.svg";
 import FOALogo from "@/assets/images/foa-logo.svg";
@@ -42,22 +35,19 @@ import IconProcess from "@/assets/images/SignPost.svg";
 
 
 
+
 const MoreAboutMePage = () => {
     return (
         <article id="page-more-about-me">
 
             <Row layoutAsGrid className="row-hide" horizontalPadding="huge" marginTop="medium" marginBottom="none">
-                <Portion desktopSpan="2" marginTop="large" className="overflow-left" showOnlyOnDesktop>
-                    <GreenStar className="star" alt="stars" height="56px" />
-                </Portion>
+                <Portion desktopSpan="2" showOnlyOnDesktop />
                 <Portion desktopSpan="7">
                     <Heading1 className="hero-heading">
                         The story so far
                     </Heading1>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" hideOnMobile>
-                    <YellowStar className="star"  alt="star" height="32px" />
-                </Portion>
+                <Portion desktopSpan="2" hideOnMobile />
                 <Portion desktopSpan="11" marginBottom="small">
                     <Div marginTop="small" className="intro-text">
                         <MyPhoto className="display-pic"/>
@@ -66,11 +56,22 @@ const MoreAboutMePage = () => {
                         <Text>
                             Here’s a look at what’s shaped me, and how I now shape experiences in turn.
                         </Text>
+
+                        {/* Always learning: the path so far, each step with the question it asked */}
+                        <p className="path-line">
+                            Seven years of learning by doing — from buildings and exhibitions to brands and products.
+                        </p>
+                        <ol className="path">
+                            {PATH.map(({ step, question }) => (
+                                <li key={step}>
+                                    <strong>{step}</strong>
+                                    {question && <span>{question}</span>}
+                                </li>
+                            ))}
+                        </ol>
                     </Div>
                 </Portion>
-                <Portion desktopSpan="2" marginTop="small" className="overflow-right" showOnlyOnDesktop>
-                    <PurpleStar className="star" alt="star" height="56px" />
-                </Portion>
+                <Portion desktopSpan="2" showOnlyOnDesktop />
             </Row >
 
 
@@ -130,89 +131,80 @@ const MoreAboutMePage = () => {
                     </div>
 
                     <br/><br/>
-                    <div>
+                    <div className="timeline">
 
-                        <RBIHLogo className="college-logo"/>
-                        <Text marginTop="micro"><strong>
-                            Manager — Design
-                        </strong>
-                        </Text>
-                        <Text marginBottom="tiny" marginTop="nano">
-                            Reserve Bank Innovation Hub · Aug 2025 – present
-                        </Text>
-                        <Text marginBottom="nano">
-                            Currently working on rebranding initiatives and building a scalable design system that connects visual identity with product experience.
-                        </Text>
+                        <div className="timeline-entry">
+                            <RBIHLogo className="college-logo college-logo--rbih"/>
+                            <Text marginTop="micro"><strong>
+                                Manager — Design
+                            </strong>
+                            </Text>
+                            <Text marginBottom="tiny" marginTop="nano">
+                                Reserve Bank Innovation Hub · Sep 2025 – present
+                            </Text>
+                            <Text marginBottom="nano">
+                                Currently working on rebranding initiatives, revamping the website, and building a scalable design system that connects visual identity with product experience.
+                            </Text>
+                        </div>
+
+                        <div className="timeline-entry">
+                            <SetuLogo className="college-logo"/>
+                            <Text marginTop="nano"><strong>
+                                Lead Growth Designer
+                            </strong>
+                            </Text>
+                            <Text marginBottom="tiny" marginTop="nano">
+                                Setu by Pine Labs · Feb 2020 – May 2025
+                            </Text>
+                            <Text marginBottom="nano">
+                                Led visual and UI design for Setu&apos;s core and service-based products.
+                            </Text>
+                            <Text marginBottom="nano">
+                                Built scalable UI frameworks and design systems for in-house products and services used by HDFC, ICICI, and Axis Bank.
+                            </Text>
+                            <Text>
+                                Defined brand identity for Setu AA, and maintained visual consistency across web, dashboard, digital products, blog, and social media.
+                            </Text>
+                        </div>
+
+                        <div className="timeline-entry">
+                            <AtherLogo className="college-logo"/>
+                            <Text marginTop="nano"><strong>
+                                Retail Experience Designer
+                            </strong>
+                            </Text>
+                            <Text marginBottom="tiny" marginTop="nano">
+                                Ather Energy · Jun 2019 – Dec 2019
+                            </Text>
+                            <Text>
+                                Created an exhibition design system and guidelines for pop-up and delivery events.
+                            </Text>
+                        </div>
+
+                        <div className="timeline-entry">
+                            <NSLogo className="college-logo"/>
+                            <Text marginTop="nano"><strong>
+                                Freelance Graphic Designer
+                            </strong>
+                            </Text>
+                            <Text marginBottom="tiny" marginTop="nano">
+                                Nonesuch Studio · Oct 2018 – Nov 2019
+                            </Text>
+                            <Text>
+                                Worked on brand identity, editorial and social media for a pet hospital.
+                            </Text>
+                        </div>
+
                     </div>
 
                     <br/><br/>
 
-                    <div>
-                        <SetuLogo className="college-logo"/>
-                        <Text marginTop="nano"><strong>
-                            Lead Growth Designer
-                        </strong>
-                        </Text>
-                        <Text marginBottom="tiny" marginTop="nano">
-                            Setu by Pine Labs · Feb 2020 – May 2025
-                        </Text>
-                        <Text marginBottom="nano">
-                            Led visual and UI design for Setu's core and service-based products.
-                        </Text>
-                        <Text marginBottom="nano">
-                            Built scalable UI frameworks and design systems for in-house products and services used by HDFC, ICICI, and Axis Bank.
-                        </Text>
-                        <Text>
-                            Defined brand identity for Setu AA, and maintained visual consistency across web, dashboard, digital products, blog, and social media.
-                        </Text>
-                    </div>
-
-                    <br/><br/>
-
-                    <div>
-                        <AtherLogo className="college-logo"/>
-                        <Text marginTop="nano"><strong>
-                            Retail Experience Designer
-                        </strong>
-                        </Text>
-                        <Text marginBottom="nano">
-
-                        </Text>
-                        <Text marginBottom="tiny" marginTop="nano">
-                            Ather Energy · Jun 2019 – Dec 2019
-                        </Text>
-                        <Text>
-                            Created an exhibition design system and guidelines for pop-up and delivery events.
-                        </Text>
-                    </div>
-
-                    <br/><br/>
-
-                    <div>
-                        <NSLogo className="college-logo"/>
-                        <Text marginTop="nano"><strong>
-                            Freelance Graphic Designer
-                        </strong>
-                        </Text>
-                        <Text marginBottom="nano">
-                        </Text>
-                        <Text marginBottom="tiny" marginTop="nano">
-                            Nonesuch Studio · Oct 2018 – Nov 2019
-
-                        </Text>
-                        <Text>
-                            Worked on brand identity, editorial and social media for a pet hospital.
-                        </Text>
-                    </div>
-
-                    <br/><br/>
-
-                    <div>
+                    <div style={{ paddingLeft: '50px' }}>
                         <a
                             className="resume-button"
-                            href="https://drive.google.com/uc?export=download&id=1UXkFA6hBj2m-KuHozLz3eFtyUJKckFoY"
-                            target="_blank"
-                            download
+                            data-button
+                            href={RESUME_URL}
+                            download={RESUME_FILE}
                         >
                             Download Resume
                         </a>
@@ -293,7 +285,7 @@ const MoreAboutMePage = () => {
 
             <Row horizontalPadding="huge" marginBottom="tiny" marginTop="tiny">
                 <Portion>
-                    <h5>From those I've worked with &nbsp; 🤍
+                    <h5>From those I&apos;ve worked with &nbsp; 🤍
                     </h5>
                 </Portion>
             </Row>
@@ -315,7 +307,7 @@ const MoreAboutMePage = () => {
 
                     <Card className="testimonial-card" bgColor="violet-light10-opacity5" borderColor="violet-light50-opacity10">
                         <Text marginBottom="tiny">
-                            I had the pleasure of working with Geetika to design the brand identity for my business, and I couldn't be more thrilled with the results! From the start, she took the time to understand my vision, values, and the essence of my brand.
+                            I had the pleasure of working with Geetika to design the brand identity for my business, and I couldn&apos;t be more thrilled with the results! From the start, she took the time to understand my vision, values, and the essence of my brand.
                         </Text>
                         <Text marginBottom="tiny">
                             The attention to detail, creativity, and expertise she brought to the table was evident in every aspect of the design. The logo, colour palette, typography, and overall style feel perfectly aligned with the identity I wanted to create.

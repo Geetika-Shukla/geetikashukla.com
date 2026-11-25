@@ -1,108 +1,65 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
-import Link from "next/link";
-import Image from 'next/image';
-
-// INTERNAL DEPS ===============================================================
-import {
-    Button,
-    Header,
-    Card,
-    Element,
-    Heading1,
-    Heading6,
-    Portion,
-    Row,
-    Div,
-    Text,
-    Footer,
-    CodeBlock
-} from "fictoan-react";
-
-// COMPONENTS ==================================================================
+import Image from "next/image";
 
 // STYLES ======================================================================
 import "./page-hobbies.css";
 
 // ASSETS ======================================================================
-import GreenStar from "@/assets/images/green-star.svg";
-import PurpleStar from "@/assets/images/purple-star.svg";
 import calliOne from "@/assets/images/calli-1.png";
 import calliTwo from "@/assets/images/calli-2.png";
 import ghibli from "@/assets/images/ghibli-image.jpg";
 import sleeve from "@/assets/images/laptop-sleeve.jpg";
 import japanFic from "@/assets/images/japan-books.jpg";
 import lego from "@/assets/images/japan-lego.jpg";
-import plants from "@/assets/images/plants.gif";
+import plants from "@/assets/images/plants.webp";
 import spirited from "@/assets/images/spirited-away.jpg";
 
+// TYPES =======================================================================
+import type { StaticImageData } from "next/image";
 
-
+/*
+ * Photos in a flat grid, five columns by two rows, beside the intro. Wide
+ * imagery spans two columns; the cells are taller than wide, which suits the
+ * mostly portrait photos.
+ */
+const PHOTOS: { alt: string; image: StaticImageData; wide?: boolean }[] = [
+    { alt: "Calligraphy piece", image: calliOne },
+    { alt: "Studio Ghibli-inspired artwork", image: ghibli, wide: true },
+    { alt: "Japanese fiction books", image: japanFic },
+    { alt: "Spirited Away-inspired artwork", image: spirited },
+    { alt: "Animation of house plants", image: plants },
+    { alt: "Handmade laptop sleeve", image: sleeve },
+    { alt: "Japan-themed Lego build", image: lego, wide: true },
+    { alt: "Calligraphy piece", image: calliTwo },
+];
 
 const HobbiesPage = () => {
     return (
-        <article id="page-hobbies">
+        <article className="interests">
+            <div className="interests__layout">
+                <header className="interests__intro">
+                    <h1 className="interests__title">My go-to sources of joy</h1>
+                    <p className="interests__text">
+                        My interests and hobbies are as varied as they are fleeting, ranging from typography,
+                        stitching and home organising to an unexpected fascination with soaps.
+                    </p>
+                    <p className="interests__text">
+                        I cherish the beauty of everyday moments—the quiet, unassuming ones—which explains my love
+                        for slice-of-life anime and Japanese fiction.
+                    </p>
+                </header>
 
-            <Row layoutAsGrid className="row-hide" horizontalPadding="huge" marginTop="medium" marginBottom="none">
-                <Portion desktopSpan="2" marginTop="large" className="overflow-left" hideOnMobile>
-                    <GreenStar  className="star"  alt="star" height="56px" />
-                </Portion>
-                <Portion desktopSpan="20" >
-                    <Heading1 className="hobby-heading">
-                        My go-to sources of joy ✨
-                    </Heading1>
-                    <Div marginTop="small">
-                        <Text align="center" marginBottom="tiny" >My interests and hobbies are as varied as they are fleeting, ranging from typography, stitching and home organising to an unexpected fascination with soaps.
-                        </Text>
-                        <Text align="center" marginBottom="tiny">I cherish the beauty of everyday moments—the quiet, unassuming ones—which explains my love for slice-of-life anime and Japanese fiction.</Text>
-                    </Div>
-                </Portion>
-                <Portion desktopSpan="2" marginTop="small" className="overflow-right" hideOnMobile>
-                    <PurpleStar className="star" alt="star" height="56px" />
-                </Portion>
-            </Row >
-
-            <Row layoutAsGrid horizontalPadding="huge" marginTop="none" marginBottom="medium">
-                <Portion>
-                    <div className="bento-grid">
-                        <div className="bento-item item-1">
-                            <Image src={calliOne} alt="Image 1" width={400} height={400} loading="lazy" />
-                        </div>
-                        <div className="bento-item item-2">
-                            <Image src={ghibli} alt="Image 2" width={500} height={100} loading="lazy" />
-                        </div>
-                    </div>
-
-                    <div className="bento-grid">
-                        <div className="bento-item item-3">
-                            <Image src={spirited} alt="Image 3" width={400} height={400} loading="lazy" />
-                        </div>
-                        <div className="bento-item item-4">
-                            <Image src={japanFic} alt="Image 5" width={400} height={400} loading="lazy" />
-                        </div>
-                        <div className="bento-item item-5">
-                            <Image src={calliTwo} alt="Image 4" width={400} height={400} loading="lazy" />
-                        </div>
-                    </div>
-
-                    <div className="bento-grid">
-                        <div className="bento-item item-6">
-                            <Image src={plants} alt="Image 6" width={500} height={200} loading="lazy" />
-                        </div>
-                        <div className="bento-item item-7">
-                            <Image src={lego} alt="Image 7" width={500} height={200} loading="lazy" />
-                        </div>
-                        <div className="bento-item item-8">
-                            <Image src={sleeve} alt="Image 8" width="400" height="300" loading="lazy" />
-                        </div>
-                    </div>
-
-                </Portion>
-            </Row>
-
-        </article >
+                <ul className="interests__grid">
+                    {PHOTOS.map(({ alt, image, wide }) => (
+                        <li key={image.src} className={`interests__photo${wide ? " interests__photo--wide" : ""}`}>
+                            <Image src={image} alt={alt} sizes="(min-width: 900px) 20vw, 50vw" />
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </article>
     );
 };
 
 export default HobbiesPage;
-

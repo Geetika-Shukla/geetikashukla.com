@@ -1,0 +1,350 @@
+/*
+ * Hero: a board on the page's off-white with a faint grid. It opens on the
+ * intro in the middle, things scattered round the edges (--sx, --sy, tilted).
+ * The section runs taller than the screen while the board stays put;
+ * scrolling through it (--p, 0 → 1, set by Hero.tsx) gathers each thing into
+ * its cell (--gx, --gy) as the intro gives way to a line set in cells of its
+ * own, and the tidy grid holds a moment before the work. --q is the scatter
+ * (1 at the top, 0 once arranged). Things can be dragged (--dx, --dy).
+ */
+.hero {
+    --p: 0;
+    --q: calc(1 - var(--p));
+    --paper: var(--color-bg);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    position: relative;
+    /* The board's screen, plus the scroll it takes to arrange it (100svh)
+       and a pause once arranged (60svh) before the page moves on */
+    /* Rounded to whole grid blocks, so the next section starts on a grid line */
+    height: round(up, calc(100svh - var(--header-height) + 160svh), 24px);
+}
+
+.hero__board {
+    position: sticky;
+    top: var(--header-height);
+    height: round(down, calc(100svh - var(--header-height)), 24px);
+    min-height: 624px;
+    overflow: clip;
+    /* The grid behind it is drawn by GridCanvas (carried with the board) */
+}
+
+/* INTRO ==================================================================== */
+/* Comes in over the last part of the scroll, once the board has scattered */
+.hero__intro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    width: min(520px, 44%);
+    text-align: center;
+    opacity: clamp(0, calc((var(--q) - 0.55) * 2.5), 1);
+    transform: translate(-50%, calc(-50% + (1 - var(--q)) * 24px));
+}
+
+.hero__title {
+    margin: 0 auto;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: clamp(2.6rem, 4.4vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.05;
+}
+
+/* Ink with a flash of colour (yellow into purple) sweeping through every few seconds */
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+    .hero__title {
+        width: fit-content;
+        background-image: linear-gradient(
+            100deg,
+            var(--color-text) 0%,
+            var(--color-text) 36%,
+            #E8B931 45%,
+            #7A5AD6 55%,
+            var(--color-text) 64%,
+            var(--color-text) 100%
+        );
+        background-size: 300% 100%;
+        background-position: 100% 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: hero-title-flash 6s cubic-bezier(0.45, 0, 0.25, 1) 0.6s infinite;
+    }
+}
+
+@keyframes hero-title-flash {
+    0% {
+        background-position: 100% 0;
+    }
+
+    35%,
+    100% {
+        background-position: 0% 0;
+    }
+}
+
+.hero__role {
+    margin: 18px 0 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* PHRASES ================================================================== */
+/* A line set in cells of its own, which go once the board starts to scatter */
+.hero__phrases {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* A cut-out of the board's grid, placed by Hero.tsx on whole squares: the
+   lines inside it are cleared, the ones round it remain as its edge */
+.hero__phrase {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    background-color: var(--paper);
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    /* Sized to the grid: a line is one square, the middle of the cut-out's three */
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 24px;
+    white-space: nowrap;
+    text-align: center;
+    opacity: clamp(0, calc(1 - var(--q) * 2.5), 1);
+}
+
+/* CUT-OUTS ================================================================= */
+/* Where each thing sits in the grid, a cut-out like the phrases' (placed by
+   Hero.tsx); they go as the board scatters */
+.hero__cuts {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.hero__cut {
+    position: absolute;
+    background-color: var(--paper);
+    opacity: clamp(0, calc(1 - var(--q) * 2.5), 1);
+}
+
+/* THINGS =================================================================== */
+.hero__items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Between its grid cell and its scatter place by --p, tilting as it goes,
+   and moved by however far it was dragged */
+.hero__item {
+    position: absolute;
+    top: calc(var(--gy) + (var(--sy) - var(--gy)) * var(--q));
+    left: calc(var(--gx) + (var(--sx) - var(--gx)) * var(--q));
+    z-index: 2;
+    width: var(--w);
+    transform:
+        translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px)))
+        rotate(calc(var(--tilt, 0deg) * var(--q)));
+}
+
+.hero__item:has(.hero__thing:active) {
+    z-index: 3;
+}
+
+.hero__thing {
+    display: block;
+    color: inherit;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    transition: transform 0.25s var(--ease), filter 0.25s ease;
+}
+
+.hero__thing:active {
+    cursor: grabbing;
+}
+
+.hero__thing:hover {
+    transform: scale(1.05);
+}
+
+.hero__thing img,
+.hero__thing svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Photos: plain prints, square-cornered */
+.hero__item--photo .hero__thing {
+    overflow: hidden;
+}
+
+/* A stamp: its perforated edge cut out, and a shadow that follows it */
+.hero__stamp {
+    filter: drop-shadow(1px 3px 3px rgba(28, 28, 30, 0.22));
+}
+
+/* QUEEN OF THE NIGHT ======================================================= */
+/* Brahmakamal: a bud in the day; in the dark theme, or on hover, it opens into
+   its white flower, the board's one moment (Illustrations.tsx) */
+/* The flower can grow past the drawing's edge */
+.hero__thing .qotn {
+    overflow: visible;
+}
+
+.qotn__bud,
+.qotn__bloom {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    transition: opacity 0.8s ease, transform 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.qotn__bloom {
+    transform-origin: 50% 50%;
+    opacity: 0;
+    transform: scale(0.2) rotate(-40deg);
+}
+
+/* Hovering it opens the flower in the day too; at night, the open flower grows */
+.hero__thing:hover .qotn__bud,
+:root[data-theme="dark"] .qotn__bud {
+    opacity: 0;
+    transform: scale(0.6);
+}
+
+.hero__thing:hover .qotn__bloom,
+:root[data-theme="dark"] .qotn__bloom {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0.3s;
+}
+
+:root[data-theme="dark"] .hero__thing:hover .qotn__bloom {
+    transform: scale(1.25);
+    transition-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .qotn__bud,
+    .qotn__bloom {
+        transition: opacity 0.4s ease;
+    }
+}
+
+/* VINYL ==================================================================== */
+/* The record sits in its sleeve; on hover it slides out and spins */
+.vinyl {
+    position: relative;
+    display: block;
+}
+
+.vinyl__sleeve {
+    position: relative;
+    z-index: 1;
+}
+
+.vinyl__disc {
+    position: absolute;
+    top: 4%;
+    left: 4%;
+    width: 92%;
+    height: 92%;
+    transform: translateX(8%);
+    transition: transform 0.6s var(--ease);
+}
+
+.vinyl__disc svg {
+    height: 100%;
+    animation: vinyl-spin 2.4s linear infinite;
+    animation-play-state: paused;
+}
+
+.hero__thing:hover .vinyl__disc {
+    transform: translateX(56%);
+}
+
+.hero__thing:hover .vinyl__disc svg {
+    animation-play-state: running;
+}
+
+@keyframes vinyl-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* NARROW SCREENS =========================================================== */
+/* The intro on top, then the things as a loose, tilted collage; no grid */
+@media (max-width: 899px) {
+    .hero {
+        height: auto;
+    }
+
+    .hero__board {
+        position: static;
+        height: auto;
+        min-height: 0;
+        padding: 32px var(--page-gutter) 40px;
+    }
+
+    .hero__intro {
+        position: static;
+        width: auto;
+        margin-bottom: 28px;
+        opacity: 1;
+        transform: none;
+    }
+
+    .hero__title {
+        font-size: 2.4rem;
+    }
+
+    .hero__phrases,
+    .hero__cuts {
+        display: none;
+    }
+
+    .hero__items {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .hero__item {
+        position: static;
+        width: calc(var(--w) * 0.75);
+        transform: rotate(var(--tilt, 0deg));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero__burst {
+        display: none;
+    }
+
+    .hero__title {
+        animation: none;
+        background-position: 50% 0;
+    }
+
+    .hero__thing,
+    .vinyl__disc {
+        transition: none;
+    }
+
+    .vinyl__disc svg {
+        animation: none;
+    }
+}

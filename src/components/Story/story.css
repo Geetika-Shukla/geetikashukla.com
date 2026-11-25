@@ -1,0 +1,549 @@
+/*
+ * The story so far, a little unserious but kept simple, on the page's grid:
+ * 51 blocks across, set on the grid line nearest centred, in two columns. The
+ * left (17 blocks) stays in view; the right (33) scrolls past it. Type on the
+ * grid, the About box with stickers on its edge, a photo taped on. GridSnap
+ * rounds heights to the grid.
+ */
+.story {
+    position: relative;
+    padding: 96px 0 120px;
+    /* The grid behind it is drawn by GridCanvas, still while the content scrolls
+       over it (the nav is three blocks tall, so its lines fall where the
+       page's would) */
+    /* Links to #journal (the nav's About me) land clear of the nav */
+    scroll-margin-top: var(--header-height);
+}
+
+/* The content over them */
+.story__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: calc(24px * 17) calc(24px * 33);
+    column-gap: 24px;
+    align-items: start;
+    margin-left: round(nearest, calc((100% - 24px * 51) / 2), 24px);
+}
+
+.story__hand {
+    font-family: var(--font-hand), cursive;
+}
+
+.story__muted {
+    color: var(--color-text-muted);
+}
+
+.story__label {
+    margin: 0 0 16px;
+    color: var(--color-accent-2);
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* LEFT ===================================================================== */
+/* Staying in view, a block under the nav */
+.story__side {
+    position: sticky;
+    top: calc(var(--header-height) + 24px);
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-right: 48px;
+}
+
+/* Two blocks tall */
+.story__title {
+    height: 48px;
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 48px;
+}
+
+/* A small portrait, taped on at two corners, a little askew, with room either side */
+.story__photo {
+    position: relative;
+    width: calc(24px * 8);
+    margin: 0 auto;
+    transform: rotate(-1.5deg);
+}
+
+.story__photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 25%;
+    box-shadow: 0 2px 4px rgba(43, 45, 56, 0.12), 0 10px 22px rgba(43, 45, 56, 0.12);
+}
+
+/* Education: a logo and the degree, each */
+.story__colleges {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.story__colleges li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.story__colleges li > span:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.88rem;
+    line-height: 1.4;
+}
+
+.story__colleges strong {
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+}
+
+/* The résumé: a small button */
+.story__resume {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    height: 36px;
+    padding: 0 16px;
+    border-radius: var(--radius-small);
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+/* Hovered, its ink a little lighter (or, in the dark, a little dimmer); never another colour */
+.story__resume:hover,
+.story__resume:focus-visible {
+    background-color: color-mix(in srgb, var(--color-text) 82%, var(--color-bg));
+}
+
+/* LOGOS ==================================================================== */
+/* Each logo as it is, 40px; the square badges trimmed to circles of the same
+   size (just their corners cut off) */
+.story__logo {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+}
+
+.story__logo[data-round] {
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+/* A wordmark, not a badge (RBIH): in a white circle of the same size */
+.story__logo:not([data-round]) {
+    padding: 5px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+}
+
+.story__logo svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Dark-ink logos turn light in the dark theme (their colours otherwise kept) */
+:root[data-theme="dark"] .story__logo[data-inked] svg {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* RIGHT ==================================================================== */
+/* About, then work, a full stop of space after each */
+.story__main {
+    display: grid;
+    grid-template-columns: repeat(33, 24px);
+    row-gap: 32px;
+}
+
+.story__about,
+.story__work {
+    position: relative;
+    grid-column: 1 / -1;
+    margin-bottom: 72px;
+}
+
+/* Room for the GitHub strip hanging off the About box */
+.story__about {
+    margin-bottom: 144px;
+}
+
+/* Two stops: first the About box, then the work line, each landing two grid
+   blocks below the pinned left column's top (which sits a block under the
+   nav), so the box (and the GitHub strip under it), the work line and the
+   whole left column all fit on the screen */
+/* (StorySteps moves between them, reading this margin; no CSS snap, which
+   would pull a scroll leaving the section back to a stop) */
+.story__about,
+.story__work {
+    scroll-margin-top: calc(var(--header-height) + 24px + 48px);
+}
+
+/* Room after the work line, so the left column stays pinned beside it rather
+   than being carried off as the section ends */
+.story__work {
+    margin-bottom: 168px;
+}
+
+/* Always a student, in a box on the grid: plain paper, its top and left edges
+   just inside, right and bottom just outside, so all four sit on grid lines */
+.story__about {
+    --edge: color-mix(in srgb, var(--color-text) 16%, transparent);
+
+    /* Two dots down, so it starts level with the photo rather than the heading */
+    margin-top: 48px;
+    padding: 48px;
+    background-color: var(--color-bg);
+    box-shadow: inset 1px 1px 0 var(--edge), 1px 1px 0 var(--edge);
+}
+
+/* ALWAYS A STUDENT ========================================================= */
+.story__big {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.story__circled {
+    position: relative;
+    display: inline-block;
+}
+
+.story__circled svg {
+    position: absolute;
+    inset: -8px -12px -6px -10px;
+    width: calc(100% + 22px);
+    height: calc(100% + 14px);
+    overflow: visible;
+    fill: none;
+    stroke: var(--color-accent-2);
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.story__circled svg path {
+    vector-effect: non-scaling-stroke;
+}
+
+.story__aside {
+    display: inline-block;
+    margin-left: 16px;
+    color: var(--color-accent-2);
+    font-size: 1.3rem;
+    font-weight: 500;
+    transform: rotate(-4deg);
+}
+
+.story__intro {
+    margin: 16px 0 40px;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+/* The path, down: each step with its question beside it, an arrow down to the next */
+.story__path {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.story__path li {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    padding-top: 32px;
+}
+
+.story__path li:first-child {
+    padding-top: 0;
+}
+
+/* A small arrow with rounded ends, drawn as a mask in the accent colour */
+.story__path li + li::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 12px;
+    height: 20px;
+    background-color: var(--color-accent-2);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 20'%3E%3Cpath d='M6 1.5V18M1.75 13.75 6 18l4.25-4.25' fill='none' stroke='black' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.story__path strong {
+    flex-shrink: 0;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+}
+
+.story__path .story__hand {
+    color: var(--color-text-muted);
+    font-size: 1.25rem;
+    line-height: 1.1;
+}
+
+/* GITHUB =================================================================== */
+/* A torn strip of a year on GitHub, taped across the About box's bottom edge,
+   bottom right, a little askew */
+.snap {
+    --color-text: #1C1C1E;
+    --color-text-muted: #5E6066;
+
+    position: relative;
+    width: min(100%, 440px);
+    margin: 40px -12px -96px auto;
+    transform: rotate(-1.5deg);
+}
+
+.snap__paper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 16px 14px;
+    background-color: #EFE6D2;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.14);
+    color: var(--color-text);
+}
+
+.snap__head {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 0.72rem;
+    white-space: nowrap;
+}
+
+.snap__head em,
+.snap__total {
+    color: #2F7A4A;
+    font-style: normal;
+}
+
+.snap__total {
+    font-weight: 600;
+}
+
+.snap__months {
+    display: grid;
+    color: var(--color-text-muted);
+    font-size: 0.56rem;
+}
+
+.snap__days {
+    display: grid;
+    grid-template-rows: repeat(7, auto);
+    grid-auto-flow: column;
+    gap: 1.5px;
+}
+
+.snap__days > span {
+    aspect-ratio: 1;
+    border-radius: 1px;
+}
+
+.snap__days [data-level] { background-color: #DDD3BC; }
+.snap__days [data-level="1"] { background-color: #A8DDA0; }
+.snap__days [data-level="2"] { background-color: #5DBB6E; }
+.snap__days [data-level="3"] { background-color: #2F9A55; }
+.snap__days [data-level="4"] { background-color: #1D6B3A; }
+
+/* Washi tape at two corners */
+.snap__tape {
+    position: absolute;
+    z-index: 1;
+    width: 56px;
+    height: 18px;
+    background-color: color-mix(in srgb, #8DB7A6 60%, transparent);
+    background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.35) 0 4px, transparent 4px 9px);
+}
+
+.snap__tape--left {
+    top: -6px;
+    left: -14px;
+    transform: rotate(-32deg);
+}
+
+.snap__tape--right {
+    right: -14px;
+    bottom: -6px;
+    transform: rotate(-32deg);
+}
+
+/* WORK EXPERIENCE ========================================================== */
+/* A straight line down from now, a logo on it for each role */
+.story__timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin: 0;
+    padding: 0 0 0 64px;
+    list-style: none;
+}
+
+/* The line, from the foot of each logo to the top of the next (so it stops at
+   the last, and never shows through a logo) */
+.story__timeline li:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: 40px;
+    bottom: -20px;
+    left: -45px;
+    border-left: 2px solid color-mix(in srgb, var(--color-accent-2) 45%, transparent);
+}
+
+.story__timeline li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-width: 560px;
+}
+
+.story__timeline .story__logo {
+    position: absolute;
+    top: -6px;
+    left: -64px;
+}
+
+.story__timeline strong {
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+}
+
+.story__timeline .story__muted {
+    margin-bottom: 10px;
+    font-size: 0.88rem;
+}
+
+.story__timeline p {
+    margin: 0 0 8px;
+    color: var(--color-text);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+/* STICKERS AND TAPE ======================================================== */
+.story__defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.story__sticker {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    filter: url(#story-sticker-edge);
+}
+
+.story__sticker svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Claude, stuck across the box's right edge; Figma, across its top edge */
+.story__sticker--claude {
+    top: 72px;
+    right: -32px;
+    width: 64px;
+    transform: rotate(10deg);
+}
+
+.story__sticker--figma {
+    top: -24px;
+    right: 132px;
+    width: 30px;
+    transform: rotate(-9deg);
+}
+
+/* Washi tape: a translucent striped strip */
+.story__tape {
+    --tape: #7FB7B2;
+
+    position: absolute;
+    z-index: 1;
+    width: 64px;
+    height: 18px;
+    background-color: color-mix(in srgb, var(--tape) 60%, transparent);
+    background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.35) 0 4px, transparent 4px 9px);
+}
+
+/* Across the middle of the photo's top edge */
+.story__tape--top {
+    top: -9px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-4deg);
+}
+
+/* NARROWER SCREENS ========================================================= */
+/* Not room for 51 blocks: the same columns, fluid, then one after the other */
+@media (max-width: 1259px) {
+    .story {
+        padding: 56px var(--section-margin) 72px;
+    }
+
+    .story__grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+        column-gap: 40px;
+        margin-left: 0;
+    }
+
+    .story__main {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+    }
+}
+
+@media (max-width: 899px) {
+    .story__work {
+        margin-bottom: 72px;
+    }
+
+    .story__about {
+        padding: 32px 24px;
+    }
+
+    .story__grid {
+        grid-template-columns: 1fr;
+        row-gap: 48px;
+    }
+
+    .story__side {
+        position: static;
+        padding-right: 0;
+    }
+
+    .story__main {
+        grid-template-columns: 1fr;
+    }
+}

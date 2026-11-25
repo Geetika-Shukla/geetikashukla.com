@@ -6,13 +6,66 @@
 
 /* THEMES =================================================================== */
 @import "./theme-light.css";
-@import "./theme-dark.css";
+
+/* DESIGN TOKENS //////////////////////////////////////////////////////////// */
+:root {
+    --font-body    : "general-sans", system-ui, sans-serif;
+    --font-heading : "zilla-slab", serif;
+
+    --color-bg         : #F7F6F3;
+    --color-surface    : #FFFFFF;
+    --color-text       : #1C1C1E;
+    --color-text-muted : #5E6066;
+    --color-border     : #E3E1DC;
+
+    /* Two accents: ink blue for links and actions, rust for labels and tags */
+    --color-accent   : #1F3B5C;
+    --color-accent-2 : #B4532A;
+
+    --page-max-width : 1440px;
+    --page-gutter    : clamp(16px, 4vw, 48px);
+    /* Side margins for the home page's sections: between the page's gutter and
+       the project pages' 16% */
+    --section-margin : max(var(--page-gutter), 10vw);
+
+    /* Corners, the same throughout: cards, panels and images; and small
+       things like tags, labels and buttons */
+    --radius         : 6px;
+    --radius-small   : 3px;
+    --header-height  : 72px;
+}
+
+/* Dark: the same palette, inverted, on a dark grey rather than black; chosen with the toggle in the nav, or
+   following the device's setting until then (see THEME_SCRIPT in layout.tsx) */
+:root[data-theme="dark"] {
+    --color-bg         : #242428;
+    --color-surface    : #2D2D32;
+    --color-text       : #ECEAE6;
+    --color-text-muted : #A4A4AA;
+    --color-border     : #3F3F46;
+
+    --color-accent   : #9DB8DA;
+    --color-accent-2 : #E2825A;
+
+    color-scheme: dark;
+}
 
 /* GLOBAL RULES ///////////////////////////////////////////////////////////// */
-div[data-theme-provider] {
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-bg);
+}
+
+/* Page wrapper: keeps the footer at the bottom on short pages */
+.site {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: var(--color-bg);
+    font-family: var(--font-body);
 }
 
 article {
@@ -28,42 +81,111 @@ p {
     font-weight: 400;
 }
 
+/* Centred, padded content column shared by header, pages and footer */
+.container {
+    width: 100%;
+    max-width: var(--page-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-gutter);
+}
+
 .row-hide {
     overflow: hidden;
 }
 
-.links-container {
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
-    gap: 40px;
-}
-
 .hero-heading {
-    color: #242424;
-    font-family: "zilla-slab", serif;
-}
-
-.overflow-left {
-    display: flex;
-    position: relative;
-    left: -17vw;
-}
-
-.overflow-right {
-    display: flex;
-    position: relative;
-    right: -18vw;
-}
-
-.semi-bold {
+    color: var(--color-text);
+    font-family: var(--font-heading);
     font-weight: 600;
 }
 
-@media (max-width : 768px) {
-
+@media (max-width: 768px) {
     .hero-heading {
         margin-top: 0;
         margin-bottom: -20px;
+    }
+}
+
+/* The home page's grid runs on to the footer, drawn by GridCanvas behind the
+   page (so it can liquify under the cursor). Every section is a whole number
+   of blocks tall, and every box on it is sized and placed in blocks (heights
+   rounded by GridSnap), so they all sit on its lines */
+.home {
+    padding-bottom: 72px;
+}
+
+/* Nothing on the home page paints over the grid behind it but the cut-outs,
+   and the footer (the socials), which stays plain */
+.site:has(.home) {
+    background-color: transparent;
+}
+
+.site:has(.home) .site-footer {
+    background-color: var(--color-bg);
+}
+
+.site:has(.home) .site-footer {
+    margin-top: 0;
+}
+
+/* Project pages sit on white */
+body:has(.project-page),
+.site:has(.project-page) {
+    background-color: var(--color-surface);
+}
+
+/* Dark project pages: their light-tinted cards become dark ones of the same
+   hue, so the (now light) text on them reads */
+:root[data-theme="dark"] .project-page {
+    .violet-card {
+        background-color: color-mix(in srgb, #7A5AD6 18%, var(--color-surface));
+    }
+
+    .hdfc-blue-card,
+    .card-front,
+    .card-back {
+        background-color: color-mix(in srgb, #3D8BFD 14%, var(--color-surface));
+    }
+
+    .bridge-cyan-card {
+        background-color: color-mix(in srgb, #2FB8BC 16%, var(--color-surface));
+    }
+
+    .bridge-grey-card,
+    .stat-card,
+    .pointer-card,
+    .horizontal-pointer-card {
+        background-color: color-mix(in srgb, var(--color-text) 6%, var(--color-surface));
+    }
+
+    .overview-card,
+    .full-width-banner {
+        background-color: color-mix(in srgb, #E3B94C 10%, var(--color-surface));
+    }
+}
+
+:root[data-theme="dark"] #page-more-about-me {
+    .card-front,
+    .card-back {
+        background-color: color-mix(in srgb, var(--color-text) 6%, var(--color-surface));
+    }
+
+    .resume-button {
+        background-color: var(--color-text);
+        color: var(--color-bg);
+    }
+}
+
+/* Medium screens: narrower section margins */
+@media (max-width: 1199px) {
+    :root {
+        --section-margin: max(var(--page-gutter), 6vw);
+    }
+}
+
+/* Phones: the usual gutter */
+@media (max-width: 899px) {
+    :root {
+        --section-margin: var(--page-gutter);
     }
 }
