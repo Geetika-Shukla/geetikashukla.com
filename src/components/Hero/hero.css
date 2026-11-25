@@ -194,27 +194,6 @@
     filter: drop-shadow(1px 3px 3px rgba(28, 28, 30, 0.22));
 }
 
-/* Placeholders: a dashed space, in the shape of the image to come */
-.hero__placeholder {
-    display: grid;
-    place-items: center;
-    width: 100%;
-    border: 1.5px dashed color-mix(in srgb, var(--color-text) 22%, transparent);
-    background-color: color-mix(in srgb, var(--color-text) 4%, var(--paper));
-    color: color-mix(in srgb, var(--color-text) 35%, transparent);
-}
-
-.hero__placeholder svg {
-    width: 26px;
-    max-width: 40%;
-    height: auto;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
 /* QUEEN OF THE NIGHT ======================================================= */
 /* Brahmakamal: a bud in the day; in the dark theme, or on hover, it opens into
    its white flower, the board's one moment (Illustrations.tsx) */

@@ -29,17 +29,9 @@ const stamp = (image: StaticImageData, alt: string) => (
     <Image className="hero__stamp" src={image} alt={alt} sizes="12vw" draggable={false} />
 );
 
-// A space for an image still to come, in the shape it will take (width / height)
-const placeholder = (ratio: number) => (
-    <span className="hero__placeholder" style={{ aspectRatio: ratio }}>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM4 16l5-5 4 4 3-3 4 4M15 9.5a1.5 1.5 0 1 0 0-.01" /></svg>
-    </span>
-);
-
 /*
- * Things on the board: photos, illustrations and placeholders for images still
- * to come (kept in the shape they'll take, so the layout holds). Each has
- * two places, as percentages of the board (its centre):
+ * Things on the board: photos and illustrations. Each has two places, as
+ * percentages of the board (its centre):
  *   scatter: [x, y, tilt] round the edges, leaving the middle for the intro
  *   grid:    [x, y] in a cell of a 7 × 4 grid. Columns are centred at 8, 22,
  *            36, 50, 64, 78 and 92%; rows at 18, 38, 58 and 78%. Phrases take
@@ -48,7 +40,7 @@ const placeholder = (ratio: number) => (
  */
 interface Item {
     id      : string;
-    kind    : "photo" | "art" | "placeholder";
+    kind    : "photo" | "art";
     content : ReactNode;
     // Shown on hover; left out where the thing speaks for itself
     label?  : string;
@@ -59,22 +51,20 @@ interface Item {
 
 const ITEMS: Item[] = [
     { id: "calli", kind: "photo", content: photo(calliOne, "Calligraphy", 1.25), label: "Calligraphy", w: "clamp(90px, 8.5vw, 140px)", scatter: [8, 52, 4], grid: [8, 18] },
-    { id: "fabrics", kind: "art", content: <FabricSwatches />, label: "Fabric swatches", w: "clamp(130px, 12vw, 190px)", scatter: [50, 12, -3], grid: [50, 18] },
-    { id: "heart", kind: "art", content: <PixelHeart />, label: "A pixel heart", w: "clamp(44px, 3.6vw, 60px)", scatter: [24, 43, -8], grid: [78, 18] },
-    { id: "image-2", kind: "placeholder", content: placeholder(0.72), label: "Image to come", w: "clamp(90px, 8.5vw, 140px)", scatter: [87, 24, 6], grid: [92, 18] },
+    { id: "fabrics", kind: "art", content: <FabricSwatches />, label: "Fabric swatches", w: "clamp(130px, 12vw, 190px)", scatter: [55, 12, -3], grid: [50, 18] },
+    { id: "heart", kind: "art", content: <PixelHeart />, label: "A pixel heart", w: "clamp(44px, 3.6vw, 60px)", scatter: [24, 43, -8], grid: [92, 18] },
 
     { id: "cartridge", kind: "art", content: <GameCartridge />, label: "A game cartridge", w: "clamp(76px, 6.5vw, 104px)", scatter: [13, 22, -6], grid: [8, 38] },
-    { id: "swatches", kind: "art", content: <SwatchFan />, label: "Colour swatches", w: "clamp(64px, 5.5vw, 90px)", scatter: [69, 18, 5], grid: [36, 38] },
-    { id: "vinyl", kind: "art", content: <Vinyl />, label: "Vinyls", w: "clamp(84px, 7.5vw, 120px)", scatter: [31, 16, 7], grid: [78, 38] },
-    { id: "spool", kind: "art", content: <Spool />, label: "Sewing", w: "clamp(54px, 4.5vw, 76px)", scatter: [93, 45, 10], grid: [92, 38] },
+    { id: "swatches", kind: "art", content: <SwatchFan />, label: "Colour swatches", w: "clamp(64px, 5.5vw, 90px)", scatter: [80, 20, 5], grid: [36, 38] },
+    { id: "vinyl", kind: "art", content: <Vinyl />, label: "Vinyls", w: "clamp(84px, 7.5vw, 120px)", scatter: [33, 16, 7], grid: [78, 38] },
 
-    { id: "image-4", kind: "placeholder", content: placeholder(1.43), label: "Image to come", w: "clamp(120px, 12vw, 190px)", scatter: [14, 80, 5], grid: [8, 58] },
+    { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(64px, 5.5vw, 90px)", scatter: [14, 84, -4], grid: [8, 58] },
     { id: "flower", kind: "art", content: <QueenOfTheNight />, w: "clamp(80px, 7.5vw, 120px)", scatter: [77, 50, -5], grid: [50, 58] },
-    { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(64px, 5.5vw, 90px)", scatter: [30, 88, -4], grid: [78, 58] },
+    { id: "spool", kind: "art", content: <Spool />, label: "Sewing", w: "clamp(54px, 4.5vw, 76px)", scatter: [93, 45, 10], grid: [92, 58] },
 
-    { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(80px, 7vw, 110px)", scatter: [46, 85, 3], grid: [8, 78] },
-    { id: "letterpress", kind: "art", content: <LetterpressBlock />, label: "A letterpress block", w: "clamp(110px, 10vw, 160px)", scatter: [65, 88, -5], grid: [36, 78] },
-    { id: "stamp", kind: "art", content: stamp(stampBangalore, "A 1988 stamp of the Bangalore GPO"), label: "A stamp from Bengaluru", w: "clamp(110px, 10vw, 160px)", scatter: [87, 86, -6], grid: [92, 78] },
+    { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(80px, 7vw, 110px)", scatter: [36, 86, 3], grid: [8, 78] },
+    { id: "letterpress", kind: "art", content: <LetterpressBlock />, label: "A letterpress block", w: "clamp(110px, 10vw, 160px)", scatter: [60, 88, -5], grid: [36, 78] },
+    { id: "stamp", kind: "art", content: stamp(stampBangalore, "A 1988 stamp of the Bangalore GPO"), label: "A stamp from Bengaluru", w: "clamp(110px, 10vw, 160px)", scatter: [86, 86, -6], grid: [92, 78] },
 ];
 
 // A line set across the grid, a phrase to a pair of cells, read left to right,
