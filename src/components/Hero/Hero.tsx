@@ -55,7 +55,7 @@ const ITEMS: Item[] = [
     { id: "heart", kind: "art", content: <PixelHeart />, label: "A pixel heart", w: "clamp(44px, 3.6vw, 60px)", scatter: [22, 40, -8], grid: [92, 18] },
 
     { id: "cartridge", kind: "art", content: <GameCartridge />, label: "A game cartridge", w: "clamp(76px, 6.5vw, 104px)", scatter: [11, 20, -6], grid: [22, 38] },
-    { id: "swatches", kind: "art", content: <SwatchFan />, label: "Colour swatches", w: "clamp(64px, 5.5vw, 90px)", scatter: [82, 80, 6], grid: [36, 38] },
+    { id: "swatches", kind: "art", content: <SwatchFan />, label: "Colour swatches", w: "clamp(64px, 5.5vw, 90px)", scatter: [79, 17, 5], grid: [36, 38] },
     { id: "vinyl", kind: "art", content: <Vinyl />, label: "Vinyls", w: "clamp(84px, 7.5vw, 120px)", scatter: [31, 14, 7], grid: [78, 38] },
 
     { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(64px, 5.5vw, 90px)", scatter: [12, 82, -4], grid: [8, 58] },
@@ -64,7 +64,7 @@ const ITEMS: Item[] = [
 
     { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(80px, 7vw, 110px)", scatter: [33, 87, 3], grid: [22, 78] },
     { id: "letterpress", kind: "art", content: <LetterpressBlock />, label: "A letterpress block", w: "clamp(110px, 10vw, 160px)", scatter: [58, 87, -5], grid: [50, 78] },
-    { id: "stamp", kind: "art", content: stamp(stampBangalore, "A 1988 stamp of the Bangalore GPO"), label: "A stamp from Bengaluru", w: "clamp(110px, 10vw, 160px)", scatter: [79, 17, 5], grid: [92, 78] },
+    { id: "stamp", kind: "art", content: stamp(stampBangalore, "A 1988 stamp of the Bangalore GPO"), label: "A stamp from Bengaluru", w: "clamp(110px, 10vw, 160px)", scatter: [82, 80, 6], grid: [92, 78] },
 ];
 
 // A line set across the grid, a phrase to a pair of cells, read left to right,
