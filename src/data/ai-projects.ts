@@ -21,8 +21,6 @@ export interface AIProject {
     note?       : string;
     // Screens to play in the thumbnail, one after another
     screens?    : StaticImageData[];
-    // Or a clip to play in it (an MP4 in public/, `length` ms long, its still shown first)
-    clip?       : { clip: string; poster: StaticImageData; length: number };
     // Or a still cover
     cover?      : StaticImageData;
     // Kept here but left off Work for now
@@ -44,8 +42,8 @@ export const AI_PROJECTS: AIProject[] = [
         tools       : ["Data story", "Next.js"],
         href        : "/ai/what-one-lakh-could-buy",
         placeholder : false,
-        // The story's opening (the notes pulling back from the title), cut from a screen recording of it
-        clip        : { clip: "/glimpses/one-lakh/thumbnail.mp4", poster: oneLakhThumbnail, length: 6500 },
+        // The story's opening, the title over the notes, from a screen recording of it
+        cover       : oneLakhThumbnail,
     },
     // PLACEHOLDER: the thumbnail and a line about it, once there's something to show.
     // ARCHIVED until then: its page is at /ai/rbih-website, unlinked

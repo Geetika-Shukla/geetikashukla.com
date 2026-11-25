@@ -99,9 +99,9 @@ const PIECES: Piece[] = [
         const { title, description, category, tags = [], Thumbnail } = project;
         return [{ key: href, group: category, title, description, tags, href, Thumbnail, bg, whole, art, motion, ai: false }];
     }),
-    ...AI_PROJECTS.filter(({ archived }) => !archived).map(({ title, description, tools, href, note, screens, clip, cover }, i): Piece => ({
+    ...AI_PROJECTS.filter(({ archived }) => !archived).map(({ title, description, tools, href, note, screens, cover }, i): Piece => ({
         key: `ai-${i}`, group: "AI", title, description, tags: tools, href, bg: "#F4F1EA", whole: false, art: 1, ai: true, note,
-        motion: clip ? { kind: "clip", ...clip } : screens && { kind: "browser", screens },
+        motion: screens && { kind: "browser", screens },
         image: cover,
     })),
 ];
