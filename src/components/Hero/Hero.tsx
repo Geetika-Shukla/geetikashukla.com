@@ -50,20 +50,20 @@ interface Item {
 }
 
 const ITEMS: Item[] = [
-    { id: "calli", kind: "photo", content: photo(calliOne, "Calligraphy", 1.25), label: "Calligraphy", w: "clamp(90px, 8.5vw, 140px)", scatter: [8, 50, 4], grid: [8, 18] },
-    { id: "fabrics", kind: "art", content: <FabricSwatches />, label: "Fabric swatches", w: "clamp(130px, 12vw, 190px)", scatter: [54, 12, -3], grid: [64, 18] },
-    { id: "spool", kind: "art", content: <Spool />, label: "Sewing", w: "clamp(54px, 4.5vw, 76px)", scatter: [21, 38, 10], grid: [92, 18] },
+    { id: "calli", kind: "photo", content: photo(calliOne, "Calligraphy", 1.25), label: "Calligraphy", w: "clamp(103px, 9.8vw, 161px)", scatter: [9, 50, 4], grid: [8, 18] },
+    { id: "fabrics", kind: "art", content: <FabricSwatches />, label: "Fabric swatches", w: "clamp(146px, 13.4vw, 213px)", scatter: [53, 13, -3], grid: [64, 18] },
+    { id: "spool", kind: "art", content: <Spool />, label: "Sewing", w: "clamp(70px, 5.9vw, 99px)", scatter: [91, 35, 10], grid: [92, 18] },
 
-    { id: "cartridge", kind: "art", content: <GameCartridge />, label: "A game cartridge", w: "clamp(76px, 6.5vw, 104px)", scatter: [11, 20, -6], grid: [22, 38] },
-    { id: "swatches", kind: "art", content: <SwatchFan />, label: "Colour swatches", w: "clamp(64px, 5.5vw, 90px)", scatter: [79, 17, 5], grid: [36, 38] },
-    { id: "vinyl", kind: "art", content: <Vinyl />, label: "Vinyls", w: "clamp(84px, 7.5vw, 120px)", scatter: [31, 14, 7], grid: [78, 38] },
+    { id: "cartridge", kind: "art", content: <GameCartridge />, label: "A game cartridge", w: "clamp(91px, 7.8vw, 125px)", scatter: [12, 20, -6], grid: [22, 38] },
+    { id: "swatches", kind: "art", content: <SwatchFan />, label: "Colour swatches", w: "clamp(83px, 7.2vw, 117px)", scatter: [78, 16, 5], grid: [36, 38] },
+    { id: "vinyl", kind: "art", content: <Vinyl />, label: "Vinyls", w: "clamp(97px, 8.6vw, 138px)", scatter: [31, 14, 7], grid: [78, 38] },
 
-    { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(64px, 5.5vw, 90px)", scatter: [12, 82, -4], grid: [8, 58] },
-    { id: "flower", kind: "art", content: <QueenOfTheNight />, w: "clamp(80px, 7.5vw, 120px)", scatter: [80, 52, -5], grid: [50, 58] },
+    { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(83px, 7.2vw, 117px)", scatter: [22, 70, -4], grid: [8, 58] },
+    { id: "flower", kind: "art", content: <QueenOfTheNight />, w: "clamp(84px, 7.9vw, 126px)", scatter: [80, 55, -5], grid: [50, 58] },
+    { id: "stamp", kind: "art", content: stamp(stampBangalore, "A 1988 stamp of the Bangalore GPO"), label: "A stamp from Bengaluru", w: "clamp(123px, 11.2vw, 179px)", scatter: [85, 84, 6], grid: [92, 58] },
 
-    { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(80px, 7vw, 110px)", scatter: [33, 87, 3], grid: [22, 78] },
-    { id: "letterpress", kind: "art", content: <LetterpressBlock />, label: "A letterpress block", w: "clamp(110px, 10vw, 160px)", scatter: [58, 87, -5], grid: [50, 78] },
-    { id: "stamp", kind: "art", content: stamp(stampBangalore, "A 1988 stamp of the Bangalore GPO"), label: "A stamp from Bengaluru", w: "clamp(110px, 10vw, 160px)", scatter: [82, 80, 6], grid: [92, 78] },
+    { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(92px, 8vw, 126px)", scatter: [12, 86, 3], grid: [22, 78] },
+    { id: "letterpress", kind: "art", content: <LetterpressBlock />, label: "A letterpress block", w: "clamp(123px, 11.2vw, 179px)", scatter: [48, 87, -5], grid: [50, 78] },
 ];
 
 // A line set across the grid, a phrase to a pair of cells, read left to right,
