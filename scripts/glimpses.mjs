@@ -156,18 +156,14 @@ async function keynote(only) {
 
     // Each clip by its slides, counted from the title (0; the deck's own
     // counter shows one more), in the order they come; the deck is stepped to
-    // the slide before, then played through. A single slide plays longer, so
-    // its animation finishes.
+    // the slide before, then played through.
     const CLIPS = [
         { name: "onboarding",   first: 16, last: 24 },
         { name: "collections",  first: 33, last: 36 },
-        // (Slide 40, the smart registry, is a screen recording instead: the original is in
-        // media-sources/dpip.mov)
-        // Slide 42, whole: a transfer screened against the registry
-        { name: "screening",    first: 41, last: 41 },
+        // (Slides 40 and 42, the smart registry and the screening, are screen recordings
+        // instead: the originals are in media-sources/)
     ];
     const DWELL = 2800;
-    const SINGLE = 6500;
     let at = 0;
     for (const { name, first, last } of CLIPS) {
         if (only.length && !only.includes(name)) continue;
@@ -181,9 +177,9 @@ async function keynote(only) {
         await record(deck, project, name, async () => {
             for (; at < last; at++) {
                 await deck.press("ArrowRight");
-                await sleep(first === last ? SINGLE : DWELL);
+                await sleep(DWELL);
             }
-        }, { poster: first === last ? 40 : 12 });
+        }, { poster: 12 });
     }
     await deck.close();
 }
