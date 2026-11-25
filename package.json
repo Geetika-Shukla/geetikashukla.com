@@ -6,7 +6,8 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "glimpses": "node scripts/glimpses.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",

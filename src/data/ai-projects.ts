@@ -1,18 +1,13 @@
 /*
- * Projects built entirely with AI, shown under Work's AI filter with a
- * "Built using AI" label.
- * PLACEHOLDERS: replace each with the real project (title, a line about it,
- * the tools used and a link) when it's ready. `href` can be left out until
- * there's a page or a live link to point to.
+ * Projects built with AI, shown under Work's AI filter with a "Built using AI"
+ * label; each has its own page under /ai. The stills and clips on those pages
+ * are retaken with `npm run glimpses`, except the ones cut from screen
+ * recordings (the originals are kept out of the repo, in media-sources/).
  */
 
 // SCREENS =====================================================================
-// This website, for its own thumbnail
-import siteHero from "@/assets/images/motion/site-hero.webp";
-import siteWork from "@/assets/images/motion/site-work.webp";
-import siteStory from "@/assets/images/motion/site-story.webp";
-import siteKindWords from "@/assets/images/motion/site-kind-words.webp";
 import gffKeynote from "@/assets/images/motion/gff-keynote-cover.webp";
+import oneLakhThumbnail from "@/assets/images/glimpses/one-lakh/thumbnail.webp";
 
 import type { StaticImageData } from "next/image";
 
@@ -26,12 +21,10 @@ export interface AIProject {
     note?       : string;
     // Screens to play in the thumbnail, one after another
     screens?    : StaticImageData[];
+    // Or a clip to play in it (an MP4 in public/, `length` ms long, its still shown first)
+    clip?       : { clip: string; poster: StaticImageData; length: number };
     // Or a still cover
     cover?      : StaticImageData;
-    // A deck (an HTML file in public/) that opens over the page instead of a link
-    deck?       : string;
-    // Who it was made for and with, shown with the deck
-    credit?     : string;
 }
 
 export const AI_PROJECTS: AIProject[] = [
@@ -39,22 +32,25 @@ export const AI_PROJECTS: AIProject[] = [
         title       : "The invisible future of finance",
         description : "A keynote deck for the CEO of Reserve Bank Innovation Hub at Global Fintech Fest 2026.",
         tools       : ["Keynote", "Presentation"],
+        href        : "/ai/gff-2026-keynote",
         placeholder : false,
         cover       : gffKeynote,
-        deck        : "/keynotes/gff-2026.html",
-        credit      : "For Sahil Kini, with Naresh Singaravelu, Rhea Sinha and Rajat Mittal",
     },
     {
-        title       : "Project two",
-        description : "A line about what it is, and what AI did to build it.",
-        tools       : ["Tool", "Tool"],
-        placeholder : true,
-    },
-    {
-        title       : "Well, this website 😄",
-        description : "I manually coded v1 of the website. For v2, I designed and prompted; Claude Code built it.",
-        tools       : ["Claude Code", "Next.js"],
+        title       : "What ₹1 lakh could buy",
+        description : "A data story on the RBIH Indian Financial Data Atlas: one sum, carried from 2001 to 2026.",
+        tools       : ["Data story", "Next.js"],
+        href        : "/ai/what-one-lakh-could-buy",
         placeholder : false,
-        screens     : [siteHero, siteWork, siteStory, siteKindWords],
+        // The heirloom's room, cut from a screen recording of the story
+        clip        : { clip: "/glimpses/one-lakh/thumbnail.mp4", poster: oneLakhThumbnail, length: 17200 },
+    },
+    // PLACEHOLDER: the thumbnail and a line about it, once there's something to show
+    {
+        title       : "Reserve Bank Innovation Hub's website",
+        description : "Revamping the website for Reserve Bank Innovation Hub.",
+        tools       : ["Website"],
+        href        : "/ai/rbih-website",
+        placeholder : true,
     },
 ];

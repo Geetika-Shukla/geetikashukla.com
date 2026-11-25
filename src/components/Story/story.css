@@ -129,9 +129,10 @@
     transition: background-color 0.2s ease;
 }
 
+/* Hovered, its ink a little lighter (or, in the dark, a little dimmer); never another colour */
 .story__resume:hover,
 .story__resume:focus-visible {
-    background-color: var(--color-accent);
+    background-color: color-mix(in srgb, var(--color-text) 82%, var(--color-bg));
 }
 
 /* LOGOS ==================================================================== */

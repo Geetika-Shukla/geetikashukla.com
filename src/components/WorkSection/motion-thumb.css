@@ -1,6 +1,6 @@
 /*
- * Thumbnails in motion: screens filling the thumbnail one after another, or
- * phone screens gliding past. --hold (how long each screen stays) comes from
+ * Thumbnails in motion: screens filling the thumbnail one after another,
+ * phone screens gliding past, or a clip playing in place. --hold (how long each screen stays) comes from
  * MotionThumb.tsx.
  */
 .motion {
@@ -8,6 +8,16 @@
     inset: 0;
     overflow: hidden;
     background-color: #FFFFFF;
+}
+
+/* A CLIP =================================================================== */
+/* Fills the thumbnail and plays in place */
+.motion__clip {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* SCREENS ================================================================== */

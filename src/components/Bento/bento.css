@@ -1,0 +1,48 @@
+/*
+ * Bento: rows of glimpses on nine columns, every tile in a row as tall as the
+ * row (its width over --ratio), each picture or clip filling its tile.
+ */
+.bento {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+.bento__row {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 24px;
+    aspect-ratio: var(--ratio);
+}
+
+.bento__item {
+    position: relative;
+    grid-column: span var(--span);
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background-color: color-mix(in srgb, var(--color-text) 4%, transparent);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-text) 8%, transparent);
+}
+
+.bento__media {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* On a phone: one under another, each in its own shape */
+@media (max-width: 640px) {
+    .bento__row {
+        display: flex;
+        flex-direction: column;
+        aspect-ratio: auto;
+    }
+
+    .bento__item {
+        aspect-ratio: var(--shape);
+    }
+}

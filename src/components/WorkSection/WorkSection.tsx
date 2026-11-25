@@ -10,7 +10,6 @@ import { AI_PROJECTS } from "@/data/ai-projects";
 
 // INTERNAL DEPS ===============================================================
 import { MotionThumb, playLength } from "./MotionThumb";
-import { DeckDialog } from "./DeckDialog";
 import Image from "next/image";
 
 // STYLES ======================================================================
@@ -86,9 +85,6 @@ interface Piece {
     motion?     : Motion;
     // A still image, filling the thumbnail
     image?      : StaticImageData;
-    // A deck to open over the page, in place of a link, and who it was made with
-    deck?       : string;
-    credit?     : string;
     ai          : boolean;
     // What an empty thumbnail says
     note?       : string;
@@ -103,12 +99,10 @@ const PIECES: Piece[] = [
         const { title, description, category, tags = [], Thumbnail } = project;
         return [{ key: href, group: category, title, description, tags, href, Thumbnail, bg, whole, art, motion, ai: false }];
     }),
-    ...AI_PROJECTS.map(({ title, description, tools, href, note, screens, cover, deck, credit }, i): Piece => ({
+    ...AI_PROJECTS.map(({ title, description, tools, href, note, screens, clip, cover }, i): Piece => ({
         key: `ai-${i}`, group: "AI", title, description, tags: tools, href, bg: "#F4F1EA", whole: false, art: 1, ai: true, note,
-        motion: screens && { kind: "browser", screens },
+        motion: clip ? { kind: "clip", ...clip } : screens && { kind: "browser", screens },
         image: cover,
-        deck,
-        credit,
     })),
 ];
 
@@ -162,14 +156,14 @@ const Media = ({ piece: { Thumbnail, bg, whole, art, motion, image, ai, note }, 
 );
 
 // A card's title, line about it and tags
-const Words = ({ piece: { title, description, tags, href, deck, ai } }: { piece: Piece }) => (
+const Words = ({ piece: { title, description, tags, href, ai } }: { piece: Piece }) => (
     <span className="wcard__words">
         <span className="wcard__title">
             {title.slice(0, title.lastIndexOf(" ") + 1)}
             {/* The last word and the arrow (which slides in on hover) stay together */}
             <span className="wcard__last">
                 {title.slice(title.lastIndexOf(" ") + 1)}
-                {(href || deck) && <svg className="wcard__go" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>}
+                {href && <svg className="wcard__go" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>}
             </span>
         </span>
         <span className="wcard__description">{description}</span>
@@ -196,8 +190,6 @@ export const WorkSection = () => {
     // They play one at a time: which (of this kind's moving ones) has its turn, and
     // a count of turns, so each starts afresh
     const [turns, setTurns] = useState({ group: FILTERS[0].group as Group, index: 0, turn: 0 });
-    // The deck open over the page, if any
-    const [open, setOpen] = useState<Piece | null>(null);
     const sectionRef = useRef<HTMLDivElement>(null);
     const stepRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
@@ -326,12 +318,7 @@ export const WorkSection = () => {
                                             <rect pathLength="100" />
                                         </svg>
                                     )}
-                                    {piece.deck ? (
-                                        <button type="button" className="wcard__link" onClick={() => setOpen(piece)} aria-haspopup="dialog">
-                                            <Media piece={piece} paused={paused || piece !== playing} turn={piece === playing ? turn : -1} />
-                                            <Words piece={piece} />
-                                        </button>
-                                    ) : piece.href ? (
+                                    {piece.href ? (
                                         <Link href={piece.href} className="wcard__link">
                                             <Media piece={piece} paused={paused || piece !== playing} turn={piece === playing ? turn : -1} />
                                             <Words piece={piece} />
@@ -349,7 +336,6 @@ export const WorkSection = () => {
                 </div>
             </div>
 
-            <DeckDialog deck={open?.deck ?? null} title={open?.title ?? ""} credit={open?.credit} onClose={() => setOpen(null)} />
         </div>
     );
 };

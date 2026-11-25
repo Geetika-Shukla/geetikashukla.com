@@ -22,6 +22,7 @@
 /public/*
 !/public/favicon.ico
 !/public/keynotes/
+!/public/glimpses/
 /out
 
 
@@ -43,3 +44,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Original recordings and pictures the site's media is made from: too large to keep in the repo
+media-sources/
