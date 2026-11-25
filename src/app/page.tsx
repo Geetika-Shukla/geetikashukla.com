@@ -9,7 +9,7 @@ import { KeySteps } from "@/components/KeySteps/KeySteps";
 
 
 // The home page: a board of things around the intro, then the work (on the
-// same grid, AI projects among it), the story so far (with the résumé) and
+// same grid, AI projects among it), about me (the story so far, with the résumé) and
 // kind words
 export default function Home() {
     return (

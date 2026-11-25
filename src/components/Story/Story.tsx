@@ -58,7 +58,7 @@ export const Story = () => (
             {/* LEFT: stays in view */}
             <div className="story__side">
                 <header className="story__header">
-                    <h2 id="story-title" className="story__title">The story so far</h2>
+                    <h2 id="story-title" className="story__title">About me</h2>
                 </header>
 
                 <figure className="story__photo">
