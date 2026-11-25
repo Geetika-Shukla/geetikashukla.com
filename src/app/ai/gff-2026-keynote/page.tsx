@@ -14,7 +14,8 @@ import "../../experiences/page-experiences.css";
 import "../ai-pages.css";
 
 // ASSETS ======================================================================
-// Stills of each chapter's clip before it plays (npm run glimpses retakes them)
+// Stills of each chapter's clip before it plays (npm run glimpses retakes them,
+// all but the registry's, a screen recording kept in media-sources/)
 import onboarding from "@/assets/images/glimpses/keynote/onboarding.webp";
 import collections from "@/assets/images/glimpses/keynote/collections.webp";
 import registry from "@/assets/images/glimpses/keynote/registry.webp";

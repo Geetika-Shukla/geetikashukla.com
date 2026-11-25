@@ -106,10 +106,9 @@ const still = async (png, project, name, width = 1200) => {
 };
 
 // Record the page while `act` runs, a frame at a time as fast as Chrome gives
-// them, each held as long as it was on screen; then encode them as an MP4
-// (cropped to `crop`, { x, y, w, h } in the page's pixels, if given), holding
-// the last frame a moment, and keep a still of it to show first
-const record = async (page, project, name, act, { width = 1280, hold = 1200, poster = 0, crop } = {}) => {
+// them, each held as long as it was on screen; then encode them as an MP4,
+// holding the last frame a moment, and keep a still of it to show first
+const record = async (page, project, name, act, { width = 1280, hold = 1200, poster = 0 } = {}) => {
     const frames = [];
     let recording = true;
     const loop = (async () => {
@@ -134,13 +133,11 @@ const record = async (page, project, name, act, { width = 1280, hold = 1200, pos
     mkdirSync(join(file, ".."), { recursive: true });
     const ffmpeg = spawnSync("ffmpeg", [
         "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", join(dir, "frames.txt"),
-        "-vf", `${crop ? `crop=${crop.w}:${crop.h}:${crop.x}:${crop.y},` : ""}fps=30,scale=${width}:-2:flags=lanczos,format=yuv420p`,
+        "-vf", `fps=30,scale=${width}:-2:flags=lanczos,format=yuv420p`,
         "-c:v", "libx264", "-preset", "slow", "-crf", "26", "-movflags", "+faststart", "-an", file,
     ], { stdio: "inherit" });
     if (ffmpeg.status !== 0) throw new Error(`ffmpeg failed on ${name}`);
-    const first = frames[Math.min(poster, frames.length - 1)].jpeg;
-    const shown = crop ? await sharp(first).extract({ left: crop.x, top: crop.y, width: crop.w, height: crop.h }).toBuffer() : first;
-    await still(shown, project, name, width);
+    await still(frames[Math.min(poster, frames.length - 1)].jpeg, project, name, width);
     rmSync(dir, { recursive: true, force: true });
     console.log("  ", short(file), `(${frames.length} frames)`);
 };
@@ -160,20 +157,19 @@ async function keynote(only) {
     // Each clip by its slides, counted from the title (0; the deck's own
     // counter shows one more), in the order they come; the deck is stepped to
     // the slide before, then played through. A single slide plays longer, so
-    // its animation finishes; `crop` keeps just part of it (at 1280 × 720).
+    // its animation finishes.
     const CLIPS = [
         { name: "onboarding",   first: 16, last: 24 },
         { name: "collections",  first: 33, last: 36 },
-        // Slide 40: just its animation, the smart registry with the sources joining it and a
-        // record coming in
-        { name: "registry",     first: 39, last: 39, crop: { x: 243, y: 80, w: 795, h: 560 }, width: 960 },
+        // (Slide 40, the smart registry, is a screen recording instead: the original is in
+        // media-sources/dpip.mov)
         // Slide 42, whole: a transfer screened against the registry
         { name: "screening",    first: 41, last: 41 },
     ];
     const DWELL = 2800;
     const SINGLE = 6500;
     let at = 0;
-    for (const { name, first, last, crop, width } of CLIPS) {
+    for (const { name, first, last } of CLIPS) {
         if (only.length && !only.includes(name)) continue;
         // To the slide before, forwards or back (chapters can overlap)
         while (at !== first - 1) {
@@ -187,7 +183,7 @@ async function keynote(only) {
                 await deck.press("ArrowRight");
                 await sleep(first === last ? SINGLE : DWELL);
             }
-        }, { poster: first === last ? 40 : 12, crop, width });
+        }, { poster: first === last ? 40 : 12 });
     }
     await deck.close();
 }
