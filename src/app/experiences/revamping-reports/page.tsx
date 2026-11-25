@@ -1,6 +1,5 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
-import Link from "next/link";
 
 // INTERNAL DEPS ===============================================================
 import {
@@ -10,7 +9,6 @@ import {
     Row,
     Div,
     Text,
-    Heading6
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
@@ -21,8 +19,6 @@ import "../page-experiences.css";
 
 // ASSETS ======================================================================
 import ReportsHero from "@/assets/images/reports/reports-hero.svg";
-import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
-import HDFCThumbnail from "@/assets/images/thumbnail-for-hdfc.svg";
 import IconTenacity from "@/assets/images/Tenacity.svg";
 import IconSandbox from "@/assets/images/BoxWithShapes.svg";
 import IconBadge from "@/assets/images/BadgeWithRibbon.svg";
@@ -47,7 +43,6 @@ import IconEnvelope from "@/assets/images/Envelope.svg";
 import Notifications from "@/assets/images/reports/notifications.svg";
 import DownloadSuccess from "@/assets/images/reports/download-success.svg";
 import SchedulerIA from "@/assets/images/reports/scheduler-ia.svg";
-
 
 
 export default function RevampingReportsPage() {
@@ -217,7 +212,6 @@ export default function RevampingReportsPage() {
                     </Text>
                 </Card>
             </Row>
-
 
 
             {/* BRIDGE OVER THE YEARS */}
@@ -471,32 +465,6 @@ export default function RevampingReportsPage() {
 
             <Row marginBottom="small"/>
 
-
-            {/* OTHER PROJECTS */}
-
-            <hr className="brown-hr"/>
-
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
-                <Portion desktopSpan="4">
-                    <h5>Other projects</h5>
-                </Portion>
-
-                <Portion desktopSpan="18" className="project-thumbnail-row">
-                    <Link href="/experiences/assisted-product-discovery">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <ProjectDiscoveryThumbnail alt="assisted-discovery-at-setu"/>
-                            <Heading6 className="project-thumbnail-text">Assisted product discovery at
-                                Setu</Heading6>
-                        </Card>
-                    </Link>
-                    <Link href="/experiences/hdfc-journeys">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <HDFCThumbnail alt="hdfc"/>
-                            <Heading6 className="project-thumbnail-text">Digital journeys for HDFC Bank</Heading6>
-                        </Card>
-                    </Link>
-                </Portion>
-            </Row>
 
         </article>
     );

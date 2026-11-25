@@ -8,8 +8,7 @@ import {
     Portion,
     Row,
     Div,
-    Text, Card, Heading6,
-} from "fictoan-react";
+    Text, } from "fictoan-react";
 
 // COMPONENTS ==================================================================
 
@@ -24,9 +23,6 @@ import Hiring3 from "@/assets/images/hiring-3.svg";
 import Onboarding from "@/assets/images/id-cards.webp";
 import Engagement1 from "@/assets/images/engagement-1.webp";
 import Engagement2 from "@/assets/images/engagement-2.webp";
-import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
-import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
-
 
 
 export default function PeopleExpPage() {
@@ -133,29 +129,6 @@ export default function PeopleExpPage() {
             <Row layoutAsFlexbox horizontalPadding="huge" marginTop="none" marginBottom="medium" horizontallyCenterThis >
                 <Image src={Engagement1} width={1200} className="people-images responsive-image" alt="Employee engagement design"/>
                 <Image src={Engagement2} width={1200} className="people-images responsive-image" alt="Employee engagement design"/>
-            </Row>
-
-            <hr className="brown-hr" />
-
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
-                <Portion desktopSpan="4">
-                    <h5>Other projects</h5>
-                </Portion>
-
-                <Portion desktopSpan="20" className="project-thumbnail-row">
-                    <Link href="/experiences/assisted-product-discovery">
-                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                            <ProjectDiscoveryThumbnail alt="Assisted product discovery at Setu" />
-                            <Heading6 className="project-thumbnail-text" >Assisted product discovery at Setu</Heading6>
-                        </Card>
-                    </Link>
-                    <Link href="/visual/icon-system-for-setu">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <IconSystemThumbnail alt="icon-system" />
-                            <Heading6 className="project-thumbnail-text" >Icon system for Setu</Heading6>
-                        </Card>
-                    </Link>
-                </Portion>
             </Row>
 
 

@@ -11,7 +11,6 @@ import {
     Row,
     Div,
     Text,
-    Heading6
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
@@ -37,8 +36,6 @@ import IconFunnelWithPlusSymbol from "@/assets/images/FunnelWithPlusSymbol.svg";
 import IconChatBubbles from "@/assets/images/ChatBubbles.svg";
 import IconMobilewithCursor from "@/assets/images/MobilewithCursor.svg";
 import IconPersonWithSettings from "@/assets/images/PersonWithSettings.svg";
-import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
-import ReportsThumbnail from "@/assets/images/thumbnail-for-reports.svg";
 
 
 export default function ProductDiscoveryPage() {
@@ -304,30 +301,6 @@ export default function ProductDiscoveryPage() {
                     </Card>
                 </Portion>
             </Row>
-
-            <hr className="brown-hr"/>
-
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
-                <Portion desktopSpan="4">
-                    <h5>Other projects</h5>
-                </Portion>
-
-                <Portion desktopSpan="20" className="project-thumbnail-row">
-                    <Link href="/experiences/revamping-reports">
-                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                            <ReportsThumbnail alt="revamping-reports" />
-                            <Heading6 className="project-thumbnail-text" >Revamping reports on Bridge</Heading6>
-                        </Card>
-                    </Link>
-                    <Link href="/visual/icon-system-for-setu">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <IconSystemThumbnail alt="icon-system" />
-                            <Heading6 className="project-thumbnail-text" >Icon system for Setu</Heading6>
-                        </Card>
-                    </Link>
-                </Portion>
-            </Row>
-
 
 
         </article>

@@ -11,7 +11,6 @@ import {
     Row,
     Div,
     Text,
-    Heading6
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
@@ -50,9 +49,6 @@ import Platform11 from "@/assets/images/platform-11.svg";
 import Platform12 from "@/assets/images/platform-12.svg";
 import Tools from "@/assets/images/Tools.svg";
 import crucible from "@/assets/images/crucible.webp";
-import PeopleExperienceThumbnail from "@/assets/images/thumbnail-for-people-experience.svg";
-import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
-
 
 
 const IconSystemPage = () => {
@@ -272,29 +268,6 @@ const IconSystemPage = () => {
                     <Text>
                         It wasn’t just a set of icons; creating, refining, and implementing it on the design website and other platforms, and seeing it being used by other teams was truly rewarding.
                     </Text>
-                </Portion>
-            </Row>
-
-            <hr className="brown-hr"/>
-
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
-                <Portion desktopSpan="4">
-                    <h5>Other projects</h5>
-                </Portion>
-
-                <Portion desktopSpan="20" className="project-thumbnail-row">
-                    <Link href="/visual/people-experience">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <PeopleExperienceThumbnail alt="people-experience" />
-                            <Heading6 className="project-thumbnail-text" >People experience at Setu</Heading6>
-                        </Card>
-                    </Link>
-                    <Link href="/experiences/assisted-product-discovery">
-                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                            <ProjectDiscoveryThumbnail alt="Assisted product discovery at Setu" />
-                            <Heading6 className="project-thumbnail-text" >Assisted product discovery at Setu</Heading6>
-                        </Card>
-                    </Link>
                 </Portion>
             </Row>
 

@@ -10,7 +10,6 @@ import {
     Row,
     Div,
     Text,
-    Heading6
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
@@ -27,7 +26,6 @@ import TestimonialPlacement from "@/assets/images/building-partnerships/testimon
 import BridgeOne from "@/assets/images/building-partnerships/bridge-1.svg";
 import BridgeTwo from "@/assets/images/building-partnerships/bridge-2.svg";
 import Mailers from "@/assets/images/building-partnerships/mailers.svg";
-import HDFCThumbnail from "@/assets/images/thumbnail-for-hdfc.svg";
 import IconWallOfLove from "@/assets/images/PersonWithHeart.svg";
 import IconLink from "@/assets/images/Link.svg";
 import IconPlant from "@/assets/images/Plant.svg";
@@ -35,12 +33,10 @@ import IconFunnel from "@/assets/images/FunnelWithPlusSymbol.svg";
 import IconHistory from "@/assets/images/DocumentWithGreenTick.svg";
 import IconJigsaw from "@/assets/images/Jigsaw.svg";
 import IconDiamond from "@/assets/images/Integrity.svg";
-import ReportsThumbnail from "@/assets/images/thumbnail-for-reports.svg";
 import MappingTouchPoints from "@/assets/images/building-partnerships/touchpoints.svg";
 import IconRocket from "@/assets/images/Rocket.svg";
 import IconBridge from "@/assets/images/WindowWithBlocks.svg";
 import IconPlay from "@/assets/images/WindowWithPlayButton.svg";
-
 
 
 export default function RevampingReportsPage() {
@@ -80,7 +76,6 @@ export default function RevampingReportsPage() {
             <Row horizontalPadding="large" horizontallyCenterThis>
                 <Text className="credits" align="center"><em>Special thanks to Pankaj for leading the development, and to Monika and Pete from the Growth and Marketing team for content and collaborative jamming sessions, and to Vivek for helping with the Account Aggregator screens for the video.</em></Text>
             </Row>
-
 
 
             {/* PROJECT OVERVIEW */}
@@ -216,7 +211,6 @@ export default function RevampingReportsPage() {
             </Row>
 
 
-
             {/* WALL OF LOVE */}
 
 
@@ -248,7 +242,6 @@ export default function RevampingReportsPage() {
                     <ExistingLogos className="please-respond" style={{ borderRadius: "var(--radius)" }}/>
                 </Portion>
             </Row>
-
 
 
             {/* FIGMA EMBED */}
@@ -302,7 +295,6 @@ export default function RevampingReportsPage() {
             </Row>
 
 
-
             {/* TESTIMONIAL PLACEMENT */}
 
             <Row horizontalPadding="huge" marginTop="none" marginBottom="tiny">
@@ -348,7 +340,6 @@ export default function RevampingReportsPage() {
 
 
             </Row>
-
 
 
             {/* FIGMA EMBED */}
@@ -409,19 +400,6 @@ export default function RevampingReportsPage() {
             </Row>
 
 
-            {/* YOUTUBE EMBED */}
-
-            <div className="embed-container">
-                <iframe
-                    width="100%"
-                    height="200px"
-                    src="https://www.youtube.com/embed/9FVkApowTBs"
-                    allowFullScreen>
-                </iframe>
-            </div>
-
-
-
             {/* LINKS  */}
 
             <Row horizontalPadding="huge" marginTop="medium" marginBottom="small" hideOnMobile>
@@ -455,7 +433,6 @@ export default function RevampingReportsPage() {
             </Row>
 
 
-
             {/* CONCLUSION */}
 
             <Row className="summary-section" horizontalMargin="large" marginBottom="medium" marginTop="small">
@@ -474,32 +451,6 @@ export default function RevampingReportsPage() {
                 </Portion>
             </Row>
 
-
-
-            {/* OTHER PROJECTS */}
-
-            <hr className="brown-hr"/>
-
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
-                <Portion desktopSpan="4">
-                    <h5>Other projects</h5>
-                </Portion>
-
-                <Portion desktopSpan="18" className="project-thumbnail-row">
-                    <Link href="/experiences/revamping-reports">
-                        <Card className="project-thumbnail" horizontalMargin="tiny" marginBottom="micro">
-                            <ReportsThumbnail alt="revamping-reports" />
-                            <Heading6 className="project-thumbnail-text" >Revamping reports on Bridge</Heading6>
-                        </Card>
-                    </Link>
-                    <Link href="/experiences/hdfc-journeys">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <HDFCThumbnail alt="hdfc"/>
-                            <Heading6 className="project-thumbnail-text">Digital journeys for HDFC Bank</Heading6>
-                        </Card>
-                    </Link>
-                </Portion>
-            </Row>
 
         </article>
     );

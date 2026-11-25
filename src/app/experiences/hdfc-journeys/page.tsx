@@ -1,6 +1,5 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
-import Link from "next/link";
 
 // INTERNAL DEPS ===============================================================
 import {
@@ -11,7 +10,6 @@ import {
     Row,
     Div,
     Text,
-    Heading6
 } from "fictoan-react";
 
 // COMPONENTS ==================================================================
@@ -58,8 +56,6 @@ import IconTeam from "@/assets/images/Team.svg";
 import IconCircleWithExclamationMark from "@/assets/images/CircleWithExclamationMark.svg";
 import IconEdgeCase from "@/assets/images/Jigsaw.svg";
 import IconErrorState from "@/assets/images/CircleWithExclamationMarkRed.svg";
-import ProjectDiscoveryThumbnail from "@/assets/images/thumbnail-for-product-discovery.svg";
-import IconSystemThumbnail from "@/assets/images/thumbnail-for-icon-system.svg";
 import IconBoxWithBraces from "@/assets/images/BoxWithBraces.svg";
 import IconDiamond from "@/assets/images/Integrity.svg";
 import ErrorStateOne from "@/assets/images/hdfc-journeys/error-state-1.svg";
@@ -71,7 +67,6 @@ import TestingOne from "@/assets/images/hdfc-journeys/testing-1.svg";
 import TestingTwo from "@/assets/images/hdfc-journeys/testing-2.svg";
 import TestingThree from "@/assets/images/hdfc-journeys/testing-3.svg";
 import TestingFour from "@/assets/images/hdfc-journeys/testing-4.svg";
-
 
 
 export default function HdfcJourneysPage() {
@@ -277,7 +272,6 @@ export default function HdfcJourneysPage() {
                     </ul>
                 </Card>
             </Row>
-
 
 
             {/* ASSISTED + UNASSISTED */}
@@ -523,7 +517,6 @@ export default function HdfcJourneysPage() {
                     </div>
                 </div>
             </Row>
-
 
 
             {/* OTHER PARTS OF THE APP */}
@@ -863,31 +856,6 @@ export default function HdfcJourneysPage() {
                 </Portion>
             </Row>
 
-            {/* OTHER PROJECTS */}
-
-            <hr className="brown-hr"/>
-
-            <Row horizontalPadding="huge" marginTop="medium" marginBottom="medium" hideOnMobile>
-                <Portion desktopSpan="4">
-                    <h5>Other projects</h5>
-                </Portion>
-
-                <Portion desktopSpan="20" className="project-thumbnail-row">
-                    <Link href="/experiences/assisted-product-discovery">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <ProjectDiscoveryThumbnail alt="assisted-discovery-at-setu"/>
-                            <Heading6 className="project-thumbnail-text">Assisted product discovery at
-                                Setu</Heading6>
-                        </Card>
-                    </Link>
-                    <Link href="/visual/icon-system-for-setu">
-                        <Card className="project-thumbnail" marginBottom="micro">
-                            <IconSystemThumbnail alt="icon-system"/>
-                            <Heading6 className="project-thumbnail-text">Icon system for Setu</Heading6>
-                        </Card>
-                    </Link>
-                </Portion>
-            </Row>
 
         </article>
     );
