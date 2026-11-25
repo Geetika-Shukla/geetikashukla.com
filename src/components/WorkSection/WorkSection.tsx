@@ -54,7 +54,8 @@ const ORDER: { href: string; bg: string; whole?: boolean; art?: number; motion?:
     { href: "/experiences/revamping-reports", bg: "#FFFFFF", motion: {
         kind: "browser", screens: [reportsPage, reportsDownload],
     } },
-    { href: "/visual/icon-system-for-setu", bg: "#F2FDFD" },
+    // A wide banner: shown whole on its own background, enlarged a little
+    { href: "/visual/icon-system-for-setu", bg: "#F2FDFD", whole: true, art: 1.25 },
     { href: "/experiences/path-to-partnerships", bg: "#56CFD2", motion: {
         kind: "browser", screens: [partnershipsSignup, partnershipsDashboard, partnershipsTestimonials],
     } },

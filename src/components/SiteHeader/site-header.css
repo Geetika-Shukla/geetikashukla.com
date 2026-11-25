@@ -89,9 +89,7 @@ html.is-page-top .site-header {
         gap: 4px 48px;
     }
 
-    .theme-toggle {
-        margin-left: -32px;
-    }
+
 
     .site-header__link {
         font-size: 0.875rem;
@@ -105,7 +103,9 @@ html.is-page-top .site-header {
     place-items: center;
     width: 36px;
     height: 36px;
-    margin-left: -40px;
+    /* The same distance from About me as About me is from Work: the gap, less
+       the button's own padding round the bird (36px button, 24px face) */
+    margin-left: -6px;
     padding: 0;
     border: 0;
     border-radius: var(--radius-small);
