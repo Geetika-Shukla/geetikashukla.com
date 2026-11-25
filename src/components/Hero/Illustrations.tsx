@@ -164,37 +164,53 @@ export const Vinyl = () => (
     </span>
 );
 
-// A letter in the post: an envelope seen from the back, its flap sealed with
-// rust wax, a handwritten page peeking out from behind it and a stamp on top
-export const SealedLetter = () => (
-    <svg viewBox="0 0 240 120" aria-hidden="true">
-        <ellipse cx="120" cy="112" rx="96" ry="5" fill={INK} opacity="0.08" />
-        {/* The letter, tucked behind and tilted, in pencil lines of writing */}
-        <g transform="rotate(-7 160 56)">
-            <rect x="118" y="6" width="96" height="92" fill={PAPER} stroke={INK} strokeOpacity="0.15" />
-            <text x="128" y="24" fontFamily="serif" fontStyle="italic" fontSize="9" fill={INK} fillOpacity="0.75">Dear you,</text>
-            {[34, 44, 54, 64, 74].map((y, i) => (
-                <path key={y} d={`M128 ${y} q6 -3 12 0 t12 0 t12 0 t12 0 t${i % 2 ? 10 : 14} 0`} stroke={INK} strokeOpacity="0.4" strokeWidth="1" fill="none" strokeLinecap="round" />
-            ))}
+// A retro game cartridge, no console's in particular: grey plastic with a
+// ridged grip at the top, a pixel-art label (a sun setting over hills) and its
+// gold contacts showing at the foot
+const CART_LABEL = [
+    "LLLLLLLLLLLLLLLLLL",
+    "LLLLLLLLLLLSSSLLLL",
+    "LLLLLLLLLLSSSSSLLL",
+    "LLLLLLLLLLSSSSSLLL",
+    "LLLLLLLLLLSSSSSLLL",
+    "LLLLLLLLLLLSSSLLLL",
+    "LLLTTLLLLLLLLLLLLL",
+    "LLTTTTLLLLLLLTTLLL",
+    "LTTTTTTLLLLLTTTTLL",
+    "TTTTTTTTLLLTTTTTTL",
+    "TTTTTTTTTTTTTTTTTT",
+    "GGGGGGGGGGGGGGGGGG",
+    "GGGGGGGGGGGGGGGGGG",
+];
+const CART_COLOURS: Record<string, string> = { L: "#DCCBEC", S: "#E8B931", T: "#3F8F8A", G: "#6E8B5B" };
+
+export const GameCartridge = () => (
+    <svg viewBox="0 0 120 132" aria-hidden="true">
+        <ellipse cx="60" cy="126" rx="44" ry="4" fill={INK} opacity="0.08" />
+        {/* Contacts, peeking out under the shell */}
+        <rect x="28" y="112" width="64" height="10" rx="1" fill="#3A3A3E" />
+        {Array.from({ length: 12 }, (_, i) => (
+            <rect key={i} x={31 + i * 5} y="114" width="3" height="8" fill="#D4AF37" />
+        ))}
+        {/* The shell */}
+        <path d="M14 14 Q14 8 20 8 H100 Q106 8 106 14 V110 Q106 116 100 116 H20 Q14 116 14 110 Z" fill="#B9B9BE" />
+        <path d="M14 14 Q14 8 20 8 H100 Q106 8 106 14 V30 H14 Z" fill="#C8C8CD" />
+        {[14, 19, 24].map((y) => (
+            <path key={y} d={`M26 ${y} H94`} stroke="#9C9CA2" strokeWidth="1.6" strokeLinecap="round" />
+        ))}
+        <path d="M18 12 H60" stroke="#FFFFFF" strokeOpacity="0.5" strokeWidth="1.6" strokeLinecap="round" />
+        {/* The label, set into a recess */}
+        <rect x="21" y="36" width="78" height="72" rx="3" fill="#A6A6AC" />
+        <rect x="24" y="39" width="72" height="66" rx="1.5" fill={PAPER} />
+        <g shapeRendering="crispEdges">
+            {CART_LABEL.flatMap((row, y) => row.split("").map((cell, x) => (
+                <rect key={`${x}-${y}`} x={24 + x * 4} y={39 + y * 4} width={4} height={4} fill={CART_COLOURS[cell]} />
+            )))}
         </g>
-        {/* The envelope's back, its flap folded down */}
-        <rect x="24" y="22" width="156" height="86" rx="2" fill="#EFE6D2" />
-        <path d="M24 108 L102 62 L180 108 Z" fill="#E6DAC0" />
-        <path d="M24 22 L102 72 L180 22 Z" fill="#F4ECDA" stroke="#D9CBAE" strokeWidth="1" strokeLinejoin="round" />
-        {/* The wax seal, a little uneven at its edge */}
-        <path d="M102 58 q8 -2 12 4 q7 4 4 12 q2 8 -6 11 q-6 6 -13 1 q-8 -1 -8 -9 q-4 -7 2 -12 q3 -7 9 -7 Z" fill={RUST} />
-        <circle cx="102" cy="72" r="9" fill="none" stroke="#A9512E" strokeWidth="1.4" />
-        <text x="102" y="76.5" textAnchor="middle" fontFamily="serif" fontStyle="italic" fontSize="12" fill="#A9512E">g</text>
-        <path d="M95 64 q3 -3 7 -3" stroke="#FFFFFF" strokeOpacity="0.4" strokeWidth="1.6" fill="none" strokeLinecap="round" />
-        {/* A stamp with a sun on it, and its postmark */}
-        <g transform="rotate(6 196 92)">
-            <rect x="180" y="76" width="30" height="34" fill={PAPER} stroke={INK} strokeOpacity="0.2" strokeDasharray="2 1.4" />
-            <rect x="184" y="80" width="22" height="22" fill="#E8B931" fillOpacity="0.85" />
-            <circle cx="195" cy="91" r="5" fill={RUST} />
-            <path d="M184 98 q5 -4 11 0 t11 0 V102 H184 Z" fill="#3F8F8A" />
-        </g>
-        <circle cx="170" cy="86" r="11" fill="none" stroke={INK} strokeOpacity="0.35" strokeWidth="1" />
-        <path d="M150 82 q5 -3 10 0 t10 0 M150 88 q5 -3 10 0 t10 0" stroke={INK} strokeOpacity="0.35" strokeWidth="1" fill="none" />
+        {/* A title band at the label's foot, its words as pixel dashes */}
+        <rect x="24" y="91" width="72" height="14" fill={INK} />
+        <path d="M30 98 H46 M50 98 H58 M62 98 H80" stroke={PAPER} strokeWidth="3" />
+        <circle cx="88" cy="98" r="2.5" fill="#E5484D" />
     </svg>
 );
 
