@@ -14,6 +14,11 @@
     font-size: 0.95rem;
 }
 
+/* The team, under the work, across the page */
+.ai-team {
+    margin-top: 16px;
+}
+
 .ai-link {
     display: inline-flex;
     align-items: center;

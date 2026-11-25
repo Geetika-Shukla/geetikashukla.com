@@ -40,15 +40,16 @@ export default function OneLakhPage() {
             {/* HERO SECTION */}
 
             <Row layoutAsGrid horizontalPadding="huge" marginTop="medium" marginBottom="small">
-                <Portion desktopSpan="10" horizontalMargin="small">
+                {/* A little wider than usual, so the title sits on two lines, the sum kept whole on the first */}
+                <Portion desktopSpan="12" horizontalMargin="small">
                     <Heading1 className="hero-heading">
-                        What ₹1 lakh could buy
+                        What ₹1&nbsp;lakh<br />could buy
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" hideOnMobile />
+                <Portion desktopSpan="1" hideOnMobile />
 
-                <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
+                <Portion desktopSpan="11" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">
                         <Text marginBottom="tiny">
                             A data story on the RBIH Indian Financial Data Atlas.
@@ -56,9 +57,6 @@ export default function OneLakhPage() {
                         <Text marginBottom="tiny">
                             This story takes one sum through 25 years and shows what it bought each year in gold,
                             silver, a mason’s days, dollars and wheat, and what it is worth today.
-                        </Text>
-                        <Text className="ai-credit">
-                            The team: Sujan Sundareswaran, Naresh Singaravelu, Vishes Jena and Swati Mishra
                         </Text>
                         <a className="ai-link" href={STORY} target="_blank" rel="noopener noreferrer">
                             Read the story <Arrow />
@@ -72,6 +70,9 @@ export default function OneLakhPage() {
                     <figure className="ai-feature" style={{ aspectRatio: `${walkthrough.width} / ${walkthrough.height}` }}>
                         <Clip glimpse={{ image: walkthrough, clip: `${CLIPS}/walkthrough.mp4`, alt: "The story, scrolled through from the title to the data" }} controls />
                     </figure>
+                    <Text className="ai-credit ai-team">
+                        The team: Sujan Sundareswaran, Naresh Singaravelu, Vishes Jena and Swati Mishra
+                    </Text>
                 </Portion>
             </Row>
 
