@@ -62,8 +62,8 @@ const ITEMS: Item[] = [
     { id: "flower", kind: "art", content: <QueenOfTheNight />, w: "clamp(84px, 7.9vw, 126px)", scatter: [80, 55, -5], grid: [50, 58] },
     { id: "stamp", kind: "art", content: stamp(stampBangalore, "A 1988 stamp of the Bangalore GPO"), label: "A stamp from Bengaluru", w: "clamp(123px, 11.2vw, 179px)", scatter: [85, 84, 6], grid: [92, 58] },
 
-    { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(92px, 8vw, 126px)", scatter: [12, 86, 3], grid: [22, 78] },
-    { id: "letterpress", kind: "art", content: <LetterpressBlock />, label: "A letterpress block", w: "clamp(123px, 11.2vw, 179px)", scatter: [48, 87, -5], grid: [50, 78] },
+    { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(92px, 8vw, 126px)", scatter: [12, 86, 3], grid: [8, 78] },
+    { id: "letterpress", kind: "art", content: <LetterpressBlock />, label: "A letterpress block", w: "clamp(123px, 11.2vw, 179px)", scatter: [48, 87, -5], grid: [36, 78] },
 ];
 
 // A line set across the grid, a phrase to a pair of cells, read left to right,
