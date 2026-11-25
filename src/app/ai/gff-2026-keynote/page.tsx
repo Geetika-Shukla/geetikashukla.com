@@ -15,11 +15,10 @@ import "../ai-pages.css";
 
 // ASSETS ======================================================================
 // Stills of each chapter's clip before it plays (npm run glimpses retakes them)
-import people from "@/assets/images/glimpses/keynote/people.webp";
 import onboarding from "@/assets/images/glimpses/keynote/onboarding.webp";
-import underwriting from "@/assets/images/glimpses/keynote/underwriting.webp";
 import collections from "@/assets/images/glimpses/keynote/collections.webp";
-import security from "@/assets/images/glimpses/keynote/security.webp";
+import registry from "@/assets/images/glimpses/keynote/registry.webp";
+import screening from "@/assets/images/glimpses/keynote/screening.webp";
 
 // TYPES =======================================================================
 import type { Metadata } from "next";
@@ -33,15 +32,16 @@ export const metadata: Metadata = {
 const DECK = "/keynotes/gff-2026.html";
 const CLIPS = "/glimpses/keynote";
 
-// The deck's other chapters, playing as they do on stage
+// The deck's other chapters, playing as they do on stage: collections beside
+// the smart registry coming together (slide 40, just its animation), then a
+// transfer screened against it (slide 42) across the grid
 const CHAPTERS: BentoRow[] = [
     { ratio: 2.67, items: [
         { image: collections, clip: `${CLIPS}/collections.mp4`, span: 6, alt: "Collections: a missed payment that isn't a default" },
-        { image: people, clip: `${CLIPS}/people.mp4`, span: 3, alt: "The people the talk follows, gathering on the slide" },
+        { image: registry, clip: `${CLIPS}/registry.mp4`, span: 3, alt: "The DPIP smart registry, with banks, LEAs and the DoT joining it, and a record coming in" },
     ] },
-    { ratio: 3.2, items: [
-        { image: underwriting, clip: `${CLIPS}/underwriting.mp4`, span: 5, alt: "Underwriting: a charge on paper, then on the Unified Lending Interface" },
-        { image: security, clip: `${CLIPS}/security.mp4`, span: 4, alt: "Security: catching a fraud before the money moves" },
+    { ratio: 1138 / 640, items: [
+        { image: screening, clip: `${CLIPS}/screening.mp4`, span: 9, alt: "Security: Rukmini's bank screens a transfer against data from the smart registry" },
     ] },
 ];
 

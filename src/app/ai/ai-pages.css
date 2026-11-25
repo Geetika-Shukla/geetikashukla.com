@@ -75,9 +75,13 @@
 }
 
 .ai-section__lead {
-    max-width: 60ch;
     margin: 0 0 24px;
     color: var(--color-text-muted);
+}
+
+/* A heading straight over a bento, with room under it */
+.ai-section__title + .bento {
+    margin-top: 24px;
 }
 
 /* A clip at full width, in its own shape, with its controls */
