@@ -15,7 +15,6 @@ import "../ai-pages.css";
 
 // ASSETS ======================================================================
 // Stills of each chapter's clip before it plays (npm run glimpses retakes them)
-import questions from "@/assets/images/glimpses/keynote/questions.webp";
 import people from "@/assets/images/glimpses/keynote/people.webp";
 import onboarding from "@/assets/images/glimpses/keynote/onboarding.webp";
 import underwriting from "@/assets/images/glimpses/keynote/underwriting.webp";
@@ -37,13 +36,12 @@ const CLIPS = "/glimpses/keynote";
 // The deck's other chapters, playing as they do on stage
 const CHAPTERS: BentoRow[] = [
     { ratio: 2.67, items: [
-        { image: questions, clip: `${CLIPS}/questions.mp4`, span: 6, alt: "Access, usage and quality: the three questions, building one by one" },
+        { image: collections, clip: `${CLIPS}/collections.mp4`, span: 6, alt: "Collections: a missed payment that isn't a default" },
         { image: people, clip: `${CLIPS}/people.mp4`, span: 3, alt: "The people the talk follows, gathering on the slide" },
     ] },
-    { ratio: 5.33, items: [
-        { image: underwriting, clip: `${CLIPS}/underwriting.mp4`, span: 3, alt: "Underwriting: a charge on paper, then on the Unified Lending Interface" },
-        { image: collections, clip: `${CLIPS}/collections.mp4`, span: 3, alt: "Collections: a missed payment that isn't a default" },
-        { image: security, clip: `${CLIPS}/security.mp4`, span: 3, alt: "Security: catching a fraud before the money moves" },
+    { ratio: 3.2, items: [
+        { image: underwriting, clip: `${CLIPS}/underwriting.mp4`, span: 5, alt: "Underwriting: a charge on paper, then on the Unified Lending Interface" },
+        { image: security, clip: `${CLIPS}/security.mp4`, span: 4, alt: "Security: catching a fraud before the money moves" },
     ] },
 ];
 
@@ -57,14 +55,12 @@ export default function GffKeynotePage() {
             {/* HERO SECTION */}
 
             <Row layoutAsGrid horizontalPadding="huge" marginTop="medium" marginBottom="small">
-                {/* A little wider than usual, so the title sits on two or three lines */}
-                <Portion desktopSpan="12" horizontalMargin="small">
+                {/* Wider than usual, so the title sits on two lines, "future of finance" whole on the second */}
+                <Portion desktopSpan="13" horizontalMargin="small">
                     <Heading1 className="hero-heading">
-                        The invisible future of finance
+                        The invisible<br />future&nbsp;of&nbsp;finance
                     </Heading1>
                 </Portion>
-
-                <Portion desktopSpan="1" hideOnMobile />
 
                 <Portion desktopSpan="11" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">
@@ -79,18 +75,6 @@ export default function GffKeynotePage() {
                     </Div>
                 </Portion>
             </Row>
-
-            {/* THE DECK, AND WHO IT WAS MADE WITH */}
-
-            <Row horizontalPadding="huge" marginTop="small">
-                <Portion>
-                    <DeckPlayer src={DECK} title="The invisible future of finance: the keynote deck" />
-                    <Text className="ai-credit ai-team">
-                        For Sahil Kini, with Naresh Singaravelu, Rhea Sinha and Rajat Mittal
-                    </Text>
-                </Portion>
-            </Row>
-
 
             {/* ONBOARDING: A SLIDESHOW OF ITS OWN */}
 
@@ -114,6 +98,21 @@ export default function GffKeynotePage() {
                 <Portion>
                     <h2 className="ai-section__title">The other chapters</h2>
                     <Bento rows={CHAPTERS} />
+                </Portion>
+            </Row>
+
+
+
+            {/* THE WHOLE DECK, AND WHO IT WAS MADE WITH */}
+
+            <Row horizontalPadding="huge" className="ai-section">
+                <Portion>
+                    <h2 className="ai-section__title">The deck</h2>
+                    <DeckPlayer
+                        src={DECK}
+                        title="The invisible future of finance: the keynote deck"
+                        credit="For Sahil Kini, with Naresh Singaravelu, Rhea Sinha and Rajat Mittal"
+                    />
                 </Portion>
             </Row>
 

@@ -136,10 +136,18 @@
     aspect-ratio: auto;
 }
 
+/* Under the deck: who it was made with on the left, the fullscreen button on the right */
 .deck-player__controls {
     display: flex;
-    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 24px;
     margin-top: 16px;
+}
+
+.deck-player__button {
+    margin-left: auto;
 }
 
 .deck-player__button {
