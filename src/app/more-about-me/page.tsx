@@ -18,7 +18,7 @@ import {
 import "./page-more-about-me.css";
 
 // DATA ========================================================================
-import { PATH } from "@/data/about";
+import { PATH, RESUME_FILE, RESUME_URL } from "@/data/about";
 
 // ASSETS ======================================================================
 import MyPhoto from "@/assets/images/me.svg";
@@ -202,9 +202,9 @@ const MoreAboutMePage = () => {
                     <div style={{ paddingLeft: '50px' }}>
                         <a
                             className="resume-button"
-                            href="https://drive.google.com/uc?export=download&id=1UXkFA6hBj2m-KuHozLz3eFtyUJKckFoY"
-                            target="_blank"
-                            download
+                            data-button
+                            href={RESUME_URL}
+                            download={RESUME_FILE}
                         >
                             Download Resume
                         </a>

@@ -3,7 +3,10 @@
  * testimonials. Used on the home page (journal, testimonials).
  */
 
-export const RESUME_URL = "https://drive.google.com/uc?export=download&id=1UXkFA6hBj2m-KuHozLz3eFtyUJKckFoY";
+// The résumé, served by the site itself (printed from scripts/resume/resume.html
+// with npm run resume), and the name it downloads under
+export const RESUME_URL = "/Geetika-resume.pdf";
+export const RESUME_FILE = "Geetika-Shukla-resume.pdf";
 
 export interface Role {
     title   : string;

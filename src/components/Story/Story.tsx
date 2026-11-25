@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 
 // DATA ========================================================================
-import { EDUCATION, PATH, RESUME_URL, ROLES } from "@/data/about";
+import { EDUCATION, PATH, RESUME_FILE, RESUME_URL, ROLES } from "@/data/about";
 
 // STYLES ======================================================================
 import "./story.css";
@@ -85,7 +85,7 @@ export const Story = () => (
                     </ul>
                 </div>
 
-                <a className="story__resume" data-button href={RESUME_URL} target="_blank" rel="noopener noreferrer" download>
+                <a className="story__resume" data-button href={RESUME_URL} download={RESUME_FILE}>
                     Download résumé
                 </a>
             </div>
