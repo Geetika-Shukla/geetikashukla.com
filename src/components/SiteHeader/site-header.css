@@ -24,7 +24,7 @@
 /* In the dark, the glass is smoked */
 :root[data-theme="dark"] .site-header {
     border-bottom-color: rgba(255, 255, 255, 0.08);
-    background-color: rgba(23, 23, 26, 0.55);
+    background-color: rgba(36, 36, 40, 0.55);
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
 }
 

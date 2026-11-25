@@ -35,14 +35,14 @@
     --header-height  : 72px;
 }
 
-/* Dark: the same palette, inverted; chosen with the toggle in the nav, or
+/* Dark: the same palette, inverted, on a dark grey rather than black; chosen with the toggle in the nav, or
    following the device's setting until then (see THEME_SCRIPT in layout.tsx) */
 :root[data-theme="dark"] {
-    --color-bg         : #17171A;
-    --color-surface    : #202024;
+    --color-bg         : #242428;
+    --color-surface    : #2D2D32;
     --color-text       : #ECEAE6;
     --color-text-muted : #A4A4AA;
-    --color-border     : #34343A;
+    --color-border     : #3F3F46;
 
     --color-accent   : #9DB8DA;
     --color-accent-2 : #E2825A;

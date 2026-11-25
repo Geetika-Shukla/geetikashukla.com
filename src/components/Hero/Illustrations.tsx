@@ -281,8 +281,7 @@ export const QueenOfTheNight = () => (
 
 // Fabric swatches, one laid over the other: ikat, its diamonds blurred where
 // the dyed threads shift, and sheer chanderi with gold butis and a zari border,
-// the ikat showing through it; each cut with pinking shears and pinned
-// through its middle
+// the ikat showing through it; each cut with pinking shears
 const pinked = (x: number, y: number, w: number, h: number, tooth = 4) => {
     const along = (from: number, length: number) =>
         Array.from({ length: Math.round(length / tooth) + 1 }, (_, i) => from + (i * length) / Math.round(length / tooth));
@@ -320,8 +319,6 @@ export const FabricSwatches = () => (
                     </g>
                 ))}
             </g>
-            <circle cx={IKAT.x + IKAT.w / 2} cy={IKAT.y + IKAT.h / 2} r="3.2" fill={RUST} />
-            <circle cx={IKAT.x + IKAT.w / 2 - 1} cy={IKAT.y + IKAT.h / 2 - 1} r="1" fill="#FFFFFF" opacity="0.6" />
         </g>
         {/* Chanderi, over it and sheer: peachy gold, gold butis, a zari border */}
         <g transform="rotate(5 93 63)">
@@ -345,8 +342,6 @@ export const FabricSwatches = () => (
                     <path key={i} d={`M${CHANDERI.x + 1 + i * 6} ${CHANDERI.y + 61} l3 -2.5 l3 2.5 l-3 2.5 Z`} fill="#F6DCC4" />
                 ))}
             </g>
-            <circle cx={CHANDERI.x + CHANDERI.w / 2} cy={CHANDERI.y + CHANDERI.h / 2} r="3.2" fill="#3F8F8A" />
-            <circle cx={CHANDERI.x + CHANDERI.w / 2 - 1} cy={CHANDERI.y + CHANDERI.h / 2 - 1} r="1" fill="#FFFFFF" opacity="0.6" />
         </g>
     </svg>
 );
