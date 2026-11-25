@@ -10,29 +10,6 @@ const RUST = "#C9683E";
 const GOLD = "#E3B94C";
 const PAPER = "#FBFAF6";
 
-// The nav's heart, in pixels
-export const PixelHeart = () => {
-    const rows = [
-        "..XX...XX..",
-        ".XXXX.XXXX.",
-        "XXXXXXXXXXX",
-        "XXXXXXXXXXX",
-        "XXXXXXXXXXX",
-        ".XXXXXXXXX.",
-        "..XXXXXXX..",
-        "...XXXXX...",
-        "....XXX....",
-        ".....X.....",
-    ];
-    return (
-        <svg viewBox="0 0 11 10" shapeRendering="crispEdges" aria-hidden="true">
-            {rows.flatMap((row, y) => row.split("").map((cell, x) => cell === "X" && (
-                <rect key={`${x}-${y}`} x={x} y={y} width={1} height={1} fill={x < 3 && y < 4 && y > 0 ? "#F28B8D" : "#E5484D"} />
-            )))}
-        </svg>
-    );
-};
-
 // An ink bottle with a dip pen resting across it
 export const InkBottle = () => (
     <svg viewBox="0 0 120 120" aria-hidden="true">

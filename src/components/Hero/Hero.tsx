@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
 // INTERNAL DEPS ===============================================================
-import { FabricSwatches, GameCartridge, InkBottle, LetterpressBlock, PixelHeart, QueenOfTheNight, Spool, StickyNote, SwatchFan, Vinyl } from "./Illustrations";
+import { FabricSwatches, GameCartridge, InkBottle, LetterpressBlock, QueenOfTheNight, Spool, StickyNote, SwatchFan, Vinyl } from "./Illustrations";
 
 // STYLES ======================================================================
 import "./hero.css";
@@ -52,7 +52,7 @@ interface Item {
 const ITEMS: Item[] = [
     { id: "calli", kind: "photo", content: photo(calliOne, "Calligraphy", 1.25), label: "Calligraphy", w: "clamp(90px, 8.5vw, 140px)", scatter: [8, 50, 4], grid: [8, 18] },
     { id: "fabrics", kind: "art", content: <FabricSwatches />, label: "Fabric swatches", w: "clamp(130px, 12vw, 190px)", scatter: [54, 12, -3], grid: [64, 18] },
-    { id: "heart", kind: "art", content: <PixelHeart />, label: "A pixel heart", w: "clamp(44px, 3.6vw, 60px)", scatter: [22, 40, -8], grid: [92, 18] },
+    { id: "spool", kind: "art", content: <Spool />, label: "Sewing", w: "clamp(54px, 4.5vw, 76px)", scatter: [21, 38, 10], grid: [92, 18] },
 
     { id: "cartridge", kind: "art", content: <GameCartridge />, label: "A game cartridge", w: "clamp(76px, 6.5vw, 104px)", scatter: [11, 20, -6], grid: [22, 38] },
     { id: "swatches", kind: "art", content: <SwatchFan />, label: "Colour swatches", w: "clamp(64px, 5.5vw, 90px)", scatter: [79, 17, 5], grid: [36, 38] },
@@ -60,7 +60,6 @@ const ITEMS: Item[] = [
 
     { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(64px, 5.5vw, 90px)", scatter: [12, 82, -4], grid: [8, 58] },
     { id: "flower", kind: "art", content: <QueenOfTheNight />, w: "clamp(80px, 7.5vw, 120px)", scatter: [80, 52, -5], grid: [50, 58] },
-    { id: "spool", kind: "art", content: <Spool />, label: "Sewing", w: "clamp(54px, 4.5vw, 76px)", scatter: [92, 40, 10], grid: [78, 58] },
 
     { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(80px, 7vw, 110px)", scatter: [33, 87, 3], grid: [22, 78] },
     { id: "letterpress", kind: "art", content: <LetterpressBlock />, label: "A letterpress block", w: "clamp(110px, 10vw, 160px)", scatter: [58, 87, -5], grid: [50, 78] },
