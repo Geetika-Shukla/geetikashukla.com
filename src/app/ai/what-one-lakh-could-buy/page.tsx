@@ -58,8 +58,7 @@ export default function OneLakhPage() {
                             silver, a mason’s days, dollars and wheat, and what it is worth today.
                         </Text>
                         <Text className="ai-credit">
-                            The team that built the website: Sujan Sundareswaran, Naresh Singaravelu, Vishes Jena and
-                            Swati Mishra
+                            The team: Sujan Sundareswaran, Naresh Singaravelu, Vishes Jena and Swati Mishra
                         </Text>
                         <a className="ai-link" href={STORY} target="_blank" rel="noopener noreferrer">
                             Read the story <Arrow />
