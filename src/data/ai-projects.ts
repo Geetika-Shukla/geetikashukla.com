@@ -29,14 +29,6 @@ export interface AIProject {
 
 export const AI_PROJECTS: AIProject[] = [
     {
-        title       : "The invisible future of finance",
-        description : "A keynote deck for the CEO of Reserve Bank Innovation Hub at Global Fintech Fest 2026.",
-        tools       : ["Keynote", "Presentation"],
-        href        : "/ai/gff-2026-keynote",
-        placeholder : false,
-        cover       : gffKeynote,
-    },
-    {
         title       : "What ₹1 lakh could buy",
         description : "A data story on the RBIH Indian Financial Data Atlas: one sum, carried from 2001 to 2026.",
         tools       : ["Data story", "Next.js"],
@@ -44,6 +36,14 @@ export const AI_PROJECTS: AIProject[] = [
         placeholder : false,
         // The story's opening, the title over the notes, from a screen recording of it
         cover       : oneLakhThumbnail,
+    },
+    {
+        title       : "The invisible future of finance",
+        description : "A keynote deck for the CEO of Reserve Bank Innovation Hub at Global Fintech Fest 2026.",
+        tools       : ["Keynote", "Presentation"],
+        href        : "/ai/gff-2026-keynote",
+        placeholder : false,
+        cover       : gffKeynote,
     },
     // PLACEHOLDER: the thumbnail and a line about it, once there's something to show.
     // ARCHIVED until then: its page is at /ai/rbih-website, unlinked
