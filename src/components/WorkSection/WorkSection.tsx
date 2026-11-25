@@ -58,7 +58,7 @@ const ORDER: { href: string; bg: string; whole?: boolean; art?: number; motion?:
     { href: "/experiences/path-to-partnerships", bg: "#56CFD2", motion: {
         kind: "browser", screens: [partnershipsSignup, partnershipsDashboard, partnershipsTestimonials],
     } },
-    { href: "/visual/26-days-of-type", bg: "#FFFFFF", whole: true, art: 1.5 },
+    { href: "/visual/26-days-of-type", bg: "#FFFFFF" },
     { href: "/visual/people-experience", bg: "#CCF6F7" },
     { href: "/type/47-days-of-devanagari-type", bg: "#FFFFFF", whole: true, art: 1.5 },
     { href: "/experiences/hdfc-journeys", bg: "#E5F2FF", motion: {
