@@ -71,7 +71,7 @@ export default function OneLakhPage() {
                         <Clip glimpse={{ image: walkthrough, clip: `${CLIPS}/walkthrough.mp4`, alt: "The story, scrolled through from the title to the data" }} controls />
                     </figure>
                     <Text className="ai-credit ai-team">
-                        The team: Sujan Sundareswaran, Naresh Singaravelu, Vishes Jena and Swati Mishra
+                        Atlas by Sujan Sundareswaran · Other stories by Naresh Singaravelu, Vishes Jena and Swati Mishra
                     </Text>
                 </Portion>
             </Row>
