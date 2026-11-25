@@ -60,7 +60,7 @@ html.is-page-top .site-header {
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
-    gap: 8px 64px;
+    gap: 8px 96px;
 }
 
 .site-header__link {
@@ -86,7 +86,11 @@ html.is-page-top .site-header {
     }
 
     .site-header__nav {
-        gap: 4px 32px;
+        gap: 4px 48px;
+    }
+
+    .theme-toggle {
+        margin-left: -32px;
     }
 
     .site-header__link {
@@ -95,13 +99,13 @@ html.is-page-top .site-header {
 }
 
 /* THEME TOGGLE ============================================================= */
-/* In pixels: a sun in the light theme, a crescent moon in the dark */
+/* A bulbul's face in the light theme, an owlet's in the dark (ThemeToggle.tsx) */
 .theme-toggle {
     display: grid;
     place-items: center;
     width: 36px;
     height: 36px;
-    margin-left: -32px;
+    margin-left: -40px;
     padding: 0;
     border: 0;
     border-radius: var(--radius-small);
@@ -117,29 +121,30 @@ html.is-page-top .site-header {
 }
 
 .theme-toggle svg {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
+    width: 24px;
+    height: 24px;
 }
 
-/* One gives way to the other in a few steps, like an old game */
-.theme-toggle__sun,
-.theme-toggle__moon {
-    transition: opacity 0.3s steps(3);
+/* One gives way to the other, the night bird rising into place */
+.theme-toggle__day,
+.theme-toggle__night {
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.theme-toggle__moon,
-:root[data-theme="dark"] .theme-toggle__sun {
+.theme-toggle__night,
+:root[data-theme="dark"] .theme-toggle__day {
     opacity: 0;
+    transform: translateY(3px);
 }
 
-:root[data-theme="dark"] .theme-toggle__moon {
+:root[data-theme="dark"] .theme-toggle__night {
     opacity: 1;
+    transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .theme-toggle__sun,
-    .theme-toggle__moon {
+    .theme-toggle__day,
+    .theme-toggle__night {
         transition: none;
     }
 }

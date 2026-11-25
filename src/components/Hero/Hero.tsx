@@ -5,13 +5,14 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
 // INTERNAL DEPS ===============================================================
-import { GameCartridge, InkBottle, LetterpressBlock, PixelHeart, QueenOfTheNight, Soap, Spool, StickyNote, SwatchFan, Vinyl } from "./Illustrations";
+import { FabricSwatches, GameCartridge, InkBottle, LetterpressBlock, PixelHeart, QueenOfTheNight, Soap, Spool, StickyNote, SwatchFan, Vinyl } from "./Illustrations";
 
 // STYLES ======================================================================
 import "./hero.css";
 
 // ASSETS ======================================================================
 import calliOne from "@/assets/images/calli-1.png";
+import stampBangalore from "@/assets/images/stamp-bangalore-gpo.png";
 
 // TYPES =======================================================================
 import type { CSSProperties, PointerEvent, ReactNode } from "react";
@@ -20,6 +21,12 @@ import type { StaticImageData } from "next/image";
 // A photo, optionally zoomed in within its frame
 const photo = (image: StaticImageData, alt: string, zoom = 1) => (
     <Image src={image} alt={alt} sizes="16vw" draggable={false} style={zoom !== 1 ? { transform: `scale(${zoom})` } : undefined} />
+);
+
+// A cut-out picture with a see-through edge (a stamp's perforations), laid on
+// the board with a shadow that follows its edge
+const stamp = (image: StaticImageData, alt: string) => (
+    <Image className="hero__stamp" src={image} alt={alt} sizes="12vw" draggable={false} />
 );
 
 // A space for an image still to come, in the shape it will take (width / height)
@@ -52,24 +59,23 @@ interface Item {
 
 const ITEMS: Item[] = [
     { id: "calli", kind: "photo", content: photo(calliOne, "Calligraphy", 1.25), label: "Calligraphy", w: "clamp(90px, 8.5vw, 140px)", scatter: [8, 52, 4], grid: [8, 18] },
-    { id: "image-1", kind: "placeholder", content: placeholder(16 / 10), label: "Image to come", w: "clamp(130px, 12vw, 190px)", scatter: [50, 11, -3], grid: [50, 18] },
-    { id: "swatches", kind: "art", content: <SwatchFan />, label: "Colour swatches", w: "clamp(64px, 5.5vw, 90px)", scatter: [70, 17, 5], grid: [64, 18] },
+    { id: "fabrics", kind: "art", content: <FabricSwatches />, label: "Fabric swatches", w: "clamp(130px, 12vw, 190px)", scatter: [50, 12, -3], grid: [50, 18] },
     { id: "heart", kind: "art", content: <PixelHeart />, label: "A pixel heart", w: "clamp(44px, 3.6vw, 60px)", scatter: [24, 43, -8], grid: [78, 18] },
-    { id: "image-2", kind: "placeholder", content: placeholder(0.72), label: "Image to come", w: "clamp(90px, 8.5vw, 140px)", scatter: [86, 22, 6], grid: [92, 18] },
+    { id: "image-2", kind: "placeholder", content: placeholder(0.72), label: "Image to come", w: "clamp(90px, 8.5vw, 140px)", scatter: [87, 24, 6], grid: [92, 18] },
 
-    { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(64px, 5.5vw, 90px)", scatter: [30, 87, -4], grid: [8, 38] },
-    { id: "cartridge", kind: "art", content: <GameCartridge />, label: "A game cartridge", w: "clamp(76px, 6.5vw, 104px)", scatter: [14, 20, -6], grid: [22, 38] },
+    { id: "cartridge", kind: "art", content: <GameCartridge />, label: "A game cartridge", w: "clamp(76px, 6.5vw, 104px)", scatter: [13, 22, -6], grid: [8, 38] },
+    { id: "swatches", kind: "art", content: <SwatchFan />, label: "Colour swatches", w: "clamp(64px, 5.5vw, 90px)", scatter: [69, 18, 5], grid: [36, 38] },
     { id: "vinyl", kind: "art", content: <Vinyl />, label: "Vinyls", w: "clamp(84px, 7.5vw, 120px)", scatter: [31, 16, 7], grid: [78, 38] },
     { id: "spool", kind: "art", content: <Spool />, label: "Sewing", w: "clamp(54px, 4.5vw, 76px)", scatter: [93, 45, 10], grid: [92, 38] },
 
-    { id: "image-4", kind: "placeholder", content: placeholder(1.43), label: "Image to come", w: "clamp(120px, 12vw, 190px)", scatter: [16, 80, 5], grid: [8, 58] },
+    { id: "image-4", kind: "placeholder", content: placeholder(1.43), label: "Image to come", w: "clamp(120px, 12vw, 190px)", scatter: [14, 80, 5], grid: [8, 58] },
     { id: "flower", kind: "art", content: <QueenOfTheNight />, w: "clamp(80px, 7.5vw, 120px)", scatter: [77, 50, -5], grid: [50, 58] },
-    { id: "image-6", kind: "placeholder", content: placeholder(16 / 10), label: "Image to come", w: "clamp(130px, 12vw, 190px)", scatter: [87, 76, 4], grid: [64, 58] },
-    { id: "image-7", kind: "placeholder", content: placeholder(0.71), label: "Image to come", w: "clamp(80px, 7.5vw, 120px)", scatter: [72, 82, -7], grid: [92, 58] },
+    { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(64px, 5.5vw, 90px)", scatter: [30, 88, -4], grid: [64, 58] },
+    { id: "soap", kind: "art", content: <Soap />, label: "Soaps", w: "clamp(60px, 5vw, 84px)", scatter: [75, 84, -7], grid: [92, 58] },
 
-    { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(80px, 7vw, 110px)", scatter: [39, 86, 3], grid: [8, 78] },
-    { id: "letterpress", kind: "art", content: <LetterpressBlock />, label: "A letterpress block", w: "clamp(110px, 10vw, 160px)", scatter: [59, 88, -5], grid: [22, 78] },
-    { id: "soap", kind: "art", content: <Soap />, label: "Soaps", w: "clamp(60px, 5vw, 84px)", scatter: [93, 90, -6], grid: [92, 78] },
+    { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(80px, 7vw, 110px)", scatter: [44, 85, 3], grid: [8, 78] },
+    { id: "letterpress", kind: "art", content: <LetterpressBlock />, label: "A letterpress block", w: "clamp(110px, 10vw, 160px)", scatter: [60, 88, -5], grid: [36, 78] },
+    { id: "stamp", kind: "art", content: stamp(stampBangalore, "A 1988 stamp of the Bangalore GPO"), label: "A stamp from Bengaluru", w: "clamp(110px, 10vw, 160px)", scatter: [90, 86, -6], grid: [92, 78] },
 ];
 
 // A line set across the grid, a phrase to a pair of cells, read left to right,

@@ -189,6 +189,11 @@
     overflow: hidden;
 }
 
+/* A stamp: its perforated edge cut out, and a shadow that follows it */
+.hero__stamp {
+    filter: drop-shadow(1px 3px 3px rgba(28, 28, 30, 0.22));
+}
+
 /* Placeholders: a dashed space, in the shape of the image to come */
 .hero__placeholder {
     display: grid;

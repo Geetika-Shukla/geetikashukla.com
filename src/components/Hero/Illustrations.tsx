@@ -278,3 +278,75 @@ export const QueenOfTheNight = () => (
         <path d="M40 182 H80" stroke="#A9512E" strokeWidth="1" />
     </svg>
 );
+
+// Fabric swatches, one laid over the other: ikat, its diamonds blurred where
+// the dyed threads shift, and sheer chanderi with gold butis and a zari border,
+// the ikat showing through it; each cut with pinking shears and pinned
+// through its middle
+const pinked = (x: number, y: number, w: number, h: number, tooth = 4) => {
+    const along = (from: number, length: number) =>
+        Array.from({ length: Math.round(length / tooth) + 1 }, (_, i) => from + (i * length) / Math.round(length / tooth));
+    const xs = along(x, w);
+    const ys = along(y, h);
+    const top = xs.map((px, i) => `${px} ${i % 2 ? y - 1.5 : y}`);
+    const right = ys.map((py, i) => `${i % 2 ? x + w + 1.5 : x + w} ${py}`);
+    const bottom = [...xs].reverse().map((px, i) => `${px} ${i % 2 ? y + h + 1.5 : y + h}`);
+    const left = [...ys].reverse().map((py, i) => `${i % 2 ? x - 1.5 : x} ${py}`);
+    return `M${[...top, ...right, ...bottom, ...left].join(" L")} Z`;
+};
+
+const IKAT = { x: 8, y: 10, w: 70, h: 66 };
+const CHANDERI = { x: 58, y: 30, w: 70, h: 66 };
+const IKAT_DIAMONDS = [0, 1, 2].flatMap((row) => [0, 1, 2].map((col) => [IKAT.x + 8 + col * 22 + (row % 2) * 11, IKAT.y + 12 + row * 20]));
+
+export const FabricSwatches = () => (
+    <svg viewBox="0 0 136 104" aria-hidden="true" style={{ overflow: "visible" }}>
+        <defs>
+            <clipPath id="swatch-ikat"><path d={pinked(IKAT.x, IKAT.y, IKAT.w, IKAT.h)} /></clipPath>
+            <clipPath id="swatch-chanderi"><path d={pinked(CHANDERI.x, CHANDERI.y, CHANDERI.w, CHANDERI.h)} /></clipPath>
+        </defs>
+        {/* Ikat, underneath: indigo diamonds with feathered edges, and rust bands */}
+        <g transform="rotate(-6 43 43)">
+            <g clipPath="url(#swatch-ikat)">
+                <rect x={IKAT.x - 4} y={IKAT.y - 4} width={IKAT.w + 8} height={IKAT.h + 8} fill="#F3EAD8" />
+                {[2, 22, 42, 62].map((dy) => <rect key={dy} x={IKAT.x - 4} y={IKAT.y + dy - 1.5} width={IKAT.w + 8} height="3" fill={RUST} opacity="0.8" />)}
+                {IKAT_DIAMONDS.map(([cx, cy]) => (
+                    <g key={`${cx}-${cy}`}>
+                        {[-2.5, 2.5].map((shift) => (
+                            <path key={shift} d={`M${cx + shift} ${cy - 9} L${cx + 8 + shift} ${cy} L${cx + shift} ${cy + 9} L${cx - 8 + shift} ${cy} Z`} fill="#2F4A6B" opacity="0.35" />
+                        ))}
+                        <path d={`M${cx} ${cy - 8} L${cx + 7} ${cy} L${cx} ${cy + 8} L${cx - 7} ${cy} Z`} fill="#1F3B5C" />
+                        <path d={`M${cx} ${cy - 3} L${cx + 2.5} ${cy} L${cx} ${cy + 3} L${cx - 2.5} ${cy} Z`} fill="#F3EAD8" />
+                    </g>
+                ))}
+            </g>
+            <circle cx={IKAT.x + IKAT.w / 2} cy={IKAT.y + IKAT.h / 2} r="3.2" fill={RUST} />
+            <circle cx={IKAT.x + IKAT.w / 2 - 1} cy={IKAT.y + IKAT.h / 2 - 1} r="1" fill="#FFFFFF" opacity="0.6" />
+        </g>
+        {/* Chanderi, over it and sheer: peachy gold, gold butis, a zari border */}
+        <g transform="rotate(5 93 63)">
+            <g clipPath="url(#swatch-chanderi)">
+                <rect x={CHANDERI.x - 4} y={CHANDERI.y - 4} width={CHANDERI.w + 8} height={CHANDERI.h + 8} fill="#F6DCC4" opacity="0.82" />
+                {[0, 1, 2, 3].flatMap((row) => [0, 1, 2, 3].map((col) => {
+                    const cx = CHANDERI.x + 10 + col * 16 + (row % 2) * 8;
+                    const cy = CHANDERI.y + 10 + row * 12;
+                    return (
+                        <g key={`${row}-${col}`} fill="#D4AF37">
+                            <circle cx={cx} cy={cy - 2} r="1.3" />
+                            <circle cx={cx} cy={cy + 2} r="1.3" />
+                            <circle cx={cx - 2} cy={cy} r="1.3" />
+                            <circle cx={cx + 2} cy={cy} r="1.3" />
+                        </g>
+                    );
+                }))}
+                <rect x={CHANDERI.x - 4} y={CHANDERI.y + 54} width={CHANDERI.w + 8} height="14" fill="#D4AF37" opacity="0.85" />
+                <path d={`M${CHANDERI.x - 4} ${CHANDERI.y + 57} h${CHANDERI.w + 8} M${CHANDERI.x - 4} ${CHANDERI.y + 65} h${CHANDERI.w + 8}`} stroke="#B8902A" strokeWidth="0.8" />
+                {Array.from({ length: 12 }, (_, i) => (
+                    <path key={i} d={`M${CHANDERI.x + 1 + i * 6} ${CHANDERI.y + 61} l3 -2.5 l3 2.5 l-3 2.5 Z`} fill="#F6DCC4" />
+                ))}
+            </g>
+            <circle cx={CHANDERI.x + CHANDERI.w / 2} cy={CHANDERI.y + CHANDERI.h / 2} r="3.2" fill="#3F8F8A" />
+            <circle cx={CHANDERI.x + CHANDERI.w / 2 - 1} cy={CHANDERI.y + CHANDERI.h / 2 - 1} r="1" fill="#FFFFFF" opacity="0.6" />
+        </g>
+    </svg>
+);
