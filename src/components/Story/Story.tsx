@@ -85,7 +85,7 @@ export const Story = () => (
                     </ul>
                 </div>
 
-                <a className="story__resume" href={RESUME_URL} target="_blank" rel="noopener noreferrer" download>
+                <a className="story__resume" data-button href={RESUME_URL} target="_blank" rel="noopener noreferrer" download>
                     Download résumé
                 </a>
             </div>

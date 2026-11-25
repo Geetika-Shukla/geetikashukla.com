@@ -58,7 +58,7 @@ export default function OneLakhPage() {
                             This story takes one sum through 25 years and shows what it bought each year in gold,
                             silver, a mason’s days, dollars and wheat, and what it is worth today.
                         </Text>
-                        <a className="ai-link" href={STORY} target="_blank" rel="noopener noreferrer">
+                        <a className="ai-link" data-button href={STORY} target="_blank" rel="noopener noreferrer">
                             Read the story <Arrow />
                         </a>
                     </Div>

@@ -25,6 +25,8 @@ export interface AIProject {
     clip?       : { clip: string; poster: StaticImageData; length: number };
     // Or a still cover
     cover?      : StaticImageData;
+    // Kept here but left off Work for now
+    archived?   : boolean;
 }
 
 export const AI_PROJECTS: AIProject[] = [
@@ -42,15 +44,17 @@ export const AI_PROJECTS: AIProject[] = [
         tools       : ["Data story", "Next.js"],
         href        : "/ai/what-one-lakh-could-buy",
         placeholder : false,
-        // The heirloom's room, cut from a screen recording of the story
-        clip        : { clip: "/glimpses/one-lakh/thumbnail.mp4", poster: oneLakhThumbnail, length: 17200 },
+        // The story's opening (the notes pulling back from the title), cut from a screen recording of it
+        clip        : { clip: "/glimpses/one-lakh/thumbnail.mp4", poster: oneLakhThumbnail, length: 6500 },
     },
-    // PLACEHOLDER: the thumbnail and a line about it, once there's something to show
+    // PLACEHOLDER: the thumbnail and a line about it, once there's something to show.
+    // ARCHIVED until then: its page is at /ai/rbih-website, unlinked
     {
         title       : "Reserve Bank Innovation Hub's website",
         description : "Revamping the website for Reserve Bank Innovation Hub.",
         tools       : ["Website"],
         href        : "/ai/rbih-website",
         placeholder : true,
+        archived    : true,
     },
 ];
