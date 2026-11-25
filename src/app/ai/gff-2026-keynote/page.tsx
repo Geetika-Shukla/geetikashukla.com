@@ -1,6 +1,5 @@
 // EXTERNAL DEPS ===============================================================
 import React from "react";
-import Image from "next/image";
 
 // INTERNAL DEPS ===============================================================
 import { Heading1, Portion, Row, Div, Text } from "fictoan-react";
@@ -15,9 +14,7 @@ import "../../experiences/page-experiences.css";
 import "../ai-pages.css";
 
 // ASSETS ======================================================================
-// Stills of the deck, and of each chapter's clip before it plays
-// (npm run glimpses retakes them)
-import title from "@/assets/images/glimpses/keynote/title.webp";
+// Stills of each chapter's clip before it plays (npm run glimpses retakes them)
 import questions from "@/assets/images/glimpses/keynote/questions.webp";
 import people from "@/assets/images/glimpses/keynote/people.webp";
 import onboarding from "@/assets/images/glimpses/keynote/onboarding.webp";
@@ -60,31 +57,37 @@ export default function GffKeynotePage() {
             {/* HERO SECTION */}
 
             <Row layoutAsGrid horizontalPadding="huge" marginTop="medium" marginBottom="small">
-                <Portion desktopSpan="10" horizontalMargin="small">
+                {/* A little wider than usual, so the title sits on two or three lines */}
+                <Portion desktopSpan="12" horizontalMargin="small">
                     <Heading1 className="hero-heading">
                         The invisible future of finance
                     </Heading1>
                 </Portion>
 
-                <Portion desktopSpan="2" hideOnMobile />
+                <Portion desktopSpan="1" hideOnMobile />
 
-                <Portion desktopSpan="12" mobileSpan="whole" marginLeft="small">
+                <Portion desktopSpan="11" mobileSpan="whole" marginLeft="small">
                     <Div marginTop="small">
                         <Text marginBottom="tiny">
                             A keynote deck for the CEO of Reserve Bank Innovation Hub at Global Fintech Fest 2026, built
-                            using AI. It follows people the financial system still leaves out, through four parts of
-                            lending: onboarding, underwriting, collections and security.
+                            using AI.
                         </Text>
-                        <Text className="ai-credit">
-                            For Sahil Kini, with Naresh Singaravelu, Rhea Sinha and Rajat Mittal
+                        <Text marginBottom="tiny">
+                            It follows people the financial system still leaves out, through four parts of lending:
+                            onboarding, underwriting, collections and security.
                         </Text>
                     </Div>
                 </Portion>
             </Row>
 
+            {/* THE DECK, AND WHO IT WAS MADE WITH */}
+
             <Row horizontalPadding="huge" marginTop="small">
                 <Portion>
-                    <Image className="ai-hero-image" src={title} alt="The deck's title slide: The invisible future of finance, Global Fintech Fest 2026" sizes="90vw" priority />
+                    <DeckPlayer src={DECK} title="The invisible future of finance: the keynote deck" />
+                    <Text className="ai-credit ai-team">
+                        For Sahil Kini, with Naresh Singaravelu, Rhea Sinha and Rajat Mittal
+                    </Text>
                 </Portion>
             </Row>
 
@@ -111,17 +114,6 @@ export default function GffKeynotePage() {
                 <Portion>
                     <h2 className="ai-section__title">The other chapters</h2>
                     <Bento rows={CHAPTERS} />
-                </Portion>
-            </Row>
-
-
-            {/* THE WHOLE DECK */}
-
-            <Row horizontalPadding="huge" className="ai-section">
-                <Portion>
-                    <h2 className="ai-section__title">The deck</h2>
-                    <p className="ai-section__lead">The whole keynote: click into it and use the arrow keys.</p>
-                    <DeckPlayer src={DECK} title="The invisible future of finance: the keynote deck" />
                 </Portion>
             </Row>
 

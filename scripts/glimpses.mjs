@@ -143,13 +143,12 @@ const record = async (page, project, name, act, { width = 1280, hold = 1200, pos
 
 // PROJECTS ====================================================================
 // The keynote for GFF 2026: its chapters, each played slide by slide with
-// their animations, and the title slide as a still
+// their animations
 async function keynote() {
     const project = "keynote";
     const deck = await openPage(`${SITE}/keynotes/gff-2026.html`, { width: 1280, height: 720 });
     await deck.click(640, 360);
     await sleep(1000);
-    await still(await deck.capture(), project, "title");
 
     // Each chapter by its slides, counted from the title (0); the deck is
     // stepped to the slide before, then played through
