@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
 // INTERNAL DEPS ===============================================================
-import { FabricSwatches, GameCartridge, InkBottle, LetterpressBlock, PixelHeart, QueenOfTheNight, Soap, Spool, StickyNote, SwatchFan, Vinyl } from "./Illustrations";
+import { FabricSwatches, GameCartridge, InkBottle, LetterpressBlock, PixelHeart, QueenOfTheNight, Spool, StickyNote, SwatchFan, Vinyl } from "./Illustrations";
 
 // STYLES ======================================================================
 import "./hero.css";
@@ -70,12 +70,11 @@ const ITEMS: Item[] = [
 
     { id: "image-4", kind: "placeholder", content: placeholder(1.43), label: "Image to come", w: "clamp(120px, 12vw, 190px)", scatter: [14, 80, 5], grid: [8, 58] },
     { id: "flower", kind: "art", content: <QueenOfTheNight />, w: "clamp(80px, 7.5vw, 120px)", scatter: [77, 50, -5], grid: [50, 58] },
-    { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(64px, 5.5vw, 90px)", scatter: [30, 88, -4], grid: [64, 58] },
-    { id: "soap", kind: "art", content: <Soap />, label: "Soaps", w: "clamp(60px, 5vw, 84px)", scatter: [75, 84, -7], grid: [92, 58] },
+    { id: "ink", kind: "art", content: <InkBottle />, label: "Ink and nib", w: "clamp(64px, 5.5vw, 90px)", scatter: [30, 88, -4], grid: [78, 58] },
 
-    { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(80px, 7vw, 110px)", scatter: [44, 85, 3], grid: [8, 78] },
-    { id: "letterpress", kind: "art", content: <LetterpressBlock />, label: "A letterpress block", w: "clamp(110px, 10vw, 160px)", scatter: [60, 88, -5], grid: [36, 78] },
-    { id: "stamp", kind: "art", content: stamp(stampBangalore, "A 1988 stamp of the Bangalore GPO"), label: "A stamp from Bengaluru", w: "clamp(110px, 10vw, 160px)", scatter: [90, 86, -6], grid: [92, 78] },
+    { id: "note", kind: "art", content: <StickyNote />, label: "To-do", w: "clamp(80px, 7vw, 110px)", scatter: [46, 85, 3], grid: [8, 78] },
+    { id: "letterpress", kind: "art", content: <LetterpressBlock />, label: "A letterpress block", w: "clamp(110px, 10vw, 160px)", scatter: [65, 88, -5], grid: [36, 78] },
+    { id: "stamp", kind: "art", content: stamp(stampBangalore, "A 1988 stamp of the Bangalore GPO"), label: "A stamp from Bengaluru", w: "clamp(110px, 10vw, 160px)", scatter: [87, 86, -6], grid: [92, 78] },
 ];
 
 // A line set across the grid, a phrase to a pair of cells, read left to right,

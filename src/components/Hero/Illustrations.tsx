@@ -3,7 +3,7 @@ import Image from "next/image";
 import spiritedAwayCover from "@/assets/images/vinyl-cover-spirited-away.jpg";
 
 // Small illustrations for the hero board, drawn in the site's colours: things
-// from the desk and from the interests (ink and nibs, sewing, soaps).
+// from the desk and from the interests (ink and nibs, sewing).
 
 const INK = "#1C1C1E";
 const RUST = "#C9683E";
@@ -94,40 +94,6 @@ export const Spool = () => (
             <rect x="58" y="10" width="3" height="96" rx="1.5" fill="#B9B9BE" />
             <ellipse cx="59.5" cy="16" rx="1" ry="4" fill={PAPER} />
         </g>
-    </svg>
-);
-
-// A handmade bar of lavender soap: a chunky bar with a leaf pressed into the
-// top, half wrapped in a kraft band tied with twine, a sprig tucked under it,
-// and a couple of bubbles
-export const Soap = () => (
-    <svg viewBox="0 0 120 120" aria-hidden="true">
-        <ellipse cx="60" cy="104" rx="48" ry="5" fill={INK} opacity="0.08" />
-        {/* The bar: side, then top face */}
-        <path d="M12 62 Q12 56 18 56 H102 Q108 56 108 62 V90 Q108 98 100 98 H20 Q12 98 12 90 Z" fill="#B9A2D3" />
-        <path d="M12 62 Q12 56 18 56 H102 Q108 56 108 62 V70 Q108 76 100 76 H20 Q12 76 12 70 Z" fill="#DCCBEC" />
-        <path d="M18 60 H100" stroke="#FFFFFF" strokeOpacity="0.5" strokeWidth="2" strokeLinecap="round" />
-        {/* A leaf pressed into the top */}
-        <path d="M34 67 Q42 59 50 67 Q42 73 34 67 Z" fill="none" stroke="#B39BCF" strokeWidth="1.4" />
-        <path d="M34 67 H50" stroke="#B39BCF" strokeWidth="1" />
-        {/* The kraft band, round the right half */}
-        <path d="M66 56 H86 V98 H66 Z" fill="#C9A27A" />
-        <path d="M66 56 H86 V76 H66 Z" fill="#D9B892" />
-        <path d="M66 56 V98 M86 56 V98" stroke="#B48A5E" strokeWidth="1" />
-        {/* Twine, tied in a bow */}
-        <path d="M76 56 V98" stroke="#8C6A45" strokeWidth="1.4" />
-        <path d="M76 66 Q68 58 70 54 Q74 52 76 66 Q78 52 82 54 Q84 58 76 66" fill="none" stroke="#8C6A45" strokeWidth="1.4" strokeLinejoin="round" />
-        <path d="M76 66 L71 74 M76 66 L80 75" stroke="#8C6A45" strokeWidth="1.4" strokeLinecap="round" />
-        {/* A sprig of lavender, tucked under the twine */}
-        <path d="M58 52 Q76 44 98 30" stroke="#6E8B5B" strokeWidth="1.6" fill="none" strokeLinecap="round" />
-        {[[86, 36], [90, 33], [94, 31], [88, 32], [92, 29], [96, 27], [84, 39]].map(([cx, cy]) => (
-            <ellipse key={`${cx}-${cy}`} cx={cx} cy={cy} rx="2.2" ry="1.5" transform={`rotate(-30 ${cx} ${cy})`} fill="#8E6CC1" />
-        ))}
-        {/* Bubbles */}
-        <circle cx="28" cy="40" r="8" fill="#EAF4FA" fillOpacity="0.6" stroke="#9FC4D8" strokeWidth="1.5" />
-        <circle cx="25" cy="37" r="2" fill="#FFFFFF" />
-        <circle cx="44" cy="30" r="4.5" fill="#EAF4FA" fillOpacity="0.6" stroke="#9FC4D8" strokeWidth="1.3" />
-        <circle cx="42.5" cy="28.5" r="1.1" fill="#FFFFFF" />
     </svg>
 );
 
