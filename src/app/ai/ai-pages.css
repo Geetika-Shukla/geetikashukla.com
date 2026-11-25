@@ -79,8 +79,9 @@
     color: var(--color-text-muted);
 }
 
-/* A heading straight over a bento, with room under it */
-.ai-section__title + .bento {
+/* A heading straight over a bento or the deck, with room under it */
+.ai-section__title + .bento,
+.ai-section__title + .deck-player {
     margin-top: 24px;
 }
 

@@ -34,14 +34,17 @@ const CLIPS = "/glimpses/keynote";
 
 // The deck's other chapters, playing as they do on stage: collections beside
 // the smart registry coming together (slide 40, just its animation), then a
-// transfer screened against it (slide 42) across the grid
+// transfer screened against it (slide 42, whole) across the grid
 const CHAPTERS: BentoRow[] = [
-    { ratio: 2.67, items: [
-        { image: collections, clip: `${CLIPS}/collections.mp4`, span: 6, alt: "Collections: a missed payment that isn't a default" },
-        { image: registry, clip: `${CLIPS}/registry.mp4`, span: 3, alt: "The DPIP smart registry, with banks, LEAs and the DoT joining it, and a record coming in" },
+    { ratio: 3.2, items: [
+        { image: collections, clip: `${CLIPS}/collections.mp4`, span: 5, alt: "Collections: a missed payment that isn't a default",
+            caption: "Collections: a bounce read as a timing failure, not a default, and the borrower reached before she misses again." },
+        { image: registry, clip: `${CLIPS}/registry.mp4`, span: 4, alt: "The DPIP smart registry, with banks, LEAs and the DoT joining it, and a record coming in",
+            caption: "DPIP, a smart registry: banks, law enforcement and telecom feed it what they know about fraud." },
     ] },
-    { ratio: 1138 / 640, items: [
-        { image: screening, clip: `${CLIPS}/screening.mp4`, span: 9, alt: "Security: Rukmini's bank screens a transfer against data from the smart registry" },
+    { ratio: 16 / 9, items: [
+        { image: screening, clip: `${CLIPS}/screening.mp4`, span: 9, alt: "Security: Rukmini's bank screens a transfer against data from the smart registry",
+            caption: "Security: Rukmini sends money to an account opened yesterday, and her bank checks it against the registry before it goes." },
     ] },
 ];
 

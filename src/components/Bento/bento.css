@@ -1,26 +1,40 @@
 /*
- * Bento: rows of glimpses on nine columns, every tile in a row as tall as the
- * row (its width over --ratio), each picture or clip filling its tile.
+ * Bento: rows of glimpses on nine columns. In a row every picture is as tall as
+ * the row (its width over --ratio) and fills its tile; a caption, if any, sits
+ * under its picture, the captions of a row lined up together.
  */
 .bento {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 32px;
     width: 100%;
 }
 
+/* The row measures its own width, so its pictures' height can follow it */
 .bento__row {
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    gap: 24px;
-    aspect-ratio: var(--ratio);
+    container-type: inline-size;
 }
 
+.bento__grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: calc(100cqw / var(--ratio)) auto;
+    column-gap: 24px;
+    row-gap: 10px;
+}
+
+/* A glimpse takes both of the row's tracks, its picture above, its caption below */
 .bento__item {
-    position: relative;
+    display: grid;
     grid-column: span var(--span);
+    grid-row: span 2;
+    grid-template-rows: subgrid;
     min-width: 0;
     margin: 0;
+}
+
+.bento__tile {
+    position: relative;
     overflow: hidden;
     border-radius: var(--radius);
     background-color: color-mix(in srgb, var(--color-text) 4%, transparent);
@@ -34,15 +48,27 @@
     object-fit: cover;
 }
 
-/* On a phone: one under another, each in its own shape */
+.bento__caption {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    line-height: 1.45;
+}
+
+/* On a phone: one under another, each picture in its own shape, its caption under it */
 @media (max-width: 640px) {
-    .bento__row {
+    .bento__grid {
         display: flex;
         flex-direction: column;
-        aspect-ratio: auto;
+        gap: 24px;
     }
 
     .bento__item {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .bento__tile {
         aspect-ratio: var(--shape);
     }
 }

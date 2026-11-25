@@ -153,6 +153,9 @@ async function keynote(only) {
     const deck = await openPage(`${SITE}/keynotes/gff-2026.html`, { width: 1280, height: 720 });
     await deck.click(640, 360);
     await sleep(1000);
+    // The slide counter and its buttons, which the deck shows over each slide
+    // for a moment, kept out of the clips (the deck hides them for export too)
+    await deck.evaluate(`document.querySelector("deck-stage")?.shadowRoot?.querySelector(".overlay")?.style.setProperty("display", "none")`);
 
     // Each clip by its slides, counted from the title (0; the deck's own
     // counter shows one more), in the order they come; the deck is stepped to
@@ -161,11 +164,11 @@ async function keynote(only) {
     const CLIPS = [
         { name: "onboarding",   first: 16, last: 24 },
         { name: "collections",  first: 33, last: 36 },
-        // Slide 40: the smart registry, the sources joining it and a record coming in
-        { name: "registry",     first: 39, last: 39, crop: { x: 350, y: 80, w: 560, h: 600 }, width: 640 },
-        // Slide 42: a transfer screened against the registry; the slide counter, shown for
-        // its first moments, cropped off its foot
-        { name: "screening",    first: 41, last: 41, crop: { x: 71, y: 0, w: 1138, h: 640 } },
+        // Slide 40: just its animation, the smart registry with the sources joining it and a
+        // record coming in
+        { name: "registry",     first: 39, last: 39, crop: { x: 243, y: 80, w: 795, h: 560 }, width: 960 },
+        // Slide 42, whole: a transfer screened against the registry
+        { name: "screening",    first: 41, last: 41 },
     ];
     const DWELL = 2800;
     const SINGLE = 6500;
