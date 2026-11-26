@@ -37,7 +37,6 @@ import ProductIcons from "@/assets/images/product-icons.svg";
 import ProductIconsIterations from "@/assets/images/product-icons-iterations.svg";
 import Platform1 from "@/assets/images/platform-1.svg";
 import Platform2 from "@/assets/images/platform-2.svg";
-import Platform3 from "@/assets/images/platform-3.svg";
 import Platform4 from "@/assets/images/platform-4.svg";
 import Platform5 from "@/assets/images/platform-5.svg";
 import Platform6 from "@/assets/images/platform-6.svg";
@@ -239,7 +238,8 @@ const IconSystemPage = () => {
                 <Div className="scroll-container">
                     <Platform1 className="scroll-item" />
                     <Platform2 className="scroll-item" />
-                    <Platform3 className="scroll-item" />
+                    {/* Served as a file, not built into a component: at 5 MB (photos inside) it runs the build out of memory. Sized like the others: the row's full width, at least .scroll-item's min-width */}
+                    <Image src="/images/platform-3.svg" alt="" width={1508} height={712} className="scroll-item" style={{ width: "100%", height: "auto" }} />
                     <Platform4 className="scroll-item" />
                     <Platform5 className="scroll-item" />
                     <Platform6 className="scroll-item" />

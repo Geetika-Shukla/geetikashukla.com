@@ -60,7 +60,7 @@ const ORDER: { href: string; bg: string; whole?: boolean; art?: number; motion?:
     } },
     { href: "/visual/26-days-of-type", bg: "#FFFFFF" },
     { href: "/visual/people-experience", bg: "#CCF6F7" },
-    { href: "/type/47-days-of-devanagari-type", bg: "#FFFFFF", whole: true, art: 1.5 },
+    { href: "/type/47-days-of-devanagari-type", bg: "#FFFFFF", whole: true, art: 1.28 },
     { href: "/experiences/hdfc-journeys", bg: "#E5F2FF", motion: {
         kind: "phone", screens: [hdfcKyc, hdfcKycError, hdfcVideoKyc, hdfcFd],
     } },
@@ -68,7 +68,8 @@ const ORDER: { href: string; bg: string; whole?: boolean; art?: number; motion?:
     { href: "/experiences/assisted-product-discovery", bg: "#C7EFF0", motion: {
         kind: "browser", screens: [discoveryHome, discoveryMenu, discoveryContact],
     } },
-    { href: "/type/inktober-2017", bg: "#FFFFFF", whole: true, art: 0.85 },
+    // The logo, centred, at 70% of the size that would meet both sides (1.02)
+    { href: "/type/inktober-2017", bg: "#FFFFFF", whole: true, art: 0.71 },
 ];
 
 interface Piece {
@@ -117,21 +118,25 @@ const WORDS_UNDER = 5;
 const WORDS_BESIDE = 8;
 
 type Spot = { x: number; y: number; w: number; h: number; words: "under" | "beside" };
+// Thumbnails come in two sizes only: large (17 × 10) and standard (13 × 8)
+const LARGE = { w: 17, h: 10 };
+const STANDARD = { w: 13, h: 8 };
+
 const COMPOSITIONS: Record<number, { rows: number; spots: Spot[] }> = {
     2: { rows: 25, spots: [
-        { x: 2, y: 0, w: 17, h: 10, words: "under" },
-        { x: 23, y: 9, w: 15, h: 9, words: "under" },
+        { x: 2, y: 0, ...LARGE, words: "under" },
+        { x: 24, y: 9, ...STANDARD, words: "under" },
     ] },
     3: { rows: 26, spots: [
-        { x: 1, y: 0, w: 15, h: 8, words: "under" },
-        { x: 19, y: 2, w: 12, h: 8, words: "beside" },
-        { x: 19, y: 13, w: 12, h: 8, words: "beside" },
+        { x: 1, y: 0, ...STANDARD, words: "under" },
+        { x: 18, y: 2, ...STANDARD, words: "beside" },
+        { x: 18, y: 13, ...STANDARD, words: "beside" },
     ] },
     4: { rows: 26, spots: [
-        { x: 0, y: 0, w: 15, h: 8, words: "under" },
-        { x: 18, y: 0, w: 13, h: 8, words: "beside" },
-        { x: 2, y: 16, w: 13, h: 8, words: "beside" },
-        { x: 27, y: 11, w: 13, h: 8, words: "under" },
+        { x: 1, y: 0, ...STANDARD, words: "under" },
+        { x: 18, y: 0, ...STANDARD, words: "beside" },
+        { x: 2, y: 16, ...STANDARD, words: "beside" },
+        { x: 27, y: 11, ...STANDARD, words: "under" },
     ] },
 };
 

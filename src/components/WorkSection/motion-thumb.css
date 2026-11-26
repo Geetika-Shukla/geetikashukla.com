@@ -56,7 +56,9 @@
     left: 0;
     display: flex;
     gap: 10px;
-    padding-left: 10px;
+    /* The spacing after the last phone (not before the first), so the row
+       starts flush with the left edge and the loop still joins seamlessly */
+    padding-right: 10px;
     animation: motion-glide 18s linear infinite;
 }
 
