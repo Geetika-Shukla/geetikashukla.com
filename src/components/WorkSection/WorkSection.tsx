@@ -60,7 +60,7 @@ const ORDER: { href: string; bg: string; whole?: boolean; art?: number; motion?:
     } },
     { href: "/visual/26-days-of-type", bg: "#FFFFFF" },
     { href: "/visual/people-experience", bg: "#CCF6F7" },
-    { href: "/type/47-days-of-devanagari-type", bg: "#FFFFFF", whole: true, art: 1.5 },
+    { href: "/type/47-days-of-devanagari-type", bg: "#FFFFFF", whole: true, art: 1.28 },
     { href: "/experiences/hdfc-journeys", bg: "#E5F2FF", motion: {
         kind: "phone", screens: [hdfcKyc, hdfcKycError, hdfcVideoKyc, hdfcFd],
     } },
@@ -68,8 +68,8 @@ const ORDER: { href: string; bg: string; whole?: boolean; art?: number; motion?:
     { href: "/experiences/assisted-product-discovery", bg: "#C7EFF0", motion: {
         kind: "browser", screens: [discoveryHome, discoveryMenu, discoveryContact],
     } },
-    // The logo spans 340 of its 350-wide image: enlarged just enough to meet both sides
-    { href: "/type/inktober-2017", bg: "#FFFFFF", whole: true, art: 1.02 },
+    // The logo, centred, at 70% of the size that would meet both sides (1.02)
+    { href: "/type/inktober-2017", bg: "#FFFFFF", whole: true, art: 0.71 },
 ];
 
 interface Piece {
