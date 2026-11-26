@@ -1,5 +1,5 @@
 <svg viewBox="0 0 500 300" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<!-- Fifteen icons from the project page's set (icons.svg), five across and three down, a little larger -->
+<!-- Fifteen icons from the project page's set (icons.svg), five across and three down, with room round them -->
 <rect width="500" height="300" fill="#F2FDFD"/>
 <defs><g id="isg-set">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M84.6798 38.43C84.8181 38.1431 84.9416 37.8494 85.0498 37.55C85.1498 37.28 85.2298 37.02 85.2998 36.77L80.8298 36.43C80.4898 35.1 80.1598 33.76 79.8298 32.43H85.4098C85.0359 30.6266 84.1425 28.9719 82.8398 27.67C82.5244 27.3569 82.1905 27.063 81.8398 26.79C80.9296 26.1277 79.9158 25.6208 78.8398 25.29C79.1698 23.68 79.4998 22.07 79.8398 20.46H100.92V24.8H85.5198C87.506 26.8896 88.7922 29.5459 89.1998 32.4H100.92V36.77H89.1298C88.834 38.0345 88.3979 39.2621 87.8298 40.43C87.6498 40.78 87.4698 41.12 87.2898 41.43L84.6798 38.43Z" fill="white"/>
@@ -614,19 +614,19 @@
 </clipPath>
 </defs>
 </g></defs>
-<svg x="5" y="5" width="90" height="90" viewBox="1772 163 72 72"><use href="#isg-set"/></svg>
-<svg x="105" y="5" width="90" height="90" viewBox="2200 -3 72 72"><use href="#isg-set"/></svg>
-<svg x="205" y="5" width="90" height="90" viewBox="702 329 72 72"><use href="#isg-set"/></svg>
-<svg x="305" y="5" width="90" height="90" viewBox="1344 -3 72 72"><use href="#isg-set"/></svg>
-<svg x="405" y="5" width="90" height="90" viewBox="1130.5 -3 72 72"><use href="#isg-set"/></svg>
-<svg x="5" y="105" width="90" height="90" viewBox="60 163 72 72"><use href="#isg-set"/></svg>
-<svg x="105" y="105" width="90" height="90" viewBox="1130.5 329 72 72"><use href="#isg-set"/></svg>
-<svg x="205" y="105" width="90" height="90" viewBox="702 -3 72 72"><use href="#isg-set"/></svg>
-<svg x="305" y="105" width="90" height="90" viewBox="1558 163 72 72"><use href="#isg-set"/></svg>
-<svg x="405" y="105" width="90" height="90" viewBox="1772 329 72 72"><use href="#isg-set"/></svg>
-<svg x="5" y="205" width="90" height="90" viewBox="489.5 163 72 72"><use href="#isg-set"/></svg>
-<svg x="105" y="205" width="90" height="90" viewBox="2200 329 72 72"><use href="#isg-set"/></svg>
-<svg x="205" y="205" width="90" height="90" viewBox="1558 -3 72 72"><use href="#isg-set"/></svg>
-<svg x="305" y="205" width="90" height="90" viewBox="1130.5 163 72 72"><use href="#isg-set"/></svg>
-<svg x="405" y="205" width="90" height="90" viewBox="489.5 329 72 72"><use href="#isg-set"/></svg>
+<svg x="52.75" y="40.75" width="58.50" height="58.50" viewBox="1772 163 72 72"><use href="#isg-set"/></svg>
+<svg x="136.75" y="40.75" width="58.50" height="58.50" viewBox="2200 -3 72 72"><use href="#isg-set"/></svg>
+<svg x="220.75" y="40.75" width="58.50" height="58.50" viewBox="702 329 72 72"><use href="#isg-set"/></svg>
+<svg x="304.75" y="40.75" width="58.50" height="58.50" viewBox="1344 -3 72 72"><use href="#isg-set"/></svg>
+<svg x="388.75" y="40.75" width="58.50" height="58.50" viewBox="1130.5 -3 72 72"><use href="#isg-set"/></svg>
+<svg x="52.75" y="120.75" width="58.50" height="58.50" viewBox="60 163 72 72"><use href="#isg-set"/></svg>
+<svg x="136.75" y="120.75" width="58.50" height="58.50" viewBox="1130.5 329 72 72"><use href="#isg-set"/></svg>
+<svg x="220.75" y="120.75" width="58.50" height="58.50" viewBox="702 -3 72 72"><use href="#isg-set"/></svg>
+<svg x="304.75" y="120.75" width="58.50" height="58.50" viewBox="1558 163 72 72"><use href="#isg-set"/></svg>
+<svg x="388.75" y="120.75" width="58.50" height="58.50" viewBox="1772 329 72 72"><use href="#isg-set"/></svg>
+<svg x="52.75" y="200.75" width="58.50" height="58.50" viewBox="489.5 163 72 72"><use href="#isg-set"/></svg>
+<svg x="136.75" y="200.75" width="58.50" height="58.50" viewBox="2200 329 72 72"><use href="#isg-set"/></svg>
+<svg x="220.75" y="200.75" width="58.50" height="58.50" viewBox="1558 -3 72 72"><use href="#isg-set"/></svg>
+<svg x="304.75" y="200.75" width="58.50" height="58.50" viewBox="1130.5 163 72 72"><use href="#isg-set"/></svg>
+<svg x="388.75" y="200.75" width="58.50" height="58.50" viewBox="489.5 329 72 72"><use href="#isg-set"/></svg>
 </svg>
