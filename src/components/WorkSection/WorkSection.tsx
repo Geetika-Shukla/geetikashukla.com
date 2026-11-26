@@ -68,7 +68,8 @@ const ORDER: { href: string; bg: string; whole?: boolean; art?: number; motion?:
     { href: "/experiences/assisted-product-discovery", bg: "#C7EFF0", motion: {
         kind: "browser", screens: [discoveryHome, discoveryMenu, discoveryContact],
     } },
-    { href: "/type/inktober-2017", bg: "#FFFFFF", whole: true, art: 0.85 },
+    // The logo spans 340 of its 350-wide image: enlarged just enough to meet both sides
+    { href: "/type/inktober-2017", bg: "#FFFFFF", whole: true, art: 1.02 },
 ];
 
 interface Piece {
