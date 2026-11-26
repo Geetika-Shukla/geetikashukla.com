@@ -101,7 +101,7 @@ export const TESTIMONIALS: Testimonial[] = [
             "Beyond work, she’s also an amazing person at heart and a joy to be around—kind, thoughtful, and someone you can always count on to keep things real. Always rooting for you, Geetika ❤️",
         ],
         name    : "Ruby Jane Antony",
-        role    : "Director, People Ops, Setu",
+        role    : "Former Director, People Ops, Setu",
         profile : "https://www.linkedin.com/in/ruby-jane/",
     },
     {

@@ -245,6 +245,9 @@ html:has(.work__step) {
 .wcard__link {
     display: flex;
     flex-direction: column;
+    /* The whole card (links are otherwise fit-content), so on narrower screens
+       every thumbnail is the card's full width, all the same size */
+    width: 100%;
     height: 100%;
     padding: var(--block);
     color: inherit;
