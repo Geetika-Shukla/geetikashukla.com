@@ -117,21 +117,25 @@ const WORDS_UNDER = 5;
 const WORDS_BESIDE = 8;
 
 type Spot = { x: number; y: number; w: number; h: number; words: "under" | "beside" };
+// Thumbnails come in two sizes only: large (17 × 10) and standard (13 × 8)
+const LARGE = { w: 17, h: 10 };
+const STANDARD = { w: 13, h: 8 };
+
 const COMPOSITIONS: Record<number, { rows: number; spots: Spot[] }> = {
     2: { rows: 25, spots: [
-        { x: 2, y: 0, w: 17, h: 10, words: "under" },
-        { x: 23, y: 9, w: 15, h: 9, words: "under" },
+        { x: 2, y: 0, ...LARGE, words: "under" },
+        { x: 24, y: 9, ...STANDARD, words: "under" },
     ] },
     3: { rows: 26, spots: [
-        { x: 1, y: 0, w: 15, h: 8, words: "under" },
-        { x: 19, y: 2, w: 12, h: 8, words: "beside" },
-        { x: 19, y: 13, w: 12, h: 8, words: "beside" },
+        { x: 1, y: 0, ...STANDARD, words: "under" },
+        { x: 18, y: 2, ...STANDARD, words: "beside" },
+        { x: 18, y: 13, ...STANDARD, words: "beside" },
     ] },
     4: { rows: 26, spots: [
-        { x: 0, y: 0, w: 15, h: 8, words: "under" },
-        { x: 18, y: 0, w: 13, h: 8, words: "beside" },
-        { x: 2, y: 16, w: 13, h: 8, words: "beside" },
-        { x: 27, y: 11, w: 13, h: 8, words: "under" },
+        { x: 1, y: 0, ...STANDARD, words: "under" },
+        { x: 18, y: 0, ...STANDARD, words: "beside" },
+        { x: 2, y: 16, ...STANDARD, words: "beside" },
+        { x: 27, y: 11, ...STANDARD, words: "under" },
     ] },
 };
 
