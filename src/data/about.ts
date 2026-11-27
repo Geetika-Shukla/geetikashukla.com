@@ -101,7 +101,7 @@ export const TESTIMONIALS: Testimonial[] = [
             "Beyond work, she’s also an amazing person at heart and a joy to be around—kind, thoughtful, and someone you can always count on to keep things real. Always rooting for you, Geetika ❤️",
         ],
         name    : "Ruby Jane Antony",
-        role    : "Former Director, People Ops, Setu",
+        role    : "Director, People Ops, Setu",
         profile : "https://www.linkedin.com/in/ruby-jane/",
     },
     {
@@ -120,7 +120,7 @@ export const TESTIMONIALS: Testimonial[] = [
             "For anyone looking for a designer with creativity, clarity, and attention to detail, Geetika is an outstanding choice!",
         ],
         name    : "Asveen Kaur",
-        role    : "Former Manager, People Ops, Setu",
+        role    : "Manager, People Ops, Setu",
         profile : "https://www.linkedin.com/in/asveenkaur/",
     },
 ];

@@ -299,7 +299,7 @@ const MoreAboutMePage = () => {
                         <Link href="https://www.linkedin.com/in/ruby-jane/" target="_blank" rel="noopener noreferrer">
                             <Text><strong>
                                 Ruby Jane Antony<br />
-                                Former Director, People Ops, Setu
+                                Director, People Ops, Setu
                             </strong>
                             </Text>
                         </Link>
@@ -334,7 +334,7 @@ const MoreAboutMePage = () => {
                         <Link href="https://www.linkedin.com/in/asveenkaur/" target="_blank" rel="noopener noreferrer">
                             <Text><strong>
                                 Asveen Kaur <br />
-                                Former Manager, People Ops, Setu
+                                Manager, People Ops, Setu
                             </strong>
                             </Text>
                         </Link>
